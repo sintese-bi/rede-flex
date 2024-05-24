@@ -1,8 +1,17 @@
 "use client"
 import {z} from "zod"
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { 
+  Form,
+  FormControl, 
+  FormDescription, 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormMessage 
+} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -19,18 +28,24 @@ const formSchema = z.object({
   })
 })
 export default function Home() {
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: ""
+      username: "",
+      password: ""
     }
   })
   function onSubmit(values: z.infer<typeof formSchema>){
-    const {username, password} = values
+    const {username, password} = values;
+    const validLoginInfo = username == "redeflex" && password == "redeflex1234";
     toast({
+      duration: 1000,
+      variant: validLoginInfo ? "default" : "destructive",
       title: "Login",
-      description: username == "redeflex" && password == "redeflex1234" ? "Login efetuado com sucesso" : "Login falhou, por favor verifique os dados"
+      description:validLoginInfo ? "Login efetuado com sucesso" : "Login falhou, por favor verifique os dados"
     })
+    validLoginInfo ? router.push("/mobile") : null;
   }
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center">
