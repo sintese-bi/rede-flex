@@ -21,6 +21,9 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans]
       },
+      colors: {
+        'main-color': '#012340'
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
