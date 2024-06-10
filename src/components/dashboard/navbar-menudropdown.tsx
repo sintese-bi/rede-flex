@@ -12,6 +12,7 @@ import {
   BoltIcon,
   DeleteIcon,
   FilesIcon,
+  HomeIcon,
   LucideFiles,
   MenuIcon,
   PlusCircleIcon,
@@ -39,6 +40,12 @@ export default function NavbarMenuDropDown() {
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
+            <HomeIcon size={22} />
+            <p className="text-xs">Home</p>
+          </div>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
             <User2Icon size={22} />
