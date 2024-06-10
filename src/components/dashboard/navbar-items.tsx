@@ -9,6 +9,7 @@ import {
   TriangleAlertIcon,
   FilesIcon,
   ArrowDownUpIcon,
+  HomeIcon,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -23,6 +24,13 @@ export default function NavbarItems() {
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
+        </div>
+        <div
+          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+          onClick={() => router.push("/dashboard")}
+        >
+          <HomeIcon size={22} />
+          <p className="hidden group-hover:block text-xs">Home</p>
         </div>
         <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
           <User2Icon size={22} />
