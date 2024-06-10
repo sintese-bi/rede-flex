@@ -1,4 +1,4 @@
-import Leaflet from "@/components/dashboard/map/leaflet-map";
+import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
 import { AlertCircleIcon, DollarSignIcon, FuelIcon } from "lucide-react";
 import {
@@ -7,6 +7,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+const Leaflet = dynamic(
+  () => import("@/components/dashboard/map/leaflet-map"),
+  {
+    ssr: false,
+  }
+);
 export default async function Dashboard() {
   return (
     <div className="h-full w-full">
