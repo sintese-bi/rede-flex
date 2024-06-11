@@ -17,7 +17,7 @@ export default function DashboardMap() {
   return (
     <div className="flex flex-col gap-2 w-full  rounded-lg h-96">
       <div className="flex items-center gap-2">
-        <p className="text-sm font-bold text-slate-600">
+        <p className="flex items-center text-sm font-bold text-slate-600 h-8">
           Destribuição de postos
         </p>
         <TooltipProvider>
@@ -25,7 +25,7 @@ export default function DashboardMap() {
             <TooltipTrigger>
               <AlertCircleIcon size={16} />
             </TooltipTrigger>
-            <TooltipContent className="text-sm" side="right">
+            <TooltipContent className="text-sm h-8" side="right">
               <p>Mapa com distribuição dos postos!</p>
             </TooltipContent>
           </Tooltip>

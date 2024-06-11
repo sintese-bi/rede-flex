@@ -17,7 +17,38 @@ export default function Leaflet() {
       />
       <Marker position={[51.505, -0.09]}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Rank: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Postos: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Abastecimento: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>TMP: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Meta: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Desempenho: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Enviar relatório: </strong>
+            <p>_</p>
+          </div>
+          <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+            <strong>Postos em alerta: </strong>
+            <p>_</p>
+          </div>
         </Popup>
       </Marker>
     </MapContainer>

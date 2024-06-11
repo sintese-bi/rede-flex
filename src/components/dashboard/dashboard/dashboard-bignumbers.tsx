@@ -5,11 +5,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { AlertCircleIcon, DollarSignIcon, FuelIcon } from "lucide-react";
 export default async function DashboardBigNumbers() {
   return (
     <div className="flex flex-col gap-2 w-full h-full lg:h-96">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         <p className="text-sm font-bold text-slate-600">Números principais</p>
         <TooltipProvider>
           <Tooltip>
@@ -21,6 +28,22 @@ export default async function DashboardBigNumbers() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
+        <Select>
+          <SelectTrigger className="text-xs w-[200px] h-8">
+            <SelectValue placeholder="Filtrar dados" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="filter1" className="text-xs">
+              Filtro 1
+            </SelectItem>
+            <SelectItem value="filter2" className="text-xs">
+              Filtro 2
+            </SelectItem>
+            <SelectItem value="filter3" className="text-xs">
+              Filtro 3
+            </SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <Separator />
       <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">

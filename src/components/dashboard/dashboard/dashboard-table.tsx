@@ -32,7 +32,7 @@ export default async function DashboardTable() {
         </TooltipProvider>
       </div>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>Listagem de postos</TableCaption>
         <TableHeader>
           <TableRow className="bg-main-color hover:bg-main-color rounded-xl">
             <TableHead className="text-slate-300 text-xs rounded-l-md">
