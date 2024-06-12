@@ -9,7 +9,53 @@ export default async function Dashboard() {
         <DashboardMap />
       </div>
       <div className="pb-6">
-        <DashboardTable />
+        <DashboardTable
+          title="Acompanhamento de galonagem - Ao vivo"
+          description="Listagem contendo as principais informações de cada posto!"
+          columns={[
+            "Data",
+            "Dia",
+            "Abastecimento",
+            "Galonagem",
+            "Produtos",
+            "Calibragem",
+            "Ducha",
+            "Faturamento",
+          ]}
+          data={Array(10).fill(["_", "_", "_", "_", "_", "_", "_", "_"])}
+        />
+        <DashboardTable
+          title="Venda de combustíveis referente a galonagem - Ao vivo"
+          description="Listagem contendo as principais informações de cada posto!"
+          columns={[
+            "Data",
+            "Dia",
+            "Gasolina C",
+            "Etanol C",
+            "S10",
+            "S500",
+            "GNV",
+            "Gasolina Ad",
+            "Etanol Ad",
+            "Gasolina P",
+            "S10 AD",
+            "ARLA",
+          ]}
+          data={Array(10).fill([
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+            "_",
+          ])}
+        />
       </div>
     </div>
   );

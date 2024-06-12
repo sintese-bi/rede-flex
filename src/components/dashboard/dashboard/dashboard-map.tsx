@@ -18,7 +18,7 @@ export default function DashboardMap() {
     <div className="flex flex-col gap-2 w-full  rounded-lg h-96">
       <div className="flex items-center gap-2">
         <p className="flex items-center text-sm font-bold text-slate-600 h-8">
-          Destribuição de postos
+          Geocalização de postos
         </p>
         <TooltipProvider>
           <Tooltip>
