@@ -15,156 +15,64 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AlertCircleIcon } from "lucide-react";
-export default async function DashboardTable() {
+interface TableInterface {
+  title: string;
+  description: string;
+  columns: Array<string>;
+  data: Array<any>;
+}
+export default async function DashboardTable({
+  title,
+  description,
+  columns,
+  data,
+}: TableInterface) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
-        <p className="text-sm font-bold text-slate-600">Listagem de postos</p>
+        <p className="text-sm font-bold text-slate-600">{title}</p>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
               <AlertCircleIcon size={16} />
             </TooltipTrigger>
             <TooltipContent className="text-sm" side="right">
-              <p>Listagem contendo as principais informações de cada posto!</p>
+              <p>{description}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
       <Table>
-        <TableCaption>Listagem de postos</TableCaption>
         <TableHeader>
           <TableRow className="bg-main-color hover:bg-main-color rounded-xl">
-            <TableHead className="text-slate-300 text-xs rounded-l-md">
-              Rank
-            </TableHead>
-            <TableHead className="text-slate-300 text-xs">Postos</TableHead>
-            <TableHead className="text-slate-300 text-xs">Vendas</TableHead>
-            <TableHead className="text-slate-300 text-xs">
-              Abastecimento
-            </TableHead>
-            <TableHead className="text-slate-300 text-xs">TMP</TableHead>
-            <TableHead className="text-slate-300 text-xs">Meta</TableHead>
-            <TableHead className="text-slate-300 text-xs">Desempenho</TableHead>
-            <TableHead className="text-slate-300 text-xs">
-              Enviar relatório
-            </TableHead>
-            <TableHead className="text-slate-300 text-xs rounded-r-md">
-              Postos em alerta
-            </TableHead>
+            {columns.map((column, index) => {
+              return (
+                <TableHead
+                  key={index}
+                  className={`text-slate-300 text-xs ${
+                    index == 0
+                      ? "rounded-l-md"
+                      : index == columns.length - 1
+                      ? "rounded-r-md"
+                      : ""
+                  }`}
+                >
+                  {column}
+                </TableHead>
+              );
+            })}
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-            <TableCell>_</TableCell>
-          </TableRow>
+          {data.map((dataItem: any, index: number) => {
+            return (
+              <TableRow key={index}>
+                {dataItem.map((dataItemContent: any, index: number) => {
+                  return <TableCell key={index}>{dataItemContent}</TableCell>;
+                })}
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>
