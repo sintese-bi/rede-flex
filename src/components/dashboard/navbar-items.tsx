@@ -37,16 +37,8 @@ export default function NavbarItems() {
           <p className="hidden group-hover:block text-xs">Usuário</p>
         </div>
         <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-          <PlusCircleIcon size={22} />
-          <p className="hidden group-hover:block text-xs">Inserir postos</p>
-        </div>
-        <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
           <BoltIcon size={22} />
           <p className="hidden group-hover:block text-xs">Configurar alertas</p>
-        </div>
-        <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-          <DeleteIcon size={22} />
-          <p className="hidden group-hover:block text-xs">Deletar postos</p>
         </div>
         <div
           className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
