@@ -24,16 +24,29 @@ export default async function Dashboard() {
             title="Acompanhamento galonagem"
             description="Listagem contendo as principais informações de cada posto!"
             columns={[
-              "UUID",
+              "ID",
+              "Data",
+              "Dia",
+              "Faturamento",
+              "Faturamento médio ",
               "Qtd abastecimento",
-              "Venda galonagem (R$)",
-              "Venda produtos (R$)",
-              "Venda calibragem (R$)",
-              "Venda ducha (R$)",
-              "Faturamento total (R$)",
-              "Faturamento médio (R$)",
+              "Venda galonagem ",
+              "Venda produtos ",
+              "Venda calibragem ",
+              "Venda ducha ",
             ]}
-            data={Array(10).fill(["_", "_", "_", "_", "_", "_", "_", "_"])}
+            data={Array(10).fill([
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+              "_",
+            ])}
           />
         </Suspense>
         <Suspense
@@ -43,21 +56,25 @@ export default async function Dashboard() {
             title="Venda da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"
             columns={[
-              "UUID",
-              "Gasolina C (R$)",
-              "Etanol C (R$)",
-              "S10 (R$)",
-              "S500 (R$)",
-              "GNV (R$)",
-              "Gasolina Ad (R$)",
-              "Etanol Ad (R$)",
-              "Gasolina P (R$)",
-              "S10 AD (R$)",
+              "ID",
+              "Data",
+              "Dia",
+              "Faturamento",
+              "Faturamento médio ",
+              "Gasolina C ",
+              "Etanol C ",
+              "S10 ",
+              "S500 ",
+              "GNV ",
+              "Gasolina Ad ",
+              "Etanol Ad ",
+              "Gasolina P ",
+              "S10 AD ",
               "ARLA",
-              "Faturamento total (R$)",
-              "Faturamento médio (R$)",
             ]}
             data={Array(10).fill([
+              "_",
+              "_",
               "_",
               "_",
               "_",
@@ -78,22 +95,26 @@ export default async function Dashboard() {
           fallback={<LoadingTable title="Volume vendido por combustível" />}
         >
           <DashboardTable
-            title="Volume vendido por combustível"
+            title="Volume em litros vendido por combustível"
             description="Listagem contendo as principais informações de cada posto!"
             columns={[
-              "UUID",
-              "Gasolina C (Litros)",
-              "Etanol C (Litros)",
-              "S10 (Litros)",
-              "S500 (Litros)",
-              "GNV (Litros)",
-              "Gasolina Ad (Litros)",
-              "Etanol Ad (Litros)",
-              "Gasolina P (Litros)",
-              "S10 AD (Litros)",
-              "⁠Volume total (Litros)",
+              "ID",
+              "Data",
+              "Dia",
+              "Volume",
+              "Gasolina C ",
+              "Etanol C ",
+              "S10 ",
+              "S500 ",
+              "GNV ",
+              "Gasolina Ad ",
+              "Etanol Ad ",
+              "Gasolina P ",
+              "S10 AD ",
             ]}
             data={Array(10).fill([
+              "_",
+              "_",
               "_",
               "_",
               "_",
@@ -115,21 +136,25 @@ export default async function Dashboard() {
             title="Custo da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"
             columns={[
-              "UUID",
-              "Gasolina C (R$)",
-              "Etanol C (R$)",
-              "S10 (R$)",
-              "S500 (R$)",
-              "GNV (R$)",
-              "Gasolina Ad (R$)",
-              "Etanol Ad (R$)",
-              "Gasolina P (R$)",
-              "S10 AD (R$)",
+              "ID",
+              "Data",
+              "Dia",
+              "Custo",
+              "Custo médio ",
+              "Gasolina C ",
+              "Etanol C ",
+              "S10 ",
+              "S500 ",
+              "GNV ",
+              "Gasolina Ad ",
+              "Etanol Ad ",
+              "Gasolina P ",
+              "S10 AD ",
               "ARLA",
-              "Custo total (R$)",
-              "Custo médio (R$)",
             ]}
             data={Array(10).fill([
+              "_",
+              "_",
               "_",
               "_",
               "_",
@@ -153,21 +178,25 @@ export default async function Dashboard() {
             title="Lucro da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"
             columns={[
-              "UUID",
-              "Gasolina C (R$)",
-              "Etanol C (R$)",
-              "S10 (R$)",
-              "S500 (R$)",
-              "GNV (R$)",
-              "Gasolina Ad (R$)",
-              "Etanol Ad (R$)",
-              "Gasolina P (R$)",
-              "S10 AD (R$)",
+              "ID",
+              "Data",
+              "Dia",
+              "Lucro",
+              "Lucro médio ",
+              "Gasolina C ",
+              "Etanol C ",
+              "S10 ",
+              "S500 ",
+              "GNV ",
+              "Gasolina Ad ",
+              "Etanol Ad ",
+              "Gasolina P ",
+              "S10 AD ",
               "ARLA",
-              "Lucro total (R$)",
-              "Lucro médio (R$)",
             ]}
             data={Array(10).fill([
+              "_",
+              "_",
               "_",
               "_",
               "_",
