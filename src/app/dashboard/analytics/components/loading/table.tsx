@@ -21,7 +21,7 @@ export default async function LoadingTable({ title }: TableInterface) {
     <div className="flex flex-col gap-4 animate-fade">
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold text-slate-600">
-          Carregando de {title}
+          Carregando tabela de {title}
         </p>
         <TooltipProvider>
           <Tooltip>

@@ -1,5 +1,4 @@
-import Navbar from "@/components/dashboard/navbar";
-import { Suspense } from "react";
+import Navbar from "./analytics/components/navbar/navbar";
 export default function DashboardLayout({
   children,
 }: {

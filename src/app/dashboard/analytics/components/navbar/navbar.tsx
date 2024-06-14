@@ -1,5 +1,5 @@
-import NavbarItems from "./navbar-items";
-import NavbarMenuDropDown from "./navbar-menudropdown";
+import NavbarItems from "./items";
+import NavbarMenuDropDown from "./menudropdown";
 export default function Navbar() {
   return (
     <div className="lg:h-5/6 md:h-5/6 sm:h-5/6 xs:h-28 h-8 rounded-xl">
