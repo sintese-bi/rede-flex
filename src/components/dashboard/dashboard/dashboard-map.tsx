@@ -15,7 +15,7 @@ const Leaflet = dynamic(
 );
 export default function DashboardMap() {
   return (
-    <div className="flex flex-col gap-2 w-full  rounded-lg h-96">
+    <div className="flex flex-col gap-2 w-2/5  rounded-lg h-96">
       <div className="flex items-center gap-2">
         <p className="flex items-center text-sm font-bold text-slate-600 h-8">
           Geocalização de postos
