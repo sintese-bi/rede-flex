@@ -1,18 +1,15 @@
 "use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
-  BoltIcon,
-  DeleteIcon,
-  LucideFiles,
-  PlusCircleIcon,
   User2Icon,
   LogOutIcon,
   TriangleAlertIcon,
   FilesIcon,
   ArrowDownUpIcon,
   HomeIcon,
+  BarChartHorizontalIcon,
 } from "lucide-react";
-import { Button } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useRouter } from "next/navigation";
 export default function NavbarItems() {
   const router = useRouter();
@@ -37,8 +34,8 @@ export default function NavbarItems() {
           <p className="hidden group-hover:block text-xs">Usuário</p>
         </div>
         <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-          <BoltIcon size={22} />
-          <p className="hidden group-hover:block text-xs">Configurar alertas</p>
+          <BarChartHorizontalIcon size={22} />
+          <p className="hidden group-hover:block text-xs">BI</p>
         </div>
         <div
           className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"

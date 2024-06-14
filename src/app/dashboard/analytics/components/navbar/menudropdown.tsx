@@ -9,18 +9,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   ArrowDownUpIcon,
-  BoltIcon,
+  BarChartHorizontalIcon,
   DeleteIcon,
   FilesIcon,
   HomeIcon,
-  LucideFiles,
   MenuIcon,
   PlusCircleIcon,
   TriangleAlertIcon,
   User2Icon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function NavbarMenuDropDown() {
   const router = useRouter();
   return (
@@ -60,7 +59,7 @@ export default function NavbarMenuDropDown() {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <BoltIcon size={22} />
+            <BarChartHorizontalIcon size={22} />
             <p className=" text-xs">Configurar alertas</p>
           </div>
         </DropdownMenuItem>

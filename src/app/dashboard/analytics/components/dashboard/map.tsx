@@ -7,12 +7,9 @@ import {
 } from "@/components/ui/tooltip";
 import { AlertCircleIcon } from "lucide-react";
 import dynamic from "next/dynamic";
-const Leaflet = dynamic(
-  () => import("@/components/dashboard/map/leaflet-map"),
-  {
-    ssr: false,
-  }
-);
+const Leaflet = dynamic(() => import("@/components/map/leaflet-map"), {
+  ssr: false,
+});
 export default function DashboardMap() {
   return (
     <div className="flex flex-col gap-2 w-2/5  rounded-lg h-96">
