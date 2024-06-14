@@ -12,10 +12,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { AlertCircleIcon, DollarSignIcon } from "lucide-react";
+import { AlertCircleIcon, DollarSignIcon, FuelIcon } from "lucide-react";
 export default async function DashboardBigNumbers() {
   return (
-    <div className="flex flex-col gap-1 w-full h-full lg:h-96">
+    <div className="flex flex-col gap-1 w-3/5 h-full lg:h-96">
       <div className="flex items-center gap-4">
         <p className="text-sm font-bold text-slate-600">Números principais</p>
         <TooltipProvider>
@@ -49,7 +49,9 @@ export default async function DashboardBigNumbers() {
       <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">
         <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color  justify-center">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Venda de combustível
+            </p>
             <div className="flex items-center gap-1">
               <DollarSignIcon className="text-slate-400" size={18} />
               <p className="text-md font-bold text-slate-200">120.230,02</p>
@@ -60,11 +62,13 @@ export default async function DashboardBigNumbers() {
             <p className="text-xs font-bold text-slate-200">0,886</p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
+        <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center ">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Volume de combustível
+            </p>
             <div className="flex items-center gap-1">
-              <DollarSignIcon className="text-slate-400" size={18} />
+              <FuelIcon className="text-slate-400" size={18} />
               <p className="text-md font-bold text-slate-200">20.230,02</p>
             </div>
           </div>
@@ -75,10 +79,12 @@ export default async function DashboardBigNumbers() {
         </div>
         <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Venda de produto
+            </p>
             <div className="flex items-center gap-1">
               <DollarSignIcon className="text-slate-400" size={18} />
-              <p className="text-md font-bold text-slate-200">18.230,02</p>
+              <p className="text-md font-bold text-slate-200">1.832,02</p>
             </div>
           </div>
           <div className="flex gap-1">
@@ -88,7 +94,9 @@ export default async function DashboardBigNumbers() {
         </div>
         <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Venda de serviços
+            </p>
             <div className="flex items-center gap-1">
               <DollarSignIcon className="text-slate-400" size={18} />
               <p className="text-md font-bold text-slate-200">130,02</p>
@@ -99,12 +107,14 @@ export default async function DashboardBigNumbers() {
             <p className="text-xs font-bold text-slate-200">0,886</p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
+        <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center ">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Venda de ducha
+            </p>
             <div className="flex items-center gap-1">
               <DollarSignIcon className="text-slate-400" size={18} />
-              <p className="text-md font-bold text-slate-200">120.230,02</p>
+              <p className="text-md font-bold text-slate-200">438,07</p>
             </div>
           </div>
           <div className="flex gap-1">
@@ -114,10 +124,12 @@ export default async function DashboardBigNumbers() {
         </div>
         <div className="flex flex-col gap-4 h-full py-4 lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-black text-slate-400">LUCRO BRUTO</p>
+            <p className="text-lg font-extrabold text-slate-400">
+              Total de abastecimento
+            </p>
             <div className="flex items-center gap-1">
-              <DollarSignIcon className="text-slate-400" size={18} />
-              <p className="text-md font-bold text-slate-200">230,02</p>
+              <FuelIcon className="text-slate-400" size={18} />
+              <p className="text-md font-bold text-slate-200">200</p>
             </div>
           </div>
           <div className="flex gap-1">
