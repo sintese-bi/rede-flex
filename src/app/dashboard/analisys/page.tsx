@@ -5,7 +5,7 @@ import ProfitFuelChart from "./analytics/components/profit_fuel_chart";
 import ProfitWeekDay from "./analytics/components/profit_week_day";
 import getItemWithHigherProfit from "./analytics/utils/get_item_with_higher_profit";
 async function getData() {
-  const response = await fetch("http://localhost:8080/v1/databaseall", {
+  const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
     cache: "no-cache",
   });
   if (!response.ok) {
