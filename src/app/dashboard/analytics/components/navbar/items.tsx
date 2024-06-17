@@ -29,7 +29,10 @@ export default function NavbarItems() {
           <HomeIcon size={22} />
           <p className="hidden group-hover:block text-xs">Home</p>
         </div>
-        <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
+        <div
+          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+          onClick={() => router.push("/dashboard/analisys")}
+        >
           <BarChartHorizontalIcon size={22} />
           <p className="hidden group-hover:block text-xs">Análises</p>
         </div>

@@ -46,7 +46,7 @@ export default function NavbarMenuDropDown() {
             <p className="text-xs">Home</p>
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/dashboard/alerts")}>
+        <DropdownMenuItem onClick={() => router.push("/dashboard/analisys")}>
           <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
             <BarChartHorizontalBigIcon size={22} />
             <p className="text-xs">Análises</p>
