@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   ArrowDownUpIcon,
+  BarChartHorizontalBigIcon,
   BarChartHorizontalIcon,
   DeleteIcon,
   FilesIcon,
@@ -45,28 +46,10 @@ export default function NavbarMenuDropDown() {
             <p className="text-xs">Home</p>
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push("/dashboard/alerts")}>
           <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <User2Icon size={22} />
-            <p className=" text-xs">Usuário</p>
-          </div>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <PlusCircleIcon size={22} />
-            <p className=" text-xs">Inserir postos</p>
-          </div>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <BarChartHorizontalIcon size={22} />
-            <p className=" text-xs">Configurar alertas</p>
-          </div>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <DeleteIcon size={22} />
-            <p className="text-xs">Deletar postos</p>
+            <BarChartHorizontalBigIcon size={22} />
+            <p className="text-xs">Análises</p>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => router.push("/dashboard/alerts")}>
@@ -79,12 +62,6 @@ export default function NavbarMenuDropDown() {
           <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
             <FilesIcon size={22} />
             <p className="text-xs">Relatórios</p>
-          </div>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/dashboard/data")}>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-            <ArrowDownUpIcon size={22} />
-            <p className="text-xs">Dados</p>
           </div>
         </DropdownMenuItem>
       </DropdownMenuContent>

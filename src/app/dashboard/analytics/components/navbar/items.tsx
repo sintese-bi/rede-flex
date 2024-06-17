@@ -30,12 +30,8 @@ export default function NavbarItems() {
           <p className="hidden group-hover:block text-xs">Home</p>
         </div>
         <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
-          <User2Icon size={22} />
-          <p className="hidden group-hover:block text-xs">Usuário</p>
-        </div>
-        <div className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
           <BarChartHorizontalIcon size={22} />
-          <p className="hidden group-hover:block text-xs">BI</p>
+          <p className="hidden group-hover:block text-xs">Análises</p>
         </div>
         <div
           className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
@@ -50,13 +46,6 @@ export default function NavbarItems() {
         >
           <FilesIcon size={22} />
           <p className="hidden group-hover:block text-xs">Relatórios</p>
-        </div>
-        <div
-          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
-          onClick={() => router.push("/dashboard/data")}
-        >
-          <ArrowDownUpIcon size={22} />
-          <p className="hidden group-hover:block text-xs">Dados</p>
         </div>
       </div>
       <Button className="w-full flex gap-2">
