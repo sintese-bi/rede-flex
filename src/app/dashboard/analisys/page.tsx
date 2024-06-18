@@ -8,7 +8,7 @@ import ProfitVolumeChart from "./analytics/components/profit_volume_chart";
 import getProfitAndVolume from "./analytics/utils/get_profit_and_volume";
 import ProfitDateChart from "./analytics/components/profit_date_chart";
 async function getData() {
-  const response = await fetch("http://localhost:8080/v1/databaseall", {
+  const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
     cache: "no-cache",
   });
   if (!response.ok) {
