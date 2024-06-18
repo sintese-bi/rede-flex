@@ -17,7 +17,7 @@ export default async function DashboardBigNumbers() {
   return (
     <div className="flex flex-col gap-1 lg:w-3/5 md:w-3/5 sm:w-full xs:w-full w-full h-full lg:h-96">
       <div className="flex items-center gap-4">
-        <p className="text-sm font-bold text-slate-600">Números principais</p>
+        <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>

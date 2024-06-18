@@ -27,7 +27,7 @@ export default function ProfitFuelChart({ data }: any) {
     ],
   };
   return (
-    <div className="h-full w-3/6">
+    <div className="lg:h-full md:h-full sm:h-96 xs:h-96 h-96 lg:w-3/6 md:w-3/6 sm:w-full xs:w-full w-full">
       <p className="text-xs font-bold text-slate-800">Lucro x combustível</p>
       <Line data={chartData} className="h-full w-full" />
     </div>

@@ -2,7 +2,6 @@ import { CalendarIcon, DollarSignIcon, FuelIcon } from "lucide-react";
 import getFieldTotalValue from "../utils/get_field_total_value";
 import getFuelWithHigherProfit from "../utils/get_fuel_with_higher_profit";
 import getItemWithHigherProfit from "../utils/get_item_with_higher_profit";
-
 export default function BigNumbers({ data }: any) {
   const bigNumbersData = [
     {
@@ -44,9 +43,12 @@ export default function BigNumbers({ data }: any) {
   ];
   return (
     <div className="flex flex-col gap-1 w-full h-72">
-      <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">
+      <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-72 justify-center items-center">
         {bigNumbersData.map((bigNumber: any, index: number) => (
-          <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color  justify-center">
+          <div
+            key={index}
+            className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color  justify-center"
+          >
             <div className="flex flex-col gap-1">
               <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
                 {bigNumber["label"]}
