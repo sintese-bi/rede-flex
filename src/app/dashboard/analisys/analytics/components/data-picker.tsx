@@ -40,7 +40,7 @@ export default function DataPicker() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          side="right"
+          side="bottom"
           className="flex items-center justify-center bg-white w-auto p-0 shadow-md"
         >
           <Calendar

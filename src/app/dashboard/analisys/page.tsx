@@ -4,6 +4,9 @@ import DataPicker from "./analytics/components/data-picker";
 import ProfitFuelChart from "./analytics/components/profit_fuel_chart";
 import ProfitWeekDay from "./analytics/components/profit_week_day";
 import getItemWithHigherProfit from "./analytics/utils/get_item_with_higher_profit";
+import ProfitVolumeChart from "./analytics/components/profit_volume_chart";
+import getProfitAndVolume from "./analytics/utils/get_profit_and_volume";
+import ProfitDateChart from "./analytics/components/profit_date_chart";
 async function getData() {
   const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
     cache: "no-cache",
@@ -16,9 +19,9 @@ async function getData() {
 export default async function Analisys() {
   const { data } = await getData();
   return (
-    <div className="w-full h-full">
+    <div className="flex flex-col gap-12 h-full w-full">
       <div className="flex flex-col gap-6 h-full w-full">
-        <div className="flex items-start gap-6">
+        <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col items-start gap-6">
           <div className="flex flex-col items-start gap-2">
             <DataPicker />
             <p className="text-xs font-bold text-slate-400">
@@ -41,9 +44,13 @@ export default async function Analisys() {
         </div>
         <div className="flex flex-col h-full w-full gap-8">
           <BigNumbers data={data} />
-          <div className="h-96 flex gap-2">
+          <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
             <ProfitFuelChart data={data} />
             <ProfitWeekDay data={data} />
+          </div>
+          <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
+            <ProfitVolumeChart data={data} />
+            <ProfitDateChart data={data} />
           </div>
         </div>
       </div>
