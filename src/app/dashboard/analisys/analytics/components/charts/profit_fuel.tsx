@@ -2,20 +2,26 @@
 import dynamic from "next/dynamic";
 import "chart.js/auto";
 import { useEffect, useState } from "react";
-import getFuelProfits from "../utils/get_fuel_profits";
-import getWeekDaysProfit from "../utils/get_week_days_profit";
+import getWeekDaysProfitUtils from "../../utils/get_week_days_profit";
+import { DataInterfaces } from "../../interfaces/data";
+import getFuelProfitsUtils from "../../utils/get_fuel_profits";
+import { ProfitFuelInterfaces } from "../../interfaces/profit_fuel";
 const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
-export default function ProfitFuelChart({ data }: any) {
-  const [datasetsValue, setDatasetsValue] = useState<
-    { value: number; week_day: string }[]
-  >([]);
+export default function ProfitFuelChartsComponents({
+  data,
+}: {
+  data: DataInterfaces[];
+}) {
+  const [datasetsValue, setDatasetsValue] = useState<ProfitFuelInterfaces[]>(
+    []
+  );
   useEffect(() => {
-    setDatasetsValue(getWeekDaysProfit(data));
+    setDatasetsValue(getFuelProfitsUtils(data));
   }, []);
   const chartData = {
-    labels: datasetsValue.map((item) => item.week_day),
+    labels: datasetsValue.map((item) => item.fuel),
     datasets: [
       {
         label: "Lucro",

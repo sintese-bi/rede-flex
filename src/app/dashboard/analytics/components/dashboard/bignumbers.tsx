@@ -13,7 +13,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AlertCircleIcon, DollarSignIcon, FuelIcon } from "lucide-react";
+const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 export default async function DashboardBigNumbers() {
+  await delay(2000);
   return (
     <div className="flex flex-col gap-1 lg:w-3/5 md:w-3/5 sm:w-full xs:w-full w-full h-full lg:h-96">
       <div className="flex items-center gap-4">

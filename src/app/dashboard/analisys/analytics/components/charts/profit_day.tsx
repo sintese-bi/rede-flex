@@ -1,27 +1,34 @@
 "use client";
 import dynamic from "next/dynamic";
 import "chart.js/auto";
-import { useEffect, useReducer, useState } from "react";
-import getFuelProfits from "../utils/get_fuel_profits";
+import { useReducer } from "react";
+import getFuelProfitsUtils from "../../utils/get_fuel_profits";
+import { DataInterfaces } from "../../interfaces/data";
+import { ProfitDayInterfaces } from "../../interfaces/profit_day";
+import getWeekDaysProfitUtils from "../../utils/get_week_days_profit";
 const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
 function reducer(
-  state: { value: number; fuel: string }[],
+  state: ProfitDayInterfaces[],
   action: { type: "string"; payload?: any }
-): { value: number; fuel: string }[] {
+): ProfitDayInterfaces[] {
   switch (action) {
     default:
       return state;
   }
 }
-export default function ProfitWeekDay({ data }: any) {
+export default function ProfitDayChartsComponents({
+  data,
+}: {
+  data: DataInterfaces[];
+}) {
   const [state, dispatch] = useReducer(
     reducer,
-    getFuelProfits(data) as { value: number; fuel: string }[]
+    getWeekDaysProfitUtils(data) as ProfitDayInterfaces[]
   );
   const chartData = {
-    labels: state.map((item) => item.fuel),
+    labels: state.map((item) => item.week_day),
     datasets: [
       {
         label: "Lucro",

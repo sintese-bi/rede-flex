@@ -19,7 +19,7 @@ export default async function Dashboard() {
       </div>
       <Separator />
       <div className="pb-6">
-        <Suspense fallback={<LoadingTable title="Acompanhamento galonagem" />}>
+        <Suspense fallback={<LoadingTable />}>
           <DashboardTable
             title="Acompanhamento galonagem"
             description="Listagem contendo as principais informações de cada posto!"
@@ -49,9 +49,7 @@ export default async function Dashboard() {
             ])}
           />
         </Suspense>
-        <Suspense
-          fallback={<LoadingTable title="Venda da galonagem por combustível" />}
-        >
+        <Suspense fallback={<LoadingTable />}>
           <DashboardTable
             title="Venda da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"
@@ -91,9 +89,7 @@ export default async function Dashboard() {
             ])}
           />
         </Suspense>
-        <Suspense
-          fallback={<LoadingTable title="Volume vendido por combustível" />}
-        >
+        <Suspense fallback={<LoadingTable />}>
           <DashboardTable
             title="Volume em litros vendido por combustível"
             description="Listagem contendo as principais informações de cada posto!"
@@ -129,9 +125,7 @@ export default async function Dashboard() {
             ])}
           />
         </Suspense>
-        <Suspense
-          fallback={<LoadingTable title="Custo da galonagem por combustível" />}
-        >
+        <Suspense fallback={<LoadingTable />}>
           <DashboardTable
             title="Custo da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"
@@ -171,9 +165,7 @@ export default async function Dashboard() {
             ])}
           />
         </Suspense>
-        <Suspense
-          fallback={<LoadingTable title="Lucro da galonagem por combustível" />}
-        >
+        <Suspense fallback={<LoadingTable />}>
           <DashboardTable
             title="Lucro da galonagem por combustível"
             description="Listagem contendo as principais informações de cada posto!"

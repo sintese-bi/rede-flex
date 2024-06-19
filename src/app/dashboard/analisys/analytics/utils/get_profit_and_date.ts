@@ -1,6 +1,8 @@
 import { format } from "date-fns";
-export default function getProfitAndDate(data: any){
-    let test: { value: number; date: string }[] = []
+import { DataInterfaces } from "../interfaces/data";
+import { ProfitDateInterfaces } from "../interfaces/profit_date";
+export default function getProfitAndDateUtils(data: DataInterfaces[]){
+    let test: ProfitDateInterfaces[] = []
     data.map((dataItem: any) => {
         let fuelIndex: number = test.findIndex((testItem) => testItem.date == dataItem["company_date"])!
         if(fuelIndex == -1) {
@@ -8,8 +10,7 @@ export default function getProfitAndDate(data: any){
         } else {
             let foundFuel = test[fuelIndex]
             test[fuelIndex] = {date: foundFuel["date"], value: foundFuel["value"] +  dataItem["company_profit"]}
-        }
-       
+        }   
     })  
     return test;
 }

@@ -6,10 +6,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-export default async function AlertsValueAndType() {
+export default async function ValueAndTypeComponents() {
   return (
-    <div>
-      <p className="w-full font-medium mb-6">
+    <div className="lg:w-1/3 w-full">
+      <p className="w-full text-sm mb-4 font-bold">
         Qual o valor mínimo da margem GC para enviarmos o alerta
       </p>
       <Input type="number" />

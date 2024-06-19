@@ -1,6 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-
-export default async function LoadingBigNumbers() {
+export default async function LoadingChart() {
   return (
     <div className="flex items-center justify-center flex-col space-y-3 w-3/5 h-96">
       <Skeleton className="h-[125px] w-full rounded-xl" />

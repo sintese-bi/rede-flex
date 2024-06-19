@@ -2,19 +2,25 @@
 import dynamic from "next/dynamic";
 import "chart.js/auto";
 import { useEffect, useState } from "react";
-import getProfitAndVolume from "../utils/get_profit_and_volume";
+import getProfitAndVolumeUtils from "../../utils/get_profit_and_volume";
+import { DataInterfaces } from "../../interfaces/data";
+import { ProfitVolumeInterfaces } from "../../interfaces/profit_volume";
 const Bubble = dynamic(
   () => import("react-chartjs-2").then((mod) => mod.Bubble),
   {
     ssr: false,
   }
 );
-export default function ProfitVolumeChart({ data }: any) {
-  const [datasetsValue, setDatasetsValue] = useState<
-    { value: number; volume: number }[]
-  >([]);
+export default function ProfitVolumeChartsComponents({
+  data,
+}: {
+  data: DataInterfaces[];
+}) {
+  const [datasetsValue, setDatasetsValue] = useState<ProfitVolumeInterfaces[]>(
+    []
+  );
   useEffect(() => {
-    setDatasetsValue(getProfitAndVolume(data));
+    setDatasetsValue(getProfitAndVolumeUtils(data));
   }, []);
   const chartData = {
     labels: datasetsValue.map((dataItem) => dataItem.volume),

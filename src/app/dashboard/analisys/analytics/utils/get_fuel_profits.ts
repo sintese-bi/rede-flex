@@ -1,5 +1,7 @@
-export default function getFuelProfits(data: any){
-    let test: { value: number; fuel: string }[] = []
+import { DataInterfaces } from "../interfaces/data";
+import { ProfitFuelInterfaces } from "../interfaces/profit_fuel";
+export default function getFuelProfitsUtils(data: DataInterfaces[]){
+    let test: ProfitFuelInterfaces[] = []
     data.map((dataItem: any) => {
         let fuelIndex: number = test.findIndex((testItem) => testItem.fuel == dataItem["company_fuel"])!
         if(fuelIndex == -1) {

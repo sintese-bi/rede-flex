@@ -2,17 +2,24 @@
 import dynamic from "next/dynamic";
 import "chart.js/auto";
 import { useEffect, useState } from "react";
-import getProfitAndDate from "../utils/get_profit_and_date";
+import { DataInterfaces } from "../../interfaces/data";
+import { ProfitDateInterfaces } from "../../interfaces/profit_date";
+import getFuelProfitsUtils from "../../utils/get_fuel_profits";
+import { ProfitFuelInterfaces } from "../../interfaces/profit_fuel";
+import getProfitAndDateUtils from "../../utils/get_profit_and_date";
 const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Line), {
   ssr: false,
 });
-export default function ProfitDateChart({ data }: any) {
-  const [datasetsValue, setDatasetsValue] = useState<
-    { value: number; date: string }[]
-  >([]);
+export default function ProfitDateChartsComponents({
+  data,
+}: {
+  data: DataInterfaces[];
+}) {
+  const [datasetsValue, setDatasetsValue] = useState<ProfitDateInterfaces[]>(
+    []
+  );
   useEffect(() => {
-    console.log(getProfitAndDate(data));
-    setDatasetsValue(getProfitAndDate(data));
+    setDatasetsValue(getProfitAndDateUtils(data));
   }, []);
   const chartData = {
     labels: datasetsValue.map((dataItem) => dataItem.date),

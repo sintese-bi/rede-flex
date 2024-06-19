@@ -8,7 +8,7 @@ import { useState } from "react";
 import { addDays, format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { DateRange } from "react-day-picker";
-export default function ReportsCalenderPicker() {
+export default function DataPickerComponents() {
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 30),
@@ -40,7 +40,7 @@ export default function ReportsCalenderPicker() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          side="top"
+          side="bottom"
           className="flex items-center justify-center bg-white w-auto p-0 shadow-md"
         >
           <Calendar
