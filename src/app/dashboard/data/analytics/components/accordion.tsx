@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
-export default async function DataAccordion() {
+export default async function AccordionComponents() {
   return (
     <Accordion type="single" collapsible className="w-9/12">
       <AccordionItem value="item-1">

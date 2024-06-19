@@ -1,12 +1,11 @@
-import { Separator } from "@/components/ui/separator";
-import BigNumbers from "./analytics/components/big-numbers";
-import DataPicker from "./analytics/components/data-picker";
-import ProfitFuelChart from "./analytics/components/profit_fuel_chart";
-import ProfitWeekDay from "./analytics/components/profit_week_day";
+import DataPicker from "./analytics/components/data_picker";
 import getItemWithHigherProfit from "./analytics/utils/get_item_with_higher_profit";
-import ProfitVolumeChart from "./analytics/components/profit_volume_chart";
-import getProfitAndVolume from "./analytics/utils/get_profit_and_volume";
-import ProfitDateChart from "./analytics/components/profit_date_chart";
+import BigNumbersComponents from "./analytics/components/big_numbers";
+import ProfitFuelChartComponents from "./analytics/components/charts/profit_fuel";
+import ProfitVolumeChartComponents from "./analytics/components/charts/profit_volume";
+import ProfitDateChartComponents from "./analytics/components/charts/profit_date";
+import ProfitDayChartsComponents from "./analytics/components/charts/profit_day";
+import { DataInterfaces } from "./analytics/interfaces/data";
 async function getData() {
   const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
     cache: "no-cache",
@@ -17,7 +16,7 @@ async function getData() {
   return response.json();
 }
 export default async function Analisys() {
-  const { data } = await getData();
+  const { data } = (await getData()) as { data: DataInterfaces[] };
   return (
     <div className="flex flex-col gap-12 h-full w-full">
       <div className="flex flex-col gap-6 h-full w-full">
@@ -43,14 +42,14 @@ export default async function Analisys() {
           </div>
         </div>
         <div className="flex flex-col h-full w-full gap-8">
-          <BigNumbers data={data} />
+          <BigNumbersComponents data={data} />
           <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitFuelChart data={data} />
-            <ProfitWeekDay data={data} />
+            <ProfitFuelChartComponents data={data} />
+            <ProfitDayChartsComponents data={data} />
           </div>
           <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitVolumeChart data={data} />
-            <ProfitDateChart data={data} />
+            <ProfitVolumeChartComponents data={data} />
+            <ProfitDateChartComponents data={data} />
           </div>
         </div>
       </div>

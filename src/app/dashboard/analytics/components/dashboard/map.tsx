@@ -10,7 +10,9 @@ import dynamic from "next/dynamic";
 const Leaflet = dynamic(() => import("@/components/map/leaflet-map"), {
   ssr: false,
 });
-export default function DashboardMap() {
+const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+export default async function DashboardMap() {
+  await delay(2000);
   return (
     <div className="flex flex-col gap-2 lg:w-2/5 md:w-2/5 sm:w-full xs:w-full w-full rounded-lg h-96">
       <div className="flex items-center gap-2">

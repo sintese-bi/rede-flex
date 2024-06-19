@@ -1,5 +1,7 @@
-export default function getProfitAndVolume(data: any){
-    let test: { value: number; volume: number }[] = []
+import { DataInterfaces } from "../interfaces/data";
+import { ProfitVolumeInterfaces } from "../interfaces/profit_volume";
+export default function getProfitAndVolumeUtils(data: DataInterfaces[]){
+    let test: ProfitVolumeInterfaces[] = []
     data.map((dataItem: any) => {
         let fuelIndex: number = test.findIndex((testItem) => testItem.volume == dataItem["company_volume"])!
         if(fuelIndex == -1) {

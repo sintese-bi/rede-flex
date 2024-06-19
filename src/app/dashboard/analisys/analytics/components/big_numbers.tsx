@@ -1,41 +1,55 @@
 import { CalendarIcon, DollarSignIcon, FuelIcon } from "lucide-react";
-import getFieldTotalValue from "../utils/get_field_total_value";
-import getFuelWithHigherProfit from "../utils/get_fuel_with_higher_profit";
-import getItemWithHigherProfit from "../utils/get_item_with_higher_profit";
-export default function BigNumbers({ data }: any) {
-  const bigNumbersData = [
+import getFieldTotalValueUtils from "../utils/get_field_total_value";
+import getFuelWithHigherProfitUtils from "../utils/get_fuel_with_higher_profit";
+import getItemWithHigherProfitUtils from "../utils/get_item_with_higher_profit";
+import { BigNumbersInterfaces } from "../interfaces/big_numbers";
+import { DataInterfaces } from "../interfaces/data";
+export default function BigNumbersComponents({
+  data,
+}: {
+  data: DataInterfaces[];
+}) {
+  const bigNumbersData: BigNumbersInterfaces[] = [
     {
-      value: getFieldTotalValue("company_profit", data).toFixed(2),
+      value: new Intl.NumberFormat().format(
+        getFieldTotalValueUtils("company_profit", data).toFixed(2)
+      ),
       name: "company_profit",
       label: "Lucro total",
       icon: <DollarSignIcon className="text-slate-400" size={18} />,
     },
     {
-      value: getFieldTotalValue("company_volume", data).toFixed(2),
+      value: new Intl.NumberFormat().format(
+        getFieldTotalValueUtils("company_volume", data).toFixed(2)
+      ),
       name: "company_volume",
       label: "Volume total",
       icon: <FuelIcon className="text-slate-400" size={18} />,
     },
     {
-      value: getFieldTotalValue("company_cost", data).toFixed(2),
+      value: new Intl.NumberFormat().format(
+        getFieldTotalValueUtils("company_cost", data).toFixed(2)
+      ),
       name: "company_cost",
       label: "Custo total",
       icon: <DollarSignIcon className="text-slate-400" size={18} />,
     },
     {
-      value: getFieldTotalValue("company_sale", data).toFixed(2),
+      value: new Intl.NumberFormat().format(
+        getFieldTotalValueUtils("company_sale", data).toFixed(2)
+      ),
       name: "company_sale",
       label: "Venda total",
       icon: <DollarSignIcon className="text-slate-400" size={18} />,
     },
     {
-      value: getFuelWithHigherProfit(data).fuel.toLowerCase(),
+      value: getFuelWithHigherProfitUtils(data).fuel.toLowerCase(),
       name: "fuel_with_higher_profit",
       label: "Melhor combustível",
       icon: <FuelIcon className="text-slate-400" size={18} />,
     },
     {
-      value: getItemWithHigherProfit(data).company_week_day.toLowerCase(),
+      value: getItemWithHigherProfitUtils(data).company_week_day.toLowerCase(),
       name: "week_day_with_higher_profit",
       label: "Melhor dia da semana",
       icon: <CalendarIcon className="text-slate-400" size={18} />,

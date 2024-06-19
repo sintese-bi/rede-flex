@@ -5,10 +5,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import AlertsValueAndType from "./analytics/components/value-and-type";
-import AlertsVariableSelect from "./analytics/components/variable-select";
-import AlertsWhatsAppNumber from "./analytics/components/whatsapp-number";
 import { Suspense } from "react";
+import WhatsAppNumberComponents from "./analytics/components/whatsapp_number";
+import ValueAndTypeComponents from "./analytics/components/value_and_type";
+import VariableSelectComponents from "./analytics/components/variable_select";
 export default async function Alerts() {
   return (
     <Suspense fallback={<p>Carregando...</p>}>
@@ -16,13 +16,13 @@ export default async function Alerts() {
         <Carousel className="flex w-9/12 h-full justify-center items-center">
           <CarouselContent>
             <CarouselItem className="flex flex-col justify-center items-start py-6 px-6">
-              <AlertsVariableSelect />
+              <VariableSelectComponents />
             </CarouselItem>
             <CarouselItem className="flex flex-col justify-center items-start py-6 px-6">
-              <AlertsValueAndType />
+              <ValueAndTypeComponents />
             </CarouselItem>
             <CarouselItem className="flex flex-col justify-center items-start py-6 px-6">
-              <AlertsWhatsAppNumber />
+              <WhatsAppNumberComponents />
             </CarouselItem>
           </CarouselContent>
           <CarouselPrevious />

@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-export default async function AlertsVariableSelect() {
+export default async function VariableSelectComponents() {
   return (
     <Select>
       <p className="w-full font-medium mb-6">

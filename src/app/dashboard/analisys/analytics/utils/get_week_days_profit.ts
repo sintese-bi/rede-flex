@@ -1,5 +1,7 @@
-export default function getWeekDaysProfit(data: any){
-    let test: { value: number; week_day: string }[] = []
+import { DataInterfaces } from "../interfaces/data";
+import { ProfitDayInterfaces } from "../interfaces/profit_day";
+export default function getWeekDaysProfitUtils(data: DataInterfaces[]){
+    let test: ProfitDayInterfaces[] = []
     data.map((dataItem: any) => {
         let fuelIndex: number = test.findIndex((testItem) => testItem.week_day == dataItem["company_week_day"])!
         if(fuelIndex == -1) {
@@ -10,6 +12,5 @@ export default function getWeekDaysProfit(data: any){
         }
        
     })  
-    console.log(test);  
     return test;
 }

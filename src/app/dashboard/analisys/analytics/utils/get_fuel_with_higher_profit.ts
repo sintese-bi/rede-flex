@@ -1,5 +1,6 @@
+import { DataInterfaces } from "../interfaces/data";
 import getFuelProfits from "./get_fuel_profits";
-export default function getFuelWithHigherProfit(data: any) {
+export default function getFuelWithHigherProfitUtils(data: DataInterfaces[]) {
     const fuels_profits = getFuelProfits(data)
     const higher_profit = Math.max(
         ...fuels_profits.map((item) => item["value"])
