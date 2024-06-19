@@ -6,6 +6,9 @@ import ProfitVolumeChartComponents from "./analytics/components/charts/profit_vo
 import ProfitDateChartComponents from "./analytics/components/charts/profit_date";
 import ProfitDayChartsComponents from "./analytics/components/charts/profit_day";
 import { DataInterfaces } from "./analytics/interfaces/data";
+import { Suspense } from "react";
+import LoadingBigNumbers from "./analytics/loading/big_numbers";
+import LoadingChart from "./analytics/loading/chart";
 async function getData() {
   const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
     cache: "no-cache",
@@ -42,14 +45,24 @@ export default async function Analisys() {
           </div>
         </div>
         <div className="flex flex-col h-full w-full gap-8">
-          <BigNumbersComponents data={data} />
+          <Suspense fallback={<LoadingBigNumbers />}>
+            <BigNumbersComponents data={data} />
+          </Suspense>
           <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitFuelChartComponents data={data} />
-            <ProfitDayChartsComponents data={data} />
+            <Suspense fallback={<LoadingChart />}>
+              <ProfitFuelChartComponents data={data} />
+            </Suspense>
+            <Suspense fallback={<LoadingChart />}>
+              <ProfitDayChartsComponents data={data} />
+            </Suspense>
           </div>
           <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitVolumeChartComponents data={data} />
-            <ProfitDateChartComponents data={data} />
+            <Suspense fallback={<LoadingChart />}>
+              <ProfitVolumeChartComponents data={data} />
+            </Suspense>
+            <Suspense fallback={<LoadingChart />}>
+              <ProfitDateChartComponents data={data} />
+            </Suspense>
           </div>
         </div>
       </div>

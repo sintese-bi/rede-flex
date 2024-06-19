@@ -4,11 +4,13 @@ import getFuelWithHigherProfitUtils from "../utils/get_fuel_with_higher_profit";
 import getItemWithHigherProfitUtils from "../utils/get_item_with_higher_profit";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { DataInterfaces } from "../interfaces/data";
-export default function BigNumbersComponents({
+const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+export default async function BigNumbersComponents({
   data,
 }: {
   data: DataInterfaces[];
 }) {
+  await delay(2000);
   const bigNumbersData: BigNumbersInterfaces[] = [
     {
       value: new Intl.NumberFormat().format(
