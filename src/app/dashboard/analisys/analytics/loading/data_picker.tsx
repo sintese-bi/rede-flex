@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-export default async function BigNumbersLoading() {
+export default async function DataPickerLoading() {
   return (
     <div className="flex items-center justify-center flex-col space-y-3 w-full h-96">
       <Skeleton className="h-[125px] w-full rounded-xl" />
