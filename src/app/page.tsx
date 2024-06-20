@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import Image from "next/image";
 const formSchema = z.object({
   username: z
     .string()
@@ -57,7 +58,7 @@ export default function Home() {
   }
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center">
-      <img src="/logo.jpeg" alt="" className="w-52" />
+      <Image src="/logo.jpeg" alt="" className="w-52" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
