@@ -1,6 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-
-export default async function LoadingMap() {
+export default async function MapLoading() {
   return (
     <div className="flex justify-center flex-col space-y-3 w-2/5 h-96">
       <Skeleton className="h-[125px] w-full rounded-xl" />

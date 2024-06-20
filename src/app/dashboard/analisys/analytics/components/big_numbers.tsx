@@ -4,13 +4,13 @@ import getFuelWithHigherProfitUtils from "../utils/get_fuel_with_higher_profit";
 import getItemWithHigherProfitUtils from "../utils/get_item_with_higher_profit";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { DataInterfaces } from "../interfaces/data";
-const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+import { Suspense } from "react";
+import BigNumbersLoading from "../loading/big_numbers";
 export default async function BigNumbersComponents({
   data,
 }: {
   data: DataInterfaces[];
 }) {
-  await delay(2000);
   const bigNumbersData: BigNumbersInterfaces[] = [
     {
       value: new Intl.NumberFormat().format(
@@ -47,7 +47,7 @@ export default async function BigNumbersComponents({
     {
       value: getFuelWithHigherProfitUtils(data).fuel.toLowerCase(),
       name: "fuel_with_higher_profit",
-      label: "Melhor combustível",
+      label: "Combustível com maior lucro",
       icon: <FuelIcon className="text-slate-400" size={18} />,
     },
     {
@@ -58,27 +58,29 @@ export default async function BigNumbersComponents({
     },
   ];
   return (
-    <div className="flex flex-col gap-1 w-full h-72">
-      <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-72 justify-center items-center">
-        {bigNumbersData.map((bigNumber: any, index: number) => (
-          <div
-            key={index}
-            className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color  justify-center"
-          >
-            <div className="flex flex-col gap-1">
-              <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
-                {bigNumber["label"]}
-              </p>
-              <div className="flex items-center gap-1">
-                {bigNumber["icon"]}
-                <p className="lg:text-md md:text-md text-sm font-bold text-slate-200">
-                  {bigNumber["value"]}
+    <Suspense fallback={<BigNumbersLoading />}>
+      <div className="flex flex-col gap-1 w-full h-72">
+        <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-72 justify-center items-center">
+          {bigNumbersData.map((bigNumber: any, index: number) => (
+            <div
+              key={index}
+              className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color  justify-center"
+            >
+              <div className="flex flex-col gap-1">
+                <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
+                  {bigNumber["label"]}
                 </p>
+                <div className="flex items-center gap-1">
+                  {bigNumber["icon"]}
+                  <p className="lg:text-md md:text-md text-sm font-bold text-slate-200">
+                    {bigNumber["value"]}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
