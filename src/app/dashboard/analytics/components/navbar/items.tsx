@@ -43,13 +43,6 @@ export default function NavbarItems() {
           <TriangleAlertIcon size={22} />
           <p className="hidden group-hover:block text-xs">Alertas</p>
         </div>
-        <div
-          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
-          onClick={() => router.push("/dashboard/reports")}
-        >
-          <FilesIcon size={22} />
-          <p className="hidden group-hover:block text-xs">Relatórios</p>
-        </div>
       </div>
       <Button className="w-full flex gap-2">
         <LogOutIcon size={22} />

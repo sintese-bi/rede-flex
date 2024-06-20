@@ -57,141 +57,15 @@ export default async function Dashboard() {
               "ID",
               "Data",
               "Dia",
+              "Combustíveis",
               "Faturamento",
-              "Faturamento médio ",
-              "Gasolina C ",
-              "Etanol C ",
-              "S10 ",
-              "S500 ",
-              "GNV ",
-              "Gasolina Ad ",
-              "Etanol Ad ",
-              "Gasolina P ",
-              "S10 AD ",
-              "ARLA",
-            ]}
-            data={Array(10).fill([
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-            ])}
-          />
-        </Suspense>
-        <Suspense fallback={<LoadingTable />}>
-          <DashboardTable
-            title="Volume em litros vendido por combustível"
-            description="Listagem contendo as principais informações de cada posto!"
-            columns={[
-              "ID",
-              "Data",
-              "Dia",
+              "Faturamento médio",
               "Volume",
-              "Gasolina C ",
-              "Etanol C ",
-              "S10 ",
-              "S500 ",
-              "GNV ",
-              "Gasolina Ad ",
-              "Etanol Ad ",
-              "Gasolina P ",
-              "S10 AD ",
-            ]}
-            data={Array(10).fill([
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-            ])}
-          />
-        </Suspense>
-        <Suspense fallback={<LoadingTable />}>
-          <DashboardTable
-            title="Custo da galonagem por combustível"
-            description="Listagem contendo as principais informações de cada posto!"
-            columns={[
-              "ID",
-              "Data",
-              "Dia",
               "Custo",
-              "Custo médio ",
-              "Gasolina C ",
-              "Etanol C ",
-              "S10 ",
-              "S500 ",
-              "GNV ",
-              "Gasolina Ad ",
-              "Etanol Ad ",
-              "Gasolina P ",
-              "S10 AD ",
-              "ARLA",
+              "Venda",
+              "Lucro ",
             ]}
             data={Array(10).fill([
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-            ])}
-          />
-        </Suspense>
-        <Suspense fallback={<LoadingTable />}>
-          <DashboardTable
-            title="Lucro da galonagem por combustível"
-            description="Listagem contendo as principais informações de cada posto!"
-            columns={[
-              "ID",
-              "Data",
-              "Dia",
-              "Lucro",
-              "Lucro médio ",
-              "Gasolina C ",
-              "Etanol C ",
-              "S10 ",
-              "S500 ",
-              "GNV ",
-              "Gasolina Ad ",
-              "Etanol Ad ",
-              "Gasolina P ",
-              "S10 AD ",
-              "ARLA",
-            ]}
-            data={Array(10).fill([
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
               "_",
               "_",
               "_",

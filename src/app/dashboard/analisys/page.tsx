@@ -32,7 +32,7 @@ export default async function Analisys() {
           </div>
           <div>
             <p className="text-md font-bold text-slate-400">
-              Posto com melhor lucro
+              Posto com maior lucro
             </p>
             <div className="flex items-center gap-2">
               <p className="text-xs font-bold text-slate-400">
