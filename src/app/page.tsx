@@ -58,7 +58,7 @@ export default function Home() {
   }
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center">
-      <Image src="/logo.jpeg" alt="" className="w-52" />
+      <Image src="/logo.jpeg" alt="redeflex_logo" width={208} height={200} />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
