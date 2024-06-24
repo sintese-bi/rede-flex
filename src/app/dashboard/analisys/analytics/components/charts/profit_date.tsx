@@ -52,9 +52,6 @@ export default function ProfitDateChartsComponents({
       },
     ],
   };
-  if (isLoading) {
-    return;
-  }
   return (
     <>
       {isLoading ? (
