@@ -11,7 +11,8 @@ import {
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
-import VariableSelectLoading from "../loading/variable_select";
+import VariableSelectLoading from "../../loading/variable_select";
+import SelectedVariables from "./selected_variables";
 export default function VariableSelectComponents() {
   const [marginGC, setMarginGC] = useState<Checked>(false);
   const [marginAL, setMarginAL] = useState<Checked>(false);
@@ -21,8 +22,8 @@ export default function VariableSelectComponents() {
   const [volumeTotal, setVolumeTotal] = useState<Checked>(false);
   return (
     <Suspense fallback={<VariableSelectLoading />}>
-      <div>
-        <p className="w-full text-sm mb-6 font-bold">
+      <div className="flex flex-col gap-4 lg:w-1/3 w-full">
+        <p className="w-full text-sm font-bold">
           Escolha as variáveis a serem monitoradas
         </p>
         <DropdownMenu>
@@ -70,6 +71,24 @@ export default function VariableSelectComponents() {
             </DropdownMenuCheckboxItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <SelectedVariables
+          variables={[
+            { label: "marginGC", value: marginGC, setValue: setMarginGC },
+            { label: "marginAL", value: marginAL, setValue: setMarginAL },
+            {
+              label: "marginTotal",
+              value: marginTotal,
+              setValue: setMarginTotal,
+            },
+            { label: "volumeGC", value: volumeGC, setValue: setVolumeGC },
+            { label: "volumeAL", value: volumeAL, setValue: setVolumeAL },
+            {
+              label: "volumeTotal",
+              value: volumeTotal,
+              setValue: setVolumeTotal,
+            },
+          ]}
+        />
       </div>
     </Suspense>
   );

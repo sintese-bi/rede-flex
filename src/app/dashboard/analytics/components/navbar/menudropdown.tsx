@@ -8,21 +8,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  ArrowDownUpIcon,
   BarChartHorizontalBigIcon,
-  BarChartHorizontalIcon,
-  DeleteIcon,
-  FilesIcon,
   HomeIcon,
   MenuIcon,
-  PlusCircleIcon,
   TriangleAlertIcon,
-  User2Icon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 export default function NavbarMenuDropDown() {
-  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="px-1 py-1 bg-main-color text-white text-sm rounded-md font-medium ">
@@ -40,23 +33,32 @@ export default function NavbarMenuDropDown() {
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push("/dashboard")}>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
+        <DropdownMenuItem>
+          <Link
+            className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+            href={"/dashboard"}
+          >
             <HomeIcon size={22} />
             <p className="text-xs">Home</p>
-          </div>
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/dashboard/analisys")}>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
+        <DropdownMenuItem>
+          <Link
+            className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+            href={"/dashboard/analisys"}
+          >
             <BarChartHorizontalBigIcon size={22} />
             <p className="text-xs">Análises</p>
-          </div>
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push("/dashboard/alerts")}>
-          <div className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer">
+        <DropdownMenuItem>
+          <Link
+            className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+            href={"/dashboard/alerts"}
+          >
             <TriangleAlertIcon size={22} />
             <p className="text-xs">Alertas</p>
-          </div>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

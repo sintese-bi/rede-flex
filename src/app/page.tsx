@@ -1,100 +1,46 @@
 "use client";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(4, {
-      message: "Seu username precisa ter pelo menos 4 letras.",
-    })
-    .max(30, {
-      message: "Seu username precisa ter no máximo 30 letras.",
-    }),
-  password: z
-    .string()
-    .min(4, {
-      message: "Sua senha precisa ter pelo menos 4 letras.",
-    })
-    .max(20, {
-      message: "Sua senha precisa ter no máximo 10 letras.",
-    }),
-});
+import WelcomeComponents from "./analytics/components/welcome";
+import LoginComponents from "./analytics/components/login";
+import Link from "next/link";
 export default function Home() {
-  const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
-  });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { username, password } = values;
-    const validLoginInfo = username == "redeflex" && password == "redeflex1234";
-    toast({
-      duration: 1000,
-      variant: validLoginInfo ? "default" : "destructive",
-      title: "Login",
-      description: validLoginInfo
-        ? "Login efetuado com sucesso"
-        : "Login falhou, por favor verifique os dados",
-    });
-    validLoginInfo ? router.push("/dashboard") : null;
-  }
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-center">
-      <Image src="/logo.jpeg" alt="redeflex_logo" width={208} height={200} />
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="lg:w-1/5 md:w-2/5 sm:w-10/12 w-10/12 space-y-8"
-        >
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="redeflex" {...field} />
-                </FormControl>
-                <FormDescription>Insira seu username.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+    <main className="w-full h-screen flex items-center justify-center">
+      <div className="flex w-full lg:w-2/3 md:w-5/6 h-full lg:h-2/3 md:h-2/3 shadow-2xl">
+        <div className="flex lg:flex md:flex sm:hidden xs:hidden hidden  w-2/4 h-full flex-col items-center justify-center">
+          <Image
+            src="/logo.png"
+            alt="redeflex_logo"
+            width={120}
+            height={120}
+            priority={true}
+            className="w-auto h-auto"
           />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Senha</FormLabel>
-                <FormControl>
-                  <Input {...field} type="password" />
-                </FormControl>
-                <FormDescription>Insira sua senha de acesso.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Login</Button>
-        </form>
-      </Form>
+          <LoginComponents />
+        </div>
+        <div className="flex flex-col lg:justify-center md:justify-center justify-start items-center w-full lg:w-2/4 md:w-2/4 h-full lg:rounded-none md:rounded-none sm:rounded-md xs:rounded-md rounded-md bg-main-color gap-6">
+          <div className="flex lg:hidden md:hidden sm:flex md:flex flex justify-center items-bottom h-52 w-full bg-white rounded-b-full">
+            <Image
+              priority={true}
+              src="/logo.png"
+              alt="redeflex_logo"
+              width={120}
+              height={120}
+              className="w-auto h-auto"
+            />
+          </div>
+          <WelcomeComponents />
+          <div className="lg:hidden md:hidden flex justify-center items-center flex-col w-full">
+            <LoginComponents />
+          </div>
+          <div className="lg:hidden md:hidden flex flex-col gap-2 w-4/5 text-slate-200 text-xs mt-8">
+            <p>Não tem uma conta?</p>
+            <Link href={"/"} className="underline">
+              Cadastrar
+            </Link>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
