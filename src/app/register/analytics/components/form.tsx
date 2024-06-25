@@ -31,14 +31,19 @@ const formSchema = z.object({
     .max(20, {
       message: "Sua senha precisa ter no máximo 10 caracteres.",
     }),
+  email: z
+    .string()
+    .email({ message: "Digite um email válido" })
+    .max(36, { message: "Seu email deveria ter no máximo 36 caracteres" }),
 });
-export default function LoginComponents() {
+export default function FormComponents() {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       password: "",
+      email: "",
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -57,6 +62,21 @@ export default function LoginComponents() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-5/6 space-y-4">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="lg:text-black md:text-black text-white">
+                Email
+              </FormLabel>
+              <FormControl>
+                <Input placeholder="example@gmail.com" {...field} />
+              </FormControl>
+              <FormMessage className="lg:text-sm md:text-sm text-xs" />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="username"
@@ -91,7 +111,7 @@ export default function LoginComponents() {
           type="submit"
           className="lg:bg-main-color md:bg-main-color bg-orange-400 text-white w-full py-6 rounded-xl font-extrabold"
         >
-          Login
+          Cadastrar
         </Button>
         <div className="flex justify-between w-full">
           <div className="flex items-center space-x-2 lg:text-slate-500 md:text-slate-500 text-slate-200">
@@ -106,9 +126,6 @@ export default function LoginComponents() {
               Lembrar de mim
             </label>
           </div>
-          <p className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline">
-            Esqueceu a senha?
-          </p>
         </div>
       </form>
     </Form>
