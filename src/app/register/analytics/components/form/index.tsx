@@ -41,16 +41,7 @@ export default function FormComponents() {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { username, password, email } = values;
-    const validLoginInfo = username == "redeflex" && password == "redeflex1234";
-    toast({
-      duration: 1000,
-      variant: validLoginInfo ? "default" : "destructive",
-      title: "Login",
-      description: validLoginInfo
-        ? "Login efetuado com sucesso"
-        : "Login falhou, por favor verifique os dados",
-    });
-    validLoginInfo ? router.push("/dashboard") : null;
+    router.push("/dashboard");
   }
   return (
     <Form {...form}>
