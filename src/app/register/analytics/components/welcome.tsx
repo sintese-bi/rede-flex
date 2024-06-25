@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function WelcomeComponents() {
   return (
     <div className="lg:flex md:flex hidden justify-center items-center flex-col gap-4">
@@ -6,9 +7,11 @@ export default function WelcomeComponents() {
         Bem-vindo ao cadastro
       </p>
       <p className="text-sm text-white">Já tem uma contra registrada?</p>
-      <Button variant="outline" className="bg-transparent text-white">
-        Login
-      </Button>
+      <Link href={"/login"}>
+        <Button variant="outline" className="bg-transparent text-white">
+          Login
+        </Button>
+      </Link>
     </div>
   );
 }
