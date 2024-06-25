@@ -1,26 +1,27 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { CheckedState } from "@radix-ui/react-checkbox";
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import { CircleXIcon } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+type Checked = DropdownMenuCheckboxItemProps["checked"];
 export default function SelectedVariables({
   variables,
 }: {
   variables: {
     label: string;
     value: string | boolean | undefined;
-    setValue: Dispatch<SetStateAction<CheckedState | undefined>>;
+    setValue: Dispatch<SetStateAction<Checked | undefined>>;
   }[];
 }) {
   const [selectedVariables, setSelectedVariables] = useState<
     {
       label: string;
       value: string | boolean | undefined;
-      setValue: Dispatch<SetStateAction<CheckedState | undefined>>;
+      setValue: Dispatch<SetStateAction<Checked | undefined>>;
     }[]
   >([]);
   function handleDeselectItem(
-    setValue: Dispatch<SetStateAction<CheckedState | undefined>>
+    setValue: Dispatch<SetStateAction<Checked | undefined>>
   ) {
     setValue(false);
   }
