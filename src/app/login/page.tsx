@@ -19,13 +19,12 @@ export default function Login() {
           <FormComponents />
         </div>
         <div className="flex flex-col lg:justify-center md:justify-center justify-start items-center w-full lg:w-2/4 md:w-2/4 h-full lg:rounded-none md:rounded-none sm:rounded-md xs:rounded-md rounded-md bg-main-color gap-6">
-          <div className="flex lg:hidden md:hidden sm:flex md:flex flex justify-center items-bottom h-48 w-full bg-white rounded-b-full">
+          <div className="flex lg:hidden md:hidden sm:flex md:flex flex justify-center items-bottom py-12 w-full rounded-b-full bg-white">
             <Image
-              priority={true}
               src="/logo.png"
-              alt="redeflex_logo"
               width={200}
-              height={80}
+              height={200}
+              alt="redeflex logo"
               className="w-auto h-auto"
             />
           </div>
@@ -35,7 +34,7 @@ export default function Login() {
           </div>
           <div className="lg:hidden md:hidden flex flex-col gap-2 w-4/5 text-slate-200 text-xs mt-8">
             <p>Não tem uma conta?</p>
-            <Link href={"/"} className="underline">
+            <Link href={"/register"} className="underline">
               Cadastrar
             </Link>
           </div>
