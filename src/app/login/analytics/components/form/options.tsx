@@ -13,10 +13,10 @@ export default function OptionsFormComponents() {
         >
           Lembrar de mim
         </label>
-        <p className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline">
-          Esqueceu a senha?
-        </p>
       </div>
+      <p className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline">
+        Esqueceu a senha?
+      </p>
     </div>
   );
 }
