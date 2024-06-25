@@ -10,6 +10,7 @@ import {
 import {
   BarChartHorizontalBigIcon,
   HomeIcon,
+  LogOutIcon,
   MenuIcon,
   TriangleAlertIcon,
 } from "lucide-react";
@@ -58,6 +59,15 @@ export default function NavbarMenuDropDown() {
           >
             <TriangleAlertIcon size={22} />
             <p className="text-xs">Alertas</p>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link
+            className="flex justify-start group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
+            href={"/"}
+          >
+            <LogOutIcon size={22} />
+            <p className="text-xs">Sair</p>
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
