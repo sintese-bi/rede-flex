@@ -10,19 +10,17 @@ export default function SelectedVariables({
   variables: {
     label: string;
     value: string | boolean | undefined;
-    setValue: Dispatch<SetStateAction<Checked | undefined>>;
+    setValue: Dispatch<SetStateAction<Checked>>;
   }[];
 }) {
   const [selectedVariables, setSelectedVariables] = useState<
     {
       label: string;
       value: string | boolean | undefined;
-      setValue: Dispatch<SetStateAction<Checked | undefined>>;
+      setValue: Dispatch<SetStateAction<Checked>>;
     }[]
   >([]);
-  function handleDeselectItem(
-    setValue: Dispatch<SetStateAction<Checked | undefined>>
-  ) {
+  function handleDeselectItem(setValue: Dispatch<SetStateAction<Checked>>) {
     setValue(false);
   }
   useEffect(() => {

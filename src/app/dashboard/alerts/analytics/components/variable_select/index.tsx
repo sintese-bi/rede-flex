@@ -8,18 +8,38 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-type Checked = DropdownMenuCheckboxItemProps["checked"];
-import { Suspense, useState } from "react";
+import { Dispatch, SetStateAction, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import VariableSelectLoading from "../../loading/variable_select";
 import SelectedVariables from "./selected_variables";
-export default function VariableSelectComponents() {
-  const [marginGC, setMarginGC] = useState<Checked>(false);
-  const [marginAL, setMarginAL] = useState<Checked>(false);
-  const [marginTotal, setMarginTotal] = useState<Checked>(false);
-  const [volumeGC, setVolumeGC] = useState<Checked>(false);
-  const [volumeAL, setVolumeAL] = useState<Checked>(false);
-  const [volumeTotal, setVolumeTotal] = useState<Checked>(false);
+type Checked = DropdownMenuCheckboxItemProps["checked"];
+export default function VariableSelectComponents({
+  marginGC,
+  marginAL,
+  marginTotal,
+  volumeGC,
+  volumeAL,
+  volumeTotal,
+  setMarginGC,
+  setMarginAL,
+  setMarginTotal,
+  setVolumeGC,
+  setVolumeAL,
+  setVolumeTotal,
+}: {
+  marginGC: Checked;
+  marginAL: Checked;
+  marginTotal: Checked;
+  volumeGC: Checked;
+  volumeAL: Checked;
+  volumeTotal: Checked;
+  setMarginGC: Dispatch<SetStateAction<Checked>>;
+  setMarginAL: Dispatch<SetStateAction<Checked>>;
+  setMarginTotal: Dispatch<SetStateAction<Checked>>;
+  setVolumeGC: Dispatch<SetStateAction<Checked>>;
+  setVolumeAL: Dispatch<SetStateAction<Checked>>;
+  setVolumeTotal: Dispatch<SetStateAction<Checked | undefined>>;
+}) {
   return (
     <Suspense fallback={<VariableSelectLoading />}>
       <div className="flex flex-col gap-4 lg:w-1/3 w-full">
@@ -33,34 +53,19 @@ export default function VariableSelectComponents() {
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>Variáveis</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem
-              checked={marginGC}
-              onCheckedChange={setMarginGC}
-            >
+            <DropdownMenuCheckboxItem checked={marginGC}>
               Margem GC
             </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={marginAL}
-              onCheckedChange={setMarginAL}
-            >
+            <DropdownMenuCheckboxItem checked={marginAL}>
               Margem AL
             </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={marginTotal}
-              onCheckedChange={setMarginTotal}
-            >
+            <DropdownMenuCheckboxItem checked={marginTotal}>
               Margem Total
             </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={volumeGC}
-              onCheckedChange={setVolumeGC}
-            >
+            <DropdownMenuCheckboxItem checked={volumeGC}>
               Volume GC
             </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={volumeAL}
-              onCheckedChange={setVolumeAL}
-            >
+            <DropdownMenuCheckboxItem checked={volumeAL}>
               Volume AL
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
