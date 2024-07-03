@@ -4,8 +4,6 @@ import "chart.js/auto";
 import { Suspense, useEffect, useReducer, useState } from "react";
 import { DataInterfaces } from "../../interfaces/data";
 import { ProfitDateInterfaces } from "../../interfaces/profit_date";
-import getFuelProfitsUtils from "../../utils/get_fuel_profits";
-import { ProfitFuelInterfaces } from "../../interfaces/profit_fuel";
 import getProfitAndDateUtils from "../../utils/get_profit_and_date";
 import ChartLoading from "../../loading/chart";
 import { delay } from "../../utils/component_delay";

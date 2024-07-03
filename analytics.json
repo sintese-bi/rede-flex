@@ -1,0 +1,32 @@
+[
+    {
+        "name": "total_profit",
+        "value": 568257746,
+        "label": "Lucro total"
+    },
+    {
+        "name": "total_volume",
+        "value": 5682577.46,
+        "label": "Volume total"
+    },
+    {
+        "name": "total_cost",
+        "value": 56825.74,
+        "label": "Custo total"
+    },
+    {
+        "name": "total_sales",
+        "value": 568257.73,
+        "label": "Venda total"
+    },
+    {
+        "name": "fuel_with_higher_profit",
+        "value": "gc",
+        "label": "Combustível com maior lucro"
+    },
+    {
+        "name": "weekdat_with_higher_profit",
+        "value": "sexta-feira",
+        "label": "Melhor dia da semana"
+    }
+]

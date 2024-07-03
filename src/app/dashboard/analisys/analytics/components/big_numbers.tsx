@@ -1,62 +1,8 @@
-import { CalendarIcon, DollarSignIcon, FuelIcon } from "lucide-react";
-import getFieldTotalValueUtils from "../utils/get_field_total_value";
-import getFuelWithHigherProfitUtils from "../utils/get_fuel_with_higher_profit";
-import getItemWithHigherProfitUtils from "../utils/get_item_with_higher_profit";
-import { BigNumbersInterfaces } from "../interfaces/big_numbers";
-import { DataInterfaces } from "../interfaces/data";
 import { Suspense } from "react";
 import BigNumbersLoading from "../loading/big_numbers";
-export default async function BigNumbersComponents({
-  data,
-}: {
-  data: DataInterfaces[];
-}) {
-  const bigNumbersData: BigNumbersInterfaces[] = [
-    {
-      value: new Intl.NumberFormat().format(
-        getFieldTotalValueUtils("company_profit", data).toFixed(2)
-      ),
-      name: "company_profit",
-      label: "Lucro total",
-      icon: <DollarSignIcon className="text-slate-400" size={18} />,
-    },
-    {
-      value: new Intl.NumberFormat().format(
-        getFieldTotalValueUtils("company_volume", data).toFixed(2)
-      ),
-      name: "company_volume",
-      label: "Volume total",
-      icon: <FuelIcon className="text-slate-400" size={18} />,
-    },
-    {
-      value: new Intl.NumberFormat().format(
-        getFieldTotalValueUtils("company_cost", data).toFixed(2)
-      ),
-      name: "company_cost",
-      label: "Custo total",
-      icon: <DollarSignIcon className="text-slate-400" size={18} />,
-    },
-    {
-      value: new Intl.NumberFormat().format(
-        getFieldTotalValueUtils("company_sale", data).toFixed(2)
-      ),
-      name: "company_sale",
-      label: "Venda total",
-      icon: <DollarSignIcon className="text-slate-400" size={18} />,
-    },
-    {
-      value: getFuelWithHigherProfitUtils(data).fuel.toLowerCase(),
-      name: "fuel_with_higher_profit",
-      label: "Combustível com maior lucro",
-      icon: <FuelIcon className="text-slate-400" size={18} />,
-    },
-    {
-      value: getItemWithHigherProfitUtils(data).company_week_day.toLowerCase(),
-      name: "week_day_with_higher_profit",
-      label: "Melhor dia da semana",
-      icon: <CalendarIcon className="text-slate-400" size={18} />,
-    },
-  ];
+import { handleanalisysBigNumbers } from "../actions";
+export default async function BigNumbersComponents() {
+  const bigNumbersData = await handleanalisysBigNumbers();
   return (
     <Suspense fallback={<BigNumbersLoading />}>
       <div className="flex flex-col gap-1 w-full h-72">
