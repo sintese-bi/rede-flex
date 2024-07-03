@@ -24,7 +24,7 @@ export default async function Analisys() {
           <HigherProfitCompany data={data} />
         </div>
         <div className="flex flex-col h-full w-full gap-8">
-          <BigNumbersComponents data={data} />
+          <BigNumbersComponents />
           <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
             <ProfitFuelChartComponents data={data} />
             <ProfitDayChartsComponents data={data} />

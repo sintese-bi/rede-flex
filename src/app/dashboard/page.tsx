@@ -1,11 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
-import DashboardBigNumbers from "./analytics/components/dashboard/bignumbers";
-import DashboardMap from "./analytics/components/dashboard/map";
-import DashboardTable from "./analytics/components/dashboard/table";
+import DashboardMap from "./analytics/components/map";
+import DashboardTable from "./analytics/components/table";
 import TableLoading from "./analytics/components/loading/table";
 import MapLoading from "./analytics/components/loading/map";
 import BigNumbersLoading from "./analytics/components/loading/bignumbers";
+import DashboardBigNumbers from "./analytics/components/big_numbers";
 export default async function Dashboard() {
   return (
     <div className="flex flex-col gap-12 h-full w-full">
