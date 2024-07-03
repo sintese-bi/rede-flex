@@ -4,7 +4,7 @@ export async function handleanalisysBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/analisys/big_numbers`,
+    `https://redeflexbi.com.br/api/dashboard/analisys/big_numbers`,
     {
       method: "GET",
       cache: "force-cache",
