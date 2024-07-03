@@ -12,20 +12,46 @@ export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
       },
     }
   );
-  if (!response.ok) throw new Error("erro na requisição de variáveis");
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    const errorMessage = errorResponse.message || "Error";
+    throw new Error(`${response.status}: ${errorMessage}`);
+  }
   return response.json();
 }
 export async function handleAlertsVariablesSelect(form: FormData) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/select`, {
-    method: "POST",
-    body: form,
-  });
+  const rowData = {
+    variable: form.get("variable"),
+    margin_min_value: form.get("margin_min_value"),
+    margin_min_value_type: form.get("margin_min_value_type"),
+    whatsapp_contact: form.get("whatsapp_contact"),
+  };
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/select`,
+    {
+      method: "PUT",
+      body: JSON.stringify(rowData),
+    }
+  );
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    const errorMessage = errorResponse.message || "Error";
+    throw new Error(`${response.status}: ${errorMessage}`);
+  }
   revalidateTag("alerts_variables");
 }
 export async function handleAlertsVariablesUnselect(variable: string) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/unselect`, {
-    method: "PUT",
-    body: JSON.stringify({ variable: variable }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/unselect`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ variable: variable }),
+    }
+  );
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    const errorMessage = errorResponse.message || "Error";
+    throw new Error(`${response.status}: ${errorMessage}`);
+  }
   revalidateTag("alerts_variables");
 }

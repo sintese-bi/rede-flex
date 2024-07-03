@@ -19,7 +19,7 @@ import BigNumberComponentsDashboard from "./big_number";
 export default async function DashboardBigNumbers() {
   const big_numbers: BigNumbersInterfaces[] = await handleDashboardBigNumbers();
   return (
-    <div className="flex flex-col gap-2 lg:w-3/5 md:w-3/5 sm:w-full xs:w-full w-full h-full lg:h-96">
+    <div className="flex flex-col gap-2 w-full h-full lg:h-96">
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
         <TooltipProvider>

@@ -15,7 +15,6 @@ export default async function FormComponentsAlerts({
   const alertsVariables = await handleAlertsVariables();
   return (
     <form
-      method="POST"
       action={handleAlertsVariablesSelect}
       className="flex flex-col w-full justify-between items-start gap-8 "
     >

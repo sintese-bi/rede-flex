@@ -13,8 +13,6 @@ export async function PUT(req: Request, res: Response) {
       filePath,
       JSON.stringify({ variables: updatedVariables, alerts: alerts }, null, 2)
     );
-    console.log(variable);
-
     return Response.json({ updatedVariables });
   } catch (error) {
     return Response.json({ message: "Error updating alerts variables", error });
