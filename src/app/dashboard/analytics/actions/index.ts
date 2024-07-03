@@ -5,7 +5,7 @@ export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/big_numbers`,
+    `https://redeflexbi.com.br/api/dashboard/big_numbers`,
     {
       method: "GET",
       cache: "force-cache",
@@ -23,7 +23,7 @@ export async function handleDashboardBigNumbers(): Promise<
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/charts`,
+    `https://redeflexbi.com.br/api/dashboard/charts`,
     {
       method: "GET",
       cache: "force-cache",

@@ -3,7 +3,7 @@ import { revalidateTag } from "next/cache";
 import { VariablesInterfaces } from "../interfaces/variables";
 export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/variables`,
+    `https://redeflexbi.com.br/api/dashboard/alerts/variables`,
     {
       method: "GET",
       cache: "force-cache",
@@ -27,7 +27,7 @@ export async function handleAlertsVariablesSelect(form: FormData) {
     whatsapp_contact: form.get("whatsapp_contact"),
   };
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/select`,
+    `https://redeflexbi.com.br/api/dashboard/alerts/select`,
     {
       method: "PUT",
       body: JSON.stringify(rowData),
@@ -42,7 +42,7 @@ export async function handleAlertsVariablesSelect(form: FormData) {
 }
 export async function handleAlertsVariablesUnselect(variable: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/dashboard/alerts/unselect`,
+    `https://redeflexbi.com.br/api/dashboard/alerts/unselect`,
     {
       method: "PUT",
       body: JSON.stringify({ variable: variable }),
