@@ -7,8 +7,7 @@ import {
 export default async function Alerts() {
   return (
     <div className="flex flex-col w-full h-full justify-start items-start gap-8">
-      {/**
-       * <p className="text-xs font-bold text-slate-400 lg:w-2/6  w-full">
+      <p className="text-xs font-bold text-slate-400 lg:w-2/6  w-full">
         Você deve selecionar as variáveis que deseja monitorar. As variáveis
         selecionadas são observadas 24/7 e, caso ao fim do dia elas não tenham
         alcançado o valor esperado, é enviado uma mensagem de alerta no seu
@@ -21,7 +20,6 @@ export default async function Alerts() {
           handleAlertsVariablesSelect={handleAlertsVariablesSelect}
         />
       </div>
-       */}
     </div>
   );
 }
