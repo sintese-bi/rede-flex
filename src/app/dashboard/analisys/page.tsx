@@ -18,8 +18,7 @@ export default async function Analisys() {
   const { data } = (await getData()) as { data: DataInterfaces[] };
   return (
     <div className="flex flex-col gap-12 h-full w-full">
-      {/**
-       * <div className="flex flex-col gap-6 h-full w-full">
+      <div className="flex flex-col gap-6 h-full w-full">
         <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col items-start gap-6">
           <DataPicker />
           <HigherProfitCompany data={data} />
@@ -36,7 +35,6 @@ export default async function Analisys() {
           </div>
         </div>
       </div>
-       */}
     </div>
   );
 }
