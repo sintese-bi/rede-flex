@@ -13,7 +13,8 @@ export default async function Dashboard() {
   const charts = await handleDashboardCharts();
   return (
     <div className="flex flex-col gap-12 h-full w-full">
-      <div className="flex w-full flex-col gap-4">
+      {/**
+       * <div className="flex w-full flex-col gap-4">
         <div className="flex lg:flex-row flex-col items-center gap-12  w-full">
           <Suspense fallback={<BigNumbersLoading />}>
             <DashboardBigNumbers />
@@ -94,6 +95,7 @@ export default async function Dashboard() {
           />
         </Suspense>
       </div>
+       */}
     </div>
   );
 }
