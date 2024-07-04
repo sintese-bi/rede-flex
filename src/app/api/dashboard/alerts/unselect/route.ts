@@ -13,7 +13,16 @@ export async function PUT(req: Request, res: Response) {
       filePath,
       JSON.stringify({ variables: updatedVariables, alerts: alerts }, null, 2)
     );
-    return Response.json({ updatedVariables });
+    return Response.json(
+      { updatedVariables },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      }
+    );
   } catch (error) {
     return Response.json({ message: "Error updating alerts variables", error });
   }

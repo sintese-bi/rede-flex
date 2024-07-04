@@ -25,7 +25,13 @@ export async function GET() {
             };
       }
     );
-    return Response.json(formmatedResponse);
+    return Response.json(formmatedResponse, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
   } catch (error) {
     return new Response(String(error), {
       status: 400,

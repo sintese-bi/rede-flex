@@ -12,7 +12,13 @@ export async function GET() {
         ? { name, label, value: new Intl.NumberFormat("de-DE").format(value) }
         : { label, name, value };
     });
-    return Response.json(formmatedResponse);
+    return Response.json(formmatedResponse, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
   } catch (error) {
     return Response.json({
       message:
