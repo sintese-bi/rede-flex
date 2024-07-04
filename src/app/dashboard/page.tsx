@@ -10,7 +10,7 @@ import Daily from "./analytics/components/charts/daily";
 import { handleDashboardCharts } from "./analytics/actions";
 import Region from "./analytics/components/charts/region";
 export default async function Dashboard() {
-  const charts = await handleDashboardCharts();
+  //const charts = await handleDashboardCharts();
   return (
     <div className="flex flex-col gap-12 h-full w-full">
       {/**
