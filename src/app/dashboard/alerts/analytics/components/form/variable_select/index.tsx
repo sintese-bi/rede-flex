@@ -6,7 +6,7 @@ export default function VariableSelectFormComponentsAlerts({
   alertsVariables: VariablesInterfaces[];
 }) {
   return (
-    <div className="flex flex-col gap-4 lg:w-1/3 w-full">
+    <div className="flex flex-col gap-4  w-full">
       <VariablesMenuDropdownFormComponentsAlerts
         alertsVariables={alertsVariables}
       />

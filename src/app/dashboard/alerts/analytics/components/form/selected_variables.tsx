@@ -12,7 +12,7 @@ export default function SelectedVariablesAlerts({
     ({ value }) => value !== false
   );
   return (
-    <div className="lg:w-1/3 w-full">
+    <div className="w-full">
       <p className="text-xs font-bold w-full text-slate-400 w-full">
         {!selectedVariables.length
           ? "Por favor, escolha uma ou mais variáveis para serem monitoradas."

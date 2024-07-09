@@ -1,29 +1,28 @@
-import { BigNumbersInterfaces } from "@/app/dashboard/analisys/analytics/interfaces/big_numbers";
-import { readFile } from "fs/promises";
-const filePath = "database/analisys.json";
+import { BigNumbersInterfaces } from "@/app/dashboard/analytics/interfaces/big_numbers";
+import { mongodb_client } from "@/database/connection";
+import { ObjectId } from "mongodb";
+export const dynamic = "force-dynamic";
 export async function GET() {
   try {
-    const response = await readFile(filePath, "utf-8");
-
+    const redeflex = mongodb_client.db("redeflex");
+    const collection = redeflex.collection("analisys");
     const { big_numbers }: { big_numbers: BigNumbersInterfaces[] } =
-      JSON.parse(response);
-    const formmatedResponse = big_numbers.map(({ name, label, value }) => {
-      return typeof value == "number"
-        ? { name, label, value: new Intl.NumberFormat("de-DE").format(value) }
-        : { label, name, value };
+      (await collection.findOne({
+        _id: new ObjectId("66873e8ba47db2d310066cfc"),
+      })) as any;
+    const formmatedNumbers = big_numbers.map((big_number) => {
+      return {
+        ...big_number,
+        value:
+          typeof big_number["value"] == "number"
+            ? new Intl.NumberFormat("de-DE").format(big_number["value"])
+            : big_number["value"],
+      };
     });
-    return Response.json(formmatedResponse, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      },
-    });
+    return Response.json(formmatedNumbers);
   } catch (error) {
-    return Response.json({
-      message:
-        "Error when requesting analytics big numbers values, try again later",
-      error,
+    return new Response(String(error), {
+      status: 400,
     });
   }
 }

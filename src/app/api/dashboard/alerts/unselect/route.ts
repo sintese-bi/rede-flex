@@ -1,30 +1,39 @@
 import { VariablesInterfaces } from "@/app/dashboard/alerts/analytics/interfaces/variables";
+import { mongodb_client } from "@/database/connection";
 import { readFile, writeFile } from "fs/promises";
+import { ObjectId } from "mongodb";
 const filePath = "database/alerts.json";
-
+export const dynamic = "force-dynamic";
 // request function responsable for unselect the variabled choosed
 export async function PUT(req: Request, res: Response) {
   try {
     const { variable } = await req.json();
-    const existentContent = await readFile(filePath, "utf-8");
-    const { variables, alerts } = gettingVariablesAndAlerts(existentContent);
-    const updatedVariables = gettingUpdatedVariables(variables, variable);
-    await writeFile(
-      filePath,
-      JSON.stringify({ variables: updatedVariables, alerts: alerts }, null, 2)
-    );
-    return Response.json(
-      { updatedVariables },
+    const redeflex = mongodb_client.db("redeflex");
+    const collection = redeflex.collection("alerts");
+    const { variables }: { variables: VariablesInterfaces[] } =
+      (await collection.findOne({
+        _id: new ObjectId("66872ee8a47db2d310066cfb"),
+      })) as any;
+    const formmated_variables = variables.map((variableItem) => {
+      return variableItem["label"] === variable
+        ? { ...variableItem, value: !variableItem["value"] }
+        : variableItem;
+    });
+    await collection.updateOne(
       {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        _id: new ObjectId("66872ee8a47db2d310066cfb"),
+      },
+      {
+        $set: {
+          variables: formmated_variables,
         },
       }
     );
+    return Response.json(variables);
   } catch (error) {
-    return Response.json({ message: "Error updating alerts variables", error });
+    return new Response(String(error), {
+      status: 400,
+    });
   }
 }
 

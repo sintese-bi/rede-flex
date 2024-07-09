@@ -1,17 +1,23 @@
 import { VariablesInterfaces } from "@/app/dashboard/alerts/analytics/interfaces/variables";
+import { mongodb_client } from "@/database/connection";
 import { readFile, writeFile } from "fs/promises";
+import { ObjectId } from "mongodb";
 const filePath = "database/alerts.json";
-
+export const dynamic = "force-dynamic";
 // request function responsable for select the variabled choosed
 export async function PUT(req: Request, res: Response) {
   try {
+    const redeflex = mongodb_client.db("redeflex");
+    const collection = redeflex.collection("alerts");
     const {
       variable,
       margin_min_value,
       margin_min_value_type,
       whatsapp_contact,
     } = await req.json();
-    const existentContent = await readFile(filePath, "utf-8");
+    const existentContent = await collection.findOne({
+      _id: new ObjectId("66872ee8a47db2d310066cfb"),
+    });
     const { variables, alerts } = gettingVariablesAndAlerts(existentContent);
     const updatedVariables = gettingUpdatedVariables(
       variables,
@@ -20,36 +26,32 @@ export async function PUT(req: Request, res: Response) {
       margin_min_value,
       margin_min_value_type
     );
-    await writeFile(
-      filePath,
-      JSON.stringify({ variables: updatedVariables, alerts: alerts }, null, 2)
+    await collection.updateOne(
+      {
+        _id: new ObjectId("66872ee8a47db2d310066cfb"),
+      },
+      {
+        $set: {
+          variables: updatedVariables,
+        },
+      }
     );
     return new Response("Success", {
       status: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      },
     });
   } catch (error) {
     return new Response("Error", {
       status: 400,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      },
     });
   }
 }
 
 // function to return the variables and alerts values
-function gettingVariablesAndAlerts(existentContent: string): {
+function gettingVariablesAndAlerts(existentContent: any): {
   variables: VariablesInterfaces[];
   alerts: any;
 } {
-  const { variables, alerts } = JSON.parse(existentContent);
+  const { variables, alerts } = existentContent;
   return { variables, alerts };
 }
 

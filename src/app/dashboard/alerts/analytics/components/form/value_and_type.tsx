@@ -8,7 +8,7 @@ import {
 import { Input } from "@/components/ui/input";
 export default async function ValueAndTypeComponentsAlerts() {
   return (
-    <div className="lg:w-1/3 w-full">
+    <div className="w-full">
       <Input type="number" name="margin_min_value" defaultValue={0} />
       <Select name="margin_min_value_type">
         <SelectTrigger className="w-full mt-2">

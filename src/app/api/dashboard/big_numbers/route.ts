@@ -1,37 +1,25 @@
 import { BigNumbersInterfaces } from "@/app/dashboard/analytics/interfaces/big_numbers";
-import { readFile } from "fs/promises";
-const filePath = "database/dashboard.json";
+import { mongodb_client } from "@/database/connection";
+import { ObjectId } from "mongodb";
+export const dynamic = "force-dynamic";
 export async function GET() {
   try {
-    const response = await readFile(filePath, "utf-8");
+    const redeflex = mongodb_client.db("redeflex");
+    const collection = redeflex.collection("dashboard");
     const { big_numbers }: { big_numbers: BigNumbersInterfaces[] } =
-      JSON.parse(response);
-    const formmatedResponse = big_numbers.map(
-      ({ label, value, secondary_label, secondary_value }) => {
-        return typeof value == "number"
-          ? {
-              label,
-              secondary_label,
-              secondary_value: new Intl.NumberFormat("de-DE").format(
-                secondary_value
-              ),
-              value: new Intl.NumberFormat("de-DE").format(value),
-            }
-          : {
-              label,
-              secondary_label,
-              secondary_value,
-              value,
-            };
-      }
-    );
-    return Response.json(formmatedResponse, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      },
+      (await collection.findOne({
+        _id: new ObjectId("668953f2e6120c73f62c0a9c"),
+      })) as any;
+    const formmatedNumbers = big_numbers.map((big_number) => {
+      return {
+        ...big_number,
+        value: new Intl.NumberFormat("de-DE").format(big_number["value"]),
+        secondary_value: new Intl.NumberFormat("de-DE").format(
+          big_number["secondary_value"]
+        ),
+      };
     });
+    return Response.json(formmatedNumbers);
   } catch (error) {
     return new Response(String(error), {
       status: 400,

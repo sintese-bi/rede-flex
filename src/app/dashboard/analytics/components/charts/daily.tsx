@@ -82,7 +82,7 @@ export default function Daily({ data }: { data: any }) {
               </SelectContent>
             </Select>
             <Separator />
-            <div className="h-full ">
+            <div className="flex flex-col justify-center items-start h-full">
               <p className="text-xs font-bold text-slate-800 uppercase">
                 {title}
               </p>

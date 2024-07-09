@@ -10,12 +10,11 @@ import Daily from "./analytics/components/charts/daily";
 import { handleDashboardCharts } from "./analytics/actions";
 import Region from "./analytics/components/charts/region";
 export default async function Dashboard() {
-  //const charts = await handleDashboardCharts();
+  const charts = await handleDashboardCharts();
   return (
     <div className="flex flex-col gap-12 h-full w-full">
-      {/**
-       * <div className="flex w-full flex-col gap-4">
-        <div className="flex lg:flex-row flex-col items-center gap-12  w-full">
+      <div className="flex w-full flex-col gap-12">
+        <div className="flex lg:flex-row flex-col items-center gap-2  w-full">
           <Suspense fallback={<BigNumbersLoading />}>
             <DashboardBigNumbers />
           </Suspense>
@@ -23,7 +22,7 @@ export default async function Dashboard() {
             <DashboardMap />
           </Suspense>
         </div>
-        <div className="flex lg:flex-row flex-col items-center gap-12 w-full h-96">
+        <div className="flex lg:flex-row flex-col items-center gap-12 w-full h-full">
           <div className="flex items-center justify-center lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-full w-full">
             <Daily data={charts[0]} />
           </div>
@@ -49,8 +48,10 @@ export default async function Dashboard() {
               "Venda produtos ",
               "Venda calibragem ",
               "Venda ducha ",
+              "gasolina podium",
             ]}
             data={Array(10).fill([
+              "_",
               "_",
               "_",
               "_",
@@ -95,7 +96,6 @@ export default async function Dashboard() {
           />
         </Suspense>
       </div>
-       */}
     </div>
   );
 }

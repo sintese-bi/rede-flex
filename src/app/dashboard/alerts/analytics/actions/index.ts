@@ -1,9 +1,10 @@
 "use server";
 import { revalidateTag } from "next/cache";
 import { VariablesInterfaces } from "../interfaces/variables";
+import { AlertsInterfaces } from "../interfaces/alerts";
 export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
   const response = await fetch(
-    `https://redeflexbi.com.br/api/dashboard/alerts/variables`,
+    `${process.env.NEXT_PUBLIC_URL}/dashboard/alerts/variables`,
     {
       method: "GET",
       cache: "force-cache",
@@ -27,7 +28,7 @@ export async function handleAlertsVariablesSelect(form: FormData) {
     whatsapp_contact: form.get("whatsapp_contact"),
   };
   const response = await fetch(
-    `https://redeflexbi.com.br/api/dashboard/alerts/select`,
+    `${process.env.NEXT_PUBLIC_URL}/dashboard/alerts/select`,
     {
       method: "PUT",
       body: JSON.stringify(rowData),
@@ -42,7 +43,7 @@ export async function handleAlertsVariablesSelect(form: FormData) {
 }
 export async function handleAlertsVariablesUnselect(variable: string) {
   const response = await fetch(
-    `https://redeflexbi.com.br/api/dashboard/alerts/unselect`,
+    `${process.env.NEXT_PUBLIC_URL}/dashboard/alerts/unselect`,
     {
       method: "PUT",
       body: JSON.stringify({ variable: variable }),
@@ -54,4 +55,22 @@ export async function handleAlertsVariablesUnselect(variable: string) {
     throw new Error(`${response.status}: ${errorMessage}`);
   }
   revalidateTag("alerts_variables");
+}
+export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/dashboard/alerts`,
+    {
+      method: "GET",
+      cache: "force-cache",
+      next: {
+        tags: ["alerts"],
+      },
+    }
+  );
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    const errorMessage = errorResponse.message || "Error";
+    throw new Error(`${response.status}: ${errorMessage}`);
+  }
+  return response.json();
 }

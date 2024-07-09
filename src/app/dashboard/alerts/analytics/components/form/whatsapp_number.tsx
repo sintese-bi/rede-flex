@@ -4,7 +4,7 @@ import WhatsAppNumberLoading from "../../loading/whatsapp_number";
 export default async function WhatsAppNumberComponentsAlerts() {
   return (
     <Suspense fallback={<WhatsAppNumberLoading />}>
-      <div className="lg:w-1/3 w-full">
+      <div className="w-full">
         <Input
           type="tel"
           className="w-full"
