@@ -12,26 +12,32 @@ export default function FieldsFormComponents({
 }: {
   form: UseFormReturn<
     {
-      username: string;
-      password: string;
-      email: string;
+      use_name: string;
+      use_password: string;
+      use_email: string;
+      use_confirm_password: string;
     },
     any,
     undefined
   >;
 }) {
   const formFields: {
-    name: "username" | "password" | "email";
+    name: "use_email" | "use_name" | "use_password" | "use_confirm_password";
     label: string;
     placeholder: string;
   }[] = [
     {
-      name: "email",
+      name: "use_email",
       label: "Email",
       placeholder: "example@gmail.com",
     },
-    { name: "username", label: "Username", placeholder: "redeflex" },
-    { name: "password", label: "Password", placeholder: "********" },
+    { name: "use_name", label: "Nome de usuário", placeholder: "redeflex" },
+    { name: "use_password", label: "Senha", placeholder: "********" },
+    {
+      name: "use_confirm_password",
+      label: "Confirme sua senha",
+      placeholder: "********",
+    },
   ];
   return (
     <>
