@@ -7,41 +7,60 @@ import { useRouter } from "next/navigation";
 import FieldsFormComponents from "./fields";
 import SubmitButtonFormComponents from "./submit_button";
 import OptionsFormComponents from "./options";
+import { handleRegister } from "../../actions";
 const formSchema = z.object({
-  username: z
+  use_email: z
     .string()
+    .email()
     .min(4, {
       message: "Seu username precisa ter pelo menos 4 caracteres.",
     })
     .max(30, {
       message: "Seu username precisa ter no máximo 30 caracteres.",
     }),
-  password: z
+  use_name: z
+    .string()
+    .min(4, {
+      message: "Seu username precisa ter pelo menos 4 caracteres.",
+    })
+    .max(26, {
+      message: "Seu username precisa ter no máximo 26 caracteres.",
+    }),
+  use_password: z
     .string()
     .min(4, {
       message: "Sua senha precisa ter pelo menos 4 caracteres.",
     })
-    .max(20, {
-      message: "Sua senha precisa ter no máximo 10 caracteres.",
+    .max(12, {
+      message: "Sua senha precisa ter no máximo 12 caracteres.",
     }),
-  email: z
+  use_confirm_password: z
     .string()
-    .email({ message: "Digite um email válido" })
-    .max(36, { message: "Seu email deveria ter no máximo 36 caracteres" }),
+    .min(4, {
+      message: "Sua senha precisa ter pelo menos 4 caracteres.",
+    })
+    .max(12, {
+      message: "Sua senha precisa ter no máximo 12 caracteres.",
+    }),
 });
 export default function FormComponents() {
-  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      password: "",
-      email: "",
+      use_email: "",
+      use_name: "",
+      use_password: "",
+      use_confirm_password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { username, password, email } = values;
-    router.push("/dashboard");
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { succeed, message } = await handleRegister(values);
+    toast({
+      duration: 1000,
+      variant: succeed ? "default" : "destructive",
+      title: "Registro",
+      description: message,
+    });
   }
   return (
     <Form {...form}>

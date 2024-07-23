@@ -2,21 +2,22 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
 import FieldsFormComponents from "./fields";
 import SubmitButtonFormComponents from "./submit_button";
 import OptionsFormComponents from "./options";
+import { handleLogin } from "../../actions";
+import { toast } from "@/components/ui/use-toast";
 const formSchema = z.object({
-  username: z
+  use_email: z
     .string()
+    .email({ message: "Por favor, insira um email válido" })
     .min(4, {
-      message: "Seu username precisa ter pelo menos 4 caracteres.",
+      message: "Seu email precisa ter pelo menos 12 caracteres.",
     })
     .max(30, {
-      message: "Seu username precisa ter no máximo 30 caracteres.",
+      message: "Seu email precisa ter no máximo 30 caracteres.",
     }),
-  password: z
+  use_password: z
     .string()
     .min(4, {
       message: "Sua senha precisa ter pelo menos 4 caracteres.",
@@ -26,26 +27,21 @@ const formSchema = z.object({
     }),
 });
 export default function FormComponents() {
-  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      password: "",
+      use_email: "",
+      use_password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { username, password } = values;
-    const validLoginInfo = username == "redeflex" && password == "redeflex1234";
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { succeed, message } = await handleLogin(values);
     toast({
       duration: 1000,
-      variant: validLoginInfo ? "default" : "destructive",
+      variant: succeed ? "default" : "destructive",
       title: "Login",
-      description: validLoginInfo
-        ? "Login efetuado com sucesso"
-        : "Login falhou, por favor verifique os dados",
+      description: message,
     });
-    validLoginInfo ? router.push("/dashboard") : null;
   }
   return (
     <Form {...form}>
