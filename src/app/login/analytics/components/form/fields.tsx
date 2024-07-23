@@ -12,20 +12,20 @@ export default function FieldsFormComponents({
 }: {
   form: UseFormReturn<
     {
-      username: string;
-      password: string;
+      use_email: string;
+      use_password: string;
     },
     any,
     undefined
   >;
 }) {
   const formFields: {
-    name: "username" | "password";
+    name: "use_email" | "use_password";
     label: string;
     placeholder: string;
   }[] = [
-    { name: "username", label: "Username", placeholder: "redeflex" },
-    { name: "password", label: "Password", placeholder: "********" },
+    { name: "use_email", label: "Email", placeholder: "example@gmail.com" },
+    { name: "use_password", label: "Senha", placeholder: "********" },
   ];
   return (
     <>

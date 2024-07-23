@@ -19,11 +19,11 @@ export default function Login() {
           <FormComponents />
         </div>
         <div className="flex flex-col lg:justify-center md:justify-center justify-start items-center w-full lg:w-2/4 md:w-2/4 h-full lg:rounded-none md:rounded-none sm:rounded-md xs:rounded-md rounded-md bg-main-color gap-6">
-          <div className="flex lg:hidden md:hidden sm:flex md:flex flex justify-center items-bottom py-12 w-full rounded-b-full bg-white">
+          <div className="flex lg:hidden md:hidden sm:flex md:flex flex justify-center items-bottom py-8 w-full bg-white">
             <Image
               src="/logo.png"
-              width={200}
-              height={200}
+              width={160}
+              height={160}
               alt="redeflex logo"
               className="w-auto h-auto"
             />
