@@ -1,8 +1,6 @@
 import { VariablesInterfaces } from "@/app/dashboard/alerts/analytics/interfaces/variables";
 import { mongodb_client } from "@/database/connection";
-import { readFile, writeFile } from "fs/promises";
 import { ObjectId } from "mongodb";
-const filePath = "database/alerts.json";
 export const dynamic = "force-dynamic";
 // request function responsable for select the variabled choosed
 export async function PUT(req: Request, res: Response) {
