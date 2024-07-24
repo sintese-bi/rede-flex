@@ -15,26 +15,5 @@ async function getData() {
   return response.json();
 }
 export default async function Analisys() {
-  const { data } = (await getData()) as { data: DataInterfaces[] };
-  return (
-    <div className="flex flex-col gap-12 h-full w-full">
-      <div className="flex flex-col gap-6 h-full w-full">
-        <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col items-start gap-6">
-          <DataPicker />
-          <HigherProfitCompany data={data} />
-        </div>
-        <div className="flex flex-col h-full w-full gap-8">
-          <BigNumbersComponents />
-          <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitFuelChartComponents data={data} />
-            <ProfitDayChartsComponents data={data} />
-          </div>
-          <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-96">
-            <ProfitVolumeChartComponents data={data} />
-            <ProfitDateChartComponents data={data} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <div className="flex flex-col gap-12 h-full w-full"></div>;
 }
