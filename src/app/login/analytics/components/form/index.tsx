@@ -7,6 +7,7 @@ import SubmitButtonFormComponents from "./submit_button";
 import OptionsFormComponents from "./options";
 import { handleLogin } from "../../actions";
 import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 const formSchema = z.object({
   use_email: z
     .string()
@@ -27,6 +28,7 @@ const formSchema = z.object({
     }),
 });
 export default function FormComponents() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,14 +36,26 @@ export default function FormComponents() {
       use_password: "",
     },
   });
+  function handleLoginResponse(succeed: boolean, message: string) {
+    if (succeed) {
+      toast({
+        duration: 1000,
+        variant: "default",
+        title: "Login",
+        description: message,
+      });
+    } else {
+      toast({
+        duration: 1000,
+        variant: "destructive",
+        title: "Login",
+        description: message,
+      });
+    }
+  }
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { succeed, message } = await handleLogin(values);
-    toast({
-      duration: 1000,
-      variant: succeed ? "default" : "destructive",
-      title: "Login",
-      description: message,
-    });
+    handleLoginResponse(succeed, message);
   }
   return (
     <Form {...form}>
