@@ -48,13 +48,13 @@ export default function FieldsFormComponents({
           name={formField.name}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="lg:text-black md:text-black text-white">
+              <FormLabel className="flex gap-4 lg:items-center md:items-center lg:text-black md:text-black text-white">
                 {formField.label}
+                <FormMessage className="text-xs font-bold lg:opacity-55 md:lg:opacity-55" />
               </FormLabel>
               <FormControl>
                 <Input placeholder={formField.placeholder} {...field} />
               </FormControl>
-              <FormMessage className="lg:text-sm md:text-sm text-xs" />
             </FormItem>
           )}
         />

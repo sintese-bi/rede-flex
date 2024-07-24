@@ -1,10 +1,11 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { LockIcon } from "lucide-react";
+import { MailIcon } from "lucide-react";
 import Image from "next/image";
-import { handlePasswordRecovery } from "./analytics/actions";
+import { handleSendEmail } from "./analytics/actions";
 import { toast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -19,28 +20,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 const formSchema = z.object({
-  use_password: z
+  use_email: z
     .string()
+    .email({ message: "Por favor, insira um email válido" })
     .min(4, {
-      message: "Sua senha precisa ter pelo menos 4 caracteres.",
+      message: "Seu email precisa ter pelo menos 12 caracteres.",
     })
-    .max(20, {
-      message: "Sua senha precisa ter no máximo 10 caracteres.",
+    .max(30, {
+      message: "Seu email precisa ter no máximo 30 caracteres.",
     }),
 });
-export default function PasswordRecovery({
-  searchParams,
-}: {
-  searchParams: { use_token: string; use_email: string };
-}) {
-  const router = useRouter();
+export default function SendRecoveryEmail() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      use_password: "",
+      use_email: "",
     },
   });
-  function handlePasswordRecoveryResponse(succeed: boolean, message: string) {
+  function handleSendEmailResponse(succeed: boolean, message: string) {
     if (succeed) {
       toast({
         duration: 1000,
@@ -48,7 +45,6 @@ export default function PasswordRecovery({
         title: "Recuperação de senha",
         description: message,
       });
-      router.push("/login");
     } else {
       toast({
         duration: 1000,
@@ -59,14 +55,8 @@ export default function PasswordRecovery({
     }
   }
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const use_password = values["use_password"]!;
-    const { use_email, use_token } = searchParams;
-    const { succeed, message } = await handlePasswordRecovery({
-      use_email,
-      use_token,
-      use_password,
-    });
-    handlePasswordRecoveryResponse(succeed, message);
+    const { succeed, message } = await handleSendEmail(values);
+    handleSendEmailResponse(succeed, message);
   }
   return (
     <div className="flex flex-col gap-6 justify-center items-center w-full h-screen">
@@ -87,22 +77,22 @@ export default function PasswordRecovery({
         >
           <div>
             <p className="text-xs font-bold opacity-30">
-              Por favor, digite sua nova senha no campo abaixo, você pode mudar
-              sua senha sempre que desejar.
+              Por favor, digite um email que tenha acesso, para receber o link
+              de recuperação de senha.
             </p>
           </div>
           <Separator />
           <FormField
             control={form.control}
-            name={"use_password"}
+            name={"use_email"}
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-center gap-2 lg:text-black md:text-black text-white">
-                  <LockIcon />
-                  Nova senha
+                  <MailIcon />
+                  Email
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} type="password" />
+                  <Input {...field} type="email" />
                 </FormControl>
                 <FormMessage className="lg:text-sm md:text-sm text-xs" />
               </FormItem>
