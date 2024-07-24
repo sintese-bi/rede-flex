@@ -17,7 +17,7 @@ export default function OptionsFormComponents() {
       </div>
       <Link
         className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline"
-        href={"/password_recovery"}
+        href={"/send_recovery_email"}
       >
         Esqueceu a senha?
       </Link>

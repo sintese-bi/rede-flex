@@ -44,6 +44,7 @@ export default function FormComponents() {
         title: "Login",
         description: message,
       });
+      router.push("/dashboard");
     } else {
       toast({
         duration: 1000,
