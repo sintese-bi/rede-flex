@@ -1,4 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 export default function OptionsFormComponents() {
   return (
     <div className="flex justify-between w-full">
@@ -14,9 +15,12 @@ export default function OptionsFormComponents() {
           Lembrar de mim
         </label>
       </div>
-      <p className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline">
+      <Link
+        className="lg:text-sm md:text-sm text-xs font-medium lg:text-slate-500 md:text-slate-500 text-slate-200 underline"
+        href={"/password_recovery"}
+      >
         Esqueceu a senha?
-      </p>
+      </Link>
     </div>
   );
 }
