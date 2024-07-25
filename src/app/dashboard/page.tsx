@@ -15,6 +15,7 @@ import Region from "./analytics/components/charts/region";
 export default async function Dashboard() {
   const charts = await handleDashboardCharts();
   const gallonageTable = await handleGallonageTable();
+  const test = "Felipe";
   return (
     <div className="flex flex-col gap-12 h-full w-full">
       <div className="flex w-full flex-col gap-12">
