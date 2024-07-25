@@ -7,6 +7,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: npm run dev
+    env_file: .env.local
+    command: npm start
+
