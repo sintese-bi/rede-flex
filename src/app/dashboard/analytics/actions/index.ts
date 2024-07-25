@@ -1,41 +1,57 @@
 "use server";
+import { mongodb_client } from "@/database/connection";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { ChartsInterfaces } from "../interfaces/charts";
+import { ObjectId } from "mongodb";
+import { microServiceRequestConfig } from "@/utils";
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/dashboard/big_numbers`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
     {
-      method: "GET",
-      cache: "force-cache",
-      next: {
-        tags: ["dashboard_big_numbers_data"],
-      },
+      headers: microServiceRequestConfig(),
+      cache: "no-store",
     }
   );
-  if (!response.ok) {
-    const errorResponse = await response.json();
-    const errorMessage = errorResponse.message || "Error";
-    throw new Error(`${response.status}: ${errorMessage}`);
-  }
-  return response.json();
+  const {
+    data,
+  }: {
+    data: {
+      label: string;
+      value: number;
+      secondary_label: string;
+      secondary_value: number;
+    }[];
+  } = await response.json();
+  const formmatedNumbers = data.map((big_number) => {
+    return {
+      ...big_number,
+      value: new Intl.NumberFormat("de-DE").format(big_number["value"]),
+      secondary_value: new Intl.NumberFormat("de-DE").format(
+        big_number["secondary_value"]
+      ),
+    };
+  });
+  return formmatedNumbers;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
+  const redeflex = mongodb_client.db("redeflex");
+  const collection = redeflex.collection("dashboard");
+  const { charts }: { charts: ChartsInterfaces[] } = (await collection.findOne({
+    _id: new ObjectId("668953f2e6120c73f62c0a9c"),
+  })) as any;
+  return charts;
+}
+
+export async function handleGallonageTable() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/dashboard/charts`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/dataframe-gallonage`,
     {
-      method: "GET",
-      cache: "force-cache",
-      next: {
-        tags: ["dashboard_charts"],
-      },
+      headers: microServiceRequestConfig(),
+      cache: "no-store",
     }
   );
-  if (!response.ok) {
-    const errorResponse = await response.json();
-    const errorMessage = errorResponse.message || "Error";
-    throw new Error(`${response.status}: ${errorMessage}`);
-  }
-  return response.json();
+  const { data } = await response.json();
+  return data;
 }

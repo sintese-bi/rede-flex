@@ -7,9 +7,12 @@ import ProfitDayChartsComponents from "./analytics/components/charts/profit_day"
 import { DataInterfaces } from "./analytics/interfaces/data";
 import HigherProfitCompany from "./analytics/components/higher_profit_company";
 async function getData() {
-  const response = await fetch("http://159.65.42.225:3051/v1/databaseall", {
-    cache: "no-cache",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/databaseall`,
+    {
+      cache: "no-cache",
+    }
+  );
   if (!response.ok)
     throw new Error("Failed to fetch databaseall route response");
   return response.json();

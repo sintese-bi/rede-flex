@@ -7,10 +7,14 @@ import MapLoading from "./analytics/components/loading/map";
 import BigNumbersLoading from "./analytics/components/loading/bignumbers";
 import DashboardBigNumbers from "./analytics/components/big_numbers";
 import Daily from "./analytics/components/charts/daily";
-import { handleDashboardCharts } from "./analytics/actions";
+import {
+  handleDashboardCharts,
+  handleGallonageTable,
+} from "./analytics/actions";
 import Region from "./analytics/components/charts/region";
 export default async function Dashboard() {
   const charts = await handleDashboardCharts();
+  const gallonageTable = await handleGallonageTable();
   return (
     <div className="flex flex-col gap-12 h-full w-full">
       <div className="flex w-full flex-col gap-12">
@@ -32,37 +36,15 @@ export default async function Dashboard() {
         </div>
       </div>
       <Separator />
-      <div className="pb-6">
+      <div className="flex flex-col gap-12 pb-6">
         <Suspense fallback={<TableLoading />}>
           <DashboardTable
             title="Acompanhamento galonagem"
             description="Listagem contendo as principais informações de cada posto!"
-            columns={[
-              "ID",
-              "Data",
-              "Dia",
-              "Faturamento",
-              "Faturamento médio ",
-              "Qtd abastecimento",
-              "Venda galonagem ",
-              "Venda produtos ",
-              "Venda calibragem ",
-              "Venda ducha ",
-              "gasolina podium",
-            ]}
-            data={Array(10).fill([
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-              "_",
-            ])}
+            columns={Object.keys(gallonageTable[0])}
+            data={gallonageTable.map((tableItem: any) =>
+              Object.values(tableItem)
+            )}
           />
         </Suspense>
         <Suspense fallback={<TableLoading />}>

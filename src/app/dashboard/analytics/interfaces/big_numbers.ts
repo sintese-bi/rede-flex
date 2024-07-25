@@ -1,6 +1,6 @@
 export interface BigNumbersInterfaces {
   label: string;
-  value: number;
+  value: string;
   secondary_label: string;
-  secondary_value: number;
+  secondary_value: string;
 }

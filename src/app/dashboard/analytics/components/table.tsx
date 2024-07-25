@@ -19,16 +19,12 @@ interface TableInterface {
   columns: Array<string>;
   data: Array<any>;
 }
-function sleep(ms: any) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 export default async function DashboardTable({
   title,
   description,
   columns,
   data,
 }: TableInterface) {
-  await sleep(2000);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
