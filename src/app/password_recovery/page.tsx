@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { LockIcon } from "lucide-react";
 import Image from "next/image";
-import { handlePasswordRecovery } from "./analytics/actions";
 import { toast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -18,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { handlePasswordRecovery } from "./analytics/actions";
 const formSchema = z.object({
   use_password: z
     .string()

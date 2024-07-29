@@ -1,4 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
 export default async function TableLoading() {
-  return <Skeleton className="w-full h-[20px] h-12 my-4 rounded-full" />;
+  return (
+    <div className="flex justify-center flex-col space-y-3 w-full h-96">
+      <Skeleton className="h-[72px] w-full rounded-xl" />
+      <Skeleton className="h-[72px] w-full rounded-xl" />
+    </div>
+  );
 }

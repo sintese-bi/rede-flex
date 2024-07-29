@@ -1,10 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
 import "chart.js/auto";
-import { Suspense, useEffect, useReducer, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { delay } from "../utils/component_delay";
 import ChartLoading from "../loading/chart";
-import { ChartsInterfaces } from "../../interfaces/charts";
 import {
   Select,
   SelectContent,
@@ -16,15 +15,6 @@ import { Separator } from "@/components/ui/separator";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
-function reducer(
-  state: Array<any>,
-  action: { type: "string"; payload?: any }
-): Array<any> {
-  switch (action) {
-    default:
-      return state;
-  }
-}
 export default function Daily({ data }: { data: any }) {
   const { title, labels, datasets } = data;
   const filterOptions: any = Object.keys(datasets);
