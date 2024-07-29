@@ -32,22 +32,6 @@ export default async function DashboardBigNumbers() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <Select>
-          <SelectTrigger className="text-xs w-[200px] h-8">
-            <SelectValue placeholder="Tipo de filtro" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="general" className="text-xs">
-              Geral
-            </SelectItem>
-            <SelectItem value="regional" className="text-xs">
-              regional
-            </SelectItem>
-            <SelectItem value="rank" className="text-xs">
-              posto
-            </SelectItem>
-          </SelectContent>
-        </Select>
       </div>
       <Separator />
       <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">

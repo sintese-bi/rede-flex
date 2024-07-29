@@ -17,7 +17,7 @@ export default async function BigNumberComponentsDashboard({
             className="lg:flex md:flex hidden text-slate-400"
             size={18}
           />
-          <p className="text-md lg:text-md md:text-md text-xs font-bold text-slate-200">
+          <p className="lg:text-lg md:text-md sm:text-sm font-bold text-slate-200">
             {value}
           </p>
         </div>
