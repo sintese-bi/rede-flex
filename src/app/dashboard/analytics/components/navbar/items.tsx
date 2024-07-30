@@ -39,10 +39,13 @@ export default function NavbarItems() {
           <p className="hidden group-hover:block text-xs">Alertas</p>
         </Link>
       </div>
-      <Button className="w-full flex gap-2">
+      <Link
+        className="flex items-center gap-2 rounded-md bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-10 px-4 py-2 text-md"
+        href={"/"}
+      >
         <LogOutIcon size={22} />
         <p className="hidden group-hover:block text-xs">Sair</p>
-      </Button>
+      </Link>
     </div>
   );
 }
