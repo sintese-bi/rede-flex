@@ -12,35 +12,6 @@ export default async function Tables() {
         columns={Object.keys(gallonageTable[0])}
         data={gallonageTable.map((tableItem: any) => Object.values(tableItem))}
       />
-
-      <DashboardTable
-        title="Venda da galonagem por combustível"
-        description="Listagem contendo as principais informações de cada posto!"
-        columns={[
-          "ID",
-          "Data",
-          "Dia",
-          "Combustíveis",
-          "Faturamento",
-          "Faturamento médio",
-          "Volume",
-          "Custo",
-          "Venda",
-          "Lucro ",
-        ]}
-        data={Array(10).fill([
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-          "_",
-        ])}
-      />
     </div>
   );
 }
