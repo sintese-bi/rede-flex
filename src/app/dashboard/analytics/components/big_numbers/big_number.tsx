@@ -1,6 +1,6 @@
-import { DollarSignIcon } from "lucide-react";
+import { DollarSignIcon, FuelIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
-export default async function BigNumberComponentsDashboard({
+export default async function DashboardComponentsBigNumber({
   label,
   value,
   secondary_label,
@@ -13,10 +13,18 @@ export default async function BigNumberComponentsDashboard({
           {label}
         </p>
         <div className="flex items-center gap-1">
-          <DollarSignIcon
-            className="lg:flex md:flex hidden text-slate-400"
-            size={18}
-          />
+          {label.includes("Venda") ? (
+            <DollarSignIcon
+              className="lg:flex md:flex hidden text-slate-400"
+              size={18}
+            />
+          ) : (
+            <FuelIcon
+              className="lg:flex md:flex hidden text-slate-400"
+              size={18}
+            />
+          )}
+
           <p className="lg:text-lg md:text-md sm:text-sm font-bold text-slate-200">
             {value}
           </p>

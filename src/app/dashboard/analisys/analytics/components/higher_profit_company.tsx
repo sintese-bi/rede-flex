@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { DataInterfaces } from "../interfaces/data";
 import getItemWithHigherProfitUtils from "../utils/get_item_with_higher_profit";
 import HigherProfitCompanyLoading from "../loading/higher_profit_company";
-export default async function HigherProfitCompany({
+export default async function AnalisysComponentsHigherProfitCompany({
   data,
 }: {
   data: DataInterfaces[];

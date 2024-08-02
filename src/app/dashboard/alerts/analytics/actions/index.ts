@@ -75,6 +75,31 @@ export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
   })) as any;
   return alerts;
 }
+export async function handleAlertsTable(): Promise<any> {
+  const table = [
+    {
+      Posto: "POSTO001",
+      "Configurar alerta": "margin_min_value",
+    },
+    {
+      Posto: "POSTO002",
+      "Configurar alerta": "margin_min_value",
+    },
+    {
+      Posto: "POSTO003",
+      "Configurar alerta": "margin_min_value",
+    },
+    {
+      Posto: "POSTO004",
+      "Configurar alerta": "margin_min_value",
+    },
+    {
+      Posto: "POSTO005",
+      "Configurar alerta": "margin_min_value",
+    },
+  ];
+  return table;
+}
 
 // function to return the variables and alerts values
 function gettingVariablesAndAlerts(existentContent: any): {

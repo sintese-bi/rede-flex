@@ -2,7 +2,8 @@
 import { mongodb_client } from "@/database/connection";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { ObjectId } from "mongodb";
-export async function handleanalisysBigNumbers(): Promise<
+import { DataInterfaces } from "../interfaces/data";
+export async function handleAnalisysBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
   const redeflex = mongodb_client.db("redeflex");
@@ -21,4 +22,16 @@ export async function handleanalisysBigNumbers(): Promise<
     };
   });
   return formmatedNumbers;
+}
+export async function handleAnalisysChartsData(): Promise<DataInterfaces[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/databaseall`,
+    {
+      cache: "no-cache",
+    }
+  );
+  if (!response.ok)
+    throw new Error("Failed to fetch databaseall route response");
+  const { data } = await response.json();
+  return data;
 }

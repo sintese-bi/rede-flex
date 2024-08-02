@@ -55,7 +55,8 @@ export default function FormComponents() {
     }
   }
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { succeed, message } = await handleLogin(values);
+    const { access_token, succeed, message } = await handleLogin(values);
+    localStorage.setItem("acess_token", access_token);
     handleLoginResponse(succeed, message);
   }
   return (

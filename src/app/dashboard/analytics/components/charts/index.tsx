@@ -1,7 +1,7 @@
 import { handleDashboardCharts } from "../../actions";
 import Daily from "./daily";
 import Region from "./region";
-export default async function Charts() {
+export default async function DashboardComponentsCharts() {
   const charts = await handleDashboardCharts();
   return (
     <div className="flex lg:flex-row flex-col items-center gap-12 w-full h-full">

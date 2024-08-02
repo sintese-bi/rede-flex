@@ -19,7 +19,7 @@ function reducer(
       return state;
   }
 }
-export default function ProfitDateChartsComponents({
+export default function AnalisysComponentsChartsProfitDate({
   data,
 }: {
   data: DataInterfaces[];

@@ -3,7 +3,7 @@ import { mongodb_client } from "@/database/connection";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { ChartsInterfaces } from "../interfaces/charts";
 import { ObjectId } from "mongodb";
-import { microServiceRequestConfig } from "@/utils";
+import { apiRequestConfig, microServiceRequestConfig } from "@/utils";
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
@@ -49,6 +49,18 @@ export async function handleGallonageTable() {
     `${process.env.NEXT_MICROSERVICE_MONGODB}/dataframe-gallonage`,
     {
       headers: microServiceRequestConfig(),
+      cache: "no-store",
+    }
+  );
+  const { data } = await response.json();
+  return data;
+}
+
+export async function handleGeolocations() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/map-position`,
+    {
+      headers: apiRequestConfig(),
       cache: "no-store",
     }
   );

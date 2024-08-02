@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-export default function NavbarMenuDropDown() {
+export default function DashboardComponentsNavbarMenuDropDown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="px-1 py-1 bg-main-color text-white text-sm rounded-md font-medium ">
