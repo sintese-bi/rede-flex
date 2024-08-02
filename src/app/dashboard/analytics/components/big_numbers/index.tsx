@@ -1,10 +1,3 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -15,8 +8,8 @@ import {
 import { AlertCircleIcon } from "lucide-react";
 import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
-import BigNumberComponentsDashboard from "./big_number";
-export default async function DashboardBigNumbers() {
+import DashboardComponentsBigNumber from "./big_number";
+export default async function DashboardComponentsBigNumbers() {
   const big_numbers: BigNumbersInterfaces[] = await handleDashboardBigNumbers();
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full h-full lg:h-96">
@@ -37,7 +30,7 @@ export default async function DashboardBigNumbers() {
       <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">
         {big_numbers.map(
           ({ label, value, secondary_label, secondary_value }, index) => (
-            <BigNumberComponentsDashboard
+            <DashboardComponentsBigNumber
               key={index}
               label={label}
               value={value}

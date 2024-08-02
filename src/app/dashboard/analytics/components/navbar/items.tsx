@@ -7,7 +7,7 @@ import {
   BarChartHorizontalIcon,
 } from "lucide-react";
 import Link from "next/link";
-export default function NavbarItems() {
+export default function DashboardComponentsNavbarItems() {
   return (
     <div className="flex flex-col justify-between top-16 left-2 bg-main-color h-full rounded-xl px-4 py-4 group">
       <div className="flex flex-col text-white font-medium w-full gap-6">

@@ -22,12 +22,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { AlertCircleIcon, BoltIcon } from "lucide-react";
+import { AlertCircleIcon, BoltIcon, FuelIcon } from "lucide-react";
 import FormComponentsAlerts from "../form";
 import {
   handleAlertsVariables,
   handleAlertsVariablesSelect,
 } from "../../actions";
+import FormComponentsAlertsTable from "./form";
 interface TableInterface {
   title: string;
   description: string;
@@ -102,9 +103,15 @@ export default async function AlertsTable({
           {data.map((dataItem: any, index: number) => {
             return (
               <TableRow key={index}>
-                {dataItem.map((dataItemContent: any, index: number) => {
-                  return <TableCell key={index}>{dataItemContent}</TableCell>;
-                })}
+                <TableCell>
+                  <div className="flex w-3/5 items-center gap-2">
+                    <FuelIcon size={18} />
+                    <p>{dataItem[0]}</p>
+                  </div>
+                </TableCell>
+                <TableCell className="w-2/5">
+                  <FormComponentsAlertsTable />
+                </TableCell>
               </TableRow>
             );
           })}

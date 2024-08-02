@@ -1,21 +1,15 @@
-import Tables from "./analytics/components/tables";
 import TableLoading from "../analytics/components/loading/table";
 import { Suspense } from "react";
+import LogsComponents from "./analytics/components/logs";
+import AlertsTables from "./analytics/components/tables";
 export default async function Alerts() {
   return (
     <div className="flex flex-col w-full h-full justify-start items-start">
-      <div className="flex lg:flex-row flex-col w-full lg:gap-4 gap-12">
+      <div className="flex flex-col w-full lg:gap-4 gap-12">
         <Suspense fallback={<TableLoading />}>
-          <Tables />
+          <AlertsTables />
         </Suspense>
-
-        {/**
-         * <FormComponents
-          handleAlertsVariables={handleAlertsVariables}
-          handleAlertsVariablesSelect={handleAlertsVariablesSelect}
-        />
-         * <LogsComponents />
-         */}
+        <LogsComponents />
       </div>
     </div>
   );

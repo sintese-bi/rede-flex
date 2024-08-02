@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 export default async function LogsComponents() {
   const logs = await handleAlertsLogs();
   return (
-    <div className="flex flex-col lg:w-3/4 w-full gap-8">
+    <div className="flex flex-col w-full gap-8">
       <div className="flex flex-col w-full gap-2">
         <p className="text-xs font-bold uppercase">Log de alertas</p>
         <Separator />

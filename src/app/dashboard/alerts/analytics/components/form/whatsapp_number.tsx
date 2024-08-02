@@ -8,7 +8,7 @@ export default async function WhatsAppNumberComponentsAlerts() {
         <Input
           type="tel"
           className="w-full"
-          placeholder="(88) 9 9999-9999"
+          placeholder="(88) 99999-9999"
           name="whatsapp_contact"
         />
       </div>

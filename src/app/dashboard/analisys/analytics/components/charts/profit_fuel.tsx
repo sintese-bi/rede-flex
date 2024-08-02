@@ -19,7 +19,7 @@ function reducer(
       return state;
   }
 }
-export default function ProfitFuelChartsComponents({
+export default function AnalisysComponentsChartsProfitFuel({
   data,
 }: {
   data: DataInterfaces[];

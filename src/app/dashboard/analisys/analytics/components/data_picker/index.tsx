@@ -8,8 +8,8 @@ import { Suspense, useState } from "react";
 import { addDays, format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { DateRange } from "react-day-picker";
-import DataPickerLoading from "../loading/data_picker";
-export default function DataPickerComponents() {
+import DataPickerLoading from "../../loading/data_picker";
+export default function AnalisysComponentsDataPicker() {
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 30),
