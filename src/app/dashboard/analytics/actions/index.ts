@@ -46,14 +46,14 @@ export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
 
 export async function handleGallonageTable() {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/dataframe-gallonage`,
+    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
     {
       headers: microServiceRequestConfig(),
       cache: "no-store",
     }
   );
-  const { data } = await response.json();
-  return data;
+  const dataframes = await response.json();
+  return dataframes;
 }
 
 export async function handleGeolocations() {

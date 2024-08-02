@@ -63,7 +63,7 @@ export default function FormComponents() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-5/6 space-y-4">
         <FieldsFormComponents form={form} />
-        <SubmitButtonFormComponents />
+        <SubmitButtonFormComponents form={form} />
         <OptionsFormComponents />
       </form>
     </Form>
