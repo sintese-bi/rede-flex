@@ -7,7 +7,7 @@ export default async function DashboardComponentsBigNumber({
   secondary_value,
 }: BigNumbersInterfaces) {
   return (
-    <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center">
+    <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center shadow-md">
       <div className="flex flex-col gap-1">
         <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
           {label}

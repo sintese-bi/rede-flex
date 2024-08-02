@@ -28,44 +28,50 @@ export default function Leaflet({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {data.map((item: { lat: number; long: number; nomefantasia: string }) => (
-        <Marker position={[item["lat"], item["long"]]} icon={greenIcon}>
-          <Popup>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Rank: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Postos: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Abastecimento: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>TMP: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Meta: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Desempenho: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Enviar relatório: </strong>
-              <p>_</p>
-            </div>
-            <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-              <strong>Postos em alerta: </strong>
-              <p>_</p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
+      {data.map(
+        (item: { lat: number; long: number; nomefantasia: string }, index) => (
+          <Marker
+            position={[item["lat"], item["long"]]}
+            icon={greenIcon}
+            key={index}
+          >
+            <Popup>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Rank: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Postos: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Abastecimento: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>TMP: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Meta: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Desempenho: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Enviar relatório: </strong>
+                <p>_</p>
+              </div>
+              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
+                <strong>Postos em alerta: </strong>
+                <p>_</p>
+              </div>
+            </Popup>
+          </Marker>
+        )
+      )}
     </MapContainer>
   );
 }
