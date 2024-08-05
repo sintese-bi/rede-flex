@@ -43,7 +43,22 @@ export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
   })) as any;
   return charts;
 }
-
+export async function handleDashboardDailyChart(params: {
+  week_day: string;
+  variable_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const { data } = await response.json();
+  return data;
+}
 export async function handleGallonageTable() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
@@ -53,7 +68,25 @@ export async function handleGallonageTable() {
     }
   );
   const dataframes = await response.json();
-  return dataframes;
+  const galonagem = dataframes["galonagem"].map((item: any) => {
+    return {
+      Posto: item["Posto"],
+      Abastecimentos: item["Abastecimentos"],
+      "Galonagem(Litro)": item["Galonagem(Litro)"],
+      Faturamento: item["Faturamento"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+    };
+  });
+  const produto = dataframes["produto"].map((item: any) => {
+    return {
+      Posto: item["Posto"],
+      "Abastecimentos(Produto)": item["Abastecimentos(Produto)"],
+      QtdProdutosVendidos: item["QtdProdutosVendidos"],
+      "Valor Vendido": item["Valor Vendido"],
+    };
+  });
+  return { galonagem, produto };
 }
 
 export async function handleGeolocations() {
