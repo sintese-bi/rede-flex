@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { VariablesInterfaces } from "../../interfaces/variables";
 import SelectedVariablesAlerts from "./selected_variables";
 import SubmitButtonAlerts from "./submit_button";

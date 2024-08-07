@@ -11,7 +11,6 @@ import DashboardComponentsFilter from "./analytics/components/filter";
 export default async function Dashboard() {
   return (
     <div className="flex flex-col gap-6 h-full w-full">
-      <DashboardComponentsFilter />
       <div className="flex flex-col gap-12 h-full w-full">
         <div className="flex w-full flex-col gap-12">
           <div className="flex lg:flex-row flex-col items-center gap-2  w-full">

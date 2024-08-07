@@ -59,6 +59,21 @@ export async function handleDashboardDailyChart(params: {
   const { data } = await response.json();
   return data;
 }
+export async function handleDashboardRegionalChart(params: {
+  variable_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
 export async function handleGallonageTable() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
@@ -86,7 +101,16 @@ export async function handleGallonageTable() {
       "Valor Vendido": item["Valor Vendido"],
     };
   });
-  return { galonagem, produto };
+  const regional = dataframes["regional"].map((item: any) => {
+    return {
+      Regional: item["Regional"],
+      Abastecimentos: item["Abastecimentos"],
+      Faturamento: item["Faturamento"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+    };
+  });
+  return { galonagem, produto, regional };
 }
 
 export async function handleGeolocations() {

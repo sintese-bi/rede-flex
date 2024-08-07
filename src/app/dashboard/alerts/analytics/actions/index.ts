@@ -4,6 +4,7 @@ import { VariablesInterfaces } from "../interfaces/variables";
 import { AlertsInterfaces } from "../interfaces/alerts";
 import { ObjectId } from "mongodb";
 import { mongodb_client } from "@/database/connection";
+import { apiRequestConfig } from "@/utils";
 export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
   const redeflex = mongodb_client.db("redeflex");
   const collection = redeflex.collection("alerts");
@@ -68,37 +69,37 @@ export async function handleAlertsVariablesUnselect(variable: string) {
   revalidateTag("alerts_variables");
 }
 export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
-  const redeflex = mongodb_client.db("redeflex");
-  const collection = redeflex.collection("alerts");
-  const { alerts }: { alerts: AlertsInterfaces[] } = (await collection.findOne({
-    _id: new ObjectId("66872ee8a47db2d310066cfb"),
-  })) as any;
-  return alerts;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/mock-alerts`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const { data } = await response.json();
+  return (
+    data || [
+      { date: "07-08-2024", variable_name: "marginGC", condition: "sanado" },
+    ]
+  );
 }
 export async function handleAlertsTable(): Promise<any> {
-  const table = [
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/mock-name-station`,
     {
-      Posto: "POSTO001",
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const { data } = await response.json();
+  const formmated_data = data.map((data_item: any) => {
+    const formmated_item = {
+      name: data_item.name,
       "Configurar alerta": "margin_min_value",
-    },
-    {
-      Posto: "POSTO002",
-      "Configurar alerta": "margin_min_value",
-    },
-    {
-      Posto: "POSTO003",
-      "Configurar alerta": "margin_min_value",
-    },
-    {
-      Posto: "POSTO004",
-      "Configurar alerta": "margin_min_value",
-    },
-    {
-      Posto: "POSTO005",
-      "Configurar alerta": "margin_min_value",
-    },
-  ];
-  return table;
+    };
+    return formmated_item;
+  });
+  return formmated_data;
 }
 
 // function to return the variables and alerts values
