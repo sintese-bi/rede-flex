@@ -41,7 +41,7 @@ export default function Leaflet({
                 <p>_</p>
               </div>
               <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Postos: </strong>
+                <strong className="text-xs">{item["nomefantasia"]}</strong>
                 <p>_</p>
               </div>
               <div className="flex flex-row w-[200px] h-8 items-center gap-4">

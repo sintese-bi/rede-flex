@@ -57,7 +57,7 @@ export default function Daily() {
     { variable: "Wednesday", label: "Quarta" },
     { variable: "Thursday", label: "Quinta" },
     { variable: "Friday", label: "Sexta" },
-    { variable: "Saturday ", label: "Sábado" },
+    { variable: "Saturday", label: "Sábado" },
   ];
   useEffect(() => {
     delay(2200).then(() => {
@@ -150,7 +150,7 @@ export default function Daily() {
             <Separator />
             <div className="flex flex-col justify-center items-start h-full">
               <p className="text-xs font-bold text-slate-800 uppercase">
-                {"Gráfico diário"}
+                Gráfico diário
               </p>
               <Bar
                 data={chartData}

@@ -110,7 +110,9 @@ export default async function AlertsTable({
                   </div>
                 </TableCell>
                 <TableCell className="w-2/5">
-                  <FormComponentsAlertsTable />
+                  <FormComponentsAlertsTable
+                    handleAlertsVariables={handleAlertsVariables}
+                  />
                 </TableCell>
               </TableRow>
             );

@@ -8,9 +8,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BoltIcon, PhoneIcon } from "lucide-react";
-export default async function FormComponentsAlertsTable() {
+import { VariablesInterfaces } from "../../../interfaces/variables";
+export default async function FormComponentsAlertsTable({
+  handleAlertsVariables,
+}: {
+  handleAlertsVariables: () => Promise<VariablesInterfaces[]>;
+}) {
+  const alertsVariables = await handleAlertsVariables();
   return (
     <form className="flex flex-row w-full items-center gap-4">
+      <Select name="variable">
+        <SelectTrigger className="w-32">
+          <SelectValue placeholder="Variáveis" />
+        </SelectTrigger>
+        <SelectContent>
+          {alertsVariables.map(({ label }, index) => (
+            <SelectItem key={index} value={label}>
+              {label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
       <Input
         type="number"
         name="margin_min_value"
@@ -18,7 +36,7 @@ export default async function FormComponentsAlertsTable() {
         className="w-24"
       />
       <Select name="margin_min_value_type">
-        <SelectTrigger className="w-52">
+        <SelectTrigger className="w-32">
           <SelectValue placeholder="Tipo do valor" />
         </SelectTrigger>
         <SelectContent>
@@ -31,7 +49,7 @@ export default async function FormComponentsAlertsTable() {
         <Input
           type="tel"
           placeholder="(88) 99999-9999"
-          className="w-52"
+          className="w-32"
           name="whatsapp_contact"
         />
       </div>

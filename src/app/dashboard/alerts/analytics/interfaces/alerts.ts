@@ -1,5 +1,5 @@
 export interface AlertsInterfaces {
   date: string;
-  name: string;
-  situation: string;
+  variable_name: string;
+  condition: string;
 }
