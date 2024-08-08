@@ -103,13 +103,13 @@ export default async function AlertsTable({
           {data.map((dataItem: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell>
-                  <div className="flex w-3/5 items-center gap-2">
+                <TableCell className="w-2/5">
+                  <div className="flex items-center gap-2">
                     <FuelIcon size={18} />
                     <p>{dataItem[0]}</p>
                   </div>
                 </TableCell>
-                <TableCell className="w-2/5">
+                <TableCell className="w-3/5">
                   <FormComponentsAlertsTable
                     handleAlertsVariables={handleAlertsVariables}
                   />

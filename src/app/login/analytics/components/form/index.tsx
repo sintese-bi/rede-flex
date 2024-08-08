@@ -26,6 +26,7 @@ const formSchema = z.object({
     .max(20, {
       message: "Sua senha precisa ter no máximo 10 caracteres.",
     }),
+  remember_me: z.boolean(),
 });
 export default function FormComponents() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function FormComponents() {
     defaultValues: {
       use_email: "",
       use_password: "",
+      remember_me: false,
     },
   });
   function handleLoginResponse(succeed: boolean, message: string) {
@@ -64,7 +66,7 @@ export default function FormComponents() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-5/6 space-y-4">
         <FieldsFormComponents form={form} />
         <SubmitButtonFormComponents form={form} />
-        <OptionsFormComponents />
+        <OptionsFormComponents form={form} />
       </form>
     </Form>
   );
