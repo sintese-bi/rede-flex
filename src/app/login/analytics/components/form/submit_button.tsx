@@ -7,6 +7,7 @@ export default function SubmitButtonFormComponents({
     {
       use_email: string;
       use_password: string;
+      remember_me: boolean;
     },
     any,
     undefined
