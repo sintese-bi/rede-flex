@@ -4,6 +4,12 @@ import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { ChartsInterfaces } from "../interfaces/charts";
 import { ObjectId } from "mongodb";
 import { apiRequestConfig, microServiceRequestConfig } from "@/utils";
+interface Data {
+  label: string;
+  value: number;
+  secondary_label: string;
+  secondary_value: number;
+}
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
@@ -14,23 +20,14 @@ export async function handleDashboardBigNumbers(): Promise<
       cache: "no-store",
     }
   );
-  const {
-    data,
-  }: {
-    data: {
-      label: string;
-      value: number;
-      secondary_label: string;
-      secondary_value: number;
-    }[];
-  } = await response.json();
+  const { data }: { data: Data[] } = await response.json();
   const formmatedNumbers = data.map((big_number) => {
     return {
       ...big_number,
       value: new Intl.NumberFormat("de-DE").format(big_number["value"]),
-      secondary_value: new Intl.NumberFormat("de-DE").format(
-        big_number["secondary_value"]
-      ),
+      secondary_value: big_number["secondary_value"]
+        ? new Intl.NumberFormat("de-DE").format(big_number["secondary_value"])
+        : "",
     };
   });
   return formmatedNumbers;
