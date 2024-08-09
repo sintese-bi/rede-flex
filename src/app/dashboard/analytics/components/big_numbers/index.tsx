@@ -27,7 +27,7 @@ export default async function DashboardComponentsBigNumbers() {
         </TooltipProvider>
       </div>
       <Separator />
-      <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 grid-rows-2 h-full justify-center items-center">
+      <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 lg:grid-rows-2 md::grid-rows-2 grid-rows-3 h-full justify-center items-center">
         {big_numbers.map(
           ({ label, value, secondary_label, secondary_value }, index) => (
             <DashboardComponentsBigNumber
