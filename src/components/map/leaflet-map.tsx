@@ -9,6 +9,7 @@ export default function Leaflet({
 }: {
   data: { lat: number; long: number; nomefantasia: string }[];
 }) {
+  console.log(data);
   var greenIcon = L.icon({
     iconUrl: "/icons/fuel.png",
     iconSize: [38, 35], // size of the icon
@@ -36,37 +37,21 @@ export default function Leaflet({
             key={index}
           >
             <Popup>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Rank: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong className="text-xs">{item["nomefantasia"]}</strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Abastecimento: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>TMP: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Meta: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Desempenho: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Enviar relatório: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Postos em alerta: </strong>
-                <p>_</p>
+              <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center shadow-md">
+                <div className="flex flex-col gap-1">
+                  <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
+                    {""}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <p className="lg:text-lg md:text-md sm:text-sm font-bold text-slate-200">
+                      {""}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  <p className="text-xs font-bold text-slate-400">{""}</p>
+                  <p className="text-xs font-bold text-slate-200">{""}</p>
+                </div>
               </div>
             </Popup>
           </Marker>
