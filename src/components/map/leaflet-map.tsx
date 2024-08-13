@@ -1,15 +1,21 @@
 "use client";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
-export default function Leaflet({
-  data,
-}: {
-  data: { lat: number; long: number; nomefantasia: string }[];
-}) {
-  console.log(data);
+import MapPopup from "./popup";
+type MyObject = {
+  lat: number;
+  long: number;
+  nomefantasia: string;
+  ibm: string;
+  endereco: string;
+  "Venda de Combustível": number;
+  "Produtos vendidos": number;
+  Galonagem: number;
+};
+export default function Leaflet({ data }: { data: MyObject[] }) {
   var greenIcon = L.icon({
     iconUrl: "/icons/fuel.png",
     iconSize: [38, 35], // size of the icon
@@ -29,34 +35,17 @@ export default function Leaflet({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {data.map(
-        (item: { lat: number; long: number; nomefantasia: string }, index) => (
+      {data.map((item, index) => {
+        return (
           <Marker
             position={[item["lat"], item["long"]]}
             icon={greenIcon}
             key={index}
           >
-            <Popup>
-              <div className="flex flex-col gap-4 h-full lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color justify-center shadow-md">
-                <div className="flex flex-col gap-1">
-                  <p className="lg:text-lg md:text-lg text-sm font-extrabold text-slate-400">
-                    {""}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <p className="lg:text-lg md:text-md sm:text-sm font-bold text-slate-200">
-                      {""}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-1">
-                  <p className="text-xs font-bold text-slate-400">{""}</p>
-                  <p className="text-xs font-bold text-slate-200">{""}</p>
-                </div>
-              </div>
-            </Popup>
+            <MapPopup item={item} />
           </Marker>
-        )
-      )}
+        );
+      })}
     </MapContainer>
   );
 }
