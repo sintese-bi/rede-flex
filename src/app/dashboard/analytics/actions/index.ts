@@ -17,7 +17,6 @@ export async function handleDashboardBigNumbers(): Promise<
     `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
     {
       headers: microServiceRequestConfig(),
-      cache: "no-store",
     }
   );
   const { data }: { data: Data[] } = await response.json();
