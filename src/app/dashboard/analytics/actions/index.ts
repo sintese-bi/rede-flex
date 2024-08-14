@@ -118,5 +118,17 @@ export async function handleGeolocations() {
     }
   );
   const { data } = await response.json();
-  return data;
+  const formmatedNumbers = data.map((data_item: any) => {
+    return {
+      ...data_item,
+      "Venda de Combustível": new Intl.NumberFormat("de-DE").format(
+        data_item["Venda de Combustível"]
+      ),
+      "Produtos vendidos": new Intl.NumberFormat("de-DE").format(
+        data_item["Produtos vendidos"]
+      ),
+      Galonagem: new Intl.NumberFormat("de-DE").format(data_item["Galonagem"]),
+    };
+  });
+  return formmatedNumbers;
 }

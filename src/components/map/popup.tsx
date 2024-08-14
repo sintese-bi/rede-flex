@@ -6,9 +6,9 @@ type MyObject = {
   nomefantasia: string;
   ibm: string;
   endereco: string;
-  "Venda de Combustível": number;
-  "Produtos vendidos": number;
-  Galonagem: number;
+  "Venda de Combustível": string;
+  "Produtos vendidos": string;
+  Galonagem: string;
 };
 export default function MapPopup({ item }: { item: MyObject }) {
   return (
@@ -23,32 +23,22 @@ export default function MapPopup({ item }: { item: MyObject }) {
           <p className="text-main-color text-xs">{item["endereco"]}</p>
         </div>
         <div>
-          <p className="text-main-color text- font-extrabold">IBM</p>
-          <p className="text-main-color text-xs">{item["ibm"]}</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 grid-rows-2 h-full justify-center items-center w-full gap-1">
-        <div className="rounded-lg bg-main-color shadow-md px-2 py-1 h-24">
-          <p className="text-xs text-slate-400 font-extrabold">
+          <p className="text-main-color text- font-extrabold">
             Venda de Combustível
           </p>
-          <p className="text-xs text-slate-200 font-extrabold">
+          <p className="text-main-color text-xs">
             {item["Venda de Combustível"]}
           </p>
         </div>
-        <div className="rounded-lg bg-main-color shadow-md px-2 h-24">
-          <p className="text-xs text-slate-400 font-extrabold">
+        <div>
+          <p className="text-main-color text- font-extrabold">
             Produtos vendidos
           </p>
-          <p className="text-xs text-slate-200 font-extrabold">
-            {item["Produtos vendidos"]}
-          </p>
+          <p className="text-main-color text-xs">{item["Produtos vendidos"]}</p>
         </div>
-        <div className="rounded-lg bg-main-color shadow-md px-2 h-24">
-          <p className="text-xs text-slate-400 font-extrabold">Galonagem</p>
-          <p className="text-xs text-slate-200 font-extrabold">
-            {item["Galonagem"]}
-          </p>
+        <div>
+          <p className="text-main-color text- font-extrabold">Galonagem</p>
+          <p className="text-main-color text-xs">{item["Galonagem"]}</p>
         </div>
       </div>
     </Popup>
