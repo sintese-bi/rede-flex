@@ -1,14 +1,21 @@
 "use client";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
-export default function Leaflet({
-  data,
-}: {
-  data: { lat: number; long: number; nomefantasia: string }[];
-}) {
+import MapPopup from "./popup";
+type MyObject = {
+  lat: number;
+  long: number;
+  nomefantasia: string;
+  ibm: string;
+  endereco: string;
+  "Venda de Combustível": string;
+  "Produtos vendidos": string;
+  Galonagem: string;
+};
+export default function Leaflet({ data }: { data: MyObject[] }) {
   var greenIcon = L.icon({
     iconUrl: "/icons/fuel.png",
     iconSize: [38, 35], // size of the icon
@@ -28,50 +35,17 @@ export default function Leaflet({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {data.map(
-        (item: { lat: number; long: number; nomefantasia: string }, index) => (
+      {data.map((item, index) => {
+        return (
           <Marker
             position={[item["lat"], item["long"]]}
             icon={greenIcon}
             key={index}
           >
-            <Popup>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Rank: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong className="text-xs">{item["nomefantasia"]}</strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Abastecimento: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>TMP: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Meta: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Desempenho: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Enviar relatório: </strong>
-                <p>_</p>
-              </div>
-              <div className="flex flex-row w-[200px] h-8 items-center gap-4">
-                <strong>Postos em alerta: </strong>
-                <p>_</p>
-              </div>
-            </Popup>
+            <MapPopup item={item} />
           </Marker>
-        )
-      )}
+        );
+      })}
     </MapContainer>
   );
 }

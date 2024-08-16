@@ -7,7 +7,6 @@ import BigNumbersLoading from "./analytics/components/loading/bignumbers";
 import DashboardComponentsBigNumbers from "./analytics/components/big_numbers";
 import DashboardComponentsCharts from "./analytics/components/charts";
 import DashboardComponentsTables from "./analytics/components/tables";
-import DashboardComponentsFilter from "./analytics/components/filter";
 export default async function Dashboard() {
   return (
     <div className="flex flex-col gap-6 h-full w-full">

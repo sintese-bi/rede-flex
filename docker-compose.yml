@@ -1,9 +1,9 @@
 version: "3"
 services:
-  prod:
+  dev:
     build: .
     ports:
-      - "3050:3050"
+      - "3054:3054"
     volumes:
       - .:/app
       - /app/node_modules
