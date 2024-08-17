@@ -10,3 +10,15 @@ services:
     environment:
       - NODE_ENV=development
     command: sh -c "npm run build && npm start"
+  prod:
+    build: .
+    ports:
+      - "3050:3050"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+    
+    
