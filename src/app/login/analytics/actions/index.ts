@@ -16,7 +16,7 @@ export async function handleLogin(login_fields: any) {
   const message = json_response.message || "Error";
   cookies().set("access_token", json_response["acesso"], {
     expires: login_fields["remember_me"]
-      ? new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      ? new Date(Date.now() + 10 * 365 * 24 * 60 * 60 * 1000)
       : undefined,
   });
   return {

@@ -1,5 +1,15 @@
 version: "3"
 services:
+  dev:
+    build: .
+    ports:
+      - "3054:3054"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm run build && npm start"
   prod:
     build: .
     ports:
