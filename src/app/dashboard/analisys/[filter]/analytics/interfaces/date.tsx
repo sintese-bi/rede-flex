@@ -3,5 +3,5 @@ import { DateRange } from "react-day-picker";
 
 export interface DateInterface {
   date: DateRange | undefined;
-  setDate: Dispatch<SetStateAction<DateRange | undefined>>;
+  setDate?: Dispatch<SetStateAction<DateRange | undefined>>;
 }

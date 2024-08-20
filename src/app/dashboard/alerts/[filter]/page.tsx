@@ -15,3 +15,7 @@ export default async function Alerts() {
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  return ["station", "regional"];
+}

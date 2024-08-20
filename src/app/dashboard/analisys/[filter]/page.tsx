@@ -1,12 +1,13 @@
 "use client";
-import { addDays } from "date-fns";
+
 import { useState } from "react";
-import { DateRange } from "react-day-picker";
-import DataPicker from "./analytics/components/data_picker";
 import Bignumbers from "./analytics/components/big_numbers";
 import Charts from "./analytics/components/charts";
+import DataPicker from "./analytics/components/data_picker";
+import { DateRange } from "react-day-picker";
+import { addDays } from "date-fns";
 
-export default function Station() {
+export default function Page({ params }: { params: { slug: string } }) {
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 30),
