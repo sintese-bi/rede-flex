@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic";
 import "chart.js/auto";
 import { useEffect, useReducer, useState } from "react";
-import { DataInterfaces } from "../../interfaces/data";
 import { ProfitDayInterfaces } from "../../interfaces/profit_day";
 import getWeekDaysProfitUtils from "../../utils/get_week_days_profit";
 import ChartLoading from "../../loading/chart";
@@ -10,47 +9,39 @@ import { delay } from "../../utils/component_delay";
 const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
-function reducer(
-  state: ProfitDayInterfaces[],
-  action: { type: "string"; payload?: any }
-): ProfitDayInterfaces[] {
-  switch (action) {
-    default:
-      return state;
-  }
-}
-export default function AnalisysComponentsChartsProfitDay({
+
+export default function ProfitDay({
   data,
 }: {
-  data: DataInterfaces[];
+  data: { lucro: number; day: string }[];
 }) {
-  const [state, dispatch] = useReducer(
-    reducer,
-    getWeekDaysProfitUtils(data) as ProfitDayInterfaces[]
-  );
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     delay(2200).then(() => {
       setIsLoading(false);
     });
   }, []);
+
   const options = {
     animation: {
       duration: 1500,
     },
   };
+
   const chartData = {
-    labels: state.map((item) => item.week_day),
+    labels: data.map((item) => item.day),
     datasets: [
       {
         label: "Lucro",
-        data: state.map((item) => item.value),
+        data: data.map((item) => item.lucro),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
     ],
   };
+
   return (
     <>
       {isLoading ? (

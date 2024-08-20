@@ -7,30 +7,19 @@ import { DataInterfaces } from "../../interfaces/data";
 import { ProfitVolumeInterfaces } from "../../interfaces/profit_volume";
 import ChartLoading from "../../loading/chart";
 import { delay } from "../../utils/component_delay";
+
 const Bubble = dynamic(
   () => import("react-chartjs-2").then((mod) => mod.Bubble),
   {
     ssr: false,
   }
 );
-function reducer(
-  state: ProfitVolumeInterfaces[],
-  action: { type: "string"; payload?: any }
-): ProfitVolumeInterfaces[] {
-  switch (action) {
-    default:
-      return state;
-  }
-}
-export default function AnalisysComponentsChartsProfitVolume({
+
+export default function ProfitVolume({
   data,
 }: {
-  data: DataInterfaces[];
+  data: { galonagem: number; lucro: number }[];
 }) {
-  const [state, dispatch] = useReducer(
-    reducer,
-    getProfitAndVolumeUtils(data) as ProfitVolumeInterfaces[]
-  );
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     delay(2200).then(() => {
@@ -43,11 +32,11 @@ export default function AnalisysComponentsChartsProfitVolume({
     },
   };
   const chartData = {
-    labels: state.map((item) => item.volume),
+    labels: data.map((item) => item.galonagem),
     datasets: [
       {
         label: "Lucro",
-        data: state.map((item) => item.value),
+        data: data.map((item) => item.lucro),
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgb(75, 192, 192)",
       },
@@ -59,7 +48,7 @@ export default function AnalisysComponentsChartsProfitVolume({
         <ChartLoading />
       ) : (
         <Suspense fallback={<ChartLoading />}>
-          <div className="lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
+          <div className="h-full w-full">
             <p className="text-xs font-bold text-slate-800">Lucro x volume</p>
             <Bubble
               data={chartData}

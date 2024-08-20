@@ -4,16 +4,12 @@ import { Popover } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { CalendarIcon } from "lucide-react";
-import { Suspense, useState } from "react";
-import { addDays, format } from "date-fns";
+import { Suspense } from "react";
+import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
-import { DateRange } from "react-day-picker";
 import DataPickerLoading from "../../loading/data_picker";
-export default function AnalisysComponentsDataPicker() {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 30),
-  });
+import { DateInterface } from "../../interfaces/date";
+export default function DataPicker({ date, setDate }: DateInterface) {
   return (
     <Suspense fallback={<DataPickerLoading />}>
       <div className="flex flex-col items-start gap-2">

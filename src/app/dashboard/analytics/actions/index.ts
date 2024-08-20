@@ -118,9 +118,6 @@ export async function handleGeolocations() {
     }
   );
   const { data } = await response.json();
-<<<<<<< HEAD
-  return data;
-=======
   const formmatedNumbers = data.map((data_item: any) => {
     return {
       ...data_item,
@@ -134,5 +131,4 @@ export async function handleGeolocations() {
     };
   });
   return formmatedNumbers;
->>>>>>> f149bd3e6f521d8a1f843fed6a9b1c9d1f6590af
 }
