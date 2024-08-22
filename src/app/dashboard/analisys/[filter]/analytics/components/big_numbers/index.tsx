@@ -1,13 +1,14 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
 import BigNumbersLoading from "../../loading/big_numbers";
-import { format } from "date-fns";
 import { bignumbersData } from "../../actions";
 import Bignumber from "./big_number";
-import { DateInterface } from "../../interfaces/date";
 import { BignumbersInterface } from "../../interfaces/big_numbers";
+import { useSearchParams } from "next/navigation";
 
-export default function Bignumbers({ date }: DateInterface) {
+export default function Bignumbers() {
+  const searchParams = useSearchParams();
+  const date = { from: searchParams.get("init"), to: searchParams.get("end") };
   const [bignumbers, setBignumbers] = useState<BignumbersInterface>({
     CombustvelLucro: "",
     CustoTotal: 0,
@@ -16,23 +17,21 @@ export default function Bignumbers({ date }: DateInterface) {
     VendaTotal: 0,
     VolumeTotal: 0,
   });
-  const [bignumbers_keys, setBignumbers_keys] = useState<string[]>([]);
 
   useEffect(() => {
-    const init = format(date?.from!, "yyyy-MM-dd");
-    const end = format(date?.from!, "yyyy-MM-dd");
     const fetch = async () => {
-      const date = { init, end };
-      const graphics = await bignumbersData(date);
+      const init = date.from ? date.from : ""; // verificar se `date.from` não é nulo
+      const end = date.to ? date.to : ""; // verificar se `date.to` não é nulo
+      const dateRange = { init, end };
+      const graphics = await bignumbersData(dateRange);
       setBignumbers(graphics);
     };
-    fetch();
-  }, [date]);
+    if (date.from && date.to) {
+      fetch();
+    }
+  }, [date.from, date.to]); // Dependências claras para o `useEffect`
 
-  useEffect(() => {
-    const keys = Object.keys(bignumbers) as string[];
-    setBignumbers_keys(keys);
-  }, [bignumbers]);
+  const bignumbers_keys = Object.keys(bignumbers) as string[];
 
   return (
     <Suspense fallback={<BigNumbersLoading />}>

@@ -4,12 +4,23 @@ import { Popover } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { CalendarIcon } from "lucide-react";
-import { Suspense } from "react";
-import { format } from "date-fns";
+import { Suspense, useEffect, useState } from "react";
+import { addDays, format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import DataPickerLoading from "../../loading/data_picker";
-import { DateInterface } from "../../interfaces/date";
-export default function DataPicker({ date, setDate }: DateInterface) {
+import { useRouter } from "next/navigation";
+import { DateRange } from "react-day-picker";
+export default function DataPicker({ filter }: { filter: string }) {
+  const router = useRouter();
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 30),
+  });
+  useEffect(() => {
+    const init = format(date?.from!, "yyyy-MM-dd");
+    const end = format(date?.to!, "yyyy-MM-dd");
+    router.push(`/dashboard/analisys/${filter}?init=${init}&end=${end}`);
+  }, [date, filter, router]);
   return (
     <Suspense fallback={<DataPickerLoading />}>
       <div className="flex flex-col items-start gap-2">

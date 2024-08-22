@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { cookies } from "next/headers";
 
 export function microServiceRequestConfig() {
@@ -15,4 +16,16 @@ export function apiRequestConfig() {
     "Content-Type": "application/json",
   };
   return headers;
+}
+
+export function getUserUUID() {
+  const cookieStore = cookies();
+  const use_uuid = cookieStore.get("use_uuid");
+  return use_uuid?.value;
+}
+
+export function defaultDateFilter(): { init: string; end: string } {
+  const init = format(new Date(), "yyyy-MM-dd");
+  const end = format(new Date(), "yyyy-MM-dd");
+  return { init, end };
 }

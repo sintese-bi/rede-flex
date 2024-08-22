@@ -6,14 +6,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { VariablesInterfaces } from "../../../../interfaces/variables";
+import { useEffect, useState } from "react";
 export default function VariablesMenuDropdown({
-  alertsVariables,
+  handleAlertsVariables,
 }: {
-  alertsVariables: VariablesInterfaces[];
+  handleAlertsVariables: () => Promise<VariablesInterfaces[]>;
 }) {
+  const [alertsVariables, setAlertsVariables] = useState<VariablesInterfaces[]>(
+    []
+  );
   const selectedVariables = alertsVariables.filter(
     ({ value }) => value !== false
   );
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await handleAlertsVariables();
+      setAlertsVariables(response);
+    };
+    fetch();
+  }, []);
   function handleVariablesAlreadySelected(variable: string) {
     const variableIsSelected = selectedVariables.find(
       ({ label }) => label == variable

@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { defaultDateFilter } from "@/utils";
 import {
   LogOutIcon,
   TriangleAlertIcon,
@@ -8,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 export default function DashboardComponentsNavbarItems() {
+  const { init, end } = defaultDateFilter();
   return (
     <div className="flex flex-col justify-between top-16 left-2 bg-main-color h-full rounded-xl px-4 py-4 group">
       <div className="flex flex-col text-white font-medium w-full gap-6">
@@ -26,7 +28,7 @@ export default function DashboardComponentsNavbarItems() {
         </Link>
         <Link
           className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
-          href={"/dashboard/analisys"}
+          href={`/dashboard/analisys/station?init=${init}&end=${end}`}
         >
           <BarChartHorizontalIcon size={22} />
           <p className="hidden group-hover:block text-xs">Análises</p>

@@ -1,12 +1,14 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  VisibilityState,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+
 import {
   Table,
   TableBody,
@@ -15,110 +17,102 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-import { AlertCircleIcon, BoltIcon, FuelIcon } from "lucide-react";
-import FormComponentsAlerts from "../form";
-import {
-  handleAlertsVariables,
-  handleAlertsVariablesSelect,
-} from "../../actions";
-import FormComponentsAlertsTable from "./form";
-interface TableInterface {
-  title: string;
-  description: string;
-  columns: Array<string>;
-  data: Array<any>;
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
-export default async function AlertsTable({
-  title,
-  description,
+
+export function DataTable<TData, TValue>({
   columns,
   data,
-}: TableInterface) {
+}: DataTableProps<TData, TValue>) {
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    gas_station_id: false,
+  });
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      columnVisibility,
+    },
+  });
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-6">
-        <div className="flex items-cenetr gap-2">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipContent className="text-sm" side="right">
-                <p>{description}</p>
-              </TooltipContent>
-              <TooltipTrigger>
-                <AlertCircleIcon size={18} />
-              </TooltipTrigger>
-            </Tooltip>
-          </TooltipProvider>
-          <p className="text-sm font-bold text-slate-600">{title}</p>
-        </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button size={"sm"} className="flex items-center gap-2 text-xs">
-              <BoltIcon size={18} />
-              Configurar para todos
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="flex flex-col gap-6">
-            <SheetHeader>
-              <SheetTitle>Configuração para todos</SheetTitle>
-              <SheetDescription>
-                Esse formulário irá definir um valor de alerta para todos.
-              </SheetDescription>
-            </SheetHeader>
-            <FormComponentsAlerts
-              handleAlertsVariables={handleAlertsVariables}
-              handleAlertsVariablesSelect={handleAlertsVariablesSelect}
-            />
-          </SheetContent>
-        </Sheet>
-      </div>
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-main-color hover:bg-main-color rounded-xl">
-            {columns.map((column, index) => {
-              return (
-                <TableHead
-                  key={index}
-                  className={`text-slate-300 text-xs ${
-                    index == 0
-                      ? "rounded-l-md"
-                      : index == columns.length - 1
-                      ? "rounded-r-md"
-                      : ""
-                  }`}
+    <>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
                 >
-                  {column}
-                </TableHead>
-              );
-            })}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((dataItem: any, index: number) => {
-            return (
-              <TableRow key={index}>
-                <TableCell className="w-2/5">
-                  <div className="flex items-center gap-2">
-                    <FuelIcon size={18} />
-                    <p>{dataItem[0]}</p>
-                  </div>
-                </TableCell>
-                <TableCell className="w-3/5">
-                  <FormComponentsAlertsTable
-                    handleAlertsVariables={handleAlertsVariables}
-                  />
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
                 </TableCell>
               </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </div>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </>
   );
 }

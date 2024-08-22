@@ -19,6 +19,11 @@ export async function handleLogin(login_fields: any) {
       ? new Date(Date.now() + 10 * 365 * 24 * 60 * 60 * 1000)
       : undefined,
   });
+  cookies().set("use_uuid", json_response["use_id"], {
+    expires: login_fields["remember_me"]
+      ? new Date(Date.now() + 10 * 365 * 24 * 60 * 60 * 1000)
+      : undefined,
+  });
   return {
     access_token: json_response["acesso"],
     succeed: response.ok,

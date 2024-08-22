@@ -1,3 +1,4 @@
+"use client";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -6,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-export default async function ValueAndType() {
+export default function ValueAndType() {
   return (
     <>
       <Input

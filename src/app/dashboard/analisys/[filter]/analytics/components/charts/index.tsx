@@ -1,12 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { DateRange } from "react-day-picker";
 import { chartsData } from "../../actions";
 import ProfitDay from "./profit_day";
 import ProfitDate from "./profit_date";
 import ProfitVolume from "./profit_volume";
-export default function Charts({ date }: { date: DateRange | undefined }) {
+import { useSearchParams } from "next/navigation";
+
+export default function Charts() {
+  const searchParams = useSearchParams();
+  const date = { from: searchParams.get("init"), to: searchParams.get("end") };
+
   const [graphics, setGraphics] = useState<{
     LucroDia: [];
     LucroTempo: [];
@@ -16,20 +20,23 @@ export default function Charts({ date }: { date: DateRange | undefined }) {
     LucroTempo: [],
     VolumeLucro: [],
   });
+
   const profit_day_data = graphics["LucroDia"];
   const profit_date_data = graphics["LucroTempo"];
   const profit_volume_data = graphics["VolumeLucro"];
 
   useEffect(() => {
-    const init = format(date?.from!, "yyyy-MM-dd");
-    const end = format(date?.from!, "yyyy-MM-dd");
     const fetch = async () => {
-      const date = { init, end };
-      const graphics = await chartsData(date);
-      setGraphics(graphics);
+      if (date.from && date.to) {
+        const init = format(new Date(date.from), "yyyy-MM-dd");
+        const end = format(new Date(date.to), "yyyy-MM-dd");
+        const dateRange = { init, end };
+        const graphics = await chartsData(dateRange);
+        setGraphics(graphics);
+      }
     };
     fetch();
-  }, [date]);
+  }, [date.from, date.to]);
 
   return (
     <>

@@ -1,4 +1,7 @@
+import { format } from "date-fns";
+
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   async redirects() {
     return [
@@ -7,11 +10,7 @@ const nextConfig = {
         destination: "/login",
         permanent: true,
       },
-      {
-        source: "/dashboard/analisys",
-        destination: "/dashboard/analisys/station",
-        permanent: true,
-      },
+
       {
         source: "/dashboard/alerts",
         destination: "/dashboard/alerts/station",
