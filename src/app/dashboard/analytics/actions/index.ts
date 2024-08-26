@@ -81,29 +81,34 @@ export async function handleGallonageTable() {
   const dataframes = await response.json();
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
-      Posto: item["Posto"],
+      name: item["Posto"],
       Abastecimentos: item["Abastecimentos"],
       "Galonagem(Litro)": item["Galonagem(Litro)"],
       Faturamento: item["Faturamento"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      TMC: item["TMC"],
+      TMV: item["TMV"],
     };
   });
   const produto = dataframes["produto"].map((item: any) => {
     return {
-      Posto: item["Posto"],
+      name: item["Posto"],
       "Abastecimentos(Produto)": item["Abastecimentos(Produto)"],
       QtdProdutosVendidos: item["QtdProdutosVendidos"],
       "Valor Vendido": item["Valor Vendido"],
+      TMP: item["TMP"],
     };
   });
   const regional = dataframes["regional"].map((item: any) => {
     return {
-      Regional: item["Regional"],
+      name: item["Regional"],
       Abastecimentos: item["Abastecimentos"],
       Faturamento: item["Faturamento"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      TMC: item["TMC"],
+      TMV: item["TMV"],
     };
   });
   return { galonagem, produto, regional };
