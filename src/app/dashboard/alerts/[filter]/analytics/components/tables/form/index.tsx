@@ -9,8 +9,10 @@ import SubmitButton from "./submit";
 import { toast } from "@/components/ui/use-toast";
 export default function FormComponentsAlertsTable({
   ibm_id,
+  gas_station_whats_app,
 }: {
   ibm_id: string;
+  gas_station_whats_app: string;
 }) {
   async function handleFormSubmit(form: FormData) {
     const { message } = await handleAlertsUpdate(form, ibm_id);
@@ -28,7 +30,7 @@ export default function FormComponentsAlertsTable({
     >
       <VariableSelect handleAlertsVariables={handleAlertsVariables} />
       <ValueAndType />
-      <WhatsAppNumber />
+      <WhatsAppNumber gas_station_whats_app={gas_station_whats_app} />
       <SubmitButton />
     </form>
   );

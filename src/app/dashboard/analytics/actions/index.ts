@@ -85,6 +85,7 @@ export async function handleGallonageTable() {
       Abastecimentos: item["Abastecimentos"],
       "Galonagem(Litro)": item["Galonagem(Litro)"],
       Faturamento: item["Faturamento"],
+      "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMC: item["TMC"],
@@ -97,6 +98,9 @@ export async function handleGallonageTable() {
       "Abastecimentos(Produto)": item["Abastecimentos(Produto)"],
       QtdProdutosVendidos: item["QtdProdutosVendidos"],
       "Valor Vendido": item["Valor Vendido"],
+      "Rendimento Bruto": item["Rendimento Bruto"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
       TMP: item["TMP"],
     };
   });
@@ -105,13 +109,27 @@ export async function handleGallonageTable() {
       name: item["Regional"],
       Abastecimentos: item["Abastecimentos"],
       Faturamento: item["Faturamento"],
+      "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMC: item["TMC"],
       TMV: item["TMV"],
     };
   });
-  return { galonagem, produto, regional };
+
+  const regional_produto = dataframes["regional_produto"].map((item: any) => {
+    return {
+      name: item["Regional"],
+      Abastecimentos: item["Abastecimentos(Produto)"],
+      QtdProdutosVendidos: item["QtdProdutosVendidos"],
+      "Valor Vendido": item["Valor Vendido"],
+      "Rendimento Bruto": item["Rendimento Bruto"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      TMP: item["TMP"],
+    };
+  });
+  return { galonagem, produto, regional, regional_produto };
 }
 
 export async function handleGeolocations() {

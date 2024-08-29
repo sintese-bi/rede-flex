@@ -5,6 +5,7 @@ export type Alerts = {
   name: string;
   gas_station_id: string;
   alerts_configuration: string;
+  gas_station_whats_app: string;
 };
 export const columns: ColumnDef<Alerts>[] = [
   {
@@ -19,7 +20,14 @@ export const columns: ColumnDef<Alerts>[] = [
     accessorKey: "alerts_configuration",
     header: "configurar alertas",
     cell: ({ row }) => (
-      <FormComponentsAlertsTable ibm_id={row.original.gas_station_id} />
+      <FormComponentsAlertsTable
+        ibm_id={row.original.gas_station_id}
+        gas_station_whats_app={row.original.gas_station_whats_app}
+      />
     ),
+  },
+  {
+    accessorKey: "gas_station_whats_app",
+    header: "gas_station_whats_app",
   },
 ];

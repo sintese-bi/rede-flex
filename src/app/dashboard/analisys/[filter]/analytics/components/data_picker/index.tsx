@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { CalendarIcon } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
-import { addDays, format } from "date-fns";
+import { addDays, format, subDays } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import DataPickerLoading from "../../loading/data_picker";
 import { useRouter } from "next/navigation";
@@ -13,8 +13,8 @@ import { DateRange } from "react-day-picker";
 export default function DataPicker({ filter }: { filter: string }) {
   const router = useRouter();
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 30),
+    from: subDays(new Date(), 30),
+    to: new Date(),
   });
   useEffect(() => {
     const init = format(date?.from!, "yyyy-MM-dd");

@@ -3,8 +3,12 @@ import { Input } from "@/components/ui/input";
 import { PhoneIcon } from "lucide-react";
 import { useState } from "react";
 
-export default function WhatsAppNumber() {
-  const [value, setValue] = useState("");
+export default function WhatsAppNumber({
+  gas_station_whats_app,
+}: {
+  gas_station_whats_app: string;
+}) {
+  const [value, setValue] = useState(gas_station_whats_app);
 
   function isDeletingValue(inputValue: string, value: string): boolean {
     return inputValue.length >= value.length ? false : true;

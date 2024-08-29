@@ -6,66 +6,21 @@ import { ObjectId } from "mongodb";
 import { mongodb_client } from "@/database/connection";
 import { apiRequestConfig, getUserUUID } from "@/utils";
 export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
-  const redeflex = mongodb_client.db("redeflex");
-  const collection = redeflex.collection("alerts");
-  const { variables }: { variables: VariablesInterfaces[] } =
-    (await collection.findOne({
-      _id: new ObjectId("66872ee8a47db2d310066cfb"),
-    })) as any;
+  const variables = [
+    {
+      label: "margin GC",
+      value: false,
+      whatsapp_contact: "",
+      margin_min_value: "",
+      margin_min_value_type: "",
+    },
+  ];
   return variables;
 }
 export async function handleAlertsVariablesSelect(form: FormData) {
-  const redeflex = mongodb_client.db("redeflex");
-  const collection = redeflex.collection("alerts");
-  const variable = form.get("variable");
-  const margin_min_value = form.get("margin_min_value");
-  const margin_min_value_type = form.get("margin_min_value_type");
-  const whatsapp_contact = form.get("whatsapp_contact");
-  const existentContent = await collection.findOne({
-    _id: new ObjectId("66872ee8a47db2d310066cfb"),
-  });
-  const { variables, alerts } = gettingVariablesAndAlerts(existentContent);
-  const updatedVariables = gettingUpdatedVariables(
-    variables,
-    variable,
-    whatsapp_contact,
-    margin_min_value,
-    margin_min_value_type
-  );
-  await collection.updateOne(
-    {
-      _id: new ObjectId("66872ee8a47db2d310066cfb"),
-    },
-    {
-      $set: {
-        variables: updatedVariables,
-      },
-    }
-  );
   revalidateTag("alerts_variables");
 }
 export async function handleAlertsVariablesUnselect(variable: string) {
-  const redeflex = mongodb_client.db("redeflex");
-  const collection = redeflex.collection("alerts");
-  const { variables }: { variables: VariablesInterfaces[] } =
-    (await collection.findOne({
-      _id: new ObjectId("66872ee8a47db2d310066cfb"),
-    })) as any;
-  const formmated_variables = variables.map((variableItem) => {
-    return variableItem["label"] === variable
-      ? { ...variableItem, value: !variableItem["value"] }
-      : variableItem;
-  });
-  await collection.updateOne(
-    {
-      _id: new ObjectId("66872ee8a47db2d310066cfb"),
-    },
-    {
-      $set: {
-        variables: formmated_variables,
-      },
-    }
-  );
   revalidateTag("alerts_variables");
 }
 export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
@@ -84,6 +39,7 @@ export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
   );
 }
 export async function handleAlertsTable(): Promise<any> {
+  const use_uuid = getUserUUID();
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_EXTERN_API}/name-table/station`,
     {
@@ -91,14 +47,20 @@ export async function handleAlertsTable(): Promise<any> {
       cache: "no-cache",
       headers: apiRequestConfig(),
       body: JSON.stringify({
-        use_uuid: "c72bfa11-3632-46f8-a935-4a832a1111c0",
+        use_uuid,
       }),
     }
   );
   const { data } = await response.json();
   const formmated_data = data.map((data_item: any) => {
+    const telephones_array = data_item.gas_station_whats_app || [""];
+    const telephones_formmated = telephones_array.map((telefone: string) =>
+      telefone.replace(/^(\d{2})(\d+)/, "($1)$2 ")
+    );
+    const telephones_string = telephones_formmated.join(" ");
     const formmated_item = {
       name: data_item.name,
+      gas_station_whats_app: telephones_string,
       gas_station_id: data_item.gas_station_id,
       "Configurar alerta": "margin_min_value",
     };

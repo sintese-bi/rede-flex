@@ -15,6 +15,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Variable } from "lucide-react";
 import { handleDashboardDailyChart } from "../../actions";
+import { format } from "date-fns";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -42,7 +43,8 @@ export default function Daily() {
     | "Thursday"
     | "Friday"
     | "Saturday"
-  >("Monday");
+    | string
+  >(format(new Date(), "EEEE"));
   const [isLoading, setIsLoading] = useState(true);
   const filterVariableOptions = [
     { variable: "invoicing", label: "Faturamento" },
