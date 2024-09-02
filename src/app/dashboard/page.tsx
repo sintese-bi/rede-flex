@@ -9,7 +9,7 @@ import DashboardComponentsCharts from "./analytics/components/charts";
 import DashboardComponentsTables from "./analytics/components/tables";
 export default async function Dashboard() {
   return (
-    <div className="flex flex-col gap-6 h-full w-full">
+    <div className="flex flex-col gap-6 h-auto w-full">
       <div className="flex flex-col gap-12 h-full w-full">
         <div className="flex w-full flex-col gap-12">
           <div className="flex lg:flex-row flex-col items-center gap-2  w-full">

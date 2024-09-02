@@ -16,11 +16,11 @@ export default function Filter({ filter }: { filter: string }) {
   };
   const links = [
     {
-      href: `/dashboard/analisys/station?init=${from}&end=${to}`,
+      href: `/dashboard/alerts/station`,
       label: "Posto",
     },
     {
-      href: `/dashboard/analisys/regional?init=${from}&end=${to}`,
+      href: `/dashboard/alerts/regional`,
       label: "Regional",
     },
   ];

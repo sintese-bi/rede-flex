@@ -89,6 +89,7 @@ export async function handleGallonageTable() {
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMC: item["TMC"],
+      TMF: item["TMF"],
       TMV: item["TMV"],
     };
   });
@@ -113,6 +114,7 @@ export async function handleGallonageTable() {
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMC: item["TMC"],
+      TMF: item["TMF"],
       TMV: item["TMV"],
     };
   });

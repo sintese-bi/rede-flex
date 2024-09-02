@@ -83,6 +83,26 @@ export const gallonage_columns: any[] = [
     },
   },
   {
+    accessorKey: "TMF",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          TMF
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("TMF"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
     accessorKey: "TMV",
     header: ({ column }: any) => {
       return (
@@ -177,6 +197,26 @@ export const regional_columns: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMC"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "TMF",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          TMF
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("TMF"));
       const formatted = new Intl.NumberFormat("de-DE").format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;

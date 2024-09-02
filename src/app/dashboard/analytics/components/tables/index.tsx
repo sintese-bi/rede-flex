@@ -16,7 +16,7 @@ export default async function DashboardComponentsTables() {
       <DataTable
         data={regional}
         columns={regional_columns}
-        title="Acompanhamento regional"
+        title="Acompanhamento regional da galonagem"
       />
       <DataTable
         data={regional_produto}

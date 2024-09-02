@@ -15,6 +15,7 @@ export default function ValueAndType() {
         name="margin_min_value"
         defaultValue={0}
         className="w-24"
+        step={0.01}
       />
       <Select name="margin_min_value_type">
         <SelectTrigger className="w-32">

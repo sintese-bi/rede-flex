@@ -15,7 +15,6 @@ export default async function AlertsLayout({
           alcançado o valor esperado, é enviado uma mensagem de alerta no seu
           whatapp
         </p>
-        <FilterOptions />
         <Separator />
       </div>
       {children}

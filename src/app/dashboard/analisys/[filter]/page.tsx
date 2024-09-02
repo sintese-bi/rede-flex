@@ -4,12 +4,11 @@ import DataPicker from "./analytics/components/data_picker";
 import Filter from "./analytics/components/filter";
 
 export default async function Page({ params }: { params: { filter: string } }) {
-  const filter = params.filter;
   return (
     <div className="flex flex-col gap-4 h-full w-full">
-      <Filter filter={filter} />
+      <Filter filter={params.filter} />
       <div className="flex flex-col gap-6 h-full w-full">
-        <DataPicker filter={filter} />
+        <DataPicker filter={params.filter} />
         <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col items-start gap-6">
           <Bignumbers />
         </div>
