@@ -102,6 +102,7 @@ export async function handleGallonageTable() {
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      TMC: item["TMC"],
       TMP: item["TMP"],
     };
   });
