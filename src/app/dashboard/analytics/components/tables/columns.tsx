@@ -367,6 +367,36 @@ export const product_columns: any[] = [
     },
   },
   {
+    accessorKey: "Custo",
+    header: "Custo",
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Custo"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Lucro"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
     accessorKey: "TMC",
     header: ({ column }: any) => {
       return (
