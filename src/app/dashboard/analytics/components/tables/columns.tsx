@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ArrowUpDownIcon, LockKeyholeIcon } from "lucide-react";
+import { DataTable } from "./table";
 
 export const gallonage_columns: any[] = [
   {
@@ -179,14 +180,12 @@ export const regional_columns: any[] = [
       return (
         <Sheet>
           <SheetTrigger>{name}</SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Postos por regional</SheetTitle>
-              <SheetDescription className="flex justify-center align-center gap-1">
-                <LockKeyholeIcon size={18} className="text-red-500" />
-                Essa funcionalidade está em desenvolvimento
-              </SheetDescription>
-            </SheetHeader>
+          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
+            <DataTable
+              data={row.original.stations}
+              columns={gallonage_columns}
+              title={`Acompanhamento galonagem - ${name}`}
+            />
           </SheetContent>
         </Sheet>
       );
@@ -346,11 +345,30 @@ export const regional_columns: any[] = [
       return <div className="font-medium">{formatted} L</div>;
     },
   },
+  {
+    accessorKey: "stations",
+    header: "Postos",
+  },
 ];
 export const regional_product_columns: any[] = [
   {
     accessorKey: "name",
     header: "Regional",
+    cell: ({ row }: any) => {
+      const name = row.getValue("name");
+      return (
+        <Sheet>
+          <SheetTrigger>{name}</SheetTrigger>
+          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
+            <DataTable
+              data={row.original.stations}
+              columns={product_columns}
+              title={`Acompanhamento produtos - ${name}`}
+            />
+          </SheetContent>
+        </Sheet>
+      );
+    },
   },
   {
     accessorKey: "Abastecimentos",
@@ -465,6 +483,10 @@ export const regional_product_columns: any[] = [
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
+  },
+  {
+    accessorKey: "stations",
+    header: "Postos",
   },
 ];
 export const product_columns: any[] = [

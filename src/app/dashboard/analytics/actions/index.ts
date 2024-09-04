@@ -82,6 +82,7 @@ export async function handleGallonageTable() {
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
+      regional: item["Regional"],
       Abastecimentos: item["Abastecimentos"],
       "Galonagem(Litro)": item["Galonagem(Litro)"],
       Faturamento: item["Faturamento"],
@@ -96,6 +97,7 @@ export async function handleGallonageTable() {
   const produto = dataframes["produto"].map((item: any) => {
     return {
       name: item["Posto"],
+      regional: item["Regional"],
       "Abastecimentos(Produto)": item["Abastecimentos(Produto)"],
       QtdProdutosVendidos: item["QtdProdutosVendidos"],
       "Valor Vendido": item["Valor Vendido"],
@@ -117,9 +119,11 @@ export async function handleGallonageTable() {
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
+      stations: galonagem.filter(
+        (product_item: any) => product_item.regional == item["Regional"]
+      ),
     };
   });
-
   const regional_produto = dataframes["regional_produto"].map((item: any) => {
     return {
       name: item["Regional"],
@@ -130,6 +134,9 @@ export async function handleGallonageTable() {
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMP: item["TMP"],
+      stations: produto.filter(
+        (product_item: any) => product_item.regional == item["Regional"]
+      ),
     };
   });
   return { galonagem, produto, regional, regional_produto };
