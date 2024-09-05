@@ -79,6 +79,7 @@ export async function handleGallonageTable() {
     }
   );
   const dataframes = await response.json();
+  console.log(dataframes["produto"]);
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
@@ -92,6 +93,7 @@ export async function handleGallonageTable() {
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
+      "M/LT": item["M/LT"],
     };
   });
   const produto = dataframes["produto"].map((item: any) => {
