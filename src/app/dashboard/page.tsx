@@ -12,7 +12,7 @@ export default async function Dashboard() {
     <div className="flex flex-col gap-6 h-auto w-full">
       <div className="flex flex-col gap-12 h-full w-full">
         <div className="flex w-full flex-col gap-12">
-          <div className="flex lg:flex-row flex-col items-center gap-2  w-full">
+          <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
             <Suspense fallback={<BigNumbersLoading />}>
               <DashboardComponentsBigNumbers />
             </Suspense>

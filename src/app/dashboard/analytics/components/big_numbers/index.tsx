@@ -31,7 +31,7 @@ export default async function DashboardComponentsBigNumbers() {
   const big_numbers: BigNumbersInterfaces[] = await handleDashboardBigNumbers();
   const splitted_big_numbers = splitBigNumberIntoThree(big_numbers);
   return (
-    <div className="flex flex-col gap-2 lg:w-3/5 w-full h-full lg:h-[520px]">
+    <div className="flex flex-col gap-2 lg:w-3/5 w-full">
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
         <TooltipProvider>
@@ -50,7 +50,7 @@ export default async function DashboardComponentsBigNumbers() {
         (big_numbers_section: BigNumbersInterfaces[], index: 0 | 1 | 2) => (
           <div key={index} className="flex flex-col gap-1 h-full">
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>
-            <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 grid-cols-2 h-full justify-center items-center">
+            <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 h-full justify-center items-center">
               {big_numbers_section.map(
                 ({ label, value, secondary_label, secondary_value }, index) => (
                   <DashboardComponentsBigNumber

@@ -39,12 +39,12 @@ export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
   })) as any;
   return charts;
 }
-export async function handleDashboardDailyChart(params: {
+export async function handleDashboardDailyFuelChart(params: {
   week_day: string;
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-fuel`,
     {
       cache: "no-cache",
       headers: microServiceRequestConfig(),
@@ -55,11 +55,27 @@ export async function handleDashboardDailyChart(params: {
   const { data } = await response.json();
   return data;
 }
-export async function handleDashboardRegionalChart(params: {
+export async function handleDashboardDailyProductChart(params: {
+  week_day: string;
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-product`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const { data } = await response.json();
+  return data;
+}
+export async function handleDashboardRegionalFuelChart(params: {
+  variable_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-fuel`,
     {
       cache: "no-cache",
       headers: microServiceRequestConfig(),
@@ -70,6 +86,23 @@ export async function handleDashboardRegionalChart(params: {
   const data = await response.json();
   return data;
 }
+
+export async function handleDashboardRegionalProductChart(params: {
+  variable_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-product`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+
 export async function handleGallonageTable() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
@@ -79,7 +112,6 @@ export async function handleGallonageTable() {
     }
   );
   const dataframes = await response.json();
-  console.log(dataframes["produto"]);
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
@@ -108,6 +140,7 @@ export async function handleGallonageTable() {
       Lucro: item["Lucro"],
       TMC: item["TMC"],
       TMP: item["TMP"],
+      Posto_ibm: item["Posto_ibm"],
     };
   });
   const regional = dataframes["regional"].map((item: any) => {
@@ -142,6 +175,26 @@ export async function handleGallonageTable() {
     };
   });
   return { galonagem, produto, regional, regional_produto };
+}
+
+export async function handleRankingByStation(ibm: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/ranking?ibm=${ibm}`,
+    {
+      headers: microServiceRequestConfig(),
+      cache: "no-store",
+    }
+  );
+  const { ranking } = await response.json();
+  const formmatedRanking = ranking.map((item: any) => {
+    return {
+      ...item,
+      name: item["Nome"],
+      User_id: item["User_id"],
+      Venda: item["Venda"],
+    };
+  });
+  return formmatedRanking;
 }
 
 export async function handleGeolocations() {

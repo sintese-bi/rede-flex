@@ -10,7 +10,28 @@ import {
 } from "@/components/ui/sheet";
 import { ArrowUpDownIcon, LockKeyholeIcon } from "lucide-react";
 import { DataTable } from "./table";
+import { useEffect, useState } from "react";
+import { handleRankingByStation } from "../../actions";
 
+export const ranking_columns: any[] = [
+  {
+    accessorKey: "User_id",
+    header: "User_id",
+  },
+  {
+    accessorKey: "name",
+    header: "Frentista",
+  },
+  {
+    accessorKey: "Venda",
+    header: "Venda",
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Venda"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+];
 export const gallonage_columns: any[] = [
   {
     accessorKey: "name",
@@ -494,8 +515,27 @@ export const product_columns: any[] = [
     accessorKey: "name",
     header: "Posto",
     cell: ({ row }: any) => {
+      const [data, setData] = useState([]);
+      useEffect(() => {
+        const fetch = async () => {
+          const response = await handleRankingByStation(row.original.Posto_ibm);
+          setData(response);
+        };
+        fetch();
+      }, []);
       const name = row.getValue("name");
-      return <div className="font-medium w-40">{name}</div>;
+      return (
+        <Sheet>
+          <SheetTrigger>{name}</SheetTrigger>
+          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
+            <DataTable
+              columns={ranking_columns}
+              data={data}
+              title="Ranking de frentistas"
+            />
+          </SheetContent>
+        </Sheet>
+      );
     },
   },
   {
@@ -652,5 +692,9 @@ export const product_columns: any[] = [
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
+  },
+  {
+    accessorKey: "Posto_ibm",
+    header: "Posto ibm",
   },
 ];
