@@ -7,11 +7,8 @@ import {
 } from "@/components/ui/select";
 import { VariablesInterfaces } from "../../../../interfaces/variables";
 import { useEffect, useState } from "react";
-export default function VariablesMenuDropdown({
-  handleAlertsVariables,
-}: {
-  handleAlertsVariables: () => Promise<VariablesInterfaces[]>;
-}) {
+import { handleAlertsVariables } from "../../../../actions";
+export default function VariablesMenuDropdown() {
   const [alertsVariables, setAlertsVariables] = useState<VariablesInterfaces[]>(
     []
   );

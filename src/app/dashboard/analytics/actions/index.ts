@@ -126,6 +126,7 @@ export async function handleGallonageTable() {
       TMF: item["TMF"],
       TMV: item["TMV"],
       "M/LT": item["M/LT"],
+      Posto_ibm: item["Posto_ibm"],
     };
   });
   const produto = dataframes["produto"].map((item: any) => {

@@ -1,17 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { ArrowUpDownIcon, LockKeyholeIcon } from "lucide-react";
-import { DataTable } from "./table";
-import { useEffect, useState } from "react";
-import { handleRankingByStation } from "../../actions";
+import { ArrowUpDownIcon } from "lucide-react";
+import RankingTable from "./children_tables/ranking_table";
+import StationsTable from "./children_tables/stations_table";
 
 export const ranking_columns: any[] = [
   {
@@ -36,6 +27,7 @@ export const gallonage_columns: any[] = [
   {
     accessorKey: "name",
     header: "Posto",
+    cell: ({ row }: any) => <RankingTable row={row} type="galonagem" />,
   },
   {
     accessorKey: "Abastecimentos",
@@ -191,26 +183,16 @@ export const gallonage_columns: any[] = [
       return <div className="font-medium">{formatted} L</div>;
     },
   },
+  {
+    accessorKey: "Posto_ibm",
+    header: "Posto ibm",
+  },
 ];
 export const regional_columns: any[] = [
   {
     accessorKey: "name",
     header: "Regional",
-    cell: ({ row }: any) => {
-      const name = row.getValue("name");
-      return (
-        <Sheet>
-          <SheetTrigger>{name}</SheetTrigger>
-          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
-            <DataTable
-              data={row.original.stations}
-              columns={gallonage_columns}
-              title={`Acompanhamento galonagem - ${name}`}
-            />
-          </SheetContent>
-        </Sheet>
-      );
-    },
+    cell: ({ row }: any) => <StationsTable row={row} type="galonagem" />,
   },
   {
     accessorKey: "Abastecimentos",
@@ -375,21 +357,7 @@ export const regional_product_columns: any[] = [
   {
     accessorKey: "name",
     header: "Regional",
-    cell: ({ row }: any) => {
-      const name = row.getValue("name");
-      return (
-        <Sheet>
-          <SheetTrigger>{name}</SheetTrigger>
-          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
-            <DataTable
-              data={row.original.stations}
-              columns={product_columns}
-              title={`Acompanhamento produtos - ${name}`}
-            />
-          </SheetContent>
-        </Sheet>
-      );
-    },
+    cell: ({ row }: any) => <StationsTable row={row} type="produto" />,
   },
   {
     accessorKey: "Abastecimentos",
@@ -514,29 +482,7 @@ export const product_columns: any[] = [
   {
     accessorKey: "name",
     header: "Posto",
-    cell: ({ row }: any) => {
-      const [data, setData] = useState([]);
-      useEffect(() => {
-        const fetch = async () => {
-          const response = await handleRankingByStation(row.original.Posto_ibm);
-          setData(response);
-        };
-        fetch();
-      }, []);
-      const name = row.getValue("name");
-      return (
-        <Sheet>
-          <SheetTrigger>{name}</SheetTrigger>
-          <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
-            <DataTable
-              columns={ranking_columns}
-              data={data}
-              title="Ranking de frentistas"
-            />
-          </SheetContent>
-        </Sheet>
-      );
-    },
+    cell: ({ row }: any) => <RankingTable row={row} type="produto" />,
   },
   {
     accessorKey: "Abastecimentos(Produto)",

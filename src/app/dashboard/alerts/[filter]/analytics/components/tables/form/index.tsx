@@ -1,9 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { BoltIcon } from "lucide-react";
 import ValueAndType from "./value_and_type";
 import WhatsAppNumber from "./whatsapp_number";
-import { handleAlertsUpdate, handleAlertsVariables } from "../../../actions";
+import { handleAlertsUpdate } from "../../../actions";
 import VariableSelect from "./variable_select";
 import SubmitButton from "./submit";
 import { toast } from "@/components/ui/use-toast";
@@ -28,7 +26,7 @@ export default function FormComponentsAlertsTable({
       className="flex flex-row w-full items-center gap-4"
       action={handleFormSubmit}
     >
-      <VariableSelect handleAlertsVariables={handleAlertsVariables} />
+      <VariableSelect />
       <ValueAndType />
       <WhatsAppNumber gas_station_whats_app={gas_station_whats_app} />
       <SubmitButton />
