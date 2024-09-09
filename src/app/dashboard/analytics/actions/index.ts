@@ -112,6 +112,16 @@ export async function handleGallonageTable() {
     }
   );
   const dataframes = await response.json();
+  const combustivel = dataframes["combustivel"].map((item: any) => {
+    return {
+      name: item["Nome da Empresa"],
+      Combustivel: item["Combustivel"],
+      Venda: item["Venda"],
+      Volume: item["Volume"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+    };
+  });
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
@@ -175,7 +185,7 @@ export async function handleGallonageTable() {
       ),
     };
   });
-  return { galonagem, produto, regional, regional_produto };
+  return { galonagem, produto, regional, regional_produto, combustivel };
 }
 
 export async function handleRankingByStation(ibm: string) {

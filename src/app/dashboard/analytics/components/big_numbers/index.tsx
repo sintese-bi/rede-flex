@@ -9,6 +9,7 @@ import { AlertCircleIcon } from "lucide-react";
 import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
+import Time from "../time";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
@@ -32,18 +33,21 @@ export default async function DashboardComponentsBigNumbers() {
   const splitted_big_numbers = splitBigNumberIntoThree(big_numbers);
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full">
-      <div className="flex items-center gap-2">
-        <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <AlertCircleIcon size={16} />
-            </TooltipTrigger>
-            <TooltipContent className="text-sm" side="right">
-              <p>Informações gerais contabilizados!</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <AlertCircleIcon size={16} />
+              </TooltipTrigger>
+              <TooltipContent className="text-sm" side="right">
+                <p>Informações gerais contabilizados!</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        <Time />
       </div>
       <Separator />
       {splitted_big_numbers.map(

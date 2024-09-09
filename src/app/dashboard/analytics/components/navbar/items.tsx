@@ -27,8 +27,8 @@ export default function DashboardComponentsNavbarItems() {
           <p className="hidden group-hover:block text-xs">Home</p>
         </Link>
         <Link
-          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-pointer"
-          href={`/dashboard/analisys/station?init=${init}&end=${end}`}
+          className="flex justify-center group-hover:justify-start gap-2 items-center py-1 w-full cursor-not-allowed opacity-35"
+          href={`/dashboard`}
         >
           <BarChartHorizontalIcon size={22} />
           <p className="hidden group-hover:block text-xs">Análises</p>
