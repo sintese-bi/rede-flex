@@ -1,4 +1,11 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { DataTable } from "../table";
 import { ranking_gallonage_columns, ranking_product_columns } from "../columns";
 import { useEffect, useState } from "react";
@@ -26,12 +33,16 @@ export default function RankingTable({
       setData(response);
     };
     fetch();
-  }, [row.original.Posto_ibm]);
+  }, [row.original.Posto_ibm, type]);
 
   return (
     <Sheet>
       <SheetTrigger>{name}</SheetTrigger>
       <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
+        <SheetHeader>
+          <SheetTitle></SheetTitle>
+          <SheetDescription></SheetDescription>
+        </SheetHeader>
         <DataTable
           columns={
             type !== "produto"
