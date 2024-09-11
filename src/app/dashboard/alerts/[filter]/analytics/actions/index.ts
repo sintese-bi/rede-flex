@@ -2,13 +2,11 @@
 import { revalidateTag } from "next/cache";
 import { VariablesInterfaces } from "../interfaces/variables";
 import { AlertsInterfaces } from "../interfaces/alerts";
-import { ObjectId } from "mongodb";
-import { mongodb_client } from "@/database/connection";
 import { apiRequestConfig, getUserUUID } from "@/utils";
 export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
   const variables = [
     {
-      label: "margin GC",
+      label: "marginGC",
       value: false,
       whatsapp_contact: "",
       margin_min_value: "",

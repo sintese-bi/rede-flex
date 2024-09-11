@@ -47,7 +47,6 @@ export default async function DashboardComponentsBigNumbers() {
             </Tooltip>
           </TooltipProvider>
         </div>
-        <Time />
       </div>
       <Separator />
       {splitted_big_numbers.map(

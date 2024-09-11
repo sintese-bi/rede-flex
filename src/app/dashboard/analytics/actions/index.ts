@@ -187,8 +187,7 @@ export async function handleGallonageTable() {
   });
   return { galonagem, produto, regional, regional_produto, combustivel };
 }
-
-export async function handleRankingByStation(ibm: string) {
+export async function handleGallonageRankingByStation(ibm: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/ranking?ibm=${ibm}`,
     {
@@ -203,11 +202,40 @@ export async function handleRankingByStation(ibm: string) {
       name: item["Nome"],
       User_id: item["User_id"],
       Venda: item["Venda"],
+      Galonagem: item["Galonagem"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      TMC: item["TMC"],
+      TMF: item["TMF"],
+      TMV: item["TMV"],
     };
   });
   return formmatedRanking;
 }
-
+export async function handleProductRankingByStation(ibm: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/prodranking?ibm=${ibm}`,
+    {
+      headers: microServiceRequestConfig(),
+      cache: "no-store",
+    }
+  );
+  const { ranking } = await response.json();
+  const formmatedRanking = ranking.map((item: any) => {
+    return {
+      ...item,
+      name: item["Nome"],
+      User_id: item["User_id"],
+      Produtos: item["Produtos"],
+      Venda: item["Venda"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      TMC: item["TMC"],
+      TMP: item["TMP"],
+    };
+  });
+  return formmatedRanking;
+}
 export async function handleGeolocations() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_EXTERN_API}/map-position`,

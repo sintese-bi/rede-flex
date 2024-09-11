@@ -1,8 +1,11 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DataTable } from "../table";
-import { ranking_columns } from "../columns";
+import { ranking_gallonage_columns, ranking_product_columns } from "../columns";
 import { useEffect, useState } from "react";
-import { handleRankingByStation } from "../../../actions";
+import {
+  handleGallonageRankingByStation,
+  handleProductRankingByStation,
+} from "../../../actions";
 
 export default function RankingTable({
   row,
@@ -16,7 +19,10 @@ export default function RankingTable({
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await handleRankingByStation(row.original.Posto_ibm);
+      const response =
+        type !== "produto"
+          ? await handleGallonageRankingByStation(row.original.Posto_ibm)
+          : await handleProductRankingByStation(row.original.Posto_ibm);
       setData(response);
     };
     fetch();
@@ -27,7 +33,11 @@ export default function RankingTable({
       <SheetTrigger>{name}</SheetTrigger>
       <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
         <DataTable
-          columns={ranking_columns}
+          columns={
+            type !== "produto"
+              ? ranking_gallonage_columns
+              : ranking_product_columns
+          }
           data={data}
           title={`Ranking de frentistas ${type} - ${name}`}
         />
