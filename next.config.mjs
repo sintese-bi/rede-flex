@@ -3,6 +3,9 @@ import { format } from "date-fns";
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+  env: {
+    TZ: "America/Sao_Paulo",
+  },
   async redirects() {
     return [
       {

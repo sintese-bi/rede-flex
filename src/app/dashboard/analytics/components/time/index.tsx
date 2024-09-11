@@ -2,12 +2,18 @@
 import { format } from "date-fns";
 import { ClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { formatInTimeZone } from "date-fns-tz";
 
 export default function Time() {
   const [time, setTime] = useState(format(new Date(), "HH:mm a dd/MM/yyyy"));
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTime(format(new Date(), "HH:mm a dd/MM/yyyy"));
+      const date = formatInTimeZone(
+        new Date(),
+        "America/Sao_Paulo",
+        "HH:mm a dd/MM/yyyy"
+      );
+      setTime(date);
     }, 1000);
 
     return () => clearInterval(intervalId);
