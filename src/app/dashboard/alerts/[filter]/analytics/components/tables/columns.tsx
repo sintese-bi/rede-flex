@@ -19,12 +19,14 @@ export const columns: ColumnDef<Alerts>[] = [
   {
     accessorKey: "alerts_configuration",
     header: "configurar alertas",
-    cell: ({ row }) => (
-      <FormComponentsAlertsTable
-        ibm_id={row.original.gas_station_id}
-        gas_station_whats_app={row.original.gas_station_whats_app}
-      />
-    ),
+    cell: ({ row }) => {
+      return (
+        <FormComponentsAlertsTable
+          ibm_id={row.original.gas_station_id}
+          gas_station_whats_app={row.original.gas_station_whats_app}
+        />
+      );
+    },
   },
   {
     accessorKey: "gas_station_whats_app",

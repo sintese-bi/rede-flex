@@ -51,7 +51,7 @@ export async function handleAlertsTable(): Promise<any> {
   );
   const { data } = await response.json();
   const formmated_data = data.map((data_item: any) => {
-    const telephones_array = data_item.gas_station_whats_app || [""];
+    const telephones_array = data_item.gas_whats_app || [""];
     const telephones_formmated = telephones_array.map((telefone: string) =>
       telefone.replace(/^(\d{2})(\d+)/, "($1)$2 ")
     );
@@ -59,7 +59,7 @@ export async function handleAlertsTable(): Promise<any> {
     const formmated_item = {
       name: data_item.name,
       gas_station_whats_app: telephones_string,
-      gas_station_id: data_item.gas_station_id,
+      gas_station_id: data_item.gas_id,
       "Configurar alerta": "margin_min_value",
     };
     return formmated_item;
