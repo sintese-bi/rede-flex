@@ -10,6 +10,7 @@ import {
 export default async function DashboardComponentsTables() {
   const { galonagem, produto, regional, regional_produto, combustivel } =
     await handleGallonageTable();
+
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable
