@@ -16,6 +16,7 @@ export async function handleDashboardBigNumbers(): Promise<
   const response = await fetch(
     `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
     {
+      cache: "no-cache",
       headers: microServiceRequestConfig(),
     }
   );
@@ -86,7 +87,6 @@ export async function handleDashboardRegionalFuelChart(params: {
   const data = await response.json();
   return data;
 }
-
 export async function handleDashboardRegionalProductChart(params: {
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
@@ -102,7 +102,6 @@ export async function handleDashboardRegionalProductChart(params: {
   const data = await response.json();
   return data;
 }
-
 export async function handleGallonageTable() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,

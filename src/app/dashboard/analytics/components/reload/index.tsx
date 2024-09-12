@@ -1,14 +1,10 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { RefreshCcwIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export default function Realod() {
-  const router = useRouter();
-
   const handleReload = () => {
-    router.refresh();
+    window.location.reload();
   };
   return (
     <Button

@@ -9,7 +9,6 @@ import { AlertCircleIcon } from "lucide-react";
 import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
-import Time from "../time";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
