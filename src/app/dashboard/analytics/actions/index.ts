@@ -121,6 +121,15 @@ export async function handleGallonageTable() {
       Lucro: item["Lucro"],
     };
   });
+  const grupo = dataframes["grupo"].map((item: any) => {
+    return {
+      name: item["Grupo"],
+      Posto: item["Posto"],
+      Produto: item["Produto"],
+      Quantidade: item["Quantidade"],
+      "Cod Produto": item["Cod Produto"],
+    };
+  });
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
@@ -184,7 +193,7 @@ export async function handleGallonageTable() {
       ),
     };
   });
-  return { galonagem, produto, regional, regional_produto, combustivel };
+  return { galonagem, produto, regional, regional_produto, combustivel, grupo };
 }
 export async function handleGallonageRankingByStation(ibm: string) {
   const response = await fetch(

@@ -3,14 +3,14 @@ import { handleGallonageTable } from "../../actions";
 import {
   combustivel_columns,
   gallonage_columns,
+  group_columns,
   product_columns,
   regional_columns,
   regional_product_columns,
 } from "./columns";
 export default async function DashboardComponentsTables() {
-  const { galonagem, produto, regional, regional_produto, combustivel } =
+  const { galonagem, produto, regional, regional_produto, combustivel, grupo } =
     await handleGallonageTable();
-
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable
@@ -37,6 +37,11 @@ export default async function DashboardComponentsTables() {
         data={combustivel}
         columns={combustivel_columns}
         title="Acompanhamento combustível"
+      />
+      <DataTable
+        data={grupo}
+        columns={group_columns}
+        title="Acompanhamento grupo"
       />
     </div>
   );

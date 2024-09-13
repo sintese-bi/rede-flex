@@ -25,11 +25,13 @@ export default function RegionFuel() {
     "Regional 5": 0,
     "Regional Itaúna": 0,
   });
-  const [filterVariable, setFilterVariable] =
-    useState<"volume_sold">("volume_sold");
+  const [filterVariable, setFilterVariable] = useState<
+    "volume_sold" | "invoicing"
+  >("volume_sold");
   const [isLoading, setIsLoading] = useState(true);
   const filterVariableOptions = [
     { variable: "volume_sold", label: "Galonagem" },
+    { variable: "invoicing", label: "Faturamento" },
   ];
   useEffect(() => {
     delay(2200).then(() => {

@@ -21,8 +21,9 @@ export default function DailyFuel() {
   const [data, setData] = useState<{ date: string; sum: number }[]>([
     { date: "2024-08-02", sum: 10 },
   ]);
-  const [filterVariable, setFilterVariable] =
-    useState<"volume_sold">("volume_sold");
+  const [filterVariable, setFilterVariable] = useState<
+    "volume_sold" | "invoicing"
+  >("volume_sold");
   const [filterDay, setFilterDay] = useState<
     | "Sunday"
     | "Monday"
@@ -36,6 +37,7 @@ export default function DailyFuel() {
   const [isLoading, setIsLoading] = useState(true);
   const filterVariableOptions = [
     { variable: "volume_sold", label: "Galonagem" },
+    { variable: "invoicing", label: "Faturamento" },
   ];
   const filterDayOptions = [
     { variable: "Sunday", label: "Domingo" },
