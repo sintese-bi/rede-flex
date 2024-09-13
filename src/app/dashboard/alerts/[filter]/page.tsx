@@ -14,7 +14,7 @@ export default async function Alerts({
       <Filter filter={params.filter} />
       <div className="flex flex-col w-full lg:gap-4 gap-12">
         <Suspense fallback={<TableLoading />}>
-          <AlertsTables />
+          <AlertsTables filter={params.filter} />
         </Suspense>
         <LogsComponents />
       </div>
@@ -23,5 +23,5 @@ export default async function Alerts({
 }
 
 export async function generateStaticParams() {
-  return [{ filter: "station" }, { filter: "regional" }];
+  return [{ filter: "station" }, { filter: "region" }];
 }
