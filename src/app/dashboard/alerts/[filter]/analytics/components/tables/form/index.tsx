@@ -5,6 +5,7 @@ import { handleAlertsUpdate } from "../../../actions";
 import VariableSelect from "./variable_select";
 import SubmitButton from "./submit";
 import { toast } from "@/components/ui/use-toast";
+import { useParams } from "next/navigation";
 export default function FormComponentsAlertsTable({
   ibm_id,
   gas_station_whats_app,
@@ -12,8 +13,9 @@ export default function FormComponentsAlertsTable({
   ibm_id: string;
   gas_station_whats_app: string;
 }) {
+  const { filter } = useParams<{ filter: string }>();
   async function handleFormSubmit(form: FormData) {
-    const { message } = await handleAlertsUpdate(form, ibm_id);
+    const { message } = await handleAlertsUpdate(form, ibm_id, filter);
     toast({
       variant: "default",
       duration: 1500,
@@ -23,7 +25,7 @@ export default function FormComponentsAlertsTable({
   }
   return (
     <form
-      className="flex flex-row w-full items-center gap-4"
+      className="flex flex-row w-full justify-end items-center gap-4"
       action={handleFormSubmit}
     >
       <VariableSelect />

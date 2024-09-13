@@ -18,7 +18,7 @@ export const columns: ColumnDef<Alerts>[] = [
   },
   {
     accessorKey: "alerts_configuration",
-    header: "configurar alertas",
+    header: () => <div className="text-right">Configurar alertas</div>,
     cell: ({ row }) => {
       return (
         <FormComponentsAlertsTable

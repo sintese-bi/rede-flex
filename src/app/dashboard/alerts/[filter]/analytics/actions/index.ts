@@ -36,10 +36,10 @@ export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
     ]
   );
 }
-export async function handleAlertsTable(): Promise<any> {
+export async function handleAlertsTable(filter: string): Promise<any> {
   const use_uuid = getUserUUID();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_EXTERN_API}/name-table/station`,
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/name-table/${filter}`,
     {
       method: "POST",
       cache: "no-cache",
@@ -53,7 +53,7 @@ export async function handleAlertsTable(): Promise<any> {
   const formmated_data = data.map((data_item: any) => {
     const telephones_array = data_item.gas_whats_app || [""];
     const telephones_formmated = telephones_array.map((telefone: string) =>
-      telefone.replace(/^(\d{2})(\d+)/, "($1)$2 ")
+      telefone.replace(/^\+?55?(\d{2})(\d+)/, "($1)$2 ")
     );
     const telephones_string = telephones_formmated.join(" ");
     const formmated_item = {
@@ -69,7 +69,8 @@ export async function handleAlertsTable(): Promise<any> {
 
 export async function handleAlertsUpdate(
   form: FormData,
-  ibm_id: string
+  ibm_id: string,
+  filter: string
 ): Promise<any> {
   const use_uuid = getUserUUID();
   const variable_name = form.get("variable");
@@ -89,7 +90,7 @@ export async function handleAlertsUpdate(
     telephones,
   };
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_EXTERN_API}/update-alert/station`,
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/update-alert/${filter}`,
     {
       method: "POST",
       cache: "no-cache",
