@@ -16,7 +16,9 @@ export async function handleDashboardBigNumbers(): Promise<
   const response = await fetch(
     `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
     {
-      cache: "no-cache",
+      next: {
+        revalidate: 240,
+      },
       headers: microServiceRequestConfig(),
     }
   );
@@ -102,7 +104,7 @@ export async function handleDashboardRegionalProductChart(params: {
   const data = await response.json();
   return data;
 }
-export async function handleGallonageTable() {
+export async function handleDataframes() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
     {
@@ -193,7 +195,40 @@ export async function handleGallonageTable() {
       ),
     };
   });
-  return { galonagem, produto, regional, regional_produto, combustivel, grupo };
+  const frentista = dataframes["frentista"].map((item: any) => {
+    return {
+      User_id: item["User_id"],
+      name: item["Nome"],
+      Regional: item["Regional"],
+      Galonagem: item["Galonagem"],
+      Venda: item["Venda"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      ibm: item["ibm"],
+    };
+  });
+  const frentistaprod = dataframes["frentistaprod"].map((item: any) => {
+    return {
+      User_id: item["User_id"],
+      name: item["Nome"],
+      Regional: item["Regional"],
+      Quantidade: item["Quantidade"],
+      Venda: item["Venda"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      ibm: item["ibm"],
+    };
+  });
+  return {
+    galonagem,
+    produto,
+    regional,
+    regional_produto,
+    combustivel,
+    grupo,
+    frentista,
+    frentistaprod,
+  };
 }
 export async function handleGallonageRankingByStation(ibm: string) {
   const response = await fetch(
@@ -234,8 +269,8 @@ export async function handleProductRankingByStation(ibm: string) {
       ...item,
       name: item["Nome"],
       User_id: item["User_id"],
-      Produtos: item["Produtos"],
       Venda: item["Venda"],
+      Produtos: item["Produtos"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       TMC: item["TMC"],

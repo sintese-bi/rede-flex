@@ -7,12 +7,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { DataTable } from "../table";
-import { ranking_gallonage_columns, ranking_product_columns } from "../columns";
 import { useEffect, useState } from "react";
 import {
   handleGallonageRankingByStation,
   handleProductRankingByStation,
 } from "../../../actions";
+import { ranking_gallonage } from "../columns/ranking_gallonage";
+import { ranking_product } from "../columns/ranking_product";
 
 export default function RankingTable({
   row,
@@ -34,7 +35,6 @@ export default function RankingTable({
     };
     fetch();
   }, [row.original.Posto_ibm, type]);
-
   return (
     <Sheet>
       <SheetTrigger>{name}</SheetTrigger>
@@ -44,11 +44,7 @@ export default function RankingTable({
           <SheetDescription></SheetDescription>
         </SheetHeader>
         <DataTable
-          columns={
-            type !== "produto"
-              ? ranking_gallonage_columns
-              : ranking_product_columns
-          }
+          columns={type !== "produto" ? ranking_gallonage : ranking_product}
           data={data}
           title={`Ranking de frentistas ${type} - ${name}`}
         />

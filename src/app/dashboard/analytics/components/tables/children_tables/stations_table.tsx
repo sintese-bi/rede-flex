@@ -1,6 +1,7 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DataTable } from "../table";
-import { gallonage_columns, product_columns } from "../columns";
+import { gallonage } from "../columns/gallonage";
+import { product } from "../columns/product";
 
 export default function StationsTable({
   row,
@@ -16,7 +17,7 @@ export default function StationsTable({
       <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px] overflow-y-auto">
         <DataTable
           data={row.original.stations}
-          columns={type !== "produto" ? gallonage_columns : product_columns}
+          columns={type !== "produto" ? gallonage : product}
           title={`Acompanhamento ${type} - ${name}`}
         />
       </SheetContent>
