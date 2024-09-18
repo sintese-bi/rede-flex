@@ -124,26 +124,6 @@ export const gallonage: any[] = [
     },
   },
   {
-    accessorKey: "TMF",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          TMF
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("TMF"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
-  {
     accessorKey: "TMV",
     header: ({ column }: any) => {
       return (

@@ -130,6 +130,9 @@ export async function handleDataframes() {
       Produto: item["Produto"],
       Quantidade: item["Quantidade"],
       "Cod Produto": item["Cod Produto"],
+      Custo: item["Custo"],
+      Lucro: item["Lucro"],
+      Faturamento: item["Faturamento"],
     };
   });
   const galonagem = dataframes["galonagem"].map((item: any) => {

@@ -1,6 +1,6 @@
 import { DataTable } from "./table";
 import { handleDataframes } from "../../actions";
-import { regional_gallonage } from "./columns/regional";
+import { regional_gallonage } from "./columns/regional_gallonage";
 import { regional_product } from "./columns/regional_product";
 import { gallonage } from "./columns/gallonage";
 import { product } from "./columns/product";
