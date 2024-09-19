@@ -42,6 +42,7 @@ export function DataTable<TData, TValue>({
     stations: false,
     Posto_ibm: false,
     ibm: false,
+    "Cod produto": false,
   });
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({

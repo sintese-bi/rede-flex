@@ -1,6 +1,5 @@
 import DashboardComponentsNavbar from "./analytics/components/navbar";
 import Realod from "./analytics/components/reload";
-import Time from "./analytics/components/time";
 export default function DashboardLayout({
   children,
 }: {
