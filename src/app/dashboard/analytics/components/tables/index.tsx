@@ -44,18 +44,22 @@ export default async function DashboardComponentsTables() {
       <DataTable
         data={combustivel}
         columns={fuel}
-        title="Acompanhamento combustível"
+        title="Acompanhamento da venda de combustiveis"
       />
-      <DataTable data={grupo} columns={group} title="Acompanhamento grupo" />
+      <DataTable
+        data={grupo}
+        columns={group}
+        title="Acompanhamento da venda de produtos"
+      />
       <DataTable
         data={frentista}
         columns={workers_gallonage}
-        title="Acompanhamento frentista galonagem"
+        title="Acompanhamento da galonagem por frentista"
       />
       <DataTable
         data={frentistaprod}
         columns={workers_products}
-        title="Acompanhamento frentista produtos"
+        title="Acompanhamento de produto por frenstita"
       />
     </div>
   );
