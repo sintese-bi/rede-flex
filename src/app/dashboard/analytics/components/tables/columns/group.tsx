@@ -4,12 +4,12 @@ import { ArrowUpDownIcon } from "lucide-react";
 
 export const group: any[] = [
   {
-    accessorKey: "name",
-    header: "Grupo",
-  },
-  {
     accessorKey: "Posto",
     header: "Posto",
+  },
+  {
+    accessorKey: "name",
+    header: "Grupo",
   },
   {
     accessorKey: "Produto",
