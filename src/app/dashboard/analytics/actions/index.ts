@@ -16,9 +16,6 @@ export async function handleDashboardBigNumbers(): Promise<
   const response = await fetch(
     `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
     {
-      next: {
-        revalidate: 240,
-      },
       headers: microServiceRequestConfig(),
     }
   );
@@ -150,6 +147,7 @@ export async function handleDataframes() {
       TMV: item["TMV"],
       "M/LT": item["M/LT"],
       Posto_ibm: item["Posto_ibm"],
+      Indicador: item["Indicador"],
     };
   });
   const produto = dataframes["produto"].map((item: any) => {
@@ -181,6 +179,7 @@ export async function handleDataframes() {
       stations: galonagem.filter(
         (product_item: any) => product_item.regional == item["Regional"]
       ),
+      Indicador: item["Indicador"],
     };
   });
   const regional_produto = dataframes["regional_produto"].map((item: any) => {

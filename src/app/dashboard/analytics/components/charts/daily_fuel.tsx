@@ -101,7 +101,7 @@ export default function DailyFuel() {
                 <SelectTrigger className="w-full text-xs w-[200px] h-8">
                   <SelectValue placeholder="Dia da semana" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent side="bottom">
                   {filterDayOptions.map(
                     (
                       filter: { variable: string; label: string },

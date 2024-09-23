@@ -1,3 +1,4 @@
+"use client";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -5,10 +6,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { AlertCircleIcon } from "lucide-react";
+import { AlertCircleIcon, Rewind } from "lucide-react";
 import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
+import { useEffect, useState } from "react";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
@@ -17,7 +19,7 @@ function gettingSectionTitle(index: 0 | 1 | 2) {
   };
   return sections[index];
 }
-function splitBigNumberIntoThree(
+async function splitBigNumberIntoThree(
   big_numbers: BigNumbersInterfaces[],
   size: number = 3
 ) {
@@ -27,9 +29,19 @@ function splitBigNumberIntoThree(
   }
   return response;
 }
-export default async function DashboardComponentsBigNumbers() {
-  const big_numbers: BigNumbersInterfaces[] = await handleDashboardBigNumbers();
-  const splitted_big_numbers = splitBigNumberIntoThree(big_numbers);
+export default function DashboardComponentsBigNumbers() {
+  const [bigNumbers, setBigNumbers] = useState<any>(null);
+  useEffect(() => {
+    async function fetchPosts() {
+      let res = await handleDashboardBigNumbers();
+      const splitted_big_numbers = await splitBigNumberIntoThree(res);
+      setBigNumbers(splitted_big_numbers);
+    }
+    fetchPosts();
+    const intervalId = setInterval(fetchPosts, 4 * 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  if (!bigNumbers) return <div>Loading...</div>;
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full">
       <div className="flex items-center gap-4">
@@ -48,7 +60,7 @@ export default async function DashboardComponentsBigNumbers() {
         </div>
       </div>
       <Separator />
-      {splitted_big_numbers.map(
+      {bigNumbers.map(
         (big_numbers_section: BigNumbersInterfaces[], index: 0 | 1 | 2) => (
           <div key={index} className="flex flex-col gap-1 h-full">
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>

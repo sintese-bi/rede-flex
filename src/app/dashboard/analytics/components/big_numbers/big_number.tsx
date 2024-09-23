@@ -1,6 +1,7 @@
+"use client";
 import { DollarSignIcon, FuelIcon, PercentIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
-export default async function DashboardComponentsBigNumber({
+export default function DashboardComponentsBigNumber({
   label,
   value,
   secondary_label,
