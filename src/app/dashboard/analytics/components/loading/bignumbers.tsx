@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AlertCircleIcon } from "lucide-react";
-export default async function BigNumbersLoading() {
+export default function BigNumbersLoading() {
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full h-full lg:h-96">
       <div className="flex items-center gap-2">

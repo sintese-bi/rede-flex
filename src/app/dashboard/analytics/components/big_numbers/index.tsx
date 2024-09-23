@@ -11,6 +11,7 @@ import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
 import { useEffect, useState } from "react";
+import BigNumbersLoading from "../loading/bignumbers";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
@@ -41,7 +42,7 @@ export default function DashboardComponentsBigNumbers() {
     const intervalId = setInterval(fetchPosts, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
-  if (!bigNumbers) return <div>Loading...</div>;
+  if (!bigNumbers) return <BigNumbersLoading />;
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full">
       <div className="flex items-center gap-4">
