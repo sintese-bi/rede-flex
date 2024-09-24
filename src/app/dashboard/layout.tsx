@@ -1,5 +1,6 @@
 import DashboardComponentsNavbar from "./analytics/components/navbar";
 import Realod from "./analytics/components/reload";
+import Time from "./analytics/components/time";
 export default function DashboardLayout({
   children,
 }: {
@@ -11,10 +12,7 @@ export default function DashboardLayout({
         <DashboardComponentsNavbar />
         <div className="flex flex-col justify-start items-start gap-4 h-full w-full py-4 overflow-auto px-2">
           <div className="flex items-center gap-4">
-            {/**
-             * <Time />
-
-             */}
+            <Time />
             <Realod />
           </div>
           {children}

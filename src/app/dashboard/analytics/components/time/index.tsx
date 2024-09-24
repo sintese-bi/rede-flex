@@ -1,22 +1,24 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { RefreshCcwIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { formatInTimeZone } from "date-fns-tz";
 
-export default function Realod() {
-  const router = useRouter();
+export default function Time() {
+  const [date, setDate] = useState(new Date());
 
-  const handleReload = () => {
-    router.refresh();
-  };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDate(new Date());
+    }, 4 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <Button
-      onClick={handleReload}
-      className="flex justify-center items-center w-[152px] py-2 rounded-md border-[1px] bg-main-color text-white gap-2"
-    >
-      <RefreshCcwIcon size={16} />
-      <p className="text-xs font-bold">Atualizar</p>
-    </Button>
+    <div className="flex justify-center items-center w-[152px] py-2 rounded-md border-[1px] border-2 gap-2">
+      <p className="text-xs font-bold">
+        {formatInTimeZone(date, "America/Sao_Paulo", "dd/MM/yyyy HH:mm a")}
+      </p>
+    </div>
   );
 }
