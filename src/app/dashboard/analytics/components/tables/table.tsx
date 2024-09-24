@@ -102,11 +102,13 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className={`${
+                    className={
                       row.original.Indicador !== undefined
-                        ? `bg-${row.original.Indicador ? "green" : "red"}-50`
+                        ? row.original.Indicador
+                          ? "bg-green-50"
+                          : "bg-red-50"
                         : "bg-white"
-                    }`}
+                    }
                   >
                     {row.getVisibleCells().map((cell: any) => (
                       <TableCell key={cell.id}>
