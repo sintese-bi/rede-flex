@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { AlertCircleIcon, Rewind } from "lucide-react";
+import { AlertCircleIcon } from "lucide-react";
 import { handleDashboardBigNumbers } from "../../actions";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
@@ -34,9 +34,9 @@ export default function DashboardComponentsBigNumbers() {
   const [bigNumbers, setBigNumbers] = useState<any>(null);
   useEffect(() => {
     async function fetchPosts() {
-      let res = await handleDashboardBigNumbers();
+      let response = await handleDashboardBigNumbers();
       localStorage.setItem("update_time", new Date().toDateString());
-      const splitted_big_numbers = await splitBigNumberIntoThree(res);
+      const splitted_big_numbers = await splitBigNumberIntoThree(response);
       setBigNumbers(splitted_big_numbers);
     }
     fetchPosts();

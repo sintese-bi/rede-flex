@@ -1,3 +1,4 @@
+"use client";
 import { DataTable } from "./table";
 import { handleDataframes } from "../../actions";
 import { regional_gallonage } from "./columns/regional_gallonage";
@@ -8,56 +9,59 @@ import { fuel } from "./columns/fuel";
 import { group } from "./columns/group";
 import { workers_gallonage } from "./columns/workers_gallonage";
 import { workers_products } from "./columns/workers_products";
-export default async function DashboardComponentsTables() {
-  const {
-    galonagem,
-    produto,
-    regional,
-    regional_produto,
-    combustivel,
-    grupo,
-    frentista,
-    frentistaprod,
-  } = await handleDataframes();
+import { useEffect, useState } from "react";
+import TableLoading from "../loading/table";
+export default function DashboardComponentsTables() {
+  const [data, setData] = useState<any>(null);
+  useEffect(() => {
+    async function fetchPosts() {
+      let response = await handleDataframes();
+      setData(response);
+    }
+    fetchPosts();
+    const intervalId = setInterval(fetchPosts, 4 * 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  if (!data) return <TableLoading />;
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable
-        data={regional}
+        data={data.regional}
         columns={regional_gallonage}
         title="Acompanhamento regional galonagem"
       />
       <DataTable
-        data={regional_produto}
+        data={data.regional_produto}
         columns={regional_product}
         title="Acompanhamento regional produto"
       />
       <DataTable
-        data={galonagem}
+        data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
       />
       <DataTable
-        data={produto}
+        data={data.produto}
         columns={product}
         title="Acompanhamento produtos"
       />
       <DataTable
-        data={combustivel}
+        data={data.combustivel}
         columns={fuel}
         title="Acompanhamento da venda de combustiveis"
       />
       <DataTable
-        data={grupo}
+        data={data.grupo}
         columns={group}
         title="Acompanhamento da venda de produtos"
       />
       <DataTable
-        data={frentista}
+        data={data.frentista}
         columns={workers_gallonage}
         title="Acompanhamento da galonagem por frentista"
       />
       <DataTable
-        data={frentistaprod}
+        data={data.frentistaprod}
         columns={workers_products}
         title="Acompanhamento de produto por frenstita"
       />
