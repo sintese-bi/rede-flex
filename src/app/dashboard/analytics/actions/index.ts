@@ -87,6 +87,39 @@ export async function handleDashboardRegionalFuelChart(params: {
   const data = await response.json();
   return data;
 }
+export async function handleDashboardRegionalStationFuelChart(params: {
+  variable_type: string;
+  regional_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-station-fuel`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleDashboardRegionalStationDailyFuelChart(params: {
+  variable_type: string;
+  week_day: string;
+}): Promise<{ date: string; sum: number }[]> {
+  console.log(params);
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-station-daily-fuel`,
+    {
+      cache: "no-cache",
+      headers: microServiceRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
 export async function handleDashboardRegionalProductChart(params: {
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {

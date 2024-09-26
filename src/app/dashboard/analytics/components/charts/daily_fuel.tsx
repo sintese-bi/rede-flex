@@ -13,7 +13,10 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { handleDashboardDailyFuelChart } from "../../actions";
+import {
+  handleDashboardDailyFuelChart,
+  handleDashboardRegionalStationDailyFuelChart,
+} from "../../actions";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -66,11 +69,6 @@ export default function DailyFuel() {
 
     fetchData();
   }, [filterVariable, filterDay]);
-  const options = {
-    animation: {
-      duration: 1500,
-    },
-  };
   const chartData = {
     labels: data.map((data_item) => data_item["date"]),
     datasets: [
@@ -84,6 +82,24 @@ export default function DailyFuel() {
         tension: 0.1,
       },
     ],
+  };
+  const options = {
+    animation: {
+      duration: 1500,
+    },
+    onClick: async (event: any, activeElements: any) => {
+      if (activeElements.length > 0) {
+        const clickedElementIndex = activeElements[0].index;
+        const clickedLabel = chartData.labels[clickedElementIndex];
+        setIsLoading(true);
+        const response = await handleDashboardRegionalStationDailyFuelChart({
+          week_day: clickedLabel,
+          variable_type: filterVariable,
+        });
+        setData(response);
+        setIsLoading(false);
+      }
+    },
   };
   return (
     <>

@@ -12,7 +12,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { handleDashboardRegionalFuelChart } from "../../actions";
+import {
+  handleDashboardRegionalFuelChart,
+  handleDashboardRegionalStationFuelChart,
+} from "../../actions";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -49,11 +52,6 @@ export default function RegionFuel() {
     };
     fetchData();
   }, [filterVariable]);
-  const options = {
-    animation: {
-      duration: 1500,
-    },
-  };
   const chartData = {
     labels: Object.keys(data),
     datasets: [
@@ -67,6 +65,24 @@ export default function RegionFuel() {
         tension: 0.1,
       },
     ],
+  };
+  const options = {
+    animation: {
+      duration: 1500,
+    },
+    onClick: async (event: any, activeElements: any) => {
+      if (activeElements.length > 0) {
+        const clickedElementIndex = activeElements[0].index;
+        const clickedLabel = chartData.labels[clickedElementIndex];
+        setIsLoading(true);
+        const response = await handleDashboardRegionalStationFuelChart({
+          regional_type: clickedLabel.replace(" ", "").toUpperCase(),
+          variable_type: filterVariable,
+        });
+        setData(response);
+        setIsLoading(false);
+      }
+    },
   };
   return (
     <>
