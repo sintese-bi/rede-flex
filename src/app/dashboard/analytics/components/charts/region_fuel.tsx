@@ -16,6 +16,7 @@ import {
   handleDashboardRegionalFuelChart,
   handleDashboardRegionalStationFuelChart,
 } from "../../actions";
+import { Button } from "@/components/ui/button";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -28,6 +29,9 @@ export default function RegionFuel() {
     "Regional 5": 0,
     "Regional Itaúna": 0,
   });
+  const [currentLevel, setCurrentLevel] = useState<"regional" | "station">(
+    "regional"
+  );
   const [filterVariable, setFilterVariable] = useState<
     "volume_sold" | "invoicing"
   >("volume_sold");
@@ -80,10 +84,19 @@ export default function RegionFuel() {
           variable_type: filterVariable,
         });
         setData(response);
+        setCurrentLevel("station");
         setIsLoading(false);
       }
     },
   };
+  async function handlePreviousLevel() {
+    setIsLoading(true);
+    const regionChart = await handleDashboardRegionalFuelChart({
+      variable_type: filterVariable,
+    });
+    setData(regionChart);
+    setIsLoading(false);
+  }
   return (
     <>
       {isLoading ? (
@@ -91,27 +104,36 @@ export default function RegionFuel() {
       ) : (
         <Suspense fallback={<ChartLoading />}>
           <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
-            <Select
-              name="variable"
-              onValueChange={(value: any) => setFilterVariable(value)}
-              defaultValue={filterVariable}
-            >
-              <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                <SelectValue placeholder="Filtro" />
-              </SelectTrigger>
-              <SelectContent>
-                {filterVariableOptions.map(
-                  (
-                    filter: { variable: string; label: string },
-                    index: number
-                  ) => (
-                    <SelectItem key={index} value={filter["variable"]}>
-                      {filter["label"]}
-                    </SelectItem>
-                  )
-                )}
-              </SelectContent>
-            </Select>
+            <div className="flex gap-2">
+              <Select
+                name="variable"
+                onValueChange={(value: any) => setFilterVariable(value)}
+                defaultValue={filterVariable}
+              >
+                <SelectTrigger className="w-full text-xs w-[200px] h-8">
+                  <SelectValue placeholder="Filtro" />
+                </SelectTrigger>
+                <SelectContent>
+                  {filterVariableOptions.map(
+                    (
+                      filter: { variable: string; label: string },
+                      index: number
+                    ) => (
+                      <SelectItem key={index} value={filter["variable"]}>
+                        {filter["label"]}
+                      </SelectItem>
+                    )
+                  )}
+                </SelectContent>
+              </Select>
+              <Button
+                className="text-xs h-8"
+                disabled={currentLevel == "regional"}
+                onClick={handlePreviousLevel}
+              >
+                Voltar
+              </Button>
+            </div>
             <Separator />
             <div className="flex flex-col justify-center items-start h-full">
               <p className="text-xs font-bold text-slate-800 uppercase">

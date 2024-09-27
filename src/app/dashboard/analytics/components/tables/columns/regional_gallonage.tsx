@@ -143,6 +143,26 @@ export const regional_gallonage: any[] = [
     },
   },
   {
+    accessorKey: "M/LT",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          M/LT
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("M/LT"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
     accessorKey: "stations",
     header: "Postos",
   },

@@ -107,7 +107,6 @@ export async function handleDashboardRegionalStationDailyFuelChart(params: {
   variable_type: string;
   week_day: string;
 }): Promise<{ date: string; sum: number }[]> {
-  console.log(params);
   const response = await fetch(
     `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-station-daily-fuel`,
     {
@@ -144,6 +143,8 @@ export async function handleDataframes() {
     }
   );
   const dataframes = await response.json();
+  const stationAvarageMLT = dataframes["MLTMedioPostos"];
+  const stationAvarageTMP = dataframes["TMPMedioPosto"];
   const combustivel = dataframes["combustivel"].map((item: any) => {
     return {
       name: item["Nome da Empresa"],
@@ -210,6 +211,7 @@ export async function handleDataframes() {
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
+      "M/LT": item["M/LT"],
       stations: galonagem.filter(
         (product_item: any) => product_item.regional == item["Regional"]
       ),
@@ -255,6 +257,14 @@ export async function handleDataframes() {
       ibm: item["ibm"],
     };
   });
+  const lowerThanAvarageCount = {
+    "M/LT": galonagem.filter(
+      (item: any) => Number(item["M/LT"]) < Number(stationAvarageMLT)
+    ).length,
+    TMP: produto.filter(
+      (item: any) => Number(item["TMP"]) < Number(stationAvarageTMP)
+    ).length,
+  };
   return {
     galonagem,
     produto,
@@ -264,6 +274,7 @@ export async function handleDataframes() {
     grupo,
     frentista,
     frentistaprod,
+    lowerThanAvarageCount,
   };
 }
 export async function handleGallonageRankingByStation(ibm: string) {

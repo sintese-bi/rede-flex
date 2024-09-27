@@ -19,34 +19,25 @@ export default function DashboardComponentsBigNumber({
               <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
                 {value}
               </p>
-              <PercentIcon
-                className="lg:flex md:flex hidden text-slate-400"
-                size={18}
-              />
+              <PercentIcon className="flex text-slate-400" size={18} />
             </>
           ) : label.includes("Venda") || label.includes("Lucro") ? (
             <>
-              <DollarSignIcon
-                className="lg:flex md:flex hidden text-slate-400"
-                size={18}
-              />
+              <DollarSignIcon className="flex text-slate-400" size={18} />
               <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
                 {value}
               </p>
             </>
           ) : label.includes("M/LT") ? (
             <>
-              <p className="lg:flex md:flex hidden text-slate-400">$/L</p>
+              <p className="flex text-slate-400">$/L</p>
               <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
                 {value}
               </p>
             </>
           ) : (
             <>
-              <FuelIcon
-                className="lg:flex md:flex hidden text-slate-400"
-                size={18}
-              />
+              <FuelIcon className="flex text-slate-400" size={18} />
               <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
                 {value}
               </p>
@@ -61,10 +52,7 @@ export default function DashboardComponentsBigNumber({
             <p className="text-xs font-bold text-slate-200">
               {secondary_value}
             </p>
-            <PercentIcon
-              className="lg:flex md:flex hidden text-slate-400"
-              size={14}
-            />
+            <PercentIcon className="flex text-slate-400" size={14} />
           </div>
         ) : (
           <p className="text-xs font-bold text-slate-200">{secondary_value}</p>

@@ -17,6 +17,7 @@ import {
   handleDashboardDailyFuelChart,
   handleDashboardRegionalStationDailyFuelChart,
 } from "../../actions";
+import { Button } from "@/components/ui/button";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -24,6 +25,9 @@ export default function DailyFuel() {
   const [data, setData] = useState<{ date: string; sum: number }[]>([
     { date: "2024-08-02", sum: 10 },
   ]);
+  const [currentLevel, setCurrentLevel] = useState<"daily" | "station">(
+    "daily"
+  );
   const [filterVariable, setFilterVariable] = useState<
     "volume_sold" | "invoicing"
   >("volume_sold");
@@ -70,13 +74,19 @@ export default function DailyFuel() {
     fetchData();
   }, [filterVariable, filterDay]);
   const chartData = {
-    labels: data.map((data_item) => data_item["date"]),
+    labels:
+      currentLevel == "daily"
+        ? data.map((data_item) => data_item["date"])
+        : Object.keys(data),
     datasets: [
       {
         label: filterVariableOptions.filter(
           (item) => item["variable"] == filterVariable
         )[0]["label"],
-        data: data.map((data_item) => data_item["sum"]),
+        data:
+          currentLevel == "daily"
+            ? data.map((data_item) => data_item["sum"])
+            : Object.values(data),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
@@ -97,10 +107,21 @@ export default function DailyFuel() {
           variable_type: filterVariable,
         });
         setData(response);
+        setCurrentLevel("station");
         setIsLoading(false);
       }
     },
   };
+  async function handlePreviousLevel() {
+    setIsLoading(true);
+    const dailyChart = await handleDashboardDailyFuelChart({
+      variable_type: filterVariable,
+      week_day: filterDay,
+    });
+    setData(dailyChart);
+    setCurrentLevel("daily");
+    setIsLoading(false);
+  }
   return (
     <>
       {isLoading ? (
@@ -109,48 +130,57 @@ export default function DailyFuel() {
         <Suspense fallback={<ChartLoading />}>
           <div className="flex flex-col gap-2 h-full w-full ">
             <div className="flex w-full h-ful gap-2">
-              <Select
-                name="variable"
-                onValueChange={(value: any) => setFilterDay(value)}
-                defaultValue={filterDay}
-              >
-                <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                  <SelectValue placeholder="Dia da semana" />
-                </SelectTrigger>
-                <SelectContent side="bottom">
-                  {filterDayOptions.map(
-                    (
-                      filter: { variable: string; label: string },
-                      index: number
-                    ) => (
-                      <SelectItem key={index} value={filter["variable"]}>
-                        {filter["label"]}
-                      </SelectItem>
-                    )
-                  )}
-                </SelectContent>
-              </Select>
-              <Select
-                name="variable"
-                onValueChange={(value: any) => setFilterVariable(value)}
-                defaultValue={filterVariable}
-              >
-                <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                  <SelectValue placeholder="Variável" />
-                </SelectTrigger>
-                <SelectContent>
-                  {filterVariableOptions.map(
-                    (
-                      filter: { variable: string; label: string },
-                      index: number
-                    ) => (
-                      <SelectItem key={index} value={filter["variable"]}>
-                        {filter["label"]}
-                      </SelectItem>
-                    )
-                  )}
-                </SelectContent>
-              </Select>
+              <div className="flex gap-2">
+                <Select
+                  name="variable"
+                  onValueChange={(value: any) => setFilterDay(value)}
+                  defaultValue={filterDay}
+                >
+                  <SelectTrigger className="w-full text-xs w-[200px] h-8">
+                    <SelectValue placeholder="Dia da semana" />
+                  </SelectTrigger>
+                  <SelectContent side="bottom">
+                    {filterDayOptions.map(
+                      (
+                        filter: { variable: string; label: string },
+                        index: number
+                      ) => (
+                        <SelectItem key={index} value={filter["variable"]}>
+                          {filter["label"]}
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectContent>
+                </Select>
+                <Select
+                  name="variable"
+                  onValueChange={(value: any) => setFilterVariable(value)}
+                  defaultValue={filterVariable}
+                >
+                  <SelectTrigger className="w-full text-xs w-[200px] h-8">
+                    <SelectValue placeholder="Variável" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {filterVariableOptions.map(
+                      (
+                        filter: { variable: string; label: string },
+                        index: number
+                      ) => (
+                        <SelectItem key={index} value={filter["variable"]}>
+                          {filter["label"]}
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectContent>
+                </Select>
+                <Button
+                  className="text-xs h-8"
+                  disabled={currentLevel == "daily"}
+                  onClick={handlePreviousLevel}
+                >
+                  Voltar
+                </Button>
+              </div>
             </div>
             <Separator />
             <div className="flex flex-col justify-center items-start h-full">
