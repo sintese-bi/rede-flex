@@ -143,6 +143,8 @@ export async function handleDataframes() {
     }
   );
   const dataframes = await response.json();
+  const regionalAvarageMLT = dataframes["regionalGalonagemMLTMedio"];
+  const regionalAvarageTMP = dataframes["regionalProdTMPMedio"];
   const stationAvarageMLT = dataframes["MLTMedioPostos"];
   const stationAvarageTMP = dataframes["TMPMedioPosto"];
   const combustivel = dataframes["combustivel"].map((item: any) => {
@@ -275,6 +277,10 @@ export async function handleDataframes() {
     frentista,
     frentistaprod,
     lowerThanAvarageCount,
+    stationAvarageMLT,
+    stationAvarageTMP,
+    regionalAvarageMLT,
+    regionalAvarageTMP,
   };
 }
 export async function handleGallonageRankingByStation(ibm: string) {
