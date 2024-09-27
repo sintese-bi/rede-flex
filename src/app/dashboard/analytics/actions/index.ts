@@ -143,10 +143,14 @@ export async function handleDataframes() {
     }
   );
   const dataframes = await response.json();
-  const regionalAvarageMLT = dataframes["regionalGalonagemMLTMedio"];
-  const regionalAvarageTMP = dataframes["regionalProdTMPMedio"];
-  const stationAvarageMLT = dataframes["MLTMedioPostos"];
-  const stationAvarageTMP = dataframes["TMPMedioPosto"];
+  const regionalAvarageMLT = Number(
+    dataframes["regionalGalonagemMLTMedio"]
+  ).toFixed(2);
+  const regionalAvarageTMP = Number(dataframes["regionalProdTMPMedio"]).toFixed(
+    2
+  );
+  const stationAvarageMLT = Number(dataframes["MLTMedioPostos"]).toFixed(2);
+  const stationAvarageTMP = Number(dataframes["TMPMedioPosto"]).toFixed(2);
   const combustivel = dataframes["combustivel"].map((item: any) => {
     return {
       name: item["Nome da Empresa"],

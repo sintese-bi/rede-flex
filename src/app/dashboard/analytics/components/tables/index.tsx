@@ -23,6 +23,8 @@ export default function DashboardComponentsTables() {
     return () => clearInterval(intervalId);
   }, []);
   if (!data) return <TableLoading />;
+  console.log(data.regionalAvarageMLT);
+
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable
@@ -35,7 +37,7 @@ export default function DashboardComponentsTables() {
         data={data.regional_produto}
         columns={regional_product}
         title="Acompanhamento regional produto"
-        averageMeasure={`M/LT médio: ${data.regionalAvarageTMP}`}
+        averageMeasure={`TMP médio: ${data.regionalAvarageTMP}`}
       />
       <DataTable
         data={data.galonagem}
@@ -47,7 +49,7 @@ export default function DashboardComponentsTables() {
         data={data.produto}
         columns={product}
         title="Acompanhamento produtos"
-        averageMeasure={`M/LT médio: ${data.regionalAvarageTMP}`}
+        averageMeasure={`TMP médio: ${data.regionalAvarageTMP}`}
       />
       <DataTable
         data={data.combustivel}
