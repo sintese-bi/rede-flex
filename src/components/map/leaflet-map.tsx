@@ -14,10 +14,19 @@ type MyObject = {
   "Venda de Combustível": string;
   "Produtos vendidos": string;
   Galonagem: string;
+  averageComparison: string;
 };
 export default function Leaflet({ data }: { data: MyObject[] }) {
   var greenIcon = L.icon({
-    iconUrl: "/icons/fuel.png",
+    iconUrl: "/icons/green_fuel_icon.png",
+    iconSize: [38, 35], // size of the icon
+    shadowSize: [50, 64], // size of the shadow
+    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62], // the same for the shadow
+    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+  });
+  var redIcon = L.icon({
+    iconUrl: "/icons/red_fuel_icon.png",
     iconSize: [38, 35], // size of the icon
     shadowSize: [50, 64], // size of the shadow
     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
@@ -39,7 +48,7 @@ export default function Leaflet({ data }: { data: MyObject[] }) {
         return (
           <Marker
             position={[item["lat"], item["long"]]}
-            icon={greenIcon}
+            icon={item["averageComparison"] ? greenIcon : redIcon}
             key={index}
           >
             <MapPopup item={item} />

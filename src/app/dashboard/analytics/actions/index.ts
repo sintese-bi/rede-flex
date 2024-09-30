@@ -149,8 +149,12 @@ export async function handleDataframes() {
   const regionalAvarageTMP = Number(dataframes["regionalProdTMPMedio"]).toFixed(
     2
   );
+  const regionalAvarageTMC = Number(dataframes["TMCMedioPosto"]).toFixed(2);
+  const regionalAvarageTMV = Number(dataframes["TMVMedioRegional"]).toFixed(2);
   const stationAvarageMLT = Number(dataframes["MLTMedioPostos"]).toFixed(2);
   const stationAvarageTMP = Number(dataframes["TMPMedioPosto"]).toFixed(2);
+  const stationAvarageTMC = Number(dataframes["TMCMedioPosto"]).toFixed(2);
+  const stationAvarageTMV = Number(dataframes["TMVMedioPosto"]).toFixed(2);
   const combustivel = dataframes["combustivel"].map((item: any) => {
     return {
       name: item["Nome da Empresa"],
@@ -283,8 +287,12 @@ export async function handleDataframes() {
     lowerThanAvarageCount,
     stationAvarageMLT,
     stationAvarageTMP,
+    stationAvarageTMC,
+    stationAvarageTMV,
     regionalAvarageMLT,
     regionalAvarageTMP,
+    regionalAvarageTMC,
+    regionalAvarageTMV,
   };
 }
 export async function handleGallonageRankingByStation(ibm: string) {

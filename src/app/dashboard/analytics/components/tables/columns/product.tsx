@@ -125,26 +125,6 @@ export const product: any[] = [
     },
   },
   {
-    accessorKey: "TMC",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          TMC
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("TMC"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium text-center">R$ {formatted}</div>;
-    },
-  },
-  {
     accessorKey: "TMP",
     header: ({ column }: any) => {
       return (

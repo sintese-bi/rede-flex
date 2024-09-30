@@ -33,14 +33,14 @@ async function splitBigNumberIntoThree(
 export default function DashboardComponentsBigNumbers() {
   const [bigNumbers, setBigNumbers] = useState<any>(null);
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetch() {
       let response = await handleDashboardBigNumbers();
       localStorage.setItem("update_time", new Date().toDateString());
       const splitted_big_numbers = await splitBigNumberIntoThree(response);
       setBigNumbers(splitted_big_numbers);
     }
-    fetchPosts();
-    const intervalId = setInterval(fetchPosts, 4 * 60 * 1000);
+    fetch();
+    const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
   if (!bigNumbers) return <BigNumbersLoading />;

@@ -17,36 +17,26 @@ const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
 export default function RegionProduct() {
-  const [data, setData] = useState<any>({
-    "Regional 1": 0,
-    "Regional 2": 0,
-    "Regional 3": 0,
-    "Regional 4": 0,
-    "Regional 5": 0,
-    "Regional Itaúna": 0,
-  });
+  const [data, setData] = useState<any>(null);
   const [filterVariable, setFilterVariable] =
     useState<"invoicing">("invoicing");
-  const [isLoading, setIsLoading] = useState(true);
   const filterVariableOptions = [
     { variable: "invoicing", label: "Faturamento" },
   ];
+
   useEffect(() => {
-    delay(2200).then(() => {
-      setIsLoading(false);
-    });
-  }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const regionChart = await handleDashboardRegionalProductChart({
+    const fetch = async () => {
+      const response = await handleDashboardRegionalProductChart({
         variable_type: filterVariable,
       });
-      setData(regionChart);
-      setIsLoading(false);
+      setData(response);
     };
-    fetchData();
+    fetch();
+    const intervalId = setInterval(fetch, 4 * 60 * 1000);
+    return () => clearInterval(intervalId);
   }, [filterVariable]);
+  if (!data) return <ChartLoading />;
+
   const options = {
     animation: {
       duration: 1500,
@@ -67,47 +57,32 @@ export default function RegionProduct() {
     ],
   };
   return (
-    <>
-      {isLoading ? (
-        <ChartLoading />
-      ) : (
-        <Suspense fallback={<ChartLoading />}>
-          <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
-            <Select
-              name="variable"
-              onValueChange={(value: any) => setFilterVariable(value)}
-              defaultValue={filterVariable}
-            >
-              <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                <SelectValue placeholder="Filtro" />
-              </SelectTrigger>
-              <SelectContent>
-                {filterVariableOptions.map(
-                  (
-                    filter: { variable: string; label: string },
-                    index: number
-                  ) => (
-                    <SelectItem key={index} value={filter["variable"]}>
-                      {filter["label"]}
-                    </SelectItem>
-                  )
-                )}
-              </SelectContent>
-            </Select>
-            <Separator />
-            <div className="flex flex-col justify-center items-start h-full">
-              <p className="text-xs font-bold text-slate-800 uppercase">
-                Gráfico regional produto
-              </p>
-              <Bar
-                data={chartData}
-                className="h-full w-full"
-                options={options}
-              />
-            </div>
-          </div>
-        </Suspense>
-      )}
-    </>
+    <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
+      <Select
+        name="variable"
+        onValueChange={(value: any) => setFilterVariable(value)}
+        defaultValue={filterVariable}
+      >
+        <SelectTrigger className="w-full text-xs w-[200px] h-8">
+          <SelectValue placeholder="Filtro" />
+        </SelectTrigger>
+        <SelectContent>
+          {filterVariableOptions.map(
+            (filter: { variable: string; label: string }, index: number) => (
+              <SelectItem key={index} value={filter["variable"]}>
+                {filter["label"]}
+              </SelectItem>
+            )
+          )}
+        </SelectContent>
+      </Select>
+      <Separator />
+      <div className="flex flex-col justify-center items-start h-full">
+        <p className="text-xs font-bold text-slate-800 uppercase">
+          Gráfico regional produto
+        </p>
+        <Bar data={chartData} className="h-full w-full" options={options} />
+      </div>
+    </div>
   );
 }

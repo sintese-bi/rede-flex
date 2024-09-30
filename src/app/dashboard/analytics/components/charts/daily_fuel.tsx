@@ -22,12 +22,11 @@ const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
 export default function DailyFuel() {
-  const [data, setData] = useState<{ date: string; sum: number }[]>([
-    { date: "2024-08-02", sum: 10 },
-  ]);
+  const [data, setData] = useState<any>(null);
   const [currentLevel, setCurrentLevel] = useState<"daily" | "station">(
     "daily"
   );
+  const [clickedLabel, setClickedLabel] = useState<string>("");
   const [filterVariable, setFilterVariable] = useState<
     "volume_sold" | "invoicing"
   >("volume_sold");
@@ -41,7 +40,7 @@ export default function DailyFuel() {
     | "Saturday"
     | string
   >(format(new Date(), "EEEE"));
-  const [isLoading, setIsLoading] = useState(true);
+
   const filterVariableOptions = [
     { variable: "volume_sold", label: "Galonagem" },
     { variable: "invoicing", label: "Faturamento" },
@@ -56,27 +55,31 @@ export default function DailyFuel() {
     { variable: "Saturday", label: "Sábado" },
   ];
   useEffect(() => {
-    delay(2200).then(() => {
-      setIsLoading(false);
-    });
+    delay(2200).then(() => {});
   }, []);
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const dailyChart = await handleDashboardDailyFuelChart({
-        week_day: filterDay,
-        variable_type: filterVariable,
-      });
-      setData(dailyChart);
-      setIsLoading(false);
+    const fetch = async () => {
+      const response =
+        currentLevel == "daily"
+          ? await handleDashboardDailyFuelChart({
+              week_day: filterDay,
+              variable_type: filterVariable,
+            })
+          : await handleDashboardRegionalStationDailyFuelChart({
+              week_day: clickedLabel,
+              variable_type: filterVariable,
+            });
+      setData(response);
     };
-
-    fetchData();
+    fetch();
+    const intervalId = setInterval(fetch, 4 * 60 * 1000);
+    return () => clearInterval(intervalId);
   }, [filterVariable, filterDay]);
+  if (!data) return <ChartLoading />;
   const chartData = {
     labels:
       currentLevel == "daily"
-        ? data.map((data_item) => data_item["date"])
+        ? data.map((data_item: any) => data_item["date"])
         : Object.keys(data),
     datasets: [
       {
@@ -85,7 +88,7 @@ export default function DailyFuel() {
         )[0]["label"],
         data:
           currentLevel == "daily"
-            ? data.map((data_item) => data_item["sum"])
+            ? data.map((data_item: any) => data_item["sum"])
             : Object.values(data),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
@@ -100,102 +103,88 @@ export default function DailyFuel() {
     onClick: async (event: any, activeElements: any) => {
       if (activeElements.length > 0) {
         const clickedElementIndex = activeElements[0].index;
-        const clickedLabel = chartData.labels[clickedElementIndex];
-        setIsLoading(true);
+        setClickedLabel(chartData.labels[clickedElementIndex]);
+        setData(null);
         const response = await handleDashboardRegionalStationDailyFuelChart({
           week_day: clickedLabel,
           variable_type: filterVariable,
         });
         setData(response);
         setCurrentLevel("station");
-        setIsLoading(false);
       }
     },
   };
   async function handlePreviousLevel() {
-    setIsLoading(true);
+    setData(null);
     const dailyChart = await handleDashboardDailyFuelChart({
       variable_type: filterVariable,
       week_day: filterDay,
     });
-    setData(dailyChart);
     setCurrentLevel("daily");
-    setIsLoading(false);
+    setData(dailyChart);
   }
   return (
-    <>
-      {isLoading ? (
-        <ChartLoading />
-      ) : (
-        <Suspense fallback={<ChartLoading />}>
-          <div className="flex flex-col gap-2 h-full w-full ">
-            <div className="flex w-full h-ful gap-2">
-              <div className="flex gap-2">
-                <Select
-                  name="variable"
-                  onValueChange={(value: any) => setFilterDay(value)}
-                  defaultValue={filterDay}
-                >
-                  <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                    <SelectValue placeholder="Dia da semana" />
-                  </SelectTrigger>
-                  <SelectContent side="bottom">
-                    {filterDayOptions.map(
-                      (
-                        filter: { variable: string; label: string },
-                        index: number
-                      ) => (
-                        <SelectItem key={index} value={filter["variable"]}>
-                          {filter["label"]}
-                        </SelectItem>
-                      )
-                    )}
-                  </SelectContent>
-                </Select>
-                <Select
-                  name="variable"
-                  onValueChange={(value: any) => setFilterVariable(value)}
-                  defaultValue={filterVariable}
-                >
-                  <SelectTrigger className="w-full text-xs w-[200px] h-8">
-                    <SelectValue placeholder="Variável" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {filterVariableOptions.map(
-                      (
-                        filter: { variable: string; label: string },
-                        index: number
-                      ) => (
-                        <SelectItem key={index} value={filter["variable"]}>
-                          {filter["label"]}
-                        </SelectItem>
-                      )
-                    )}
-                  </SelectContent>
-                </Select>
-                <Button
-                  className="text-xs h-8"
-                  disabled={currentLevel == "daily"}
-                  onClick={handlePreviousLevel}
-                >
-                  Voltar
-                </Button>
-              </div>
-            </div>
-            <Separator />
-            <div className="flex flex-col justify-center items-start h-full">
-              <p className="text-xs font-bold text-slate-800 uppercase">
-                Gráfico diário combustível
-              </p>
-              <Bar
-                data={chartData}
-                className="h-full w-full"
-                options={options}
-              />
-            </div>
-          </div>
-        </Suspense>
-      )}
-    </>
+    <div className="flex flex-col gap-2 h-full w-full ">
+      <div className="flex w-full h-ful gap-2">
+        <div className="flex gap-2">
+          <Select
+            name="variable"
+            onValueChange={(value: any) => setFilterDay(value)}
+            defaultValue={filterDay}
+          >
+            <SelectTrigger className="w-full text-xs w-[200px] h-8">
+              <SelectValue placeholder="Dia da semana" />
+            </SelectTrigger>
+            <SelectContent side="bottom">
+              {filterDayOptions.map(
+                (
+                  filter: { variable: string; label: string },
+                  index: number
+                ) => (
+                  <SelectItem key={index} value={filter["variable"]}>
+                    {filter["label"]}
+                  </SelectItem>
+                )
+              )}
+            </SelectContent>
+          </Select>
+          <Select
+            name="variable"
+            onValueChange={(value: any) => setFilterVariable(value)}
+            defaultValue={filterVariable}
+          >
+            <SelectTrigger className="w-full text-xs w-[200px] h-8">
+              <SelectValue placeholder="Variável" />
+            </SelectTrigger>
+            <SelectContent>
+              {filterVariableOptions.map(
+                (
+                  filter: { variable: string; label: string },
+                  index: number
+                ) => (
+                  <SelectItem key={index} value={filter["variable"]}>
+                    {filter["label"]}
+                  </SelectItem>
+                )
+              )}
+            </SelectContent>
+          </Select>
+          <Button
+            className="text-xs h-8"
+            disabled={currentLevel == "daily"}
+            onClick={handlePreviousLevel}
+          >
+            Voltar
+          </Button>
+        </div>
+      </div>
+      <Separator />
+      <div className="flex flex-col justify-center items-start h-full">
+        <p className="text-xs font-bold text-slate-800 uppercase">
+          Gráfico diário combustível
+        </p>
+        <Bar data={chartData} className="h-full w-full" options={options} />
+      </div>
+    </div>
   );
 }

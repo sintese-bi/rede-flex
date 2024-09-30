@@ -14,24 +14,22 @@ import TableLoading from "../loading/table";
 export default function DashboardComponentsTables() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetch() {
       let response = await handleDataframes();
       setData(response);
     }
-    fetchPosts();
-    const intervalId = setInterval(fetchPosts, 4 * 60 * 1000);
+    fetch();
+    const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
   if (!data) return <TableLoading />;
-  console.log(data.regionalAvarageMLT);
-
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable
         data={data.regional}
         columns={regional_gallonage}
         title="Acompanhamento regional galonagem"
-        averageMeasure={`M/LT médio: ${data.regionalAvarageMLT}`}
+        averageMeasure={`M/LT médio: ${data.regionalAvarageMLT} - TMC médio: ${data.regionalAvarageTMC} - TMV médio: ${data.regionalAvarageTMV}`}
       />
       <DataTable
         data={data.regional_produto}
@@ -43,7 +41,7 @@ export default function DashboardComponentsTables() {
         data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
-        averageMeasure={`M/LT médio: ${data.stationAvarageMLT}`}
+        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.produto}
@@ -55,6 +53,7 @@ export default function DashboardComponentsTables() {
         data={data.combustivel}
         columns={fuel}
         title="Acompanhamento da venda de combustiveis"
+        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.grupo}
@@ -65,6 +64,7 @@ export default function DashboardComponentsTables() {
         data={data.frentista}
         columns={workers_gallonage}
         title="Acompanhamento da galonagem por frentista"
+        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.frentistaprod}
