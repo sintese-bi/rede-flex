@@ -50,7 +50,7 @@ export default function RegionFuel() {
     fetch();
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
-  }, [filterVariable]);
+  }, [filterVariable, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
   const chartData = {
     labels: Object.keys(data),

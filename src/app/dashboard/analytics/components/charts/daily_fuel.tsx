@@ -74,7 +74,7 @@ export default function DailyFuel() {
     fetch();
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
-  }, [filterVariable, filterDay]);
+  }, [filterVariable, filterDay, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
   const chartData = {
     labels:
