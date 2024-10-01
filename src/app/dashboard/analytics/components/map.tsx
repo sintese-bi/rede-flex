@@ -14,7 +14,7 @@ const Leaflet = dynamic(() => import("@/components/map/leaflet-map"), {
 export default async function DashboardComponentsMap() {
   const data = await handleGeolocations();
   return (
-    <div className="flex flex-col gap-2 lg:w-2/5 w-full rounded-lg h-full">
+    <div className="flex flex-col gap-2 lg:w-2/5 w-full rounded-lg h-full min-h-[342px]">
       <div className="flex items-center gap-2">
         <p className="flex items-center text-sm font-bold text-slate-600">
           Geocalização de postos

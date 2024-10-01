@@ -23,9 +23,7 @@ export default async function Dashboard() {
           <DashboardComponentsCharts />
         </div>
         <Separator />
-        <Suspense fallback={<TableLoading />}>
-          <DashboardComponentsTables />
-        </Suspense>
+        <DashboardComponentsTables />
       </div>
     </div>
   );

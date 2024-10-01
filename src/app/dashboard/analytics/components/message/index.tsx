@@ -1,6 +1,5 @@
 import { AlertCircleIcon } from "lucide-react";
-import { handleDataframes } from "../../actions";
-export default async function Message({
+export default function Message({
   message,
   variant,
   position,
