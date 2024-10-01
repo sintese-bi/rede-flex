@@ -21,7 +21,9 @@ export default function DashboardComponentsBigNumber({
               </p>
               <PercentIcon className="flex text-slate-400" size={18} />
             </>
-          ) : label.includes("Venda") || label.includes("Lucro") ? (
+          ) : label.includes("Venda") ||
+            label.includes("Lucro") ||
+            label.includes("Faturamento") ? (
             <>
               <DollarSignIcon className="flex text-slate-400" size={18} />
               <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
