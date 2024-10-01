@@ -87,12 +87,13 @@ export async function handleDashboardRegionalFuelChart(params: {
   const data = await response.json();
   return data;
 }
-export async function handleDashboardRegionalStationFuelChart(params: {
+export async function handleDashboardRegionalStationChart(params: {
   variable_type: string;
   regional_type: string;
+  filter: number;
 }): Promise<{ date: string; sum: number }[]> {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-station-fuel`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-graph/${params.filter}`,
     {
       cache: "no-cache",
       headers: microServiceRequestConfig(),
@@ -103,12 +104,13 @@ export async function handleDashboardRegionalStationFuelChart(params: {
   const data = await response.json();
   return data;
 }
-export async function handleDashboardRegionalStationDailyFuelChart(params: {
+export async function handleDashboardDailyStationChart(params: {
   variable_type: string;
   week_day: string;
+  filter: number;
 }): Promise<{ date: string; sum: number }[]> {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-station-daily-fuel`,
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`,
     {
       cache: "no-cache",
       headers: microServiceRequestConfig(),

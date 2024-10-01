@@ -15,7 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 import {
   handleDashboardDailyFuelChart,
-  handleDashboardRegionalStationDailyFuelChart,
+  handleDashboardDailyStationChart,
 } from "../../actions";
 import { Button } from "@/components/ui/button";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
@@ -65,9 +65,10 @@ export default function DailyFuel() {
               week_day: filterDay,
               variable_type: filterVariable,
             })
-          : await handleDashboardRegionalStationDailyFuelChart({
+          : await handleDashboardDailyStationChart({
               week_day: clickedLabel,
               variable_type: filterVariable,
+              filter: 1,
             });
       setData(response);
     };
@@ -105,9 +106,10 @@ export default function DailyFuel() {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
         setData(null);
-        const response = await handleDashboardRegionalStationDailyFuelChart({
+        const response = await handleDashboardDailyStationChart({
           week_day: clickedLabel,
           variable_type: filterVariable,
+          filter: 1,
         });
         setData(response);
         setCurrentLevel("station");

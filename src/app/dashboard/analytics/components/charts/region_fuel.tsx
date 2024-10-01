@@ -1,8 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import "chart.js/auto";
-import { Suspense, useEffect, useState } from "react";
-import { delay } from "../utils/component_delay";
+import { useEffect, useState } from "react";
 import ChartLoading from "../loading/chart";
 import {
   Select,
@@ -14,7 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import {
   handleDashboardRegionalFuelChart,
-  handleDashboardRegionalStationFuelChart,
+  handleDashboardRegionalStationChart,
 } from "../../actions";
 import { Button } from "@/components/ui/button";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
@@ -41,9 +40,10 @@ export default function RegionFuel() {
           ? await handleDashboardRegionalFuelChart({
               variable_type: filterVariable,
             })
-          : await handleDashboardRegionalStationFuelChart({
+          : await handleDashboardRegionalStationChart({
               regional_type: clickedLabel.replace(" ", "").toUpperCase(),
               variable_type: filterVariable,
+              filter: 1,
             });
       setData(response);
     };
@@ -75,9 +75,10 @@ export default function RegionFuel() {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
         setData(null);
-        const response = await handleDashboardRegionalStationFuelChart({
+        const response = await handleDashboardRegionalStationChart({
           regional_type: clickedLabel.replace(" ", "").toUpperCase(),
           variable_type: filterVariable,
+          filter: 1,
         });
         setData(response);
         setCurrentLevel("station");
