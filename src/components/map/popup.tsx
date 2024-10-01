@@ -6,9 +6,11 @@ type MyObject = {
   nomefantasia: string;
   ibm: string;
   endereco: string;
-  "Venda de Combustível": string;
-  "Produtos vendidos": string;
-  Galonagem: string;
+  "M/LT": number;
+  TMC: number;
+  "TM VOL": number;
+  TMP: number;
+  TMF: number;
 };
 export default function MapPopup({ item }: { item: MyObject }) {
   return (
@@ -23,22 +25,24 @@ export default function MapPopup({ item }: { item: MyObject }) {
           <p className="text-main-color text-xs">{item["endereco"]}</p>
         </div>
         <div>
-          <p className="text-main-color text- font-extrabold">
-            Venda de Combustível
-          </p>
-          <p className="text-main-color text-xs">
-            {item["Venda de Combustível"]}
-          </p>
+          <p className="text-main-color text- font-extrabold">M/LT</p>
+          <p className="text-main-color text-xs">{item["M/LT"]}</p>
         </div>
         <div>
-          <p className="text-main-color text- font-extrabold">
-            Produtos vendidos
-          </p>
-          <p className="text-main-color text-xs">{item["Produtos vendidos"]}</p>
+          <p className="text-main-color text- font-extrabold">TMC</p>
+          <p className="text-main-color text-xs">{item["TMC"]}</p>
         </div>
         <div>
-          <p className="text-main-color text- font-extrabold">Galonagem</p>
-          <p className="text-main-color text-xs">{item["Galonagem"]}</p>
+          <p className="text-main-color text- font-extrabold">TM VOL</p>
+          <p className="text-main-color text-xs">{item["TM VOL"]}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">TMP</p>
+          <p className="text-main-color text-xs">{item["TMP"]}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">TMF</p>
+          <p className="text-main-color text-xs">{item["TMF"]}</p>
         </div>
       </div>
     </Popup>
