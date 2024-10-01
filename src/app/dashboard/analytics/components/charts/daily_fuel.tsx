@@ -55,9 +55,6 @@ export default function DailyFuel() {
     { variable: "Saturday", label: "Sábado" },
   ];
   useEffect(() => {
-    delay(2200).then(() => {});
-  }, []);
-  useEffect(() => {
     const fetch = async () => {
       const response =
         currentLevel == "daily"

@@ -13,13 +13,21 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { handleDashboardDailyProductChart } from "../../actions";
+import {
+  handleDashboardDailyProductChart,
+  handleDashboardDailyStationChart,
+} from "../../actions";
+import { Button } from "@/components/ui/button";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
 
 export default function DailyProduct() {
   const [data, setData] = useState<any>(null);
+  const [currentLevel, setCurrentLevel] = useState<"daily" | "station">(
+    "daily"
+  );
+  const [clickedLabel, setClickedLabel] = useState<string>("");
   const [filterVariable, setFilterVariable] =
     useState<"invoicing">("invoicing");
   const [filterDay, setFilterDay] = useState<
@@ -47,22 +55,24 @@ export default function DailyProduct() {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await handleDashboardDailyProductChart({
-        week_day: filterDay,
-        variable_type: filterVariable,
-      });
+      const response =
+        currentLevel == "daily"
+          ? await handleDashboardDailyProductChart({
+              week_day: filterDay,
+              variable_type: filterVariable,
+            })
+          : await handleDashboardDailyStationChart({
+              week_day: clickedLabel,
+              variable_type: filterVariable,
+              filter: 0,
+            });
       setData(response);
     };
     fetch();
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
-  }, [filterVariable, filterDay]);
+  }, [filterVariable, filterDay, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
-  const options = {
-    animation: {
-      duration: 1500,
-    },
-  };
   const chartData = {
     labels: data.map((data_item: any) => data_item["date"]),
     datasets: [
@@ -77,45 +87,88 @@ export default function DailyProduct() {
       },
     ],
   };
+  const options = {
+    animation: {
+      duration: 1500,
+    },
+    onClick: async (event: any, activeElements: any) => {
+      if (activeElements.length > 0) {
+        const clickedElementIndex = activeElements[0].index;
+        setClickedLabel(chartData.labels[clickedElementIndex]);
+        setData(null);
+        const response = await handleDashboardDailyStationChart({
+          week_day: clickedLabel,
+          variable_type: filterVariable,
+          filter: 0,
+        });
+        setData(response);
+        setCurrentLevel("station");
+      }
+    },
+  };
+  async function handlePreviousLevel() {
+    setData(null);
+    const dailyChart = await handleDashboardDailyProductChart({
+      week_day: filterDay,
+      variable_type: filterVariable,
+    });
+    setCurrentLevel("daily");
+    setData(dailyChart);
+  }
   return (
     <div className="flex flex-col gap-2 h-full w-full ">
       <div className="flex w-full h-ful gap-2">
-        <Select
-          name="variable"
-          onValueChange={(value: any) => setFilterDay(value)}
-          defaultValue={filterDay}
-        >
-          <SelectTrigger className="w-full text-xs w-[200px] h-8">
-            <SelectValue placeholder="Dia da semana" />
-          </SelectTrigger>
-          <SelectContent>
-            {filterDayOptions.map(
-              (filter: { variable: string; label: string }, index: number) => (
-                <SelectItem key={index} value={filter["variable"]}>
-                  {filter["label"]}
-                </SelectItem>
-              )
-            )}
-          </SelectContent>
-        </Select>
-        <Select
-          name="variable"
-          onValueChange={(value: any) => setFilterVariable(value)}
-          defaultValue={filterVariable}
-        >
-          <SelectTrigger className="w-full text-xs w-[200px] h-8">
-            <SelectValue placeholder="Variável" />
-          </SelectTrigger>
-          <SelectContent>
-            {filterVariableOptions.map(
-              (filter: { variable: string; label: string }, index: number) => (
-                <SelectItem key={index} value={filter["variable"]}>
-                  {filter["label"]}
-                </SelectItem>
-              )
-            )}
-          </SelectContent>
-        </Select>
+        <div className="flex gap-2">
+          <Select
+            name="variable"
+            onValueChange={(value: any) => setFilterDay(value)}
+            defaultValue={filterDay}
+          >
+            <SelectTrigger className="w-full text-xs w-[200px] h-8">
+              <SelectValue placeholder="Dia da semana" />
+            </SelectTrigger>
+            <SelectContent>
+              {filterDayOptions.map(
+                (
+                  filter: { variable: string; label: string },
+                  index: number
+                ) => (
+                  <SelectItem key={index} value={filter["variable"]}>
+                    {filter["label"]}
+                  </SelectItem>
+                )
+              )}
+            </SelectContent>
+          </Select>
+          <Select
+            name="variable"
+            onValueChange={(value: any) => setFilterVariable(value)}
+            defaultValue={filterVariable}
+          >
+            <SelectTrigger className="w-full text-xs w-[200px] h-8">
+              <SelectValue placeholder="Variável" />
+            </SelectTrigger>
+            <SelectContent>
+              {filterVariableOptions.map(
+                (
+                  filter: { variable: string; label: string },
+                  index: number
+                ) => (
+                  <SelectItem key={index} value={filter["variable"]}>
+                    {filter["label"]}
+                  </SelectItem>
+                )
+              )}
+            </SelectContent>
+          </Select>
+          <Button
+            className="text-xs h-8"
+            disabled={currentLevel == "daily"}
+            onClick={handlePreviousLevel}
+          >
+            Voltar
+          </Button>
+        </div>
       </div>
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
