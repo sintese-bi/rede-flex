@@ -208,6 +208,7 @@ export async function handleDataframes() {
       TMC: item["TMC"],
       TMP: item["TMP"],
       Posto_ibm: item["Posto_ibm"],
+      Indicador: item["Indicador"],
     };
   });
   const regional = dataframes["regional"].map((item: any) => {
@@ -241,6 +242,7 @@ export async function handleDataframes() {
       stations: produto.filter(
         (product_item: any) => product_item.regional == item["Regional"]
       ),
+      Indicador: item["Indicador"],
     };
   });
   const frentista = dataframes["frentista"].map((item: any) => {
