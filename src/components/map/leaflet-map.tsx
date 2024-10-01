@@ -11,10 +11,12 @@ type MyObject = {
   nomefantasia: string;
   ibm: string;
   endereco: string;
-  "Venda de Combustível": string;
-  "Produtos vendidos": string;
-  Galonagem: string;
-  averageComparison: string;
+  "M/LT": number;
+  TMC: number;
+  "TM VOL": number;
+  TMP: number;
+  TMF: number;
+  averageComparison: boolean;
 };
 export default function Leaflet({ data }: { data: MyObject[] }) {
   var greenIcon = L.icon({
