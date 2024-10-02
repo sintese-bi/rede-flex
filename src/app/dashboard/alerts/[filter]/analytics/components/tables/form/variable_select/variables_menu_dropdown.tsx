@@ -6,9 +6,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { VariablesInterfaces } from "../../../../interfaces/variables";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { handleAlertsVariables } from "../../../../actions";
-export default function VariablesMenuDropdown() {
+export default function VariablesMenuDropdown({
+  selectedVariable,
+  setSelectedVariable,
+}: {
+  selectedVariable: string;
+  setSelectedVariable: Dispatch<SetStateAction<string>>;
+}) {
   const [alertsVariables, setAlertsVariables] = useState<VariablesInterfaces[]>(
     []
   );
@@ -29,8 +35,15 @@ export default function VariablesMenuDropdown() {
     if (!variableIsSelected) return false;
     return true;
   }
+  function handleValueChange(value: string) {
+    setSelectedVariable(value);
+  }
   return (
-    <Select name="variable">
+    <Select
+      name="variable"
+      onValueChange={handleValueChange}
+      defaultValue={selectedVariable}
+    >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Variáveis" />
       </SelectTrigger>
