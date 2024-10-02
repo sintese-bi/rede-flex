@@ -86,11 +86,11 @@ export function DataTable<TData, TValue>({
               position="left"
             />
             <div className="flex items-center gap-2 px-2">
-              <div className="h-4 w-11 rounded-md bg-green-50 border-2"></div>
+              <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
               <p className="text-sm">Postos acima da média</p>
             </div>
             <div className="flex items-center gap-2 px-2">
-              <div className="h-4 w-11 rounded-md bg-red-50 border-2"></div>
+              <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
               <p className="text-sm">Postos abaixo da média</p>
             </div>
           </div>
@@ -124,8 +124,8 @@ export function DataTable<TData, TValue>({
                     className={
                       row.original.Indicador !== undefined
                         ? row.original.Indicador
-                          ? "bg-green-50"
-                          : "bg-red-50"
+                          ? "bg-green-100"
+                          : "bg-red-100"
                         : "bg-white"
                     }
                   >
