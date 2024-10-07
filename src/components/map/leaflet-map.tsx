@@ -40,7 +40,7 @@ export default function Leaflet({ data }: { data: MyObject[] }) {
       center={[-19.912998, -43.940933]}
       zoom={13}
       scrollWheelZoom={false}
-      className="h-full w-full rounded-lg"
+      className="h-full w-full rounded-lg z-10"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

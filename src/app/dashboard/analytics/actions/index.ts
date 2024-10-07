@@ -371,3 +371,17 @@ export async function handleGeolocations() {
   });
   return formmatedNumbers;
 }
+export async function handleTMsAndBruteProfit(values: any) {
+  //const response = await fetch(
+  //  `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`,
+  //  {
+  //    cache: "no-cache",
+  //    headers: microServiceRequestConfig(),
+  //    method: "POST",
+  //    body: JSON.stringify(params),
+  //  }
+  //);
+  //const data = await response.json();
+  //return data;
+  return null;
+}
