@@ -24,6 +24,12 @@ export function getUserUUID() {
   return use_uuid?.value;
 }
 
+export function getAccessToken() {
+  const cookieStore = cookies();
+  const access_token = cookieStore.get("access_token");
+  return access_token?.value;
+}
+
 export function defaultDateFilter(): { init: string; end: string } {
   const init = format(new Date(), "yyyy-MM-dd");
   const end = format(new Date(), "yyyy-MM-dd");

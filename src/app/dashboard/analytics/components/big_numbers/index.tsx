@@ -68,13 +68,25 @@ export default function DashboardComponentsBigNumbers() {
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>
             <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 h-full justify-center items-center">
               {big_numbers_section.map(
-                ({ label, value, secondary_label, secondary_value }, index) => (
+                (
+                  {
+                    label,
+                    value,
+                    secondary_label,
+                    secondary_value,
+                    third_value,
+                    fourth_value,
+                  },
+                  index
+                ) => (
                   <DashboardComponentsBigNumber
                     key={index}
                     label={label}
                     value={value}
                     secondary_label={secondary_label}
                     secondary_value={secondary_value}
+                    third_value={third_value}
+                    fourth_value={fourth_value}
                   />
                 )
               )}

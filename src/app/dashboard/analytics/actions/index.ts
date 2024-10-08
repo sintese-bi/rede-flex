@@ -13,6 +13,8 @@ interface Data {
   value: number;
   secondary_label: string;
   secondary_value: number;
+  third_value: boolean;
+  fourth_value: number;
 }
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]

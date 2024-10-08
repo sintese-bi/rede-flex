@@ -14,7 +14,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { handleTMsAndBruteProfit } from "../../../actions";
+import { handleTMsAndBruteProfitUpdate } from "../../../actions";
+import { toast } from "@/components/ui/use-toast";
+import SubmitButton from "./submit_button";
 const formSchema = z.object({
   use_mlt: z
     .number({ message: "Por favor, preencha o campo corretamente" })
@@ -36,7 +38,11 @@ const formSchema = z.object({
     .number({ message: "Por favor, preencha o campo corretamente" })
     .min(0)
     .max(100),
-  use_lucro_bruto_operacional: z
+  use_lucro_bruto_operacional_galonagem: z
+    .number({ message: "Por favor, preencha o campo corretamente" })
+    .min(0)
+    .max(100),
+  use_lucro_bruto_operacional_produto: z
     .number({ message: "Por favor, preencha o campo corretamente" })
     .min(0)
     .max(100),
@@ -47,23 +53,23 @@ const fields_first_section: {
 }[] = [
   {
     name: "use_mlt",
-    label: "MLT",
+    label: "MLT (R$)",
   },
   {
     name: "use_tmc",
-    label: "TMC",
+    label: "TMC (R$)",
   },
   {
     name: "use_tmf",
-    label: "TMF",
+    label: "TMF (R$)",
   },
   {
     name: "use_tmp",
-    label: "TMP",
+    label: "TMP (R$)",
   },
   {
     name: "use_tmvol",
-    label: "TMVOL",
+    label: "TMVOL (L)",
   },
 ];
 const fields_second_section: {
@@ -73,29 +79,43 @@ const fields_second_section: {
     | "use_tmf"
     | "use_tmp"
     | "use_tmvol"
-    | "use_lucro_bruto_operacional";
+    | "use_lucro_bruto_operacional_galonagem"
+    | "use_lucro_bruto_operacional_produto";
   label: string;
 }[] = [
   {
-    name: "use_lucro_bruto_operacional",
-    label: "Lucro Bruto Operacional (%)",
+    name: "use_lucro_bruto_operacional_galonagem",
+    label: "Lucro Bruto Operacional Galonagem (%)",
+  },
+  {
+    name: "use_lucro_bruto_operacional_produto",
+    label: "Lucro Bruto Operacional Produto (%)",
   },
 ];
-export default function FormConfiguration() {
+export default function FormConfiguration({ data }: { data: any }) {
   const [section, setSection] = useState<"first" | "second">("first");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      use_mlt: 0,
-      use_tmc: 0,
-      use_tmf: 0,
-      use_tmp: 0,
-      use_tmvol: 0,
-      use_lucro_bruto_operacional: 0,
+      use_mlt: data["use_mlt"],
+      use_tmc: data["use_tmc"],
+      use_tmf: data["use_tmf"],
+      use_tmp: data["use_tmp"],
+      use_tmvol: data["use_tmvol"],
+      use_lucro_bruto_operacional_galonagem:
+        data["use_lucro_bruto_operacional_galonagem"],
+      use_lucro_bruto_operacional_produto:
+        data["use_lucro_bruto_operacional_produto"],
     },
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const response = await handleTMsAndBruteProfit(values);
+    const response = await handleTMsAndBruteProfitUpdate(values);
+    toast({
+      duration: 1000,
+      variant: "default",
+      title: "TMs e Lucro Bruto",
+      description: response.message,
+    });
   }
   function handleSectionChange() {
     setSection(section == "first" ? "second" : "first");
@@ -166,7 +186,7 @@ export default function FormConfiguration() {
           </Button>
         </div>
         {section == "first" ? <FirstSection /> : <SecondSection />}
-        <Button type="submit">Confirmar</Button>
+        <SubmitButton form={form} />
       </form>
     </Form>
   );

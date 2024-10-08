@@ -10,7 +10,9 @@ import {
 import { BoltIcon } from "lucide-react";
 import FormConfiguration from "./form";
 import { Separator } from "@/components/ui/separator";
+import { handleTMsAndBruteProfit } from "../../actions";
 export default async function Configuration() {
+  const { data } = await handleTMsAndBruteProfit();
   return (
     <Dialog defaultOpen={true}>
       <DialogTrigger asChild>
@@ -27,7 +29,7 @@ export default async function Configuration() {
             <strong>TMs</strong>, e também o <strong>Lucro Bruto</strong>.
           </DialogDescription>
           <Separator />
-          <FormConfiguration />
+          <FormConfiguration data={data} />
         </DialogHeader>
       </DialogContent>
     </Dialog>
