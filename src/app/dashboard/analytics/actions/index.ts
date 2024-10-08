@@ -3,7 +3,11 @@ import { mongodb_client } from "@/database/connection";
 import { BigNumbersInterfaces } from "../interfaces/big_numbers";
 import { ChartsInterfaces } from "../interfaces/charts";
 import { ObjectId } from "mongodb";
-import { apiRequestConfig, microServiceRequestConfig } from "@/utils";
+import {
+  apiRequestConfig,
+  getAccessToken,
+  microServiceRequestConfig,
+} from "@/utils";
 interface Data {
   label: string;
   value: number;
@@ -14,7 +18,9 @@ export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
 > {
   const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/sum-fuel-literage`,
+    `${
+      process.env.NEXT_MICROSERVICE_MONGODB
+    }/sum-fuel-literage/${getAccessToken()}`,
     {
       headers: microServiceRequestConfig(),
       cache: "no-cache",
@@ -371,17 +377,27 @@ export async function handleGeolocations() {
   });
   return formmatedNumbers;
 }
-export async function handleTMsAndBruteProfit(values: any) {
-  //const response = await fetch(
-  //  `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`,
-  //  {
-  //    cache: "no-cache",
-  //    headers: microServiceRequestConfig(),
-  //    method: "POST",
-  //    body: JSON.stringify(params),
-  //  }
-  //);
-  //const data = await response.json();
-  //return data;
-  return null;
+export async function handleTMsAndBruteProfit() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/modal-return-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleTMsAndBruteProfitUpdate(values: any) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/modal-insert-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(values),
+    }
+  );
+  const data = await response.json();
+  return data;
 }
