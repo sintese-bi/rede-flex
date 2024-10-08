@@ -150,7 +150,7 @@ export default function FormConfiguration() {
             type="button"
             onClick={handleSectionChange}
           >
-            TMs
+            Lista de TMs
           </Button>
           <Button
             className={
@@ -162,7 +162,7 @@ export default function FormConfiguration() {
             type="button"
             onClick={handleSectionChange}
           >
-            Lucro Bruto
+            Desconto por combustível
           </Button>
         </div>
         {section == "first" ? <FirstSection /> : <SecondSection />}
