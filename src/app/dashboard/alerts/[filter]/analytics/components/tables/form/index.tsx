@@ -21,7 +21,7 @@ export default function FormComponentsAlertsTable({
   const [selectedVariableValue, setSelectedVariableValue] = useState<number>(0);
   useEffect(() => {
     setSelectedVariableValue(variables[selectedVariable]);
-  }, [selectedVariable]);
+  }, [selectedVariable, variables]);
   async function handleFormSubmit(form: FormData) {
     const { message } = await handleAlertsUpdate(form, ibm_id, filter);
     toast({
