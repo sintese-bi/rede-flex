@@ -60,50 +60,40 @@ export default function DashboardComponentsBigNumber({
             )}
           </div>
         </div>
-        <div className="flex gap-1">
-          <p className="text-xs font-bold text-slate-400">{secondary_label}</p>
-          {secondary_label?.includes("Lucro Bruto Operacional") ? (
-            <>
-              <div
-                className={`flex items-center ${
-                  third_value ? "text-green-200" : "text-red-200"
-                }`}
-              >
-                <p className="text-xs font-bold">{secondary_value}</p>
-                <PercentIcon className="flex" size={14} />
-              </div>
-              {typeof third_value === "boolean" ? (
-                third_value ? (
-                  <ArrowUpIcon size={16} className="text-green-200" />
-                ) : (
-                  <ArrowDownIcon size={16} className="text-red-200" />
-                )
-              ) : null}
+        <div className="flex flex-col gap-1">
+          <div className="flex gap-1">
+            <p className="text-xs font-bold text-slate-400">
+              {secondary_label}
+            </p>
+            {secondary_label?.includes("Lucro Bruto Operacional") ? (
+              <>
+                <div
+                  className={`flex items-center ${
+                    third_value ? "text-green-200" : "text-red-200"
+                  }`}
+                >
+                  <p className="text-xs font-bold">{secondary_value}</p>
+                  <PercentIcon className="flex" size={14} />
+                </div>
+              </>
+            ) : (
               <div>
-                <p className="text-xs font-bold text-slate-200">
-                  {fourth_value}
+                <p
+                  className={`text-xs font-bold ${
+                    third_value ? "text-green-200" : "text-red-200"
+                  }`}
+                >
+                  {secondary_value}
                 </p>
               </div>
-            </>
-          ) : (
-            <>
-              <p
-                className={`text-xs font-bold ${
-                  third_value ? "text-green-200" : "text-red-200"
-                }`}
-              >
-                {secondary_value}
-              </p>
-              {typeof third_value === "boolean" ? (
-                third_value ? (
-                  <ArrowUpIcon size={16} className="text-green-200" />
-                ) : (
-                  <ArrowDownIcon size={16} className="text-red-200" />
-                )
-              ) : null}
-              <p className="text-xs font-bold text-slate-200">{fourth_value}</p>
-            </>
-          )}
+            )}
+          </div>
+          {third_value ? (
+            <div className="flex gap-1">
+              <p className="text-xs font-bold text-slate-400">Objetivo </p>
+              <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
