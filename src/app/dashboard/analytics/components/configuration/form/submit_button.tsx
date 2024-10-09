@@ -10,8 +10,11 @@ export default function SubmitButton({
       use_tmf: number;
       use_tmp: number;
       use_tmvol: number;
-      use_lucro_bruto_operacional_galonagem: number;
-      use_lucro_bruto_operacional_produto: number;
+      use_lucro_bruto_operacional: number;
+      use_gasolina_comum: number;
+      use_etanol: number;
+      use_diesel_S500: number;
+      use_diesel_S10: number;
     },
     any,
     undefined
@@ -21,7 +24,7 @@ export default function SubmitButton({
   return (
     <Button
       type="submit"
-      className="lg:bg-main-color md:bg-main-color bg-orange-400 text-white w-full py-6  font-extrabold"
+      className="lg:bg-main-color md:bg-main-color bg-orange-400 text-white w-full py-6 font-extrabold w-[200px]"
       disabled={isSubmitting ? true : false}
     >
       {isSubmitting ? "Atualizando..." : "Atualizar"}

@@ -21,12 +21,11 @@ export default async function Configuration() {
           <p>Configurar TMs e Lucro bruto</p>
         </Button>
       </DialogTrigger>
-      <DialogContent className="z-50">
+      <DialogContent className="z-50 ">
         <DialogHeader>
-          <DialogTitle>Configuração de TMs e Lucro bruto</DialogTitle>
+          <DialogTitle>Setup do Sistema</DialogTitle>
           <DialogDescription>
-            Esse formulário vai preencher manualmente os dados de{" "}
-            <strong>TMs</strong>, e também o <strong>Lucro Bruto</strong>.
+            Este formulario preenche os parametros da operação:
           </DialogDescription>
           <Separator />
           <FormConfiguration data={data} />

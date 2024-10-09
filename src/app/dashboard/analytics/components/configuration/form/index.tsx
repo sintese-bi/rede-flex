@@ -18,42 +18,60 @@ import { handleTMsAndBruteProfitUpdate } from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
 const formSchema = z.object({
-  use_mlt: z
+  use_mlt: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_tmc: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_tmc: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_tmf: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_tmf: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_tmp: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_tmp: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_tmvol: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_tmvol: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_lucro_bruto_operacional_galonagem: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_lucro_bruto_operacional: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
-  use_lucro_bruto_operacional_produto: z
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_gasolina_comum: z.coerce
     .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0)
-    .max(100),
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_etanol: z.coerce
+    .number({ message: "Por favor, preencha o campo corretamente" })
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_diesel_S500: z.coerce
+    .number({ message: "Por favor, preencha o campo corretamente" })
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
+  use_diesel_S10: z.coerce
+    .number({ message: "Por favor, preencha o campo corretamente" })
+    .min(0, "O valor mínimo é 0")
+    .max(100, "O valor máximo é 100"),
 });
 const fields_first_section: {
-  name: "use_mlt" | "use_tmc" | "use_tmf" | "use_tmp" | "use_tmvol";
+  name:
+    | "use_mlt"
+    | "use_tmc"
+    | "use_tmf"
+    | "use_tmp"
+    | "use_tmvol"
+    | "use_lucro_bruto_operacional";
   label: string;
 }[] = [
   {
     name: "use_mlt",
-    label: "MLT (R$)",
+    label: "MLT (R$/L)",
   },
   {
     name: "use_tmc",
@@ -71,25 +89,34 @@ const fields_first_section: {
     name: "use_tmvol",
     label: "TMVOL (L)",
   },
+  {
+    name: "use_lucro_bruto_operacional",
+    label: "Lucro bruto operacional",
+  },
 ];
 const fields_second_section: {
   name:
-    | "use_mlt"
-    | "use_tmc"
-    | "use_tmf"
-    | "use_tmp"
-    | "use_tmvol"
-    | "use_lucro_bruto_operacional_galonagem"
-    | "use_lucro_bruto_operacional_produto";
+    | "use_gasolina_comum"
+    | "use_etanol"
+    | "use_diesel_S500"
+    | "use_diesel_S10";
   label: string;
 }[] = [
   {
-    name: "use_lucro_bruto_operacional_galonagem",
-    label: "Lucro Bruto Operacional Galonagem (%)",
+    name: "use_gasolina_comum",
+    label: "Gasolina comum, adtivada, power",
   },
   {
-    name: "use_lucro_bruto_operacional_produto",
-    label: "Lucro Bruto Operacional Produto (%)",
+    name: "use_etanol",
+    label: "Etanol hidratado",
+  },
+  {
+    name: "use_diesel_S500",
+    label: "Diesel S500",
+  },
+  {
+    name: "use_diesel_S10",
+    label: "Diesel S10",
   },
 ];
 export default function FormConfiguration({ data }: { data: any }) {
@@ -102,10 +129,7 @@ export default function FormConfiguration({ data }: { data: any }) {
       use_tmf: data["use_tmf"],
       use_tmp: data["use_tmp"],
       use_tmvol: data["use_tmvol"],
-      use_lucro_bruto_operacional_galonagem:
-        data["use_lucro_bruto_operacional_galonagem"],
-      use_lucro_bruto_operacional_produto:
-        data["use_lucro_bruto_operacional_produto"],
+      use_lucro_bruto_operacional: data["use_lucro_bruto_operacional"],
     },
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -117,8 +141,8 @@ export default function FormConfiguration({ data }: { data: any }) {
       description: response.message,
     });
   }
-  function handleSectionChange() {
-    setSection(section == "first" ? "second" : "first");
+  function handleSectionChange(value: "first" | "second") {
+    setSection(value);
   }
   function FirstSection() {
     return fields_first_section.map((fieldItem, index) => (
@@ -148,7 +172,7 @@ export default function FormConfiguration({ data }: { data: any }) {
           <FormItem>
             <FormLabel>{fieldItem.label}</FormLabel>
             <FormControl>
-              <Input placeholder="0" {...field} />
+              <Input placeholder="0" {...field} type="number" />
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>
@@ -163,26 +187,26 @@ export default function FormConfiguration({ data }: { data: any }) {
           <Button
             className={
               section == "first"
-                ? `border-0 border-b-[1px] border-main-color rounded-none`
-                : ""
+                ? `border-0 border-b-[1px] border-main-color rounded-none text-xs`
+                : " text-xs"
             }
             variant="ghost"
             type="button"
-            onClick={handleSectionChange}
+            onClick={() => handleSectionChange("first")}
           >
-            Lista de TMs
+            TMs dos Postos
           </Button>
           <Button
             className={
               section == "second"
-                ? `border-0 border-b-[1px] border-main-color rounded-none`
-                : ""
+                ? `border-0 border-b-[1px] border-main-color rounded-none  text-xs`
+                : " text-xs"
             }
             variant="ghost"
             type="button"
-            onClick={handleSectionChange}
+            onClick={() => handleSectionChange("second")}
           >
-            Desconto por combustível
+            Descontos de combustiveis
           </Button>
         </div>
         {section == "first" ? <FirstSection /> : <SecondSection />}
