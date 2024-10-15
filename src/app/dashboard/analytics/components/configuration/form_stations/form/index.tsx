@@ -4,90 +4,53 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SubmitButton from "./submit_button";
 import FormStationField from "./field";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
-
-const formSchema = z.object({
-  tmp: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  tmf: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  tmc: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  tmvol: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  tm_lucro_bruto_operacional: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-});
 const fields_first_section: {
-  name:
-    | "use_mlt"
-    | "use_tmc"
-    | "use_tmf"
-    | "use_tmp"
-    | "use_tmvol"
-    | "use_lucro_bruto_operacional";
+  name: "mlt" | "tmc" | "tmf" | "tmp" | "tmvol" | "tm_lucro_bruto_operacional";
   label: string;
 }[] = [
   {
-    name: "use_mlt",
+    name: "mlt",
     label: "MLT (R$/L)",
   },
   {
-    name: "use_tmc",
+    name: "tmc",
     label: "TMC (R$)",
   },
   {
-    name: "use_tmf",
+    name: "tmf",
     label: "TMF (R$)",
   },
   {
-    name: "use_tmp",
+    name: "tmp",
     label: "TMP (R$)",
   },
   {
-    name: "use_tmvol",
+    name: "tmvol",
     label: "TMVOL (L)",
   },
   {
-    name: "use_lucro_bruto_operacional",
+    name: "tm_lucro_bruto_operacional",
     label: "Lucro bruto operacional",
   },
 ];
 const fields_second_section: {
-  name:
-    | "use_gasolina_comum"
-    | "use_etanol"
-    | "use_diesel_S500"
-    | "use_diesel_S10";
+  name: "gasolina_comum" | "etanol" | "diesel_S500" | "diesel_S10";
   label: string;
 }[] = [
   {
-    name: "use_gasolina_comum",
+    name: "gasolina_comum",
     label: "Gasolina comum, adtivada, power",
   },
   {
-    name: "use_etanol",
+    name: "etanol",
     label: "Etanol hidratado",
   },
   {
-    name: "use_diesel_S500",
+    name: "diesel_S500",
     label: "Diesel S500",
   },
   {
-    name: "use_diesel_S10",
+    name: "diesel_S10",
     label: "Diesel S10",
   },
 ];
@@ -100,18 +63,18 @@ export default function FormStation({
   fields: any;
   wantsToViewTMs: boolean;
 }) {
-  const fieldItems = Object.keys(fields);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      tmp: fields["tmp"],
-      tmf: fields["tmf"],
-      tmc: fields["tmc"],
-      tmvol: fields["tmvol"],
-      tm_lucro_bruto_operacional: fields["tm_lucro_bruto_operacional"],
-    },
-  });
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(form: FormData) {
+    const first_section_fields: any = fields_first_section.map(
+      (fieldItem) => fieldItem.name
+    );
+    const second_section_fields: any = fields_second_section.map(
+      (fieldItem) => fieldItem.name
+    );
+    const total_fields = first_section_fields.concat(second_section_fields);
+    const values: Record<any, number> = {};
+    total_fields.forEach(
+      (field: any) => (values[field] = Number(form.get(field)) || 0)
+    );
     const response = await handleTMsAndBruteProfitPerStationUpdate(values, id);
     toast({
       duration: 1000,
@@ -121,34 +84,37 @@ export default function FormStation({
     });
   }
   function FirstSection() {
-    return fields_first_section.map((fieldItem, index) => (
-      <FormStationField
-        form={form}
-        name={fieldItem.name}
-        label={fieldItem.label}
-        key={index}
-      />
-    ));
+    return fields_first_section.map((fieldItem, index) => {
+      return (
+        <div key={index} className="flex flex-col gap-4">
+          <FormStationField
+            defaultValue={fields[fieldItem.name] || 0}
+            name={fieldItem.name}
+            label={fieldItem.label}
+            key={index}
+          />
+        </div>
+      );
+    });
   }
   function SecondSection() {
-    return fields_second_section.map((fieldItem, index) => (
-      <FormStationField
-        form={form}
-        name={fieldItem.name}
-        label={fieldItem.label}
-        key={index}
-      />
-    ));
+    return fields_second_section.map((fieldItem, index) => {
+      return (
+        <div key={index} className="flex flex-col gap-4">
+          <FormStationField
+            defaultValue={fields[fieldItem.name] || 0}
+            name={fieldItem.name}
+            label={fieldItem.label}
+            key={index}
+          />
+        </div>
+      );
+    });
   }
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex gap-2 items-end min-w-[620px]"
-      >
-        {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
-        <SubmitButton />
-      </form>
-    </Form>
+    <form action={onSubmit} className="flex gap-2 items-end w-[620px]">
+      {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
+      <SubmitButton />
+    </form>
   );
 }

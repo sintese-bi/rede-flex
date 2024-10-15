@@ -42,37 +42,40 @@ export default function Configuration() {
           <p>Configurar TMs e Lucro bruto</p>
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-auto max-w-full z-50">
+      <DialogContent
+        className="w-auto max-w-full z-50"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Setup do Sistema</DialogTitle>
           <DialogDescription>
             Este formulario preenche os parametros da operação:
           </DialogDescription>
           <Separator />
-          <div>
-            <SelectorPerStationOrRegional
-              wantsToViewRegional={wantsToViewRegional}
-              setWantsToViewRegional={setWantsToViewRegional}
-            />
-            <SelectorPerTMsOrDiscounts
-              wantsToViewTMs={wantsToViewTMs}
-              setWantsToViewTMs={setWantsToViewTMs}
-            />
-          </div>
-          <div className="max-h-[400px] overflow-y-auto">
-            {wantsToViewRegional ? (
-              <FormRegionalConfiguration
-                data={regionalFormData}
-                wantsToViewTMs={wantsToViewTMs}
-              />
-            ) : (
-              <FormStationsConfiguration
-                data={sationsFormData}
-                wantsToViewTMs={wantsToViewTMs}
-              />
-            )}
-          </div>
         </DialogHeader>
+        <div>
+          <SelectorPerStationOrRegional
+            wantsToViewRegional={wantsToViewRegional}
+            setWantsToViewRegional={setWantsToViewRegional}
+          />
+          <SelectorPerTMsOrDiscounts
+            wantsToViewTMs={wantsToViewTMs}
+            setWantsToViewTMs={setWantsToViewTMs}
+          />
+        </div>
+        <div className="w-auto max-h-[400px] overflow-y-auto z-100">
+          {wantsToViewRegional ? (
+            <FormRegionalConfiguration
+              data={regionalFormData}
+              wantsToViewTMs={wantsToViewTMs}
+            />
+          ) : (
+            <FormStationsConfiguration
+              data={sationsFormData}
+              wantsToViewTMs={wantsToViewTMs}
+            />
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -20,48 +20,7 @@ import {
 } from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
-const formSchema = z.object({
-  use_mlt: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_tmc: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_tmf: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_tmp: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_tmvol: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_lucro_bruto_operacional: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_gasolina_comum: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_etanol: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_diesel_S500: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-  use_diesel_S10: z.coerce
-    .number({ message: "Por favor, preencha o campo corretamente" })
-    .min(0, "O valor mínimo é 0")
-    .max(100, "O valor máximo é 100"),
-});
+import { Label } from "@/components/ui/label";
 const fields_first_section: {
   name:
     | "use_mlt"
@@ -129,69 +88,64 @@ export default function FormRegionalConfiguration({
   data: any;
   wantsToViewTMs: boolean;
 }) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      use_mlt: data["use_mlt"],
-      use_tmc: data["use_tmc"],
-      use_tmf: data["use_tmf"],
-      use_tmp: data["use_tmp"],
-      use_tmvol: data["use_tmvol"],
-      use_lucro_bruto_operacional: data["use_lucro_bruto_operacional"],
-    },
-  });
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(form: FormData) {
+    const first_section_fields: any = fields_first_section.map(
+      (fieldItem) => fieldItem.name
+    );
+    const second_section_fields: any = fields_second_section.map(
+      (fieldItem) => fieldItem.name
+    );
+    const total_fields = first_section_fields.concat(second_section_fields);
+    const values: Record<any, number> = {};
+    total_fields.forEach(
+      (field: any) => (values[field] = Number(form.get(field)) || 0)
+    );
     const response = await handleTMsAndBruteProfitUpdate(values);
     toast({
-      duration: 1000,
+      duration: 5000,
       variant: "default",
       title: "TMs e Lucro Bruto",
       description: response.message,
     });
   }
-
   function FirstSection() {
-    return fields_first_section.map((fieldItem, index) => (
-      <FormField
-        key={index}
-        control={form.control}
-        name={fieldItem.name}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{fieldItem.label}</FormLabel>
-            <FormControl>
-              <Input placeholder="0" {...field} />
-            </FormControl>
-            <FormMessage className="text-xs" />
-          </FormItem>
-        )}
-      />
-    ));
+    return fields_first_section.map((fieldItem, index) => {
+      return (
+        <div key={index} className="flex flex-col gap-4">
+          <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>
+          <Input
+            name={fieldItem.name}
+            defaultValue={data[fieldItem.name] || 0}
+            className="col-span-3"
+            type="number"
+            min="0"
+            step="0.01"
+          />
+        </div>
+      );
+    });
   }
   function SecondSection() {
-    return fields_second_section.map((fieldItem, index) => (
-      <FormField
-        key={index}
-        control={form.control}
-        name={fieldItem.name}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{fieldItem.label}</FormLabel>
-            <FormControl>
-              <Input placeholder="0" {...field} type="number" />
-            </FormControl>
-            <FormMessage className="text-xs" />
-          </FormItem>
-        )}
-      />
-    ));
+    return fields_second_section.map((fieldItem, index) => {
+      return (
+        <div key={index} className="flex flex-col gap-4">
+          <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>
+          <Input
+            name={fieldItem.name}
+            defaultValue={data[fieldItem.name] || 0}
+            className="col-span-3"
+            type="number"
+            min="0"
+            step="0.01"
+          />
+        </div>
+      );
+    });
   }
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
-        <SubmitButton form={form} />
-      </form>
-    </Form>
+    <form action={onSubmit} className="grid gap-4 py-4 space-y-4 px-2">
+      {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
+      <SubmitButton />
+    </form>
   );
 }

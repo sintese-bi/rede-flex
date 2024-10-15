@@ -1,33 +1,25 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 export default function FormStationField({
-  form,
   name,
   label,
+  defaultValue,
 }: {
-  form: any;
   name: string;
   label: string;
+  defaultValue: number;
 }) {
   return (
-    <FormField
-      control={form.control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input placeholder="0" {...field} />
-          </FormControl>
-          <FormMessage className="text-xs" />
-        </FormItem>
-      )}
-    />
+    <>
+      <Label htmlFor={name}>{label}</Label>
+      <Input
+        name={name}
+        defaultValue={defaultValue}
+        className="col-span-3"
+        type="number"
+        min="0"
+        step="0.01"
+      />
+    </>
   );
 }
