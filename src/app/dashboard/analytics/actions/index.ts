@@ -52,15 +52,19 @@ export async function handleDashboardDailyFuelChart(params: {
   week_day: string;
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-fuel`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-fuel`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const { data } = await response.json();
   return data;
 }
@@ -68,30 +72,38 @@ export async function handleDashboardDailyProductChart(params: {
   week_day: string;
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-product`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graphic-product`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const { data } = await response.json();
   return data;
 }
 export async function handleDashboardRegionalFuelChart(params: {
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-fuel`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-fuel`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const data = await response.json();
   return data;
 }
@@ -100,15 +112,19 @@ export async function handleDashboardRegionalStationChart(params: {
   regional_type: string;
   filter: number;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-graph/${params.filter}`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-graph/${params.filter}`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const data = await response.json();
   return data;
 }
@@ -117,41 +133,53 @@ export async function handleDashboardDailyStationChart(params: {
   week_day: string;
   filter: number;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const data = await response.json();
   return data;
 }
 export async function handleDashboardRegionalProductChart(params: {
   variable_type: string;
 }): Promise<{ date: string; sum: number }[]> {
-  const response = await fetch(
-    `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-product`,
-    {
-      cache: "no-cache",
-      headers: microServiceRequestConfig(),
-      method: "POST",
-      body: JSON.stringify(params),
-    }
-  );
+  const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-chart-product`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const data = await response.json();
   return data;
 }
 export async function handleDataframes() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`,
-    {
-      headers: microServiceRequestConfig(),
-      cache: "no-store",
-    }
-  );
+  const url = `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`;
+  const response = await fetch(url, {
+    headers: microServiceRequestConfig(),
+    cache: "no-store",
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const dataframes = await response.json();
   const regionalAvarageMLT = Number(
     dataframes["regionalGalonagemMLTMedio"]
@@ -203,6 +231,7 @@ export async function handleDataframes() {
       "M/LT": item["M/LT"],
       Posto_ibm: item["Posto_ibm"],
       Indicador: item["Indicador"],
+      "Última Atualizacao": item["Última Atualizacao"],
     };
   });
   const produto = dataframes["produto"].map((item: any) => {
@@ -219,6 +248,7 @@ export async function handleDataframes() {
       TMP: item["TMP"],
       Posto_ibm: item["Posto_ibm"],
       Indicador: item["Indicador"],
+      "Última Atualizacao": item["Última Atualizacao"],
     };
   });
   const regional = dataframes["regional"].map((item: any) => {
@@ -308,13 +338,17 @@ export async function handleDataframes() {
   };
 }
 export async function handleGallonageRankingByStation(ibm: string) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/ranking?ibm=${ibm}`,
-    {
-      headers: microServiceRequestConfig(),
-      cache: "no-store",
-    }
-  );
+  const url = `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/ranking?ibm=${ibm}`;
+  const response = await fetch(url, {
+    headers: microServiceRequestConfig(),
+    cache: "no-store",
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const { ranking } = await response.json();
   const formmatedRanking = ranking.map((item: any) => {
     return {
@@ -333,13 +367,17 @@ export async function handleGallonageRankingByStation(ibm: string) {
   return formmatedRanking;
 }
 export async function handleProductRankingByStation(ibm: string) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/prodranking?ibm=${ibm}`,
-    {
-      headers: microServiceRequestConfig(),
-      cache: "no-store",
-    }
-  );
+  const url = `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/prodranking?ibm=${ibm}`;
+  const response = await fetch(url, {
+    headers: microServiceRequestConfig(),
+    cache: "no-store",
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const { ranking } = await response.json();
   const formmatedRanking = ranking.map((item: any) => {
     return {
@@ -357,13 +395,19 @@ export async function handleProductRankingByStation(ibm: string) {
   return formmatedRanking;
 }
 export async function handleGeolocations() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_EXTERN_API}/map-position`,
-    {
-      headers: apiRequestConfig(),
-      cache: "no-store",
-    }
-  );
+  const url = `${
+    process.env.NEXT_PUBLIC_EXTERN_API
+  }/map-position/${getAccessToken()}`;
+  const response = await fetch(url, {
+    headers: apiRequestConfig(),
+    cache: "no-store",
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
   const { data } = await response.json();
   const formmatedNumbers = data.map((data_item: any) => {
     return {
@@ -400,6 +444,38 @@ export async function handleTMsAndBruteProfitUpdate(values: any) {
       body: JSON.stringify(values),
     }
   );
+  const data = await response.json();
+  return data;
+}
+export async function handleTMsAndBruteProfitPerStation() {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-return-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleTMsAndBruteProfitPerStationUpdate(
+  values: any,
+  id: string
+) {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-insert-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(values),
+    }
+  );
+  if (!response.ok) console.error(await response.text());
   const data = await response.json();
   return data;
 }

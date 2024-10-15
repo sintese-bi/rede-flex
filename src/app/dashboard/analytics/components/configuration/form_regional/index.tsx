@@ -11,10 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { handleTMsAndBruteProfitUpdate } from "../../../actions";
+import {
+  handleTMsAndBruteProfit,
+  handleTMsAndBruteProfitUpdate,
+} from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
 const formSchema = z.object({
@@ -119,8 +122,13 @@ const fields_second_section: {
     label: "Diesel S10",
   },
 ];
-export default function FormConfiguration({ data }: { data: any }) {
-  const [section, setSection] = useState<"first" | "second">("first");
+export default function FormRegionalConfiguration({
+  data,
+  wantsToViewTMs,
+}: {
+  data: any;
+  wantsToViewTMs: boolean;
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -141,9 +149,7 @@ export default function FormConfiguration({ data }: { data: any }) {
       description: response.message,
     });
   }
-  function handleSectionChange(value: "first" | "second") {
-    setSection(value);
-  }
+
   function FirstSection() {
     return fields_first_section.map((fieldItem, index) => (
       <FormField
@@ -183,33 +189,7 @@ export default function FormConfiguration({ data }: { data: any }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex justify-center w-full gap-4 my-4">
-          <Button
-            className={
-              section == "first"
-                ? `border-0 border-b-[1px] border-main-color rounded-none text-xs`
-                : " text-xs"
-            }
-            variant="ghost"
-            type="button"
-            onClick={() => handleSectionChange("first")}
-          >
-            TMs dos Postos
-          </Button>
-          <Button
-            className={
-              section == "second"
-                ? `border-0 border-b-[1px] border-main-color rounded-none  text-xs`
-                : " text-xs"
-            }
-            variant="ghost"
-            type="button"
-            onClick={() => handleSectionChange("second")}
-          >
-            Descontos de combustiveis
-          </Button>
-        </div>
-        {section == "first" ? <FirstSection /> : <SecondSection />}
+        {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
         <SubmitButton form={form} />
       </form>
     </Form>
