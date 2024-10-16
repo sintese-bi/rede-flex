@@ -23,17 +23,19 @@ export default function Configuration() {
   const [wantsToViewRegional, setWantsToViewRegional] = useState<boolean>(true);
   const [wantsToViewTMs, setWantsToViewTMs] = useState<boolean>(true);
   const [regionalFormData, setRegionalFormData] = useState<any>(null);
-  const [sationsFormData, setSationsFormData] = useState<any>(null);
+  const [stationsFormData, setStationsFormData] = useState<any>(null);
   useEffect(() => {
     const fetch = async () => {
       const regionalFormData = await handleTMsAndBruteProfit();
-      const staionsFormData = await handleTMsAndBruteProfitPerStation();
+      const stationsFormData = await handleTMsAndBruteProfitPerStation();
+      console.log(regionalFormData, stationsFormData);
       setRegionalFormData(regionalFormData["data"]);
-      setSationsFormData(staionsFormData["data"]);
+      setStationsFormData(stationsFormData["data"]);
     };
     fetch();
   }, []);
-  if (!regionalFormData && !sationsFormData) return <p>Loading...</p>;
+  useEffect(() => {}, []);
+  if (!regionalFormData && !stationsFormData) return <p>Loading...</p>;
   return (
     <Dialog defaultOpen={true}>
       <DialogTrigger asChild>
@@ -43,7 +45,9 @@ export default function Configuration() {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="w-auto max-w-full z-50"
+        className={`z-50 transition-all duration-300 ${
+          wantsToViewRegional ? "max-w-[400px]" : "max-w-[1200px]"
+        }`}
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -71,7 +75,7 @@ export default function Configuration() {
             />
           ) : (
             <FormStationsConfiguration
-              data={sationsFormData}
+              data={stationsFormData}
               wantsToViewTMs={wantsToViewTMs}
             />
           )}
