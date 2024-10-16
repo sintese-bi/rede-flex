@@ -169,7 +169,9 @@ export async function handleDashboardRegionalProductChart(params: {
   return data;
 }
 export async function handleDataframes() {
-  const url = `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/dataframes`;
+  const url = `${
+    process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API
+  }/dataframes?token=${getAccessToken()}`;
   const response = await fetch(url, {
     headers: microServiceRequestConfig(),
     cache: "no-store",
