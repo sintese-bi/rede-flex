@@ -1,11 +1,17 @@
 import { handleTMsAndBruteProfitPerStationUpdate } from "@/app/dashboard/analytics/actions";
 import { toast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import SubmitButton from "./submit_button";
 import FormStationField from "./field";
 const fields_first_section: {
-  name: "mlt" | "tmc" | "tmf" | "tmp" | "tmvol" | "tm_lucro_bruto_operacional";
+  name:
+    | "mlt"
+    | "tmc"
+    | "tmf"
+    | "tmp"
+    | "tmvol"
+    | "tm_lucro_bruto_operacional"
+    | "tm_lucro_bruto_operacional_galonagem"
+    | "tm_lucro_bruto_operacional_produto";
   label: string;
 }[] = [
   {
@@ -30,28 +36,40 @@ const fields_first_section: {
   },
   {
     name: "tm_lucro_bruto_operacional",
-    label: "Lucro bruto operacional",
+    label: "LBO",
+  },
+  {
+    name: "tm_lucro_bruto_operacional_galonagem",
+    label: "LBO galonagem",
+  },
+  {
+    name: "tm_lucro_bruto_operacional_produto",
+    label: "LBO produto",
   },
 ];
 const fields_second_section: {
-  name: "gasolina_comum" | "etanol" | "diesel_S500" | "diesel_S10";
+  name:
+    | "gasolina_comum"
+    | "etanol_comum"
+    | "oleo_diesel_b_S500_comum"
+    | "oleo_diesel_b_S10_comum";
   label: string;
 }[] = [
   {
     name: "gasolina_comum",
-    label: "Gasolina comum, adtivada, power",
+    label: "Gasolina comum",
   },
   {
-    name: "etanol",
-    label: "Etanol hidratado",
+    name: "etanol_comum",
+    label: "Etanol comum",
   },
   {
-    name: "diesel_S500",
-    label: "Diesel S500",
+    name: "oleo_diesel_b_S500_comum",
+    label: "Diesel S500 comum",
   },
   {
-    name: "diesel_S10",
-    label: "Diesel S10",
+    name: "oleo_diesel_b_S10_comum",
+    label: "Diesel S10 comum",
   },
 ];
 export default function FormStation({
@@ -112,7 +130,7 @@ export default function FormStation({
     });
   }
   return (
-    <form action={onSubmit} className="flex gap-2 items-end w-[620px]">
+    <form action={onSubmit} className="flex gap-2 items-end w-full">
       {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
       <SubmitButton />
     </form>
