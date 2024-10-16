@@ -53,7 +53,6 @@ export default function DashboardComponentsTables() {
         data={data.combustivel}
         columns={fuel}
         title="Acompanhamento da venda de combustiveis"
-        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.grupo}
@@ -64,7 +63,6 @@ export default function DashboardComponentsTables() {
         data={data.frentista}
         columns={workers_gallonage}
         title="Acompanhamento da galonagem por frentista"
-        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.frentistaprod}
