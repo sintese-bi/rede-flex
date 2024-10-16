@@ -1,23 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import {
-  handleTMsAndBruteProfit,
-  handleTMsAndBruteProfitUpdate,
-} from "../../../actions";
+import { handleTMsAndBruteProfitUpdate } from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
 import { Label } from "@/components/ui/label";
@@ -28,7 +11,9 @@ const fields_first_section: {
     | "use_tmf"
     | "use_tmp"
     | "use_tmvol"
-    | "use_lucro_bruto_operacional";
+    | "use_lucro_bruto_operacional"
+    | "lucro_bruto_operacional_produto"
+    | "lucro_bruto_operacional_galonagem";
   label: string;
 }[] = [
   {
@@ -55,30 +40,38 @@ const fields_first_section: {
     name: "use_lucro_bruto_operacional",
     label: "Lucro bruto operacional",
   },
+  {
+    name: "lucro_bruto_operacional_galonagem",
+    label: "Lucro bruto operacional galonagem",
+  },
+  {
+    name: "lucro_bruto_operacional_produto",
+    label: "Lucro bruto operacional produto",
+  },
 ];
 const fields_second_section: {
   name:
-    | "use_gasolina_comum"
-    | "use_etanol"
-    | "use_diesel_S500"
-    | "use_diesel_S10";
+    | "use_gasolina_comum_comb"
+    | "use_etanol_comum_comb"
+    | "use_oleo_diesel_b_s10_comum_comb"
+    | "use_oleo_diesel_b_s500_comum_comb";
   label: string;
 }[] = [
   {
-    name: "use_gasolina_comum",
-    label: "Gasolina comum, adtivada, power",
+    name: "use_gasolina_comum_comb",
+    label: "Gasolina comum",
   },
   {
-    name: "use_etanol",
-    label: "Etanol hidratado",
+    name: "use_etanol_comum_comb",
+    label: "Etanol comum",
   },
   {
-    name: "use_diesel_S500",
-    label: "Diesel S500",
+    name: "use_oleo_diesel_b_s10_comum_comb",
+    label: "Diesel S10 comum",
   },
   {
-    name: "use_diesel_S10",
-    label: "Diesel S10",
+    name: "use_oleo_diesel_b_s500_comum_comb",
+    label: "Diesel S500 comum",
   },
 ];
 export default function FormRegionalConfiguration({
@@ -102,7 +95,7 @@ export default function FormRegionalConfiguration({
     );
     const response = await handleTMsAndBruteProfitUpdate(values);
     toast({
-      duration: 5000,
+      duration: 2000,
       variant: "default",
       title: "TMs e Lucro Bruto",
       description: response.message,
