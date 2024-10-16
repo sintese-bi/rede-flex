@@ -14,6 +14,12 @@ export default function FormStationsConfiguration({
     tmc: false,
     tmvol: false,
     tm_lucro_bruto_operacional: false,
+    tm_lucro_bruto_operacional_galonagem: false,
+    tm_lucro_bruto_operacional_produto: false,
+    etanol_comum: false,
+    gasolina_comum: false,
+    oleo_diesel_b_s10_comum: false,
+    oleo_diesel_b_s500_comum: false,
   };
   const columns = [
     {
@@ -45,7 +51,31 @@ export default function FormStationsConfiguration({
     },
     {
       accessorKey: "tm_lucro_bruto_operacional",
-      header: "Lucro Bruto Operecional",
+      header: "LBO",
+    },
+    {
+      accessorKey: "tm_lucro_bruto_operacional_galonagem",
+      header: "LBO galonagem",
+    },
+    {
+      accessorKey: "tm_lucro_bruto_operacional_produto",
+      header: "LBO produto",
+    },
+    {
+      accessorKey: "gasolina_comum",
+      header: "Gasolina comum",
+    },
+    {
+      accessorKey: "etanol_comum",
+      header: "Etanol comum",
+    },
+    {
+      accessorKey: "oleo_diesel_b_s500_comum",
+      header: "Diesel S500 comum",
+    },
+    {
+      accessorKey: "oleo_diesel_b_s10_comum",
+      header: "Diesel S10 comum",
     },
     {
       accessorKey: "",
