@@ -481,3 +481,35 @@ export async function handleTMsAndBruteProfitPerStationUpdate(
   const data = await response.json();
   return data;
 }
+export async function handleTMsAndBruteProfitPerRegional() {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-return-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleTMsAndBruteProfitPerRegionalUpdate(
+  values: any,
+  id: string
+) {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-insert-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(values),
+    }
+  );
+  if (!response.ok) console.error(await response.text());
+  const data = await response.json();
+  return data;
+}

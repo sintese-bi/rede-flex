@@ -1,144 +1,99 @@
-"use client";
-import { Input } from "@/components/ui/input";
-import { handleTMsAndBruteProfitUpdate } from "../../../actions";
-import { toast } from "@/components/ui/use-toast";
-import SubmitButton from "./submit_button";
-import { Label } from "@/components/ui/label";
-const fields_first_section: {
-  name:
-    | "use_mlt"
-    | "use_tmc"
-    | "use_tmf"
-    | "use_tmp"
-    | "use_tmvol"
-    | "use_lucro_bruto_operacional"
-    | "lucro_bruto_operacional_produto"
-    | "lucro_bruto_operacional_galonagem";
-  label: string;
-}[] = [
-  {
-    name: "use_mlt",
-    label: "MLT (R$/L)",
-  },
-  {
-    name: "use_tmc",
-    label: "TMC (R$)",
-  },
-  {
-    name: "use_tmf",
-    label: "TMF (R$)",
-  },
-  {
-    name: "use_tmp",
-    label: "TMP (R$)",
-  },
-  {
-    name: "use_tmvol",
-    label: "TMVOL (L)",
-  },
-  {
-    name: "use_lucro_bruto_operacional",
-    label: "Lucro bruto operacional",
-  },
-  {
-    name: "lucro_bruto_operacional_galonagem",
-    label: "Lucro bruto operacional galonagem",
-  },
-  {
-    name: "lucro_bruto_operacional_produto",
-    label: "Lucro bruto operacional produto",
-  },
-];
-const fields_second_section: {
-  name:
-    | "use_gasolina_comum_comb"
-    | "use_etanol_comum_comb"
-    | "use_oleo_diesel_b_s10_comum_comb"
-    | "use_oleo_diesel_b_s500_comum_comb";
-  label: string;
-}[] = [
-  {
-    name: "use_gasolina_comum_comb",
-    label: "Gasolina comum",
-  },
-  {
-    name: "use_etanol_comum_comb",
-    label: "Etanol comum",
-  },
-  {
-    name: "use_oleo_diesel_b_s10_comum_comb",
-    label: "Diesel S10 comum",
-  },
-  {
-    name: "use_oleo_diesel_b_s500_comum_comb",
-    label: "Diesel S500 comum",
-  },
-];
-export default function FormRegionalConfiguration({
+import FormsTable from "@/components/forms_table";
+import FormStation from "./form";
+export default function FormStationsConfiguration({
   data,
   wantsToViewTMs,
 }: {
   data: any;
   wantsToViewTMs: boolean;
 }) {
-  async function onSubmit(form: FormData) {
-    const first_section_fields: any = fields_first_section.map(
-      (fieldItem) => fieldItem.name
-    );
-    const second_section_fields: any = fields_second_section.map(
-      (fieldItem) => fieldItem.name
-    );
-    const total_fields = first_section_fields.concat(second_section_fields);
-    const values: Record<any, number> = {};
-    total_fields.forEach(
-      (field: any) => (values[field] = Number(form.get(field)) || 0)
-    );
-    const response = await handleTMsAndBruteProfitUpdate(values);
-    toast({
-      duration: 2000,
-      variant: "default",
-      title: "TMs e Lucro Bruto",
-      description: response.message,
-    });
-  }
-  function FirstSection() {
-    return fields_first_section.map((fieldItem, index) => {
-      return (
-        <div key={index} className="flex flex-col gap-4">
-          <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>
-          <Input
-            name={fieldItem.name}
-            defaultValue={data[fieldItem.name] || 0}
-            className="col-span-3"
-            type="number"
-            min="0"
-            step="0.01"
+  const visibility = {
+    id: false,
+    tmp: false,
+    tmf: false,
+    tmc: false,
+    tmvol: false,
+    tm_lucro_bruto_operacional: false,
+    tm_lucro_bruto_operacional_galonagem: false,
+    tm_lucro_bruto_operacional_produto: false,
+    etanol_comum: false,
+    gasolina_comum: false,
+    oleo_diesel_b_s10_comum: false,
+    oleo_diesel_b_s500_comum: false,
+  };
+  const columns = [
+    {
+      accessorKey: "id",
+      header: "ID",
+    },
+    {
+      accessorKey: "nome_fantasia",
+      header: "Posto",
+      cell: ({ row }: { row: any }) => {
+        return <p className="min-w-[320px]">{row.original.nome_fantasia}</p>;
+      },
+    },
+    {
+      accessorKey: "tmp",
+      header: "TMP",
+    },
+    {
+      accessorKey: "tmf",
+      header: "TMF",
+    },
+    {
+      accessorKey: "tmc",
+      header: "TMC",
+    },
+    {
+      accessorKey: "tmvol",
+      header: "TMVOL",
+    },
+    {
+      accessorKey: "tm_lucro_bruto_operacional",
+      header: "LBO",
+    },
+    {
+      accessorKey: "tm_lucro_bruto_operacional_galonagem",
+      header: "LBO galonagem",
+    },
+    {
+      accessorKey: "tm_lucro_bruto_operacional_produto",
+      header: "LBO produto",
+    },
+    {
+      accessorKey: "gasolina_comum",
+      header: "Gasolina comum",
+    },
+    {
+      accessorKey: "etanol_comum",
+      header: "Etanol comum",
+    },
+    {
+      accessorKey: "oleo_diesel_b_s500_comum",
+      header: "Diesel S500 comum",
+    },
+    {
+      accessorKey: "oleo_diesel_b_s10_comum",
+      header: "Diesel S10 comum",
+    },
+    {
+      accessorKey: "",
+      header: "Configurar postos",
+      cell: ({ row }: { row: any }) => {
+        const fields = { ...row.original };
+        delete fields["id"];
+        delete fields["nome_fantasia"];
+        return (
+          <FormStation
+            id={row.original.id}
+            fields={fields}
+            wantsToViewTMs={wantsToViewTMs}
           />
-        </div>
-      );
-    });
-  }
-  function SecondSection() {
-    return fields_second_section.map((fieldItem, index) => {
-      return (
-        <div key={index} className="flex flex-col gap-4">
-          <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>
-          <Input
-            name={fieldItem.name}
-            defaultValue={data[fieldItem.name] || 0}
-            className="col-span-3"
-            type="number"
-            min="0"
-            step="0.01"
-          />
-        </div>
-      );
-    });
-  }
-  return (
-    <form action={onSubmit} className="grid gap-4 py-4 space-y-4 px-2">
-      {wantsToViewTMs ? <FirstSection /> : <SecondSection />}
-      <SubmitButton />
-    </form>
-  );
+        );
+      },
+    },
+  ];
+
+  return <FormsTable data={data} columns={columns} visibility={visibility} />;
 }

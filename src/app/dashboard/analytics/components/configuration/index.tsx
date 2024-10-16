@@ -17,7 +17,7 @@ import {
   handleTMsAndBruteProfit,
   handleTMsAndBruteProfitPerStation,
 } from "../../actions";
-import FormRegionalConfiguration from "./form_regional";
+import FormRegionalConfiguration from "./form_rede";
 import FormStationsConfiguration from "./form_stations";
 export default function Configuration() {
   const [wantsToViewRegional, setWantsToViewRegional] = useState<boolean>(true);
@@ -28,7 +28,6 @@ export default function Configuration() {
     const fetch = async () => {
       const regionalFormData = await handleTMsAndBruteProfit();
       const stationsFormData = await handleTMsAndBruteProfitPerStation();
-      console.log(regionalFormData, stationsFormData);
       setRegionalFormData(regionalFormData["data"]);
       setStationsFormData(stationsFormData["data"]);
     };
