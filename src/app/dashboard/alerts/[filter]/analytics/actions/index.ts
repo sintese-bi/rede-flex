@@ -21,20 +21,22 @@ export async function handleAlertsVariablesSelect(form: FormData) {
 export async function handleAlertsVariablesUnselect(variable: string) {
   revalidateTag("alerts_variables");
 }
-export async function handleAlertsLogs(): Promise<AlertsInterfaces[]> {
+export async function handleAlertsLogs(): Promise<any> {
+  const use_uuid = getUserUUID();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_EXTERN_API}/mock-alerts`,
+    `${process.env.NEXT_PUBLIC_EXTERN_API}/alerts-log`,
     {
       cache: "no-cache",
       headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify({ use_uuid }),
     }
   );
   const { data } = await response.json();
-  return (
-    data || [
-      { date: "07-08-2024", variable_name: "marginGC", condition: "sanado" },
-    ]
-  );
+  const sanados = data["sanados"];
+  const qntdsanados = data["quant_sanados"];
+  const naosanados = data["nãoSanados"];
+  return { sanados, naosanados, qntdsanados };
 }
 export async function handleAlertsTable(filter: string): Promise<any> {
   const use_uuid = getUserUUID();

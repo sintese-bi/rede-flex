@@ -164,6 +164,10 @@ export const gallonage: any[] = [
     },
   },
   {
+    accessorKey: "Última Atualizacao",
+    header: "Última Atualização",
+  },
+  {
     accessorKey: "Posto_ibm",
     header: "Posto ibm",
   },

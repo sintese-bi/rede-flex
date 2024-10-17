@@ -1,11 +1,14 @@
 import { Skeleton } from "@/components/ui/skeleton";
 export default function ChartLoading() {
   return (
-    <div className="flex items-center justify-center flex-col space-y-3 lg:w-3/6 md:w-3/6 sm:w-full xs:w-full w-full h-96">
-      <Skeleton className="h-[125px] w-full rounded-xl" />
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-[250px]" />
-        <Skeleton className="h-4 w-[200px]" />
+    <div className="flex justify-center items-center w-full h-full">
+      <div
+        className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] text-main-color"
+        role="status"
+      >
+        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+          Loading...
+        </span>
       </div>
     </div>
   );

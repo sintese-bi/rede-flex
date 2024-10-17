@@ -3,4 +3,6 @@ export interface BigNumbersInterfaces {
   value: string;
   secondary_label: string;
   secondary_value: string;
+  third_value: boolean;
+  fourth_value: number;
 }

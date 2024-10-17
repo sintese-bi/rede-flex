@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import L from "leaflet";
+import L, { icon, PointExpression } from "leaflet";
 import MapPopup from "./popup";
 type MyObject = {
   lat: number;
@@ -16,25 +16,33 @@ type MyObject = {
   "TM VOL": number;
   TMP: number;
   TMF: number;
-  averageComparison: boolean;
+  averageComparison: 0 | 1 | 2;
+};
+const icon_options = {
+  iconSize: [38, 35] as PointExpression,
+  shadowSize: [50, 64] as PointExpression,
+  iconAnchor: [22, 94] as PointExpression,
+  shadowAnchor: [4, 62] as PointExpression,
+  popupAnchor: [-3, -76] as PointExpression,
 };
 export default function Leaflet({ data }: { data: MyObject[] }) {
   var greenIcon = L.icon({
+    ...icon_options,
     iconUrl: "/icons/green_fuel_icon.png",
-    iconSize: [38, 35], // size of the icon
-    shadowSize: [50, 64], // size of the shadow
-    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62], // the same for the shadow
-    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
   });
   var redIcon = L.icon({
+    ...icon_options,
     iconUrl: "/icons/red_fuel_icon.png",
-    iconSize: [38, 35], // size of the icon
-    shadowSize: [50, 64], // size of the shadow
-    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62], // the same for the shadow
-    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
   });
+  var yellowIcon = L.icon({
+    ...icon_options,
+    iconUrl: "/icons/yellow_fuel_icon.png",
+  });
+  const icons = {
+    0: greenIcon,
+    1: yellowIcon,
+    2: redIcon,
+  };
   return (
     <MapContainer
       center={[-19.912998, -43.940933]}
@@ -50,7 +58,7 @@ export default function Leaflet({ data }: { data: MyObject[] }) {
         return (
           <Marker
             position={[item["lat"], item["long"]]}
-            icon={item["averageComparison"] ? greenIcon : redIcon}
+            icon={icons[item["averageComparison"]]}
             key={index}
           >
             <MapPopup item={item} />
