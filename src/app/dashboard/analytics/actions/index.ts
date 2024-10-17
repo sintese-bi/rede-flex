@@ -474,7 +474,7 @@ export async function handleTMsAndBruteProfitPerStationUpdate(
       cache: "no-cache",
       headers: apiRequestConfig(),
       method: "POST",
-      body: JSON.stringify(values),
+      body: JSON.stringify({ values, id }),
     }
   );
   if (!response.ok) console.error(await response.text());
