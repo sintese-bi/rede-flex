@@ -10,7 +10,10 @@ import {
 import { BoltIcon } from "lucide-react";
 import FormConfiguration from "./form";
 import { Separator } from "@/components/ui/separator";
+import { handleTMsAndBruteProfit } from "../../actions";
 export default async function Configuration() {
+  const data = await handleTMsAndBruteProfit();
+  console.log(data);
   return (
     <Dialog defaultOpen={true}>
       <DialogTrigger asChild>

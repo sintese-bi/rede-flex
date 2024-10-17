@@ -371,7 +371,18 @@ export async function handleGeolocations() {
   });
   return formmatedNumbers;
 }
-export async function handleTMsAndBruteProfit(values: any) {
+export async function handleTMsAndBruteProfit() {
+  const response = await fetch(
+    `${process.env.NEXT_MICROSERVICE_MONGODB}/modal-insert-tm`,
+    {
+      headers: microServiceRequestConfig(),
+      cache: "no-cache",
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleTMsAndBruteProfitUpdate(values: any) {
   //const response = await fetch(
   //  `${process.env.NEXT_MICROSERVICE_MONGODB}/daily-graph/${params.filter}`,
   //  {
