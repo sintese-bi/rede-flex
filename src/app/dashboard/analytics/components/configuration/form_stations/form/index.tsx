@@ -41,7 +41,12 @@ export default function FormStation({
           <FormStationField
             defaultValue={rowValues[fieldItem] || 0}
             name={fieldItem}
-            label={getStationsFields().getHeader(fieldItem, "first_section")}
+            label={
+              getStationsFields().getHeader(
+                fieldItem,
+                "first_section"
+              ) as string
+            }
             key={index}
           />
         </div>
@@ -55,7 +60,12 @@ export default function FormStation({
           <FormStationField
             defaultValue={rowValues[fieldItem] || 0}
             name={fieldItem}
-            label={getStationsFields().getHeader(fieldItem, "second_section")}
+            label={
+              getStationsFields().getHeader(
+                fieldItem,
+                "second_section"
+              ) as string
+            }
             key={index}
           />
         </div>

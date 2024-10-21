@@ -93,7 +93,10 @@ export default function FormStation({
     total_fields.forEach(
       (field: any) => (values[field] = Number(form.get(field)) || 0)
     );
-    const response = await handleTMsAndBruteProfitPerStationUpdate(values, id);
+    const response = await handleTMsAndBruteProfitPerStationUpdate({
+      values,
+      id,
+    });
     toast({
       duration: 1000,
       variant: "default",
