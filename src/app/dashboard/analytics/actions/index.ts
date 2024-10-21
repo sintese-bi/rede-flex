@@ -462,10 +462,7 @@ export async function handleTMsAndBruteProfitPerStation() {
   const data = await response.json();
   return data;
 }
-export async function handleTMsAndBruteProfitPerStationUpdate(
-  values: any,
-  id: string
-) {
+export async function handleTMsAndBruteProfitPerStationUpdate(params: any) {
   const response = await fetch(
     `${
       process.env.NEXT_PUBLIC_EXTERN_API
@@ -474,7 +471,7 @@ export async function handleTMsAndBruteProfitPerStationUpdate(
       cache: "no-cache",
       headers: apiRequestConfig(),
       method: "POST",
-      body: JSON.stringify({ values, id }),
+      body: JSON.stringify(params),
     }
   );
   if (!response.ok) console.error(await response.text());
@@ -485,7 +482,7 @@ export async function handleTMsAndBruteProfitPerRegional() {
   const response = await fetch(
     `${
       process.env.NEXT_PUBLIC_EXTERN_API
-    }/modal-station-return-tm/${getAccessToken()}`,
+    }/modal-regions-return-tm/${getAccessToken()}`,
     {
       cache: "no-cache",
       headers: apiRequestConfig(),
@@ -494,19 +491,16 @@ export async function handleTMsAndBruteProfitPerRegional() {
   const data = await response.json();
   return data;
 }
-export async function handleTMsAndBruteProfitPerRegionalUpdate(
-  values: any,
-  id: string
-) {
+export async function handleTMsAndBruteProfitPerRegionalUpdate(params: any) {
   const response = await fetch(
     `${
       process.env.NEXT_PUBLIC_EXTERN_API
-    }/modal-station-insert-tm/${getAccessToken()}`,
+    }/modal-regions-insert-tm/${getAccessToken()}`,
     {
       cache: "no-cache",
       headers: apiRequestConfig(),
       method: "POST",
-      body: JSON.stringify(values),
+      body: JSON.stringify(params),
     }
   );
   if (!response.ok) console.error(await response.text());
