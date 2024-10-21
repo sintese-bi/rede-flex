@@ -4,89 +4,22 @@ import { handleTMsAndBruteProfitUpdate } from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
 import { Label } from "@/components/ui/label";
-const fields_first_section: {
-  name:
-    | "use_mlt"
-    | "use_tmc"
-    | "use_tmf"
-    | "use_tmp"
-    | "use_tmvol"
-    | "use_lucro_bruto_operacional"
-    | "lucro_bruto_operacional_produto"
-    | "lucro_bruto_operacional_galonagem";
-  label: string;
-}[] = [
-  {
-    name: "use_mlt",
-    label: "MLT (R$/L)",
-  },
-  {
-    name: "use_tmc",
-    label: "TMC (R$)",
-  },
-  {
-    name: "use_tmf",
-    label: "TMF (R$)",
-  },
-  {
-    name: "use_tmp",
-    label: "TMP (R$)",
-  },
-  {
-    name: "use_tmvol",
-    label: "TMVOL (L)",
-  },
-  {
-    name: "use_lucro_bruto_operacional",
-    label: "Lucro bruto operacional",
-  },
-  {
-    name: "lucro_bruto_operacional_galonagem",
-    label: "Lucro bruto operacional galonagem",
-  },
-  {
-    name: "lucro_bruto_operacional_produto",
-    label: "Lucro bruto operacional produto",
-  },
-];
-const fields_second_section: {
-  name:
-    | "use_gasolina_comum_comb"
-    | "use_etanol_comum_comb"
-    | "use_oleo_diesel_b_s10_comum_comb"
-    | "use_oleo_diesel_b_s500_comum_comb";
-  label: string;
-}[] = [
-  {
-    name: "use_gasolina_comum_comb",
-    label: "Gasolina comum",
-  },
-  {
-    name: "use_etanol_comum_comb",
-    label: "Etanol comum",
-  },
-  {
-    name: "use_oleo_diesel_b_s10_comum_comb",
-    label: "Diesel S10 comum",
-  },
-  {
-    name: "use_oleo_diesel_b_s500_comum_comb",
-    label: "Diesel S500 comum",
-  },
-];
+import { useContext } from "react";
+import { ConfigurationContext } from "..";
 export default function FormRegionalConfiguration({
   data,
-  wantsToViewTMs,
+  fields,
 }: {
   data: any;
-  wantsToViewTMs: boolean;
+  fields: any;
 }) {
+  const { wantsToViewTMs } = useContext(ConfigurationContext);
   async function onSubmit(form: FormData) {
-    const first_section_fields: any = fields_first_section.map(
-      (fieldItem) => fieldItem.name
+    const first_section_fields: any = fields["first_section"].map(
+      (fieldItem: any) => fieldItem.name
     );
-    const second_section_fields: any = fields_second_section.map(
-      (fieldItem) => fieldItem.name
+    const second_section_fields: any = fields["second_section"].map(
+      (fieldItem: any) => fieldItem.name
     );
     const total_fields = first_section_fields.concat(second_section_fields);
     const values: Record<any, number> = {};
@@ -102,7 +35,7 @@ export default function FormRegionalConfiguration({
     });
   }
   function FirstSection() {
-    return fields_first_section.map((fieldItem, index) => {
+    return fields["first_section"].map((fieldItem: any, index: number) => {
       return (
         <div key={index} className="flex flex-col gap-4">
           <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>
@@ -119,7 +52,7 @@ export default function FormRegionalConfiguration({
     });
   }
   function SecondSection() {
-    return fields_second_section.map((fieldItem, index) => {
+    return fields["second_section"].map((fieldItem: any, index: number) => {
       return (
         <div key={index} className="flex flex-col gap-4">
           <Label htmlFor={fieldItem.name}>{fieldItem.label}</Label>

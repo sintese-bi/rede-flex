@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ChangeEvent } from "react";
 export default function FormStationField({
   name,
   label,
