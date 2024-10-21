@@ -16,6 +16,12 @@ type MyObject = {
   "TM VOL": number;
   TMP: number;
   TMF: number;
+  LBO: number;
+  LBOProduto: number;
+  LBOGalonagem: number;
+  LBO_Definido: number;
+  LBO_Produto_Definido: number;
+  LBO_Galonagem_Definido: number;
   averageComparison: 0 | 1 | 2;
 };
 const icon_options = {
@@ -26,6 +32,8 @@ const icon_options = {
   popupAnchor: [-3, -76] as PointExpression,
 };
 export default function Leaflet({ data }: { data: MyObject[] }) {
+  console.log(data);
+
   var greenIcon = L.icon({
     ...icon_options,
     iconUrl: "/icons/green_fuel_icon.png",

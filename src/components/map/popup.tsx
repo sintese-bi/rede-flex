@@ -1,7 +1,5 @@
 import { Popup } from "react-leaflet";
-
 type MyObject = {
-  lat: number;
   long: number;
   nomefantasia: string;
   ibm: string;
@@ -11,6 +9,13 @@ type MyObject = {
   "TM VOL": number;
   TMP: number;
   TMF: number;
+  LBO: number;
+  LBOProduto: number;
+  LBOGalonagem: number;
+  LBO_Definido: number;
+  LBO_Produto_Definido: number;
+  LBO_Galonagem_Definido: number;
+  averageComparison: 0 | 1 | 2;
 };
 export default function MapPopup({ item }: { item: MyObject }) {
   const MLT = new Intl.NumberFormat("de-DE").format(item["M/LT"]);
@@ -18,7 +23,20 @@ export default function MapPopup({ item }: { item: MyObject }) {
   const TMV = new Intl.NumberFormat("de-DE").format(item["TM VOL"]);
   const TMP = new Intl.NumberFormat("de-DE").format(item["TMP"]);
   const TMF = new Intl.NumberFormat("de-DE").format(item["TMF"]);
-
+  const LBO = new Intl.NumberFormat("de-DE").format(item["LBO"]);
+  const LBOProduto = new Intl.NumberFormat("de-DE").format(item["LBOProduto"]);
+  const LBOGalonagem = new Intl.NumberFormat("de-DE").format(
+    item["LBOGalonagem"]
+  );
+  const LBO_Definido = new Intl.NumberFormat("de-DE").format(
+    item["LBO_Definido"]
+  );
+  const LBO_Produto_Definido = new Intl.NumberFormat("de-DE").format(
+    item["LBO_Produto_Definido"]
+  );
+  const LBO_Galonagem_Definido = new Intl.NumberFormat("de-DE").format(
+    item["LBO_Galonagem_Definido"]
+  );
   return (
     <Popup>
       <div className="flex flex-col">
@@ -49,6 +67,38 @@ export default function MapPopup({ item }: { item: MyObject }) {
         <div>
           <p className="text-main-color text- font-extrabold">TMF</p>
           <p className="text-main-color text-xs">R$ {TMF}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">LBO</p>
+          <p className="text-main-color text-xs">% {LBO}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">LBO Produto</p>
+          <p className="text-main-color text-xs">% {LBOProduto}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">LBO Galonagem</p>
+          <p className="text-main-color text-xs">% {LBOGalonagem}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">LBO Definido</p>
+          <p className="text-main-color text-xs">% {LBO_Definido}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">
+            LBO Produto definido
+          </p>
+          <p className="text-main-color text-xs">% {LBO_Produto_Definido}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">
+            LBO Galonagem definido
+          </p>
+          <p className="text-main-color text-xs">% {LBO_Galonagem_Definido}</p>
+        </div>
+        <div>
+          <p className="text-main-color text- font-extrabold">LBO Galonagem</p>
+          <p className="text-main-color text-xs">% {LBOGalonagem}</p>
         </div>
       </div>
     </Popup>
