@@ -233,6 +233,7 @@ export async function handleDataframes() {
       "M/LT": item["M/LT"],
       Posto_ibm: item["Posto_ibm"],
       Indicador: item["Indicador"],
+      Resultado: item["Resultado"],
       "Última Atualizacao": item["Última Atualizacao"],
     };
   });
@@ -250,6 +251,7 @@ export async function handleDataframes() {
       TMP: item["TMP"],
       Posto_ibm: item["Posto_ibm"],
       Indicador: item["Indicador"],
+      Resultado: item["Resultado"],
       "Última Atualizacao": item["Última Atualizacao"],
     };
   });
@@ -269,6 +271,7 @@ export async function handleDataframes() {
         (product_item: any) => product_item.regional == item["Regional"]
       ),
       Indicador: item["Indicador"],
+      Resultado: item["Resultado"],
     };
   });
   const regional_produto = dataframes["regional_produto"].map((item: any) => {
@@ -285,6 +288,7 @@ export async function handleDataframes() {
         (product_item: any) => product_item.regional == item["Regional"]
       ),
       Indicador: item["Indicador"],
+      Resultado: item["Resultado"],
     };
   });
   const frentista = dataframes["frentista"].map((item: any) => {

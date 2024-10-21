@@ -122,9 +122,11 @@ export function DataTable<TData, TValue>({
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
                     className={
-                      row.original.Indicador !== undefined
-                        ? row.original.Indicador
+                      row.original.Resultado !== undefined
+                        ? row.original.Resultado == 0
                           ? "bg-green-100"
+                          : row.original.Resultado == 1
+                          ? "bg-yellow-100"
                           : "bg-red-100"
                         : "bg-white"
                     }
