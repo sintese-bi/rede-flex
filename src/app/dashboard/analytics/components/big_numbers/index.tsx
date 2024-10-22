@@ -35,6 +35,7 @@ export default function DashboardComponentsBigNumbers() {
   useEffect(() => {
     async function fetch() {
       let response = await handleDashboardBigNumbers();
+      console.log(response);
       localStorage.setItem("update_time", new Date().toDateString());
       const splitted_big_numbers = await splitBigNumberIntoThree(response);
       setBigNumbers(splitted_big_numbers);

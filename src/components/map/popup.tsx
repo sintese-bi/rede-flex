@@ -69,36 +69,28 @@ export default function MapPopup({ item }: { item: MyObject }) {
           <p className="text-main-color text-xs">R$ {TMF}</p>
         </div>
         <div>
-          <p className="text-main-color text- font-extrabold">LBO</p>
-          <p className="text-main-color text-xs">% {LBO}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">LBO Produto</p>
-          <p className="text-main-color text-xs">% {LBOProduto}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">LBO Galonagem</p>
-          <p className="text-main-color text-xs">% {LBOGalonagem}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">LBO Definido</p>
-          <p className="text-main-color text-xs">% {LBO_Definido}</p>
+          <p className="text-main-color text- font-extrabold">
+            LBO x LBO Definido
+          </p>
+          <p className="text-main-color text-xs">
+            % {LBO} - % {LBO_Definido}
+          </p>
         </div>
         <div>
           <p className="text-main-color text- font-extrabold">
-            LBO Produto definido
+            LBO Produto x LBO Produto definido
           </p>
-          <p className="text-main-color text-xs">% {LBO_Produto_Definido}</p>
+          <p className="text-main-color text-xs">
+            % {LBOProduto} - % {LBO_Produto_Definido}
+          </p>
         </div>
         <div>
           <p className="text-main-color text- font-extrabold">
-            LBO Galonagem definido
+            LBO Galonagem x LBO Galonagem definido
           </p>
-          <p className="text-main-color text-xs">% {LBO_Galonagem_Definido}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">LBO Galonagem</p>
-          <p className="text-main-color text-xs">% {LBOGalonagem}</p>
+          <p className="text-main-color text-xs">
+            % {LBOGalonagem} - % {LBO_Galonagem_Definido}
+          </p>
         </div>
       </div>
     </Popup>
