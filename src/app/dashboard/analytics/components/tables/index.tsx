@@ -29,25 +29,25 @@ export default function DashboardComponentsTables() {
         data={data.regional}
         columns={regional_gallonage}
         title="Acompanhamento regional galonagem"
-        averageMeasure={`M/LT médio: ${data.regionalAvarageMLT} - TMC médio: ${data.regionalAvarageTMC} - TMV médio: ${data.regionalAvarageTMV}`}
+        averageMeasure={`M/LT definido: ${data.regionalAvarageMLT} - TMC definido: ${data.regionalAvarageTMC} - TMV definido: ${data.regionalAvarageTMV}`}
       />
       <DataTable
         data={data.regional_produto}
         columns={regional_product}
         title="Acompanhamento regional produto"
-        averageMeasure={`TMP médio: ${data.regionalAvarageTMP}`}
+        averageMeasure={`TMP definido: ${data.regionalAvarageTMP}`}
       />
       <DataTable
         data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
-        averageMeasure={`M/LT médio: ${data.stationAvarageMLT} - TMC médio: ${data.stationAvarageTMC} - TMV médio: ${data.stationAvarageTMV}`}
+        averageMeasure={`M/LT definido: ${data.stationAvarageMLT} - TMC definido: ${data.stationAvarageTMC} - TMV definido: ${data.stationAvarageTMV}`}
       />
       <DataTable
         data={data.produto}
         columns={product}
         title="Acompanhamento produtos"
-        averageMeasure={`TMP médio: ${data.regionalAvarageTMP}`}
+        averageMeasure={`TMP definido: ${data.regionalAvarageTMP}`}
       />
       <DataTable
         data={data.combustivel}
