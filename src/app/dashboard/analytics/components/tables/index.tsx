@@ -1,6 +1,5 @@
 "use client";
 import { DataTable } from "./table";
-import { handleDataframes } from "../../actions";
 import { regional_gallonage } from "./columns/regional_gallonage";
 import { regional_product } from "./columns/regional_product";
 import { gallonage } from "./columns/gallonage";
@@ -9,20 +8,7 @@ import { fuel } from "./columns/fuel";
 import { group } from "./columns/group";
 import { workers_gallonage } from "./columns/workers_gallonage";
 import { workers_products } from "./columns/workers_products";
-import { useEffect, useState } from "react";
-import TableLoading from "../loading/table";
-export default function DashboardComponentsTables() {
-  const [data, setData] = useState<any>(null);
-  useEffect(() => {
-    async function fetch() {
-      let response = await handleDataframes();
-      setData(response);
-    }
-    fetch();
-    const intervalId = setInterval(fetch, 4 * 60 * 1000);
-    return () => clearInterval(intervalId);
-  }, []);
-  if (!data) return <TableLoading />;
+export default function DashboardComponentsTables({ data }: { data: any }) {
   return (
     <div className="flex flex-col gap-12 pb-6">
       <DataTable

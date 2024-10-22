@@ -19,7 +19,7 @@ export default function FormStationField({
         className="col-span-3"
         type="number"
         min="0"
-        step="0.01"
+        step="0.0001"
       />
     </>
   );

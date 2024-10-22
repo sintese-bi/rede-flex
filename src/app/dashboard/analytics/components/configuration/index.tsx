@@ -26,7 +26,6 @@ import { getRegionalFields } from "./fields/regional";
 export const ConfigurationContext = createContext<any>(null);
 export default function Configuration() {
   const [sections, setSections] = useState<any>(null);
-  const [stationsFormState, setStationsFormState] = useState<any>(null);
   const [wantsToViewRegional, setWantsToViewRegional] =
     useState<boolean>(false);
   const [wantsToViewRede, setWantsToViewRede] = useState<boolean>(true);

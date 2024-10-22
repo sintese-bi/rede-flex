@@ -7,12 +7,19 @@ import {
 } from "@/components/ui/tooltip";
 import { AlertCircleIcon } from "lucide-react";
 import dynamic from "next/dynamic";
-import { handleGeolocations } from "../actions";
+import { useEffect, useRef } from "react";
 const Leaflet = dynamic(() => import("@/components/map/leaflet-map"), {
   ssr: false,
 });
-export default async function DashboardComponentsMap() {
-  const data = await handleGeolocations();
+export default function DashboardComponentsMap({ data }: { data: any }) {
+  const mapRef = useRef<L.Map | null>(null);
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+      }
+    };
+  }, [mapRef.current]);
   return (
     <div className="flex flex-col gap-2 lg:w-2/5 w-full rounded-lg h-full min-h-[342px]">
       <div className="flex items-center gap-2">

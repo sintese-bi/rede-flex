@@ -6,6 +6,7 @@ import SubmitButton from "./submit_button";
 import { Label } from "@/components/ui/label";
 import { useContext } from "react";
 import { ConfigurationContext } from "..";
+import { DashboardContext } from "../../../context";
 export default function FormRegionalConfiguration({
   data,
   fields,
@@ -13,6 +14,7 @@ export default function FormRegionalConfiguration({
   data: any;
   fields: any;
 }) {
+  const { updateDashboardData } = useContext(DashboardContext);
   const { wantsToViewTMs, handleData } = useContext(ConfigurationContext);
   async function onSubmit(form: FormData) {
     const first_section_fields: any = fields["first_section"].map(
@@ -28,6 +30,7 @@ export default function FormRegionalConfiguration({
     );
     const response = await handleTMsAndBruteProfitUpdate(values);
     await handleData();
+    await updateDashboardData();
     toast({
       duration: 2000,
       variant: "default",
@@ -46,7 +49,7 @@ export default function FormRegionalConfiguration({
             className="col-span-3"
             type="number"
             min="0"
-            step="0.01"
+            step="0.0001"
           />
         </div>
       );
@@ -63,7 +66,7 @@ export default function FormRegionalConfiguration({
             className="col-span-3"
             type="number"
             min="0"
-            step="0.01"
+            step="0.0001"
           />
         </div>
       );

@@ -9,7 +9,6 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { lowerThanAvarageCount } = await handleDataframes();
   return (
     <section className="flex flex-col h-screen w-full">
       <div className="flex gap-6 lg:flex-row md:flex-row sm:flex-row xs:flex-col flex-col lg:items-center md:items-center sm:items-center xs:items-start px-4 py-4 h-screen relative">
@@ -20,17 +19,7 @@ export default async function DashboardLayout({
               <Time />
               <Realod />
             </div>
-            <Configuration />
           </div>
-          <Message
-            message={`
-            Prezado usuário até o momento ${lowerThanAvarageCount["M/LT"]} postos estão abaixo da M/LT médio da Rede.
-            ${lowerThanAvarageCount["TMP"]} postos estão com
-            TMP abaixo da média da Rede.
-            `}
-            variant="warning"
-            position="center"
-          />
           {children}
         </div>
       </div>
