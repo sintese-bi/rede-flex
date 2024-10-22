@@ -26,7 +26,7 @@ export default function FormStation({
       ...values,
       id,
     });
-    handleData();
+    await handleData();
     toast({
       duration: 1000,
       variant: "default",

@@ -13,7 +13,7 @@ export default function FormRegionalConfiguration({
   data: any;
   fields: any;
 }) {
-  const { wantsToViewTMs } = useContext(ConfigurationContext);
+  const { wantsToViewTMs, handleData } = useContext(ConfigurationContext);
   async function onSubmit(form: FormData) {
     const first_section_fields: any = fields["first_section"].map(
       (fieldItem: any) => fieldItem.name
@@ -27,6 +27,7 @@ export default function FormRegionalConfiguration({
       (field: any) => (values[field] = Number(form.get(field)) || data[field])
     );
     const response = await handleTMsAndBruteProfitUpdate(values);
+    await handleData();
     toast({
       duration: 2000,
       variant: "default",
