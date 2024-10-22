@@ -25,11 +25,11 @@ export const rede_fields: any = {
       label: "Lucro bruto operacional",
     },
     {
-      name: "lucro_bruto_operacional_galonagem",
+      name: "use_lucro_bruto_operacional_galonagem",
       label: "Lucro bruto operacional galonagem",
     },
     {
-      name: "lucro_bruto_operacional_produto",
+      name: "use_lucro_bruto_operacional_produto",
       label: "Lucro bruto operacional produto",
     },
   ],

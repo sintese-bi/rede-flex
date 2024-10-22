@@ -438,6 +438,7 @@ export async function handleTMsAndBruteProfit() {
     }
   );
   const data = await response.json();
+  console.log(data);
   return data;
 }
 export async function handleTMsAndBruteProfitUpdate(values: any) {

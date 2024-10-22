@@ -24,7 +24,7 @@ export default function FormRegionalConfiguration({
     const total_fields = first_section_fields.concat(second_section_fields);
     const values: Record<any, number> = {};
     total_fields.forEach(
-      (field: any) => (values[field] = Number(form.get(field)) || 0)
+      (field: any) => (values[field] = Number(form.get(field)) || data[field])
     );
     const response = await handleTMsAndBruteProfitUpdate(values);
     toast({
