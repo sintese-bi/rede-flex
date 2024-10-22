@@ -18,37 +18,37 @@ export function getRegionalFields() {
       },
       {
         accessorKey: "tmp",
-        header: "TMP",
+        header: "TMP (R$)",
         isVisible: false,
       },
       {
         accessorKey: "tmf",
-        header: "TMF",
+        header: "TMF (R$)",
         isVisible: false,
       },
       {
         accessorKey: "tmc",
-        header: "TMC",
+        header: "TMC (R$)",
         isVisible: false,
       },
       {
         accessorKey: "tmvol",
-        header: "TMVOL",
+        header: "TMVOL (L)",
         isVisible: false,
       },
       {
         accessorKey: "tm_lucro_bruto_operacional",
-        header: "LBO",
+        header: "LBO (%)",
         isVisible: false,
       },
       {
         accessorKey: "tm_lucro_bruto_operacional_galonagem",
-        header: "LBO galonagem",
+        header: "LBO galonagem (%)",
         isVisible: false,
       },
       {
         accessorKey: "tm_lucro_bruto_operacional_produto",
-        header: "LBO produto",
+        header: "LBO produto (%)",
         isVisible: false,
       },
       {
@@ -72,22 +72,22 @@ export function getRegionalFields() {
     second_section: [
       {
         accessorKey: "gasolina_comum",
-        header: "Gasolina comum",
+        header: "Gasolina comum (L)",
         isVisible: false,
       },
       {
         accessorKey: "etanol_comum",
-        header: "Etanol comum",
+        header: "Etanol comum (L)",
         isVisible: false,
       },
       {
         accessorKey: "oleo_diesel_b_s500_comum",
-        header: "Diesel S500 comum",
+        header: "Diesel S500 comum (L)",
         isVisible: false,
       },
       {
         accessorKey: "oleo_diesel_b_s10_comum",
-        header: "Diesel S10 comum",
+        header: "Diesel S10 comum (L)",
         isVisible: false,
       },
     ],
