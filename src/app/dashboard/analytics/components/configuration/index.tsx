@@ -60,12 +60,12 @@ export default function Configuration() {
         <DialogTrigger asChild>
           <Button className="flex gap-2">
             <BoltIcon size={18} />
-            <p>Parametrização da rede, regionais e postos</p>
+            <p>Parametrização do sistema</p>
           </Button>
         </DialogTrigger>
         <DialogContent
           className={`z-50 transition-all duration-300 ${
-            wantsToViewRede ? "max-w-[400px]" : "max-w-[1200px]"
+            wantsToViewRede ? "max-w-[400px]" : "max-w-[1400px]"
           }`}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
