@@ -2,7 +2,6 @@ import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
 import DashboardComponentsMap from "./analytics/components/map";
 import MapLoading from "./analytics/components/loading/map";
-import BigNumbersLoading from "./analytics/components/loading/bignumbers";
 import DashboardComponentsBigNumbers from "./analytics/components/big_numbers";
 import DashboardComponentsCharts from "./analytics/components/charts";
 import DashboardComponentsTables from "./analytics/components/tables";

@@ -1,15 +1,5 @@
 "use client";
-import {
-  ArrowDownIcon,
-  ArrowDownWideNarrowIcon,
-  ArrowUp01Icon,
-  ArrowUpCircleIcon,
-  ArrowUpIcon,
-  ArrowUpWideNarrowIcon,
-  DollarSignIcon,
-  FuelIcon,
-  PercentIcon,
-} from "lucide-react";
+import { DollarSignIcon, FuelIcon, PercentIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 export default function DashboardComponentsBigNumber({
   label,

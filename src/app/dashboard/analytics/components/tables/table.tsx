@@ -87,11 +87,19 @@ export function DataTable<TData, TValue>({
             />
             <div className="flex items-center gap-2 px-2">
               <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
-              <p className="text-sm">Postos acima da média</p>
+              <p className="text-sm">
+                {title.toLowerCase().includes("galonagem")
+                  ? "Rendimento Bruto, TMs e M/LT acima do definido"
+                  : "Rendimento Bruto e TMs acima do definido"}
+              </p>
+            </div>
+            <div className="flex items-center gap-2 px-2">
+              <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
+              <p className="text-sm">Redimento Bruto acima do definido</p>
             </div>
             <div className="flex items-center gap-2 px-2">
               <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
-              <p className="text-sm">Postos abaixo da média</p>
+              <p className="text-sm">Redimento Bruto abaixo do definido</p>
             </div>
           </div>
         ) : null}
