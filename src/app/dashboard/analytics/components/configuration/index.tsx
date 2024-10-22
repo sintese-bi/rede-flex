@@ -60,7 +60,7 @@ export default function Configuration() {
         <DialogTrigger asChild>
           <Button className="flex gap-2">
             <BoltIcon size={18} />
-            <p>Configurar TMs e Lucro bruto</p>
+            <p>Parametrização da rede, regionais e postos</p>
           </Button>
         </DialogTrigger>
         <DialogContent
