@@ -39,7 +39,7 @@ export default function SelectorPerStationOrRegional({
         <SelectValue placeholder="Configurar por rede, regional, ou posto" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="rede">Geral</SelectItem>
+        <SelectItem value="rede">Rede</SelectItem>
         <SelectItem value="regional">Regional</SelectItem>
         <SelectItem value="station">Postos</SelectItem>
       </SelectContent>
