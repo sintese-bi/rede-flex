@@ -183,7 +183,6 @@ export async function handleDataframes() {
       } ao fazer requisição na rota: ${url}`
     );
   const dataframes = await response.json();
-  console.log(dataframes);
   const regionalAvarageMLT = Number(
     dataframes["regionalGalonagemMLTMedio"]
   ).toFixed(2);
@@ -204,6 +203,8 @@ export async function handleDataframes() {
       Volume: item["Volume"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      "Lucro Com Desconto": item["Lucro Com Desconto"],
+      "M/LT": item["M/LT"],
     };
   });
   const grupo = dataframes["grupo"].map((item: any) => {
@@ -228,6 +229,7 @@ export async function handleDataframes() {
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      "Lucro com Desconto": item["Lucro com Desconto"],
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
@@ -248,6 +250,7 @@ export async function handleDataframes() {
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      "Lucro Operacional Produto": item["Lucro Operacional Produto"],
       TMC: item["TMC"],
       TMP: item["TMP"],
       Posto_ibm: item["Posto_ibm"],
@@ -263,7 +266,11 @@ export async function handleDataframes() {
       Faturamento: item["Faturamento"],
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
+      "Custo com Desconto": item["Custo com Desconto"],
       Lucro: item["Lucro"],
+      "Lucro com Desconto": item["Lucro com Desconto"],
+      "Lucro Bruto Operacional Galonagem":
+        item["Lucro Bruto Operacional Galonagem"],
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
@@ -284,6 +291,8 @@ export async function handleDataframes() {
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      "Lucro Bruto Operacional Produto":
+        item["Lucro Bruto Operacional Produto"],
       TMP: item["TMP"],
       stations: produto.filter(
         (product_item: any) => product_item.regional == item["Regional"]
@@ -292,6 +301,7 @@ export async function handleDataframes() {
       Resultado: item["Resultado"],
     };
   });
+  // ------ unconfirmed
   const frentista = dataframes["frentista"].map((item: any) => {
     return {
       User_id: item["User_id"],

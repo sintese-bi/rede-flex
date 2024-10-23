@@ -103,6 +103,27 @@ export const regional_product: any[] = [
     },
   },
   {
+    accessorKey: "Lucro Bruto Operacional Produto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Bruto Operacional Produto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(
+        row.getValue("Lucro Bruto Operacional Produto")
+      );
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">{formatted} %</div>;
+    },
+  },
+  {
     accessorKey: "TMP",
     header: ({ column }: any) => {
       return (

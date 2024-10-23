@@ -83,6 +83,25 @@ export const regional_gallonage: any[] = [
     },
   },
   {
+    accessorKey: "Custo com Desconto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Custo com Desconto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Custo com Desconto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
     accessorKey: "Lucro",
     header: ({ column }: any) => {
       return (
@@ -100,6 +119,46 @@ export const regional_gallonage: any[] = [
       const formatted = new Intl.NumberFormat("de-DE").format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro com Desconto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro com Desconto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Lucro com Desconto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro Bruto Operacional Galonagem",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Bruto Operacional Galonagem
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(
+        row.getValue("Lucro Bruto Operacional Galonagem")
+      );
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">{formatted} %</div>;
     },
   },
   {

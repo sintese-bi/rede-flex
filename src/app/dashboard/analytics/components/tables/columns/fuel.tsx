@@ -84,4 +84,42 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+  {
+    accessorKey: "Lucro Com Desconto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Com Desconto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Lucro Com Desconto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "M/LT",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          M/LT
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("M/LT"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
 ];
