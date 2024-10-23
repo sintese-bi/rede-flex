@@ -37,6 +37,22 @@ export default function DashboardComponentsMap({ data }: { data: any }) {
           </Tooltip>
         </TooltipProvider>
       </div>
+      <div className="">
+        <div className="flex items-center gap-2 px-2">
+          <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
+          <p className="text-sm">
+            Rendimento Bruto, TMs, M/LT acima do definido
+          </p>
+        </div>
+        <div className="flex items-center gap-2 px-2">
+          <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
+          <p className="text-sm">Redimento Bruto acima do definido</p>
+        </div>
+        <div className="flex items-center gap-2 px-2">
+          <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
+          <p className="text-sm">Redimento Bruto abaixo do definido</p>
+        </div>
+      </div>
       <Separator />
       <div className="w-full h-full rounded-lg">
         <div className=" bg-slate-200 h-full w-full rounded-lg">
