@@ -183,6 +183,7 @@ export async function handleDataframes() {
       } ao fazer requisição na rota: ${url}`
     );
   const dataframes = await response.json();
+  console.log(dataframes);
   const regionalAvarageMLT = Number(
     dataframes["regionalGalonagemMLTMedio"]
   ).toFixed(2);

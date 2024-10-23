@@ -17,6 +17,11 @@ export function getRegionalFields() {
         isVisible: true,
       },
       {
+        accessorKey: "mlt",
+        header: "MLT (R$/L)",
+        isVisible: false,
+      },
+      {
         accessorKey: "tmp",
         header: "TMP (R$)",
         isVisible: false,
