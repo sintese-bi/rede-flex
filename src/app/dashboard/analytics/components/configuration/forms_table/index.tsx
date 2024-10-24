@@ -1,5 +1,5 @@
 import FormsTable from "@/components/forms_table";
-export default function FormStationsConfiguration({
+export default function FormsTableConfiguration({
   data,
   fields,
 }: {

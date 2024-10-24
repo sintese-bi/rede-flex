@@ -1,5 +1,5 @@
 import { handleTMsAndBruteProfitPerRegionalUpdate } from "../../../actions";
-import FormStation from "../form_stations/form";
+import RowForm from "../forms_table/form";
 export function getRegionalFields() {
   const station_fields = {
     first_section: [
@@ -64,7 +64,7 @@ export function getRegionalFields() {
           delete row_values["id"];
           delete row_values["region_name"];
           return (
-            <FormStation
+            <RowForm
               id={row.original.id}
               rowValues={row_values}
               updateFunction={handleTMsAndBruteProfitPerRegionalUpdate}

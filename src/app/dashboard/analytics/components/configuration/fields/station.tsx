@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { handleTMsAndBruteProfitPerStationUpdate } from "../../../actions";
-import FormStation from "../form_stations/form";
 import { ArrowUpDownIcon } from "lucide-react";
+import RowForm from "../forms_table/form";
 export function getStationsFields() {
   const station_fields = {
     first_section: [
@@ -78,7 +78,7 @@ export function getStationsFields() {
           delete row_values["id"];
           delete row_values["nome_fantasia"];
           return (
-            <FormStation
+            <RowForm
               id={row.original.id}
               rowValues={row_values}
               updateFunction={handleTMsAndBruteProfitPerStationUpdate}
@@ -121,10 +121,12 @@ export function getStationsFields() {
         (fieldItem) =>
           !["form", "id", "nome_fantasia"].includes(fieldItem["accessorKey"])
       )
-      .map((fieldItem) => fieldItem["accessorKey"]);
-    const second_section = fields.second_section.map(
-      (fieldItem) => fieldItem.accessorKey
-    );
+      .map((fieldItem) => {
+        return { name: fieldItem["accessorKey"], label: fieldItem["header"] };
+      });
+    const second_section = fields.second_section.map((fieldItem) => {
+      return { name: fieldItem["accessorKey"], label: fieldItem["header"] };
+    });
     return { first_section, second_section };
   }
   function getHeader(

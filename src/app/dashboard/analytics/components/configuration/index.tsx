@@ -18,11 +18,11 @@ import {
   handleTMsAndBruteProfitPerRegional,
   handleTMsAndBruteProfitPerStation,
 } from "../../actions";
-import FormRegionalConfiguration from "./form_rede";
-import FormStationsConfiguration from "./form_stations";
 import { rede_fields } from "./fields/rede";
 import { getStationsFields } from "./fields/station";
 import { getRegionalFields } from "./fields/regional";
+import FormRede from "./form_rede";
+import FormsTableConfiguration from "./forms_table";
 export const ConfigurationContext = createContext<any>(null);
 export default function Configuration() {
   const [sections, setSections] = useState<any>(null);
@@ -89,19 +89,22 @@ export default function Configuration() {
           </div>
           <div className="w-auto max-h-[400px] overflow-y-auto z-100">
             {wantsToViewRede ? (
-              <FormRegionalConfiguration
+              <FormRede
                 data={sections[0]["data"]}
                 fields={sections[0]["fields"]}
               />
-            ) : wantsToViewRegional ? (
-              <FormStationsConfiguration
-                data={sections[2]["data"]}
-                fields={sections[2]["fields"]}
-              />
             ) : (
-              <FormStationsConfiguration
-                data={sections[1]["data"]}
-                fields={sections[1]["fields"]}
+              <FormsTableConfiguration
+                data={
+                  wantsToViewRegional
+                    ? sections[2]["data"]
+                    : sections[1]["data"]
+                }
+                fields={
+                  wantsToViewRegional
+                    ? sections[2]["fields"]
+                    : sections[1]["fields"]
+                }
               />
             )}
           </div>

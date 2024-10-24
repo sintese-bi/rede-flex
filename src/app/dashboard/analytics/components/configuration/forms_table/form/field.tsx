@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-export default function FormStationField({
+export default function RowFormField({
   name,
   label,
   defaultValue,
@@ -18,7 +18,7 @@ export default function FormStationField({
         className="col-span-3"
         type="number"
         min="0"
-        step="0.01"
+        step="0.0001"
       />
     </>
   );

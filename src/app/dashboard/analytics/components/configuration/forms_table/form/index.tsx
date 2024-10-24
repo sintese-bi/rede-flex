@@ -1,19 +1,27 @@
-"use client";
-import { handleTMsAndBruteProfitUpdate } from "../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
-import { FormEvent, useContext, useState } from "react";
-import { ConfigurationContext } from "..";
-import { DashboardContext } from "../../../context";
+import { getStationsFields } from "../../fields/station";
+import { FormEvent, useContext, useEffect, useState } from "react";
+import { ConfigurationContext } from "../..";
+import { DashboardContext } from "@/app/dashboard/analytics/context";
 import Section from "./section";
-export default function FormRede({ data, fields }: { data: any; fields: any }) {
+export default function RowForm({
+  id,
+  rowValues,
+  updateFunction,
+}: {
+  id: string;
+  rowValues: any;
+  updateFunction: any;
+}) {
   const { updateDashboardData } = useContext(DashboardContext);
   const { wantsToViewTMs, handleData } = useContext(ConfigurationContext);
+  const { first_section, second_section } = getStationsFields().getAsFields();
   const [formValues, setFormValues] = useState(() =>
     Object.fromEntries(
-      [...fields.first_section, ...fields.second_section].map((field) => [
+      [...first_section, ...second_section].map((field) => [
         field.name,
-        data[field.name] || 0,
+        rowValues[field.name],
       ])
     )
   );
@@ -22,20 +30,23 @@ export default function FormRede({ data, fields }: { data: any; fields: any }) {
   }
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const response = await handleTMsAndBruteProfitUpdate(formValues);
+    const response = await updateFunction({
+      ...formValues,
+      id,
+    });
     await handleData();
     await updateDashboardData();
     toast({
-      duration: 2000,
+      duration: 1000,
       variant: "default",
       title: "TMs e Lucro Bruto",
       description: response.message,
     });
   }
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 py-4 space-y-4 px-2">
+    <form onSubmit={onSubmit} className="flex gap-2 items-end w-full">
       <Section
-        section={wantsToViewTMs ? fields.first_section : fields.second_section}
+        section={wantsToViewTMs ? first_section : second_section}
         data={formValues}
         onInputChange={handleInputChange}
       />
