@@ -50,7 +50,7 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           M/LT x M/LT Definido
         </p>
         <p className="text-main-color text-xs">
-          % {MLT} - % {MLT_Definido}
+          R$/L {MLT} - R$/L {MLT_Definido}
         </p>
       </div>
       <div>
@@ -58,7 +58,7 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           TMC x TMC Definido
         </p>
         <p className="text-main-color text-xs">
-          % {TMC} - % {TMC_Definido}
+          R$ {TMC} - R$ {TMC_Definido}
         </p>
       </div>
       <div>
@@ -66,7 +66,7 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           TM VOL x TM VOL Definido
         </p>
         <p className="text-main-color text-xs">
-          % {TMV} - % {TMV_Definido}
+          {TMV} L - {TMV_Definido} L
         </p>
       </div>
       <div>
@@ -74,7 +74,7 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           TMP x TMP Definido
         </p>
         <p className="text-main-color text-xs">
-          % {TMP} - % {TMP_Definido}
+          R$ {TMP} - R$ {TMP_Definido}
         </p>
       </div>
       <div>
@@ -82,12 +82,8 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           TMF x TMF Definido
         </p>
         <p className="text-main-color text-xs">
-          % {TMF} - % {TMF_Definido}
+          R$ {TMF} - R$ {TMF_Definido}
         </p>
-      </div>
-      <div>
-        <p className="text-main-color text- font-extrabold">TMF</p>
-        <p className="text-main-color text-xs">R$ {TMF}</p>
       </div>
       <div>
         <p className="text-main-color text- font-extrabold">
