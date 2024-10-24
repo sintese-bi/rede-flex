@@ -5,17 +5,22 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 import L, { icon, PointExpression } from "leaflet";
 import MapPopup from "./popup";
-type MyObject = {
+export type IMyMap = {
   lat: number;
   long: number;
   nomefantasia: string;
   ibm: string;
   endereco: string;
   "M/LT": number;
+  "M/LT_Definido": number;
   TMC: number;
+  TMC_Definido: number;
   "TM VOL": number;
+  "TM VOL_Definido": number;
   TMP: number;
+  TMP_Definido: number;
   TMF: number;
+  TMF_Definido: number;
   LBO: number;
   LBOProduto: number;
   LBOGalonagem: number;
@@ -31,7 +36,7 @@ const icon_options = {
   shadowAnchor: [4, 62] as PointExpression,
   popupAnchor: [-3, -76] as PointExpression,
 };
-export default function Leaflet({ data }: { data: MyObject[] }) {
+export default function Leaflet({ data }: { data: IMyMap[] }) {
   var greenIcon = L.icon({
     ...icon_options,
     iconUrl: "/icons/green_fuel_icon.png",

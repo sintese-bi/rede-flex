@@ -35,7 +35,7 @@ export default function DashboardComponentsBigNumber({
               </>
             ) : label.includes("M/LT") ? (
               <>
-                <p className="flex text-slate-400">$/L</p>
+                <p className="flex text-slate-400">R$/L</p>
                 <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
                   {value}
                 </p>
