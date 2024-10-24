@@ -78,7 +78,7 @@ export default function DashboardComponentsBigNumber({
               </div>
             )}
           </div>
-          {third_value ? (
+          {third_value !== undefined ? (
             <div className="flex gap-1">
               <p className="text-xs font-bold text-slate-400">Objetivo </p>
               <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
