@@ -38,61 +38,59 @@ export default function MapPopup({ item }: { item: MyObject }) {
     item["LBO_Galonagem_Definido"]
   );
   return (
-    <Popup>
-      <div className="flex flex-col">
-        <div>
-          <p className="text-main-color text- font-extrabold">Nome fantasia</p>
-          <p className="text-main-color text-xs">{item["nomefantasia"]}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">Endereco</p>
-          <p className="text-main-color text-xs">{item["endereco"]}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">M/LT</p>
-          <p className="text-main-color text-xs">R$ {MLT}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">TMC</p>
-          <p className="text-main-color text-xs">R$ {TMC}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">TM VOL</p>
-          <p className="text-main-color text-xs">{TMV} L</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">TMP</p>
-          <p className="text-main-color text-xs">R$ {TMP}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">TMF</p>
-          <p className="text-main-color text-xs">R$ {TMF}</p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">
-            LBO x LBO Definido
-          </p>
-          <p className="text-main-color text-xs">
-            % {LBO} - % {LBO_Definido}
-          </p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">
-            LBO Produto x LBO Produto definido
-          </p>
-          <p className="text-main-color text-xs">
-            % {LBOProduto} - % {LBO_Produto_Definido}
-          </p>
-        </div>
-        <div>
-          <p className="text-main-color text- font-extrabold">
-            LBO Galonagem x LBO Galonagem definido
-          </p>
-          <p className="text-main-color text-xs">
-            % {LBOGalonagem} - % {LBO_Galonagem_Definido}
-          </p>
-        </div>
+    <div className="flex flex-col">
+      <div>
+        <p className="text-main-color text- font-extrabold">Nome fantasia</p>
+        <p className="text-main-color text-xs">{item["nomefantasia"]}</p>
       </div>
-    </Popup>
+      <div>
+        <p className="text-main-color text- font-extrabold">Endereco</p>
+        <p className="text-main-color text-xs">{item["endereco"]}</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">M/LT</p>
+        <p className="text-main-color text-xs">R$ {MLT}</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">TMC</p>
+        <p className="text-main-color text-xs">R$ {TMC}</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">TM VOL</p>
+        <p className="text-main-color text-xs">{TMV} L</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">TMP</p>
+        <p className="text-main-color text-xs">R$ {TMP}</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">TMF</p>
+        <p className="text-main-color text-xs">R$ {TMF}</p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">
+          LBO x LBO Definido
+        </p>
+        <p className="text-main-color text-xs">
+          % {LBO} - % {LBO_Definido}
+        </p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">
+          LBO Produto x LBO Produto definido
+        </p>
+        <p className="text-main-color text-xs">
+          % {LBOProduto} - % {LBO_Produto_Definido}
+        </p>
+      </div>
+      <div>
+        <p className="text-main-color text- font-extrabold">
+          LBO Galonagem x LBO Galonagem definido
+        </p>
+        <p className="text-main-color text-xs">
+          % {LBOGalonagem} - % {LBO_Galonagem_Definido}
+        </p>
+      </div>
+    </div>
   );
 }

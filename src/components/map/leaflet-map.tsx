@@ -1,5 +1,5 @@
 "use client";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
@@ -66,8 +66,16 @@ export default function Leaflet({ data }: { data: MyObject[] }) {
             position={[item["lat"], item["long"]]}
             icon={icons[item["averageComparison"]]}
             key={index}
+            eventHandlers={{
+              mouseover: (e) => {
+                const marker = e.target;
+                marker.openPopup();
+              },
+            }}
           >
-            <MapPopup item={item} />
+            <Popup>
+              <MapPopup item={item} />
+            </Popup>
           </Marker>
         );
       })}
