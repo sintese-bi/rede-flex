@@ -1,17 +1,27 @@
 "use client";
-import { handleTMsAndBruteProfitUpdate } from "../../../actions";
+import { handleTMsAndBruteProfitUpdate } from "../../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
 import { FormEvent, useContext, useState } from "react";
-import { ConfigurationContext } from "..";
-import { DashboardContext } from "../../../context";
+import { DashboardContext } from "../../../../context";
 import Section from "./section";
-export default function FormRede({ data, fields }: { data: any; fields: any }) {
+export default function FormRede({
+  data,
+  fields,
+  currentSection,
+  currentSecondarySection,
+  handleData,
+}: {
+  data: any;
+  fields: any;
+  currentSection: 0 | 1 | 2;
+  currentSecondarySection: 0 | 1;
+  handleData: (section: 0 | 1 | 2) => Promise<void>;
+}) {
   const { updateDashboardData } = useContext(DashboardContext);
-  const { wantsToViewTMs, handleData } = useContext(ConfigurationContext);
   const [formValues, setFormValues] = useState(() =>
     Object.fromEntries(
-      [...fields.first_section, ...fields.second_section].map((field) => [
+      [...fields[0], ...fields[1]].map((field) => [
         field.name,
         data[field.name] || 0,
       ])
@@ -20,10 +30,8 @@ export default function FormRede({ data, fields }: { data: any; fields: any }) {
   function handleInputChange(name: string, value: string | number) {
     setFormValues((prev: any) => ({ ...prev, [name]: Number(value) }));
   }
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
+  async function handleAction() {
     const response = await handleTMsAndBruteProfitUpdate(formValues);
-    await handleData();
     await updateDashboardData();
     toast({
       duration: 2000,
@@ -33,9 +41,9 @@ export default function FormRede({ data, fields }: { data: any; fields: any }) {
     });
   }
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 py-4 space-y-4 px-2">
+    <form action={handleAction} className="grid gap-4 py-4 space-y-4 px-2">
       <Section
-        section={wantsToViewTMs ? fields.first_section : fields.second_section}
+        section={fields[currentSecondarySection]}
         data={formValues}
         onInputChange={handleInputChange}
       />

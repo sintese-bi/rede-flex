@@ -1,5 +1,5 @@
-export const rede_fields: any = {
-  first_section: [
+export const redeSectionsFields = {
+  0: [
     {
       name: "use_mlt",
       label: "MLT (R$/L)",
@@ -33,7 +33,7 @@ export const rede_fields: any = {
       label: "Lucro bruto operacional produto (%)",
     },
   ],
-  second_section: [
+  1: [
     {
       name: "use_gasolina_comum_comb",
       label: "Gasolina comum (L)",

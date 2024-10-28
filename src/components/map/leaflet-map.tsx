@@ -71,12 +71,6 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
             position={[item["lat"], item["long"]]}
             icon={icons[item["averageComparison"]]}
             key={index}
-            eventHandlers={{
-              mouseover: (e) => {
-                const marker = e.target;
-                marker.openPopup();
-              },
-            }}
           >
             <Popup>
               <MapPopup item={item} />

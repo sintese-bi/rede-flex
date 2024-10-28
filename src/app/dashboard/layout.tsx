@@ -1,9 +1,5 @@
-import { handleDataframes } from "./analytics/actions";
-import Configuration from "./analytics/components/configuration";
-import Message from "./analytics/components/message";
 import DashboardComponentsNavbar from "./analytics/components/navbar";
-import Realod from "./analytics/components/reload";
-import Time from "./analytics/components/time";
+import Time from "./analytics/components/lastUpdateTime";
 export default async function DashboardLayout({
   children,
 }: {
@@ -17,7 +13,6 @@ export default async function DashboardLayout({
           <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-between lg:items-end md:items-end sm:items-center items-center w-full">
             <div className="flex lg:flex-row md:flex-row sm:flex-row flex-col lg:items-end md:items-end sm:items-end items-center gap-4">
               <Time />
-              <Realod />
             </div>
           </div>
           {children}
