@@ -10,119 +10,6 @@ export const gallonage: any[] = [
     cell: ({ row }: any) => <RankingTable row={row} type="galonagem" />,
   },
   {
-    accessorKey: "Abastecimentos",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Abastecimentos
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "Faturamento",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Faturamento
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Faturamento"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "Rendimento Bruto",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Rendimento Bruto
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Rendimento Bruto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">{formatted} %</div>;
-    },
-  },
-  {
-    accessorKey: "Custo",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Custo
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Custo"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "Lucro",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Lucro
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Lucro"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "Lucro com Desconto",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Lucro Com Desconto
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Lucro com Desconto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
-  {
     accessorKey: "TMC",
     header: ({ column }: any) => {
       return (
@@ -183,8 +70,142 @@ export const gallonage: any[] = [
     },
   },
   {
+    accessorKey: "Lucro Bruto Operacional Galonagem",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Bruto Operacional Galonagem
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Rendimento Bruto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">{formatted} %</div>;
+    },
+  },
+  {
+    accessorKey: "Rendimento Bruto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Rendimento Bruto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Rendimento Bruto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">{formatted} %</div>;
+    },
+  },
+  {
+    accessorKey: "Faturamento",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Faturamento
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Faturamento"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Custo",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Custo
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Custo"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Lucro"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro com Desconto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Bruto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Lucro com Desconto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+
+  {
+    accessorKey: "Abastecimentos",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Abastecimentos
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: "Última Atualizacao",
-    header: "Última Atualização",
+    header: "Hora da última venda",
   },
   {
     accessorKey: "Posto_ibm",

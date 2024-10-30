@@ -33,7 +33,6 @@ export default function SystemParameterizationModalContent({
             fields={sectionsFields[currentSection]}
             currentSection={currentSection}
             currentSecondarySection={currentSecondarySection}
-            handleData={handleData}
           />
         ) : (
           <FormsTableConfiguration

@@ -19,7 +19,11 @@ export default function DashboardComponentsBigNumber({
           <div className="flex items-center gap-1">
             {label.includes("Lucro Bruto Operacional") ? (
               <>
-                <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
+                <p
+                  className={`lg:text-md md:text-md sm:text-sm font-bold ${
+                    third_value == true ? "text-green-200" : "text-red-200"
+                  }`}
+                >
                   {value}
                 </p>
                 <PercentIcon className="flex text-slate-400" size={18} />
@@ -36,7 +40,11 @@ export default function DashboardComponentsBigNumber({
             ) : label.includes("M/LT") ? (
               <>
                 <p className="flex text-slate-400">R$/L</p>
-                <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
+                <p
+                  className={`lg:text-md md:text-md sm:text-sm font-bold ${
+                    third_value == true ? "text-green-200" : "text-red-200"
+                  }`}
+                >
                   {value}
                 </p>
               </>

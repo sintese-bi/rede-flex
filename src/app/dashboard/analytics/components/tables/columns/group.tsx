@@ -16,23 +16,43 @@ export const group: any[] = [
     header: "Produto",
   },
   {
-    accessorKey: "Cod Produto",
+    accessorKey: "TMP",
     header: ({ column }: any) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Cod Produto
+          TMP
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
     },
     cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Cod Produto"));
+      const amount = parseFloat(row.getValue("TMP"));
       const formatted = new Intl.NumberFormat("de-DE").format(amount);
 
-      return <div className="font-medium">{formatted}</div>;
+      return <div className="font-medium text-center">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "LBO Produto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          LBO Produto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("LBO Produto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium text-center">R$ {formatted}</div>;
     },
   },
   {
@@ -83,7 +103,7 @@ export const group: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro
+          Lucro bruto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

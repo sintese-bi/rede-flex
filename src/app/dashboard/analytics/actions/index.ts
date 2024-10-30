@@ -204,6 +204,8 @@ export async function handleDataframes() {
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       "Lucro Com Desconto": item["Lucro Com Desconto"],
+      "LBO Combsutivel": item["LBO Combsutivel"],
+      "Rendimento Bruto": item["Rendimento Bruto"],
       "M/LT": item["M/LT"],
     };
   });
@@ -211,6 +213,8 @@ export async function handleDataframes() {
     return {
       name: item["Grupo"],
       Posto: item["Posto"],
+      TMP: item["TMP"],
+      "LBO Produto": item["LBO Produto"],
       Produto: item["Produto"],
       Quantidade: item["Quantidade"],
       "Cod Produto": item["Cod Produto"],
@@ -229,6 +233,7 @@ export async function handleDataframes() {
       "Rendimento Bruto": item["Rendimento Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
+      "Lucro Bruto Operacional Galonagem": item["Lucro Operacional Galonagem"],
       "Lucro com Desconto": item["Lucro com Desconto"],
       TMC: item["TMC"],
       TMF: item["TMF"],
@@ -301,13 +306,16 @@ export async function handleDataframes() {
       Resultado: item["Resultado"],
     };
   });
-  // ------ unconfirmed
+
   const frentista = dataframes["frentista"].map((item: any) => {
     return {
       User_id: item["User_id"],
       name: item["Nome"],
       Regional: item["Regional"],
       Galonagem: item["Galonagem"],
+      "M/LT": item["M/LT"],
+      "LBO Combustivel": item["LBO Combustivel"],
+      "Rendimento Bruto": item["LBO Combustivel"],
       Venda: item["Venda"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
@@ -320,6 +328,7 @@ export async function handleDataframes() {
       name: item["Nome"],
       Regional: item["Regional"],
       Quantidade: item["Quantidade"],
+      "LBO Produto": item["LBO Produto"],
       Venda: item["Venda"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],

@@ -2,21 +2,18 @@
 import { handleTMsAndBruteProfitUpdate } from "../../../../actions";
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
-import { FormEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { DashboardContext } from "../../../../context";
 import Section from "./section";
 export default function FormRede({
   data,
   fields,
-  currentSection,
   currentSecondarySection,
-  handleData,
 }: {
   data: any;
   fields: any;
   currentSection: 0 | 1 | 2;
   currentSecondarySection: 0 | 1;
-  handleData: (section: 0 | 1 | 2) => Promise<void>;
 }) {
   const { updateDashboardData } = useContext(DashboardContext);
   const [formValues, setFormValues] = useState(() =>

@@ -2,23 +2,23 @@ export const redeSectionsFields = {
   0: [
     {
       name: "use_mlt",
-      label: "MLT (R$/L)",
+      label: "Margem sobre lucro total - MLT (R$/L)",
     },
     {
       name: "use_tmc",
-      label: "TMC (R$)",
+      label: "Ticket médio de custo - TMC (R$)",
     },
     {
       name: "use_tmf",
-      label: "TMF (R$)",
+      label: "Ticket médio de faturamento - TMF (R$)",
     },
     {
       name: "use_tmp",
-      label: "TMP (R$)",
+      label: "Ticket médio de produto - TMP (R$)",
     },
     {
       name: "use_tmvol",
-      label: "TMVOL (L)",
+      label: "Ticket médio de volume - TMVOL (L)",
     },
     {
       name: "use_lucro_bruto_operacional",

@@ -9,37 +9,44 @@ export const regional_product: any[] = [
     cell: ({ row }: any) => <StationsTable row={row} type="produto" />,
   },
   {
-    accessorKey: "Abastecimentos",
+    accessorKey: "TMP",
     header: ({ column }: any) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Abastecimentos
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "Valor Vendido",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Valor Vendido
+          TMP
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
     },
     cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Valor Vendido"));
+      const amount = parseFloat(row.getValue("TMP"));
       const formatted = new Intl.NumberFormat("de-DE").format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro Bruto Operacional Produto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro Bruto Operacional Produto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(
+        row.getValue("Lucro Bruto Operacional Produto")
+      );
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      return <div className="font-medium">{formatted} %</div>;
     },
   },
   {
@@ -62,6 +69,27 @@ export const regional_product: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+  {
+    accessorKey: "Valor Vendido",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Faturamento
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Valor Vendido"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">R$ {formatted}</div>;
+    },
+  },
+
   {
     accessorKey: "Custo",
     header: ({ column }: any) => {
@@ -90,7 +118,7 @@ export const regional_product: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro
+          Lucro Bruto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -103,44 +131,17 @@ export const regional_product: any[] = [
     },
   },
   {
-    accessorKey: "Lucro Bruto Operacional Produto",
+    accessorKey: "Abastecimentos",
     header: ({ column }: any) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro Bruto Operacional Produto
+          Abastecimentos
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(
-        row.getValue("Lucro Bruto Operacional Produto")
-      );
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-      return <div className="font-medium">{formatted} %</div>;
-    },
-  },
-  {
-    accessorKey: "TMP",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          TMP
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("TMP"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
-
-      return <div className="font-medium">R$ {formatted}</div>;
     },
   },
   {

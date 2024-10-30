@@ -19,17 +19,23 @@ export const workers_products: any[] = [
     header: "Regional",
   },
   {
-    accessorKey: "Quantidade",
+    accessorKey: "LBO Produto",
     header: ({ column }: any) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Quantidade
+          LBO Produto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("LBO Produto"));
+      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+
+      return <div className="font-medium">{formatted} %</div>;
     },
   },
   {
@@ -40,7 +46,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Venda
+          Faturamento
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -80,7 +86,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro
+          Lucro bruto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

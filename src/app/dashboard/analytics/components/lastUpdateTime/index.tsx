@@ -23,7 +23,9 @@ export default function Time() {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-1">
-        <p className="text-xs font-bold">Data e hora da última atualização:</p>
+        <p className="text-xs font-bold">
+          Data e hora da Hora da última venda:
+        </p>
         <Separator />
       </div>
       <div className="flex justify-center items-center  py-2 rounded-md border-[1px] border-2 gap-2">

@@ -9,6 +9,9 @@ import { AlertCircleIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
 import BigNumbersLoading from "../loading/bignumbers";
+import OneSectionBigNumber from "./oneSectionBigNumber";
+import TwoSectionBigNumber from "./twoSectionBigNumber";
+import ThreeSectionBigNumber from "./threeSectionBigNumber";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
@@ -18,6 +21,18 @@ function gettingSectionTitle(index: 0 | 1 | 2) {
   return sections[index];
 }
 export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
+  function BigNumber({ amountOfSections }: { amountOfSections: number }) {
+    switch (amountOfSections) {
+      case 1:
+        return <OneSectionBigNumber />;
+      case 2:
+        return <TwoSectionBigNumber />;
+      case 3:
+        <ThreeSectionBigNumber />;
+      default:
+        return <div>extra big number type</div>;
+    }
+  }
   if (!data) return <BigNumbersLoading />;
   return (
     <div className="flex flex-col gap-2 lg:w-3/5 w-full">
@@ -42,29 +57,19 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
           <div key={index} className="flex flex-col gap-1 h-full">
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>
             <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 h-full justify-center items-center">
-              {big_numbers_section.map(
-                (
-                  {
-                    label,
-                    value,
-                    secondary_label,
-                    secondary_value,
-                    third_value,
-                    fourth_value,
-                  },
-                  index
-                ) => (
+              {big_numbers_section.map((bignumber, index) => {
+                return (
                   <DashboardComponentsBigNumber
                     key={index}
-                    label={label}
-                    value={value}
-                    secondary_label={secondary_label}
-                    secondary_value={secondary_value}
-                    third_value={third_value}
-                    fourth_value={fourth_value}
+                    label={bignumber.label}
+                    value={bignumber.value}
+                    secondary_label={bignumber.secondary_label}
+                    secondary_value={bignumber.secondary_value}
+                    third_value={bignumber.third_value}
+                    fourth_value={bignumber.fourth_value}
                   />
-                )
-              )}
+                );
+              })}
             </div>
           </div>
         )
