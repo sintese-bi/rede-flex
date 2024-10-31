@@ -22,6 +22,7 @@ export default function SystemParameterizationModalContent({
           setCurrentSection={setCurrentSection}
         />
         <CurrentSecondarySectionSelector
+          currentSection={currentSection}
           currentSecondarySection={currentSecondarySection}
           setCurrentSecondarySection={setCurrentSecondarySection}
         />
