@@ -5,7 +5,7 @@ export interface BigNumbersInterfaces {
   secondary_value: string;
   third_value: boolean;
   fourth_label: string;
-  fourth_value: number;
+  fourth_value: string;
   fifth_label: string;
   fifth_value: string;
 }

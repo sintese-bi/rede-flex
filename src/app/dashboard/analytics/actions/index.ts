@@ -35,12 +35,27 @@ export async function handleDashboardBigNumbers(): Promise<
   const formmatedNumbers = data.map((big_number) => {
     return {
       ...big_number,
-      value: new Intl.NumberFormat("de-DE").format(big_number["value"]),
+      value: new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(big_number["value"]),
       secondary_value: big_number["secondary_value"]
-        ? new Intl.NumberFormat("de-DE").format(big_number["secondary_value"])
+        ? new Intl.NumberFormat("de-DE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(big_number["secondary_value"])
+        : "",
+      fourth_value: big_number["fourth_value"]
+        ? new Intl.NumberFormat("de-DE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(big_number["fourth_value"])
         : "",
       fifth_value: big_number["fifth_value"]
-        ? new Intl.NumberFormat("de-DE").format(big_number["fifth_value"])
+        ? new Intl.NumberFormat("de-DE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(big_number["fifth_value"])
         : "",
     };
   });
@@ -189,18 +204,38 @@ export async function handleDataframes() {
       } ao fazer requisição na rota: ${url}`
     );
   const dataframes = await response.json();
-  const regionalAvarageMLT = Number(
-    dataframes["regionalGalonagemMLTMedio"]
-  ).toFixed(2);
-  const regionalAvarageTMP = Number(dataframes["regionalProdTMPMedio"]).toFixed(
-    2
-  );
-  const regionalAvarageTMC = Number(dataframes["TMCMedioPosto"]).toFixed(2);
-  const regionalAvarageTMV = Number(dataframes["TMVMedioRegional"]).toFixed(2);
-  const stationAvarageMLT = Number(dataframes["MLTMedioPostos"]).toFixed(2);
-  const stationAvarageTMP = Number(dataframes["TMPMedioPosto"]).toFixed(2);
-  const stationAvarageTMC = Number(dataframes["TMCMedioPosto"]).toFixed(2);
-  const stationAvarageTMV = Number(dataframes["TMVMedioPosto"]).toFixed(2);
+  const regionalAvarageMLT = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["regionalGalonagemMLTMedio"]));
+  const regionalAvarageTMP = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["regionalProdTMPMedio"]));
+  const regionalAvarageTMC = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["TMCMedioPosto"]));
+  const regionalAvarageTMV = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["TMVMedioRegional"]));
+  const stationAvarageMLT = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["MLTMedioPostos"]));
+  const stationAvarageTMP = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["TMPMedioPosto"]));
+  const stationAvarageTMC = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["TMCMedioPosto"]));
+  const stationAvarageTMV = Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(dataframes["TMVMedioPosto"]));
   const combustivel = dataframes["combustivel"].map((item: any) => {
     return {
       name: item["Nome da Empresa"],
@@ -233,13 +268,22 @@ export async function handleDataframes() {
     (item: any) => {
       return {
         label: item["Combustivel"],
-        value: `R$ ${item["Lucro Com Desconto"].toFixed(2)}`,
+        value: `R$ ${Intl.NumberFormat("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(item["Lucro Com Desconto"])}`,
       };
     }
   );
   const grupo_produto_bignumbers = dataframes["a_group_prod"].map(
     (item: any) => {
-      return { label: item["Grupo"], value: `R$ ${item["Lucro"].toFixed(2)}` };
+      return {
+        label: item["Grupo"],
+        value: `R$ ${Intl.NumberFormat("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(item["Lucro"])}`,
+      };
     }
   );
   const galonagem = dataframes["galonagem"].map((item: any) => {
@@ -459,13 +503,18 @@ export async function handleGeolocations() {
   const formmatedNumbers = data.map((data_item: any) => {
     return {
       ...data_item,
-      "Venda de Combustível": new Intl.NumberFormat("de-DE").format(
-        data_item["Venda de Combustível"]
-      ),
-      "Produtos vendidos": new Intl.NumberFormat("de-DE").format(
-        data_item["Produtos vendidos"]
-      ),
-      Galonagem: new Intl.NumberFormat("de-DE").format(data_item["Galonagem"]),
+      "Venda de Combustível": new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(data_item["Venda de Combustível"]),
+      "Produtos vendidos": new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(data_item["Produtos vendidos"]),
+      Galonagem: new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(data_item["Galonagem"]),
     };
   });
   return formmatedNumbers;

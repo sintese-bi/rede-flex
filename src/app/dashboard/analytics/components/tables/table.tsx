@@ -30,6 +30,7 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   averageMeasure?: { label: string; value: number }[];
+  messageTitle: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -37,6 +38,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   averageMeasure,
+  messageTitle,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
@@ -80,13 +82,9 @@ export function DataTable<TData, TValue>({
         <p className="text-sm font-bold ml-4 mt-4 mb-6">{title}</p>
         {averageMeasure ? (
           <div className="my-8 space-y-6">
-            <Message
-              messages={averageMeasure!}
-              variant="neutral"
-              position="left"
-            />
+            <Message messages={averageMeasure!} title={messageTitle} />
             <div>
-              <div className="flex items-center gap-2 px-2">
+              <div className="flex items-center gap-2 px-4">
                 <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
                 <p className="text-sm">
                   {title.toLowerCase().includes("galonagem")
@@ -94,11 +92,11 @@ export function DataTable<TData, TValue>({
                     : "Lucro Bruto e TMs acima do definido"}
                 </p>
               </div>
-              <div className="flex items-center gap-2 px-2">
+              <div className="flex items-center gap-2 px-4">
                 <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
                 <p className="text-sm">Lucro Bruto acima do definido</p>
               </div>
-              <div className="flex items-center gap-2 px-2">
+              <div className="flex items-center gap-2 px-4">
                 <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
                 <p className="text-sm">Lucro Bruto abaixo do definido</p>
               </div>

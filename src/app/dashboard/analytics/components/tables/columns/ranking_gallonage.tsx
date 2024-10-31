@@ -39,7 +39,10 @@ export const ranking_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Venda"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
@@ -58,7 +61,10 @@ export const ranking_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Custo"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -78,7 +84,10 @@ export const ranking_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Lucro"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -98,7 +107,10 @@ export const ranking_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMC"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -118,7 +130,10 @@ export const ranking_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMV"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">{formatted} L</div>;
     },

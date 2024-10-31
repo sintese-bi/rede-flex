@@ -1,40 +1,70 @@
 import { IMyMap } from "./leaflet-map";
 
 export default function MapPopup({ item }: { item: IMyMap }) {
-  const MLT = new Intl.NumberFormat("de-DE").format(item["M/LT"]);
-  const MLT_Definido = new Intl.NumberFormat("de-DE").format(
-    item["M/LT_Definido"]
-  );
-  const TMC = new Intl.NumberFormat("de-DE").format(item["TMC"]);
-  const TMC_Definido = new Intl.NumberFormat("de-DE").format(
-    item["TMC_Definido"]
-  );
-  const TMV = new Intl.NumberFormat("de-DE").format(item["TM VOL"]);
-  const TMV_Definido = new Intl.NumberFormat("de-DE").format(
-    item["TM VOL_Definido"]
-  );
-  const TMP = new Intl.NumberFormat("de-DE").format(item["TMP"]);
-  const TMP_Definido = new Intl.NumberFormat("de-DE").format(
-    item["TMP_Definido"]
-  );
-  const TMF = new Intl.NumberFormat("de-DE").format(item["TMF"]);
-  const TMF_Definido = new Intl.NumberFormat("de-DE").format(
-    item["TMF_Definido"]
-  );
-  const LBO = new Intl.NumberFormat("de-DE").format(item["LBO"]);
-  const LBO_Definido = new Intl.NumberFormat("de-DE").format(
-    item["LBO_Definido"]
-  );
-  const LBOProduto = new Intl.NumberFormat("de-DE").format(item["LBOProduto"]);
-  const LBO_Produto_Definido = new Intl.NumberFormat("de-DE").format(
-    item["LBO_Produto_Definido"]
-  );
-  const LBOGalonagem = new Intl.NumberFormat("de-DE").format(
-    item["LBOGalonagem"]
-  );
-  const LBO_Galonagem_Definido = new Intl.NumberFormat("de-DE").format(
-    item["LBO_Galonagem_Definido"]
-  );
+  const MLT = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["M/LT"]);
+  const MLT_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["M/LT_Definido"]);
+  const TMC = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMC"]);
+  const TMC_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMC_Definido"]);
+  const TMV = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TM VOL"]);
+  const TMV_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TM VOL_Definido"]);
+  const TMP = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMP"]);
+  const TMP_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMP_Definido"]);
+  const TMF = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMF"]);
+  const TMF_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["TMF_Definido"]);
+  const LBO = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBO"]);
+  const LBO_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBO_Definido"]);
+  const LBOProduto = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBOProduto"]);
+  const LBO_Produto_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBO_Produto_Definido"]);
+  const LBOGalonagem = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBOGalonagem"]);
+  const LBO_Galonagem_Definido = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(item["LBO_Galonagem_Definido"]);
   return (
     <div className="flex flex-col">
       <div>

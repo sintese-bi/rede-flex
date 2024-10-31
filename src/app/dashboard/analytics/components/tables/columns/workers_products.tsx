@@ -33,7 +33,10 @@ export const workers_products: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("LBO Produto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">{formatted} %</div>;
     },
@@ -53,7 +56,10 @@ export const workers_products: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Venda"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -73,7 +79,10 @@ export const workers_products: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Custo"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -93,7 +102,10 @@ export const workers_products: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Lucro"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },

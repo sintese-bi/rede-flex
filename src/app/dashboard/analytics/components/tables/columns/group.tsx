@@ -30,7 +30,10 @@ export const group: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMP"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
@@ -50,7 +53,10 @@ export const group: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("LBO Produto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
@@ -70,7 +76,10 @@ export const group: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Faturamento"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
@@ -90,7 +99,10 @@ export const group: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Custo"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
@@ -110,7 +122,10 @@ export const group: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Lucro"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },

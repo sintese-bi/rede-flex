@@ -23,7 +23,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMC"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -43,7 +46,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("TMV"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">{formatted} L</div>;
     },
@@ -63,7 +69,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("M/LT"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -85,7 +94,10 @@ export const regional_gallonage: any[] = [
       const amount = parseFloat(
         row.getValue("Lucro Bruto Operacional Galonagem")
       );
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
       return <div className="font-medium">{formatted} %</div>;
     },
   },
@@ -104,7 +116,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Rendimento Bruto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">{formatted} %</div>;
     },
@@ -124,7 +139,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Faturamento"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -145,7 +163,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Custo"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -165,7 +186,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Lucro"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -185,7 +209,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Lucro com Desconto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
@@ -204,7 +231,10 @@ export const regional_gallonage: any[] = [
     },
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Custo com Desconto"));
-      const formatted = new Intl.NumberFormat("de-DE").format(amount);
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },

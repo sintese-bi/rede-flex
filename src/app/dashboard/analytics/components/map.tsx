@@ -21,7 +21,7 @@ export default function DashboardComponentsMap({ data }: { data: any }) {
     };
   }, [mapRef.current]);
   return (
-    <div className="flex flex-col gap-2 lg:w-2/5 w-full rounded-lg h-full min-h-[342px]">
+    <div className="flex flex-col gap-2 w-full rounded-lg h-full min-h-[560px]">
       <div className="flex items-center gap-2">
         <p className="flex items-center text-sm font-bold text-slate-600">
           Geocalização de postos
@@ -37,22 +37,7 @@ export default function DashboardComponentsMap({ data }: { data: any }) {
           </Tooltip>
         </TooltipProvider>
       </div>
-      <div className="">
-        <div className="flex items-center gap-2 px-2">
-          <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
-          <p className="text-sm">
-            Rendimento Bruto, TMs, M/LT acima do definido
-          </p>
-        </div>
-        <div className="flex items-center gap-2 px-2">
-          <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
-          <p className="text-sm">Redimento Bruto acima do definido</p>
-        </div>
-        <div className="flex items-center gap-2 px-2">
-          <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
-          <p className="text-sm">Redimento Bruto abaixo do definido</p>
-        </div>
-      </div>
+
       <Separator />
       <div className="w-full h-full rounded-lg">
         <div className=" bg-slate-200 h-full w-full rounded-lg">

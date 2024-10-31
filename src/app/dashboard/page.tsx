@@ -85,11 +85,9 @@ export default function Dashboard() {
         </div>
         <div className="flex flex-col gap-12 h-full w-full">
           <div className="flex w-full flex-col gap-12">
-            <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
+            <div className="flex flex-col items-center gap-2 w-full">
               <DashboardComponentsBigNumbers data={bigNumbers} />
-              {/**
-               *  <DashboardComponentsMap data={stationsMap} />
-               */}
+              <DashboardComponentsMap data={stationsMap} />
             </div>
             <DashboardComponentsCharts />
           </div>

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import L, { icon, PointExpression } from "leaflet";
+import L, { PointExpression } from "leaflet";
 import MapPopup from "./popup";
 export type IMyMap = {
   lat: number;
@@ -54,12 +54,13 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
     1: yellowIcon,
     2: redIcon,
   };
+
   return (
     <MapContainer
       center={[-19.912998, -43.940933]}
       zoom={13}
       scrollWheelZoom={false}
-      className="h-full w-full rounded-lg z-10"
+      className="h-full w-full rounded-lg z-10 relative"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -69,15 +70,35 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
         return (
           <Marker
             position={[item["lat"], item["long"]]}
-            icon={icons[item["averageComparison"]]}
+            icon={icons[item["averageComparison"] || 0]}
             key={index}
           >
             <Popup>
-              <MapPopup item={item} />
+              <p>hello</p>
             </Popup>
           </Marker>
         );
       })}
+      <div className="absolute bottom-2 left-2 bg-white shadow-xl p-2 rounded-md text-sm z-[1000]">
+        <div className="">
+          <div className="flex items-center gap-2 px-2">
+            <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
+            <p className="text-sm">
+              Lucro bruto operacional, TMs, M/LT acima do definido
+            </p>
+          </div>
+          <div className="flex items-center gap-2 px-2">
+            <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
+            <p className="text-sm">Lucro bruto operacional acima do definido</p>
+          </div>
+          <div className="flex items-center gap-2 px-2">
+            <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
+            <p className="text-sm">
+              Lucro bruto operacional abaixo do definido
+            </p>
+          </div>
+        </div>
+      </div>
     </MapContainer>
   );
 }

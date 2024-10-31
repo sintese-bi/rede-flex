@@ -15,6 +15,7 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.regional}
         columns={regional_gallonage}
         title="Acompanhamento regional galonagem"
+        messageTitle=""
         averageMeasure={[
           { label: "M/LT médio (R$/L)", value: data.regionalAvarageMLT },
           { label: "TMC médio (R$)", value: data.regionalAvarageTMC },
@@ -25,6 +26,7 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.regional_produto}
         columns={regional_product}
         title="Acompanhamento regional produto"
+        messageTitle=""
         averageMeasure={[
           { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
         ]}
@@ -33,6 +35,7 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
+        messageTitle=""
         averageMeasure={[
           { label: "M/LT médio (R$/L)", value: data.stationAvarageMLT },
           { label: "TMC médio (R$)", value: data.stationAvarageTMC },
@@ -43,6 +46,7 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.produto}
         columns={product}
         title="Acompanhamento produtos"
+        messageTitle=""
         averageMeasure={[
           { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
         ]}
@@ -51,22 +55,26 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.combustivel}
         columns={fuel}
         title="Acompanhamento da venda de combustiveis"
+        messageTitle="Soma total por combustível"
         averageMeasure={data.grupo_bignumbers}
       />
       <DataTable
         data={data.grupo}
         columns={group}
         title="Acompanhamento da venda de produtos"
+        messageTitle="Soma total por grupo de produto"
         averageMeasure={data.grupo_produto_bignumbers}
       />
       <DataTable
         data={data.frentista}
         columns={workers_gallonage}
+        messageTitle=""
         title="Acompanhamento da galonagem por frentista"
       />
       <DataTable
         data={data.frentistaprod}
         columns={workers_products}
+        messageTitle=""
         title="Acompanhamento de produto por frenstita"
       />
     </div>
