@@ -19,6 +19,7 @@ export default function StationsTable({
           data={row.original.stations}
           columns={type !== "produto" ? gallonage : product}
           title={`Acompanhamento ${type} - ${name}`}
+          messageTitle=""
         />
       </SheetContent>
     </Sheet>

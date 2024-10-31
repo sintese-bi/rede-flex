@@ -47,6 +47,7 @@ export default function RankingTable({
           columns={type !== "produto" ? ranking_gallonage : ranking_product}
           data={data}
           title={`Ranking de frentistas ${type} - ${name}`}
+          messageTitle=""
         />
       </SheetContent>
     </Sheet>
