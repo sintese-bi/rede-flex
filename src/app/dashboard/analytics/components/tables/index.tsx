@@ -15,35 +15,49 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
         data={data.regional}
         columns={regional_gallonage}
         title="Acompanhamento regional galonagem"
-        averageMeasure={`M/LT definido: ${data.regionalAvarageMLT} - TMC definido: ${data.regionalAvarageTMC} - TMV definido: ${data.regionalAvarageTMV}`}
+        averageMeasure={[
+          { label: "M/LT médio (R$/L)", value: data.regionalAvarageMLT },
+          { label: "TMC médio (R$)", value: data.regionalAvarageTMC },
+          { label: "TMV médio (L)", value: data.regionalAvarageTMV },
+        ]}
       />
       <DataTable
         data={data.regional_produto}
         columns={regional_product}
         title="Acompanhamento regional produto"
-        averageMeasure={`TMP definido: ${data.regionalAvarageTMP}`}
+        averageMeasure={[
+          { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
+        ]}
       />
       <DataTable
         data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
-        averageMeasure={`M/LT definido: ${data.stationAvarageMLT} - TMC definido: ${data.stationAvarageTMC} - TMV definido: ${data.stationAvarageTMV}`}
+        averageMeasure={[
+          { label: "M/LT médio (R$/L)", value: data.stationAvarageMLT },
+          { label: "TMC médio (R$)", value: data.stationAvarageTMC },
+          { label: "TMV médio (L)", value: data.stationAvarageTMV },
+        ]}
       />
       <DataTable
         data={data.produto}
         columns={product}
         title="Acompanhamento produtos"
-        averageMeasure={`TMP definido: ${data.regionalAvarageTMP}`}
+        averageMeasure={[
+          { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
+        ]}
       />
       <DataTable
         data={data.combustivel}
         columns={fuel}
         title="Acompanhamento da venda de combustiveis"
+        averageMeasure={data.grupo_bignumbers}
       />
       <DataTable
         data={data.grupo}
         columns={group}
         title="Acompanhamento da venda de produtos"
+        averageMeasure={data.grupo_produto_bignumbers}
       />
       <DataTable
         data={data.frentista}

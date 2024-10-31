@@ -14,7 +14,10 @@ interface Data {
   secondary_label: string;
   secondary_value: number;
   third_value: boolean;
+  fourth_label: string;
   fourth_value: number;
+  fifth_label: string;
+  fifth_value: number;
 }
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
@@ -35,6 +38,9 @@ export async function handleDashboardBigNumbers(): Promise<
       value: new Intl.NumberFormat("de-DE").format(big_number["value"]),
       secondary_value: big_number["secondary_value"]
         ? new Intl.NumberFormat("de-DE").format(big_number["secondary_value"])
+        : "",
+      fifth_value: big_number["fifth_value"]
+        ? new Intl.NumberFormat("de-DE").format(big_number["fifth_value"])
         : "",
     };
   });
@@ -223,6 +229,19 @@ export async function handleDataframes() {
       Faturamento: item["Faturamento"],
     };
   });
+  const grupo_bignumbers = dataframes["a_group_combustivel"].map(
+    (item: any) => {
+      return {
+        label: item["Combustivel"],
+        value: `R$ ${item["Lucro Com Desconto"].toFixed(2)}`,
+      };
+    }
+  );
+  const grupo_produto_bignumbers = dataframes["a_group_prod"].map(
+    (item: any) => {
+      return { label: item["Grupo"], value: `R$ ${item["Lucro"].toFixed(2)}` };
+    }
+  );
   const galonagem = dataframes["galonagem"].map((item: any) => {
     return {
       name: item["Posto"],
@@ -350,6 +369,8 @@ export async function handleDataframes() {
     regional_produto,
     combustivel,
     grupo,
+    grupo_bignumbers,
+    grupo_produto_bignumbers,
     frentista,
     frentistaprod,
     lowerThanAvarageCount,

@@ -72,21 +72,24 @@ export default function Dashboard() {
           <SystemParameterizationModalProvider>
             <SystemParameterizationModal />
           </SystemParameterizationModalProvider>
-          <Message
-            message={`
-            Prezado usuário até o momento ${lowerThanAvarageCount["M/LT"]} postos estão abaixo da M/LT médio da Rede.
-            ${lowerThanAvarageCount["TMP"]} postos estão com
-            TMP abaixo da média da Rede.
-            `}
-            variant="warning"
-            position="center"
-          />
+        </div>
+        <div className="flex justify-center w-full">
+          <div className="lg:w-4/6 md:w-5/6 p-4 bg-main-color rounded-md text-center text-white text-sm">
+            <p>
+              Prezado usuário até o momento ${lowerThanAvarageCount["M/LT"]}{" "}
+              postos estão abaixo da M/LT médio da Rede. $
+              {lowerThanAvarageCount["TMP"]} postos estão com TMP abaixo da
+              média da Rede.
+            </p>
+          </div>
         </div>
         <div className="flex flex-col gap-12 h-full w-full">
           <div className="flex w-full flex-col gap-12">
             <div className="flex lg:flex-row flex-col items-center gap-2 w-full">
               <DashboardComponentsBigNumbers data={bigNumbers} />
-              <DashboardComponentsMap data={stationsMap} />
+              {/**
+               *  <DashboardComponentsMap data={stationsMap} />
+               */}
             </div>
             <DashboardComponentsCharts />
           </div>

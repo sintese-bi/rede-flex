@@ -35,7 +35,7 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
   }
   if (!data) return <BigNumbersLoading />;
   return (
-    <div className="flex flex-col gap-2 lg:w-3/5 w-full">
+    <div className="flex flex-col gap-2 lg:w-full w-full">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
@@ -66,7 +66,10 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
                     secondary_label={bignumber.secondary_label}
                     secondary_value={bignumber.secondary_value}
                     third_value={bignumber.third_value}
+                    fourth_label={bignumber.fourth_label}
                     fourth_value={bignumber.fourth_value}
+                    fifth_label={bignumber.fifth_label}
+                    fifth_value={bignumber.fifth_value}
                   />
                 );
               })}

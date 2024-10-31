@@ -7,11 +7,14 @@ export default function DashboardComponentsBigNumber({
   secondary_label,
   secondary_value,
   third_value,
+  fourth_label,
   fourth_value,
+  fifth_label,
+  fifth_value,
 }: BigNumbersInterfaces) {
   return (
-    <div className="flex h-[120px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color items-center justify-between  shadow-md">
-      <div className="flex flex-col gap-4 ">
+    <div className="flex h-[120px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
+      <div className="flex flex-col gap-4 w-full">
         <div className="flex flex-col gap-1">
           <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
             {label}
@@ -86,12 +89,24 @@ export default function DashboardComponentsBigNumber({
               </div>
             )}
           </div>
-          {third_value !== undefined ? (
-            <div className="flex gap-1">
-              <p className="text-xs font-bold text-slate-400">Objetivo </p>
-              <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
-            </div>
-          ) : null}
+          <div className="flex justify-between gap-4 w-full ">
+            {third_value !== undefined ? (
+              <div className="flex gap-1">
+                <p className="text-xs font-bold text-slate-400">
+                  {fourth_label}
+                </p>
+                <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
+              </div>
+            ) : null}
+            {fifth_value !== undefined ? (
+              <div className="flex gap-1">
+                <p className="text-xs font-bold text-slate-400">
+                  {fifth_label}
+                </p>
+                <p className={`text-xs font-bold text-white`}>{fifth_value}</p>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

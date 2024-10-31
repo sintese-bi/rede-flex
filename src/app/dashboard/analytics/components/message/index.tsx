@@ -1,27 +1,29 @@
+import { Badge } from "@/components/ui/badge";
 import { AlertCircleIcon } from "lucide-react";
 export default function Message({
-  message,
+  messages,
   variant,
   position,
 }: {
-  message: string;
+  messages: {
+    label: string;
+    value: number;
+  }[];
   variant: "warning" | "neutral";
   position: "left" | "center";
 }) {
   return (
-    <div
-      className={`flex ${
-        position == "center" ? "justify-center" : "justify-start"
-      } w-full p-2`}
-    >
-      <div
-        className={`flex items-center  gap-2 p-4 ${
-          variant == "warning" ? "bg-red-50" : "bg-main-color text-gray-200"
-        } rounded-md`}
-      >
-        <AlertCircleIcon size={18} />
-        <p className="text-sm">{message}</p>
-      </div>
+    <div className="flex flex-wrap gap-2 px-2">
+      {messages.map((message, index) => (
+        <Badge
+          key={index}
+          className="inline-flex items-center p-2 rounded-md space-x-2 min-h-[46px]"
+        >
+          <AlertCircleIcon size={18} />
+          <p className="text-xs">{message.label}</p>
+          <p className="text-xs">{message.value}</p>
+        </Badge>
+      ))}
     </div>
   );
 }

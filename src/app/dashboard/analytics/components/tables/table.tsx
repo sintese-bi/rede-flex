@@ -29,7 +29,7 @@ interface DataTableProps<TData, TValue> {
   title: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  averageMeasure?: string;
+  averageMeasure?: { label: string; value: number }[];
 }
 
 export function DataTable<TData, TValue>({
@@ -79,27 +79,29 @@ export function DataTable<TData, TValue>({
       <div className="rounded-md border">
         <p className="text-sm font-bold ml-4 mt-4 mb-6">{title}</p>
         {averageMeasure ? (
-          <div className="my-8">
+          <div className="my-8 space-y-6">
             <Message
-              message={averageMeasure!}
+              messages={averageMeasure!}
               variant="neutral"
               position="left"
             />
-            <div className="flex items-center gap-2 px-2">
-              <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
-              <p className="text-sm">
-                {title.toLowerCase().includes("galonagem")
-                  ? "Rendimento Bruto, TMs e M/LT acima do definido"
-                  : "Rendimento Bruto e TMs acima do definido"}
-              </p>
-            </div>
-            <div className="flex items-center gap-2 px-2">
-              <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
-              <p className="text-sm">Redimento Bruto acima do definido</p>
-            </div>
-            <div className="flex items-center gap-2 px-2">
-              <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
-              <p className="text-sm">Redimento Bruto abaixo do definido</p>
+            <div>
+              <div className="flex items-center gap-2 px-2">
+                <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
+                <p className="text-sm">
+                  {title.toLowerCase().includes("galonagem")
+                    ? "Lucro Bruto, TMs e M/LT acima do definido"
+                    : "Lucro Bruto e TMs acima do definido"}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 px-2">
+                <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
+                <p className="text-sm">Lucro Bruto acima do definido</p>
+              </div>
+              <div className="flex items-center gap-2 px-2">
+                <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
+                <p className="text-sm">Lucro Bruto abaixo do definido</p>
+              </div>
             </div>
           </div>
         ) : null}
