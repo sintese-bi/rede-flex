@@ -371,6 +371,8 @@ export async function handleDataframes() {
   });
 
   const frentista = dataframes["frentista"].map((item: any) => {
+    console.log(item);
+
     return {
       User_id: item["User_id"],
       name: item["Nome"],
