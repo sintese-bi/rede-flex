@@ -76,8 +76,8 @@ export default function Dashboard() {
         <div className="flex justify-center w-full">
           <div className="lg:w-4/6 md:w-5/6 p-4 bg-main-color rounded-md text-center text-white text-sm">
             <p>
-              Prezado usuário até o momento ${lowerThanAvarageCount["M/LT"]}{" "}
-              postos estão abaixo da M/LT médio da Rede. $
+              Prezado usuário até o momento {lowerThanAvarageCount["M/LT"]}{" "}
+              postos estão abaixo da M/LT médio da Rede.{" "}
               {lowerThanAvarageCount["TMP"]} postos estão com TMP abaixo da
               média da Rede.
             </p>

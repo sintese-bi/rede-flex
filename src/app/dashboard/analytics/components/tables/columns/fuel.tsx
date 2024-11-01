@@ -48,9 +48,9 @@ export const fuel: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("LBO Combsutivel"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
 
       return <div className="font-medium">{formatted} %</div>;
     },

@@ -80,9 +80,9 @@ export const workers_gallonage: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("LBO Combustivel"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
 
       return <div className="font-medium">{formatted} %</div>;
     },
@@ -103,9 +103,9 @@ export const workers_gallonage: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Rendimento Bruto"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
 
       return <div className="font-medium">{formatted} %</div>;
     },

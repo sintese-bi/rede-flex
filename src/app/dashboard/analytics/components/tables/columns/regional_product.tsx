@@ -49,9 +49,9 @@ export const regional_product: any[] = [
         row.getValue("Lucro Bruto Operacional Produto")
       );
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
       return <div className="font-medium">{formatted} %</div>;
     },
   },
@@ -71,10 +71,9 @@ export const regional_product: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("Rendimento Bruto"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
-
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
       return <div className="font-medium">{formatted} %</div>;
     },
   },
