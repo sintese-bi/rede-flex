@@ -1,6 +1,7 @@
 "use client";
 import { DollarSignIcon, FuelIcon, PercentIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
+import { BigNumberFirstSection } from "./bigNumber/firstSection";
 export default function DashboardComponentsBigNumber({
   label,
   value,
@@ -13,54 +14,13 @@ export default function DashboardComponentsBigNumber({
   fifth_value,
 }: BigNumbersInterfaces) {
   return (
-    <div className="flex h-[120px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
+    <div className="flex h-[152px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4  rounded-lg bg-main-color items-center justify-between shadow-md">
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-col gap-1">
-          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
-            {label}
-          </p>
-          <div className="flex items-center gap-1">
-            {label.includes("Lucro Bruto Operacional") ? (
-              <>
-                <p
-                  className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                    third_value == true ? "text-green-200" : "text-red-200"
-                  }`}
-                >
-                  {value}
-                </p>
-                <PercentIcon className="flex text-slate-400" size={18} />
-              </>
-            ) : label.includes("Venda") ||
-              label.includes("Lucro") ||
-              label.includes("Faturamento") ? (
-              <>
-                <DollarSignIcon className="flex text-slate-400" size={18} />
-                <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
-                  {value}
-                </p>
-              </>
-            ) : label.includes("M/LT") ? (
-              <>
-                <p className="flex text-slate-400">R$/L</p>
-                <p
-                  className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                    third_value == true ? "text-green-200" : "text-red-200"
-                  }`}
-                >
-                  {value}
-                </p>
-              </>
-            ) : (
-              <>
-                <FuelIcon className="flex text-slate-400" size={18} />
-                <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
-                  {value}
-                </p>
-              </>
-            )}
-          </div>
-        </div>
+        <BigNumberFirstSection
+          value={value}
+          label={label}
+          third_value={third_value}
+        />
         <div className="flex flex-col gap-1">
           <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">
