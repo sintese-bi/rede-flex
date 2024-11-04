@@ -133,7 +133,6 @@ export async function handleDashboardRegionalStationChart(params: {
   regional_type: string;
   filter: number;
 }): Promise<{ date: string; sum: number }[]> {
-  console.log(params);
   const url = `${process.env.NEXT_MICROSERVICE_MONGODB}/regional-graph/${params.filter}`;
   const response = await fetch(url, {
     cache: "no-cache",
@@ -244,6 +243,7 @@ export async function handleDataframes() {
       Venda: item["Venda"],
       Volume: item["Volume"],
       Custo: item["Custo"],
+      Resultado: item["Resultado"] ? 0 : 2,
       Lucro: item["Lucro"],
       "Lucro Com Desconto": item["Lucro Com Desconto"],
       "LBO Combsutivel": item["LBO Combsutivel"],
@@ -258,6 +258,7 @@ export async function handleDataframes() {
       TMP: item["TMP"],
       "LBO Produto": item["LBO Produto"],
       Produto: item["Produto"],
+      Resultado: item["Resultado"] ? 0 : 2,
       Quantidade: item["Quantidade"],
       "Cod Produto": item["Cod Produto"],
       Custo: item["Custo"],
