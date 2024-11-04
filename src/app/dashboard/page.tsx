@@ -57,6 +57,7 @@ export default function Dashboard() {
     const intervalId = setInterval(updateDashboardData, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
+  useEffect(() => {}, [lowerThanAvarageCount]);
   if (!bigNumbers || !stationsMap || !dataframes || !lowerThanAvarageCount)
     return <ChartLoading />;
   return (

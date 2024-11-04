@@ -203,6 +203,9 @@ export async function handleDataframes() {
         response.statusText || "unknown"
       } ao fazer requisição na rota: ${url}`
     );
+  function parseFormattedNumber(formattedString: string) {
+    return Number(formattedString.replace(/\./g, "").replace(",", "."));
+  }
   const dataframes = await response.json();
   const regionalAvarageMLT = Intl.NumberFormat("de-DE", {
     minimumFractionDigits: 2,
@@ -404,10 +407,12 @@ export async function handleDataframes() {
   });
   const lowerThanAvarageCount = {
     "M/LT": galonagem.filter(
-      (item: any) => Number(item["M/LT"]) < Number(stationAvarageMLT)
+      (item: any) =>
+        Number(item["M/LT"]) < parseFormattedNumber(stationAvarageMLT)
     ).length,
     TMP: produto.filter(
-      (item: any) => Number(item["TMP"]) < Number(stationAvarageTMP)
+      (item: any) =>
+        Number(item["TMP"]) < parseFormattedNumber(stationAvarageTMP)
     ).length,
   };
   return {
