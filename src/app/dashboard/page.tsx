@@ -1,6 +1,6 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardComponentsMap from "./analytics/components/map";
 import DashboardComponentsBigNumbers from "./analytics/components/big_numbers";
 import DashboardComponentsCharts from "./analytics/components/charts";
@@ -11,11 +11,9 @@ import {
   handleGeolocations,
 } from "./analytics/actions";
 import { BigNumbersInterfaces } from "./analytics/interfaces/big_numbers";
-import Message from "./analytics/components/message";
 import ChartLoading from "./analytics/components/loading/chart";
 import { DashboardContext } from "./analytics/context";
 import SystemParameterizationModal from "./analytics/components/systemParameterizationModal";
-import { SystemParameterizationModalProvider } from "./analytics/components/systemParameterizationModal/context";
 function splitBigNumberIntoThree(
   big_numbers: BigNumbersInterfaces[],
   size: number = 3
@@ -69,9 +67,7 @@ export default function Dashboard() {
     >
       <div className="flex flex-col gap-6 h-auto w-full">
         <div className="flex flex-col justify-end items-end">
-          <SystemParameterizationModalProvider>
-            <SystemParameterizationModal />
-          </SystemParameterizationModalProvider>
+          <SystemParameterizationModal />
         </div>
         <div className="flex justify-center w-full">
           <div className="lg:w-4/6 md:w-5/6 p-4 bg-main-color rounded-md text-center text-white text-sm">
