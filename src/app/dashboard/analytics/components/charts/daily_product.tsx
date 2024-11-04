@@ -54,6 +54,9 @@ export default function DailyProduct() {
   ];
 
   useEffect(() => {
+    if (data) {
+      setData(null);
+    }
     const fetch = async () => {
       const response =
         currentLevel == "daily"
@@ -74,19 +77,26 @@ export default function DailyProduct() {
   }, [filterVariable, filterDay, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
   const chartData = {
-    labels: data.map((data_item: any) => data_item["date"]),
+    labels:
+      currentLevel == "daily" && Array.isArray(data)
+        ? data.map((data_item: any) => data_item["date"])
+        : Object.keys(data),
     datasets: [
       {
-        label: filterVariableOptions.filter(
-          (item) => item["variable"] == filterVariable
-        )[0]["label"],
-        data: data.map((data_item: any) => data_item["sum"]),
+        label:
+          filterVariableOptions.find((item) => item.variable === filterVariable)
+            ?.label || "",
+        data:
+          currentLevel == "daily" && Array.isArray(data)
+            ? data.map((data_item: any) => data_item["sum"])
+            : Object.values(data),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
     ],
   };
+
   const options = {
     animation: {
       duration: 1500,
@@ -95,25 +105,12 @@ export default function DailyProduct() {
       if (activeElements.length > 0) {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
-        setData(null);
-        const response = await handleDashboardDailyStationChart({
-          week_day: clickedLabel,
-          variable_type: filterVariable,
-          filter: 0,
-        });
-        setData(response);
         setCurrentLevel("station");
       }
     },
   };
   async function handlePreviousLevel() {
-    setData(null);
-    const dailyChart = await handleDashboardDailyProductChart({
-      week_day: filterDay,
-      variable_type: filterVariable,
-    });
     setCurrentLevel("daily");
-    setData(dailyChart);
   }
   return (
     <div className="flex flex-col gap-2 h-full w-full ">

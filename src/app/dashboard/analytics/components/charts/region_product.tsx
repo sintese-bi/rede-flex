@@ -33,6 +33,9 @@ export default function RegionProduct() {
   ];
 
   useEffect(() => {
+    if (data) {
+      setData(null);
+    }
     const fetch = async () => {
       const response =
         currentLevel == "regional"
@@ -74,24 +77,12 @@ export default function RegionProduct() {
       if (activeElements.length > 0) {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
-        setData(null);
-        const response = await handleDashboardRegionalStationChart({
-          regional_type: clickedLabel.replace(" ", "").toUpperCase(),
-          variable_type: filterVariable,
-          filter: 0,
-        });
-        setData(response);
         setCurrentLevel("station");
       }
     },
   };
   async function handlePreviousLevel() {
-    setData(null);
-    let response = await handleDashboardRegionalProductChart({
-      variable_type: filterVariable,
-    });
     setCurrentLevel("regional");
-    setData(response);
   }
   return (
     <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">

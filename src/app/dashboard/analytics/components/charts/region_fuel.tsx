@@ -34,6 +34,9 @@ export default function RegionFuel() {
   ];
 
   useEffect(() => {
+    if (data) {
+      setData(null);
+    }
     const fetch = async () => {
       const response =
         currentLevel == "regional"
@@ -74,13 +77,6 @@ export default function RegionFuel() {
       if (activeElements.length > 0) {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
-        setData(null);
-        const response = await handleDashboardRegionalStationChart({
-          regional_type: clickedLabel.replace(" ", "").toUpperCase(),
-          variable_type: filterVariable,
-          filter: 1,
-        });
-        setData(response);
         setCurrentLevel("station");
       }
     },

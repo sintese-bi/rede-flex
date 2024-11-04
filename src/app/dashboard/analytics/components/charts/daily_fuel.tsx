@@ -55,6 +55,9 @@ export default function DailyFuel() {
     { variable: "Saturday", label: "Sábado" },
   ];
   useEffect(() => {
+    if (data) {
+      setData(null);
+    }
     const fetch = async () => {
       const response =
         currentLevel == "daily"
@@ -76,16 +79,16 @@ export default function DailyFuel() {
   if (!data) return <ChartLoading />;
   const chartData = {
     labels:
-      currentLevel == "daily"
+      currentLevel == "daily" && Array.isArray(data)
         ? data.map((data_item: any) => data_item["date"])
         : Object.keys(data),
     datasets: [
       {
-        label: filterVariableOptions.filter(
-          (item) => item["variable"] == filterVariable
-        )[0]["label"],
+        label:
+          filterVariableOptions.find((item) => item.variable === filterVariable)
+            ?.label || "",
         data:
-          currentLevel == "daily"
+          currentLevel == "daily" && Array.isArray(data)
             ? data.map((data_item: any) => data_item["sum"])
             : Object.values(data),
         fill: false,
@@ -102,25 +105,12 @@ export default function DailyFuel() {
       if (activeElements.length > 0) {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
-        setData(null);
-        const response = await handleDashboardDailyStationChart({
-          week_day: clickedLabel,
-          variable_type: filterVariable,
-          filter: 1,
-        });
-        setData(response);
         setCurrentLevel("station");
       }
     },
   };
   async function handlePreviousLevel() {
-    setData(null);
-    const dailyChart = await handleDashboardDailyFuelChart({
-      variable_type: filterVariable,
-      week_day: filterDay,
-    });
     setCurrentLevel("daily");
-    setData(dailyChart);
   }
   return (
     <div className="flex flex-col gap-2 h-full w-full ">
