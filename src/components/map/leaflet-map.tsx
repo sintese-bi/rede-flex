@@ -74,7 +74,7 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
             key={index}
           >
             <Popup>
-              <p>hello</p>
+              <MapPopup item={item} />
             </Popup>
           </Marker>
         );
