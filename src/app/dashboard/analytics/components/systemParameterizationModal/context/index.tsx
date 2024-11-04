@@ -43,6 +43,9 @@ export const SystemParameterizationModalProvider = ({
   useEffect(() => {
     setData(null);
     handleData(currentSection);
+    return () => {
+      setData(null);
+    };
   }, [currentSection]);
   return (
     <SystemParameterizationModalContext.Provider

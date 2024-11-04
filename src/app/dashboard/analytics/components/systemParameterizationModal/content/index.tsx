@@ -1,18 +1,20 @@
-import { ContextProps } from "../context";
+import { ContextProps, SystemParameterizationModalContext } from "../context";
 import FormRede from "./form_rede";
 import FormsTableConfiguration from "./forms_table";
 import CurrentSecondarySectionSelector from "./currentSecondarySectionSelector";
 import CurrentSectionSelector from "./currentSectionSelector";
 import { sectionsFields } from "./fields";
 import CircularLoading from "@/components/loading/circularLoading";
-export default function SystemParameterizationModalContent({
-  data,
-  currentSection,
-  currentSecondarySection,
-  handleData,
-  setCurrentSection,
-  setCurrentSecondarySection,
-}: ContextProps) {
+import { useContext } from "react";
+export default function SystemParameterizationModalContent() {
+  const {
+    data,
+    currentSection,
+    currentSecondarySection,
+    handleData,
+    setCurrentSection,
+    setCurrentSecondarySection,
+  } = useContext(SystemParameterizationModalContext)!;
   if (!data) return <CircularLoading />;
   return (
     <>
