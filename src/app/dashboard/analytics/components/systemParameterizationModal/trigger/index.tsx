@@ -7,7 +7,7 @@ export default function SystemParameterizationModalTrigger() {
     <DialogTrigger asChild>
       <Button className="flex gap-2">
         <BoltIcon size={18} />
-        <p>Parametrização do sistema</p>
+        <p>Calibragem</p>
       </Button>
     </DialogTrigger>
   );
