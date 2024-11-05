@@ -41,6 +41,7 @@ export const SystemParameterizationModalProvider = ({
     setData(data);
   }
   useEffect(() => {
+    setCurrentSecondarySection(0);
     setData(null);
     handleData(currentSection);
     return () => {
