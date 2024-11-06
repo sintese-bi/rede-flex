@@ -18,6 +18,10 @@ interface Data {
   fourth_value: number;
   fifth_label: string;
   fifth_value: number;
+  sixth_label: string;
+  sixth_value: boolean;
+  seventh_label: string;
+  seventh_value: number;
 }
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[]
@@ -57,8 +61,15 @@ export async function handleDashboardBigNumbers(): Promise<
             maximumFractionDigits: 2,
           }).format(big_number["fifth_value"])
         : "",
+      seventh_value: big_number["seventh_value"]
+        ? new Intl.NumberFormat("de-DE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(big_number["seventh_value"])
+        : "",
     };
   });
+  console.log(formmatedNumbers);
   return formmatedNumbers;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {

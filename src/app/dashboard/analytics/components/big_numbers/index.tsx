@@ -21,18 +21,6 @@ function gettingSectionTitle(index: 0 | 1 | 2) {
   return sections[index];
 }
 export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
-  function BigNumber({ amountOfSections }: { amountOfSections: number }) {
-    switch (amountOfSections) {
-      case 1:
-        return <OneSectionBigNumber />;
-      case 2:
-        return <TwoSectionBigNumber />;
-      case 3:
-        <ThreeSectionBigNumber />;
-      default:
-        return <div>extra big number type</div>;
-    }
-  }
   if (!data) return <BigNumbersLoading />;
   return (
     <div className="flex flex-col gap-2 lg:w-full w-full">
@@ -70,6 +58,10 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
                     fourth_value={bignumber.fourth_value}
                     fifth_label={bignumber.fifth_label}
                     fifth_value={bignumber.fifth_value}
+                    seventh_label={bignumber.seventh_label}
+                    seventh_value={bignumber.seventh_value}
+                    sixth_label={bignumber.sixth_label}
+                    sixth_value={bignumber.sixth_value}
                   />
                 );
               })}

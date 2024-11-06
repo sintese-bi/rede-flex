@@ -8,4 +8,8 @@ export interface BigNumbersInterfaces {
   fourth_value: string;
   fifth_label: string;
   fifth_value: string;
+  sixth_label: string;
+  sixth_value: boolean;
+  seventh_label: string;
+  seventh_value: string;
 }

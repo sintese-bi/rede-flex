@@ -92,7 +92,9 @@ export const gallonage: any[] = [
       );
     },
     cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Rendimento Bruto"));
+      const amount = parseFloat(
+        row.getValue("Lucro Bruto Operacional Galonagem")
+      );
       const formatted = new Intl.NumberFormat("de-DE", {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,

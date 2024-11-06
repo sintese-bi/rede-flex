@@ -1,7 +1,9 @@
 "use client";
-import { DollarSignIcon, FuelIcon, PercentIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import { BigNumberFirstSection } from "./bigNumber/firstSection";
+import BigNumberFourthSection from "./bigNumber/fourthSection";
+import BigNumberSecondSection from "./bigNumber/secondSection";
+import BigNumberThirdSection from "./bigNumber/thirdSection";
 export default function DashboardComponentsBigNumber({
   label,
   value,
@@ -12,61 +14,39 @@ export default function DashboardComponentsBigNumber({
   fourth_value,
   fifth_label,
   fifth_value,
+  sixth_label,
+  sixth_value,
+  seventh_label,
+  seventh_value,
 }: BigNumbersInterfaces) {
   return (
     <div className="flex h-[152px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4  rounded-lg bg-main-color items-center justify-between shadow-md">
-      <div className="flex flex-col gap-4 w-full">
-        <BigNumberFirstSection
-          value={value}
-          label={label}
-          third_value={third_value}
-        />
-        <div className="flex flex-col gap-1">
-          <div className="flex gap-1">
-            <p className="text-xs font-bold text-slate-400">
-              {secondary_label}
-            </p>
-            {secondary_label?.includes("Lucro Bruto Operacional") ? (
-              <>
-                <div
-                  className={`flex items-center ${
-                    third_value ? "text-green-200" : "text-red-200"
-                  }`}
-                >
-                  <p className="text-xs font-bold">{secondary_value}</p>
-                  <PercentIcon className="flex" size={14} />
-                </div>
-              </>
-            ) : (
-              <div>
-                <p
-                  className={`text-xs font-bold ${
-                    third_value ? "text-green-200" : "text-red-200"
-                  }`}
-                >
-                  {secondary_value}
-                </p>
-              </div>
-            )}
-          </div>
-          <div className="flex justify-between gap-4 w-full ">
-            {third_value !== undefined ? (
-              <div className="flex gap-1">
-                <p className="text-xs font-bold text-slate-400">
-                  {fourth_label}
-                </p>
-                <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
-              </div>
-            ) : null}
-            {fifth_value !== undefined ? (
-              <div className="flex gap-1">
-                <p className="text-xs font-bold text-slate-400">
-                  {fifth_label}
-                </p>
-                <p className={`text-xs font-bold text-white`}>{fifth_value}</p>
-              </div>
-            ) : null}
-          </div>
+      <div className="flex flex-col gap-6 w-full">
+        <div className="flex justify-between">
+          <BigNumberFirstSection
+            value={value}
+            label={label}
+            third_value={third_value}
+          />
+          <BigNumberFourthSection sixth_value={sixth_value} />
+        </div>
+        <div className="flex justify-between w-full">
+          <BigNumberSecondSection
+            secondary_label={secondary_label}
+            secondary_value={secondary_value}
+            fifth_label={fifth_label}
+            fifth_value={fifth_value}
+            fourth_label={fourth_label}
+            fourth_value={fourth_value}
+            third_value={third_value}
+          />
+          <BigNumberThirdSection
+            fifth_label={fifth_label}
+            fifth_value={fifth_value}
+            sixth_value={sixth_value}
+            seventh_label={seventh_label}
+            seventh_value={seventh_value}
+          />
         </div>
       </div>
     </div>
