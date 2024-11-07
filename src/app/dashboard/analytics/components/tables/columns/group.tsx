@@ -54,11 +54,10 @@ export const group: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("LBO Produto"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
-
-      return <div className="font-medium text-center">R$ {formatted}</div>;
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
+      return <div className="font-medium text-center">{formatted} %</div>;
     },
   },
   {

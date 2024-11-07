@@ -39,12 +39,12 @@ export const stationsSectionsFields: {
       isVisible: false,
       isInputField: true,
     },
-    {
-      accessorKey: "tmf",
-      header: "TMF (R$)",
-      isVisible: false,
-      isInputField: true,
-    },
+    //{
+    //  accessorKey: "tmf",
+    //  header: "TMF (R$)",
+    //  isVisible: false,
+    //  isInputField: true,
+    //},
     {
       accessorKey: "tmc",
       header: "TMC (R$)",

@@ -69,7 +69,6 @@ export async function handleDashboardBigNumbers(): Promise<
         : "",
     };
   });
-  console.log(formmatedNumbers);
   return formmatedNumbers;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {

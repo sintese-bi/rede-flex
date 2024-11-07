@@ -8,10 +8,10 @@ export const redeSectionsFields = {
       name: "use_tmc",
       label: "Ticket médio de combustível - TMC (R$)",
     },
-    {
-      name: "use_tmf",
-      label: "Ticket médio de faturamento - TMF (R$)",
-    },
+    //{
+    //  name: "use_tmf",
+    //  label: "Ticket médio de faturamento - TMF (R$)",
+    //},
     {
       name: "use_tmp",
       label: "Ticket médio de produto - TMP (R$)",

@@ -28,7 +28,9 @@ export default function DashboardComponentsBigNumber({
             label={label}
             third_value={third_value}
           />
-          <BigNumberFourthSection sixth_value={sixth_value} />
+          {/**
+           * <BigNumberFourthSection sixth_value={sixth_value} />
+           */}
         </div>
         <div className="flex justify-between w-full">
           <BigNumberSecondSection

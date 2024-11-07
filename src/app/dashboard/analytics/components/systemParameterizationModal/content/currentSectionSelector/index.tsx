@@ -23,8 +23,8 @@ export default function CurrentSectionSelector({
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="0">Rede</SelectItem>
-        <SelectItem value="1">Postos</SelectItem>
         <SelectItem value="2">Regional</SelectItem>
+        <SelectItem value="1">Postos</SelectItem>
       </SelectContent>
     </Select>
   );
