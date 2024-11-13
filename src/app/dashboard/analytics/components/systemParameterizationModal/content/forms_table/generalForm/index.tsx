@@ -17,7 +17,7 @@ export default function GeneralForm({}: {}) {
   const { updateDashboardData } = useContext(DashboardContext);
   const { generalData, handleData, currentSection, currentSecondarySection } =
     useContext(SystemParameterizationModalContext)!;
-  const [formValues, setFormValues] = useState(generalData);
+  const [formValues, setFormValues] = useState({});
   function handleInputChange(name: string, value: string | number) {
     setFormValues((prev: any) => ({ ...prev, [name]: Number(value) }));
   }
@@ -26,9 +26,7 @@ export default function GeneralForm({}: {}) {
       1: handleGeneralTMSAndBruteProfitPerStationUpdate,
       2: handleGeneralTMSAndBruteProfitPerRegionalUpdate,
     };
-    const response = await updateFunction[currentSection as 1 | 2]({
-      formValues,
-    });
+    const response = await updateFunction[currentSection as 1 | 2](formValues);
     await updateDashboardData();
     toast({
       duration: 1000,
@@ -38,7 +36,7 @@ export default function GeneralForm({}: {}) {
     });
   }
   useEffect(() => {
-    console.log(generalData);
+    setFormValues(generalData);
   }, [generalData]);
   const section = sectionsFields[currentSection][currentSecondarySection] as
     | IStationsSectionsFields[]

@@ -309,6 +309,7 @@ export async function handleDataframes() {
       "Galonagem(Litro)": item["Galonagem(Litro)"],
       Faturamento: item["Faturamento"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      Galonagem: item["Galonagem"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       "Lucro Bruto Operacional Galonagem": item["Lucro Operacional Galonagem"],
@@ -348,6 +349,7 @@ export async function handleDataframes() {
       Abastecimentos: item["Abastecimentos"],
       Faturamento: item["Faturamento"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      Galonagem: item["Galonagem"],
       Custo: item["Custo"],
       "Custo com Desconto": item["Custo com Desconto"],
       Lucro: item["Lucro"],
@@ -670,7 +672,7 @@ export async function handleGeneralTMSAndBruteProfitPerRegionalUpdate(
   const response = await fetch(
     `${
       process.env.NEXT_PUBLIC_EXTERN_API
-    }/modal-station-general-insert-tm/${getAccessToken()}`,
+    }/modal-regions-general-insert-tm/${getAccessToken()}`,
     {
       cache: "no-cache",
       headers: apiRequestConfig(),

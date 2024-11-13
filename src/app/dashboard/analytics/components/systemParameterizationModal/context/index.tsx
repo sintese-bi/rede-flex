@@ -53,8 +53,6 @@ export const SystemParameterizationModalProvider = ({
       2: handleGeneralTMSAndBruteProfitPerRegional,
     };
     const { data } = await handleSectionsFunctions[section]();
-    console.log(data, "opa");
-
     setGeneralData(data);
   }
   useEffect(() => {

@@ -125,6 +125,28 @@ export const regional_gallonage: any[] = [
     },
   },
   {
+    accessorKey: "Galonagem",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Galonagem
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Galonagem"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Math.round(amount));
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
     accessorKey: "Faturamento",
     header: ({ column }: any) => {
       return (
