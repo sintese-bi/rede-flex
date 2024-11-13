@@ -591,6 +591,37 @@ export async function handleTMsAndBruteProfitPerStationUpdate(params: any) {
   const data = await response.json();
   return data;
 }
+export async function handleGeneralTMSAndBruteProfitPerStation() {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-general-return-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleGeneralTMSAndBruteProfitPerStationUpdate(
+  params: any
+) {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-general-insert-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  if (!response.ok) console.error(await response.text());
+  const data = await response.json();
+  return data;
+}
 export async function handleTMsAndBruteProfitPerRegional() {
   const response = await fetch(
     `${
@@ -609,6 +640,37 @@ export async function handleTMsAndBruteProfitPerRegionalUpdate(params: any) {
     `${
       process.env.NEXT_PUBLIC_EXTERN_API
     }/modal-regions-insert-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+      method: "POST",
+      body: JSON.stringify(params),
+    }
+  );
+  if (!response.ok) console.error(await response.text());
+  const data = await response.json();
+  return data;
+}
+export async function handleGeneralTMSAndBruteProfitPerRegional() {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-regions-general-return-tm/${getAccessToken()}`,
+    {
+      cache: "no-cache",
+      headers: apiRequestConfig(),
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+export async function handleGeneralTMSAndBruteProfitPerRegionalUpdate(
+  params: any
+) {
+  const response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTERN_API
+    }/modal-station-general-insert-tm/${getAccessToken()}`,
     {
       cache: "no-cache",
       headers: apiRequestConfig(),

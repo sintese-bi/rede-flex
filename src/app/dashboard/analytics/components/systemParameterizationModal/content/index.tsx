@@ -6,9 +6,11 @@ import CurrentSectionSelector from "./currentSectionSelector";
 import { sectionsFields } from "./fields";
 import CircularLoading from "@/components/loading/circularLoading";
 import { useContext } from "react";
+import GeneralForm from "./forms_table/generalForm";
 export default function SystemParameterizationModalContent() {
   const {
     data,
+    generalData,
     currentSection,
     currentSecondarySection,
     handleData,
@@ -29,7 +31,8 @@ export default function SystemParameterizationModalContent() {
           setCurrentSecondarySection={setCurrentSecondarySection}
         />
       </div>
-      <div className="w-auto max-h-[400px] overflow-y-auto z-100">
+      <GeneralForm />
+      <div className="w-auto max-h-[400px]  z-100">
         {currentSection == 0 ? (
           <FormRede
             data={data}

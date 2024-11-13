@@ -17,16 +17,17 @@ export default function SystemParameterizationModal() {
     <Dialog defaultOpen={true}>
       <SystemParameterizationModalTrigger />
       <DialogContent
-        className="z-50 transition-all duration-300"
+        className="z-50 transition-all overflow-y-auto duration-300"
         style={{
           width: "max-content",
           maxWidth: "1400px",
+          maxHeight: "90vh", // Ajusta a altura máxima para 90% da altura da viewport
         }}
       >
         <DialogHeader>
           <DialogTitle>Setup do Sistema</DialogTitle>
           <DialogDescription>
-            Este formulario preenche os parametros da operação
+            Este formulário preenche os parâmetros da operação
           </DialogDescription>
           <Separator />
         </DialogHeader>

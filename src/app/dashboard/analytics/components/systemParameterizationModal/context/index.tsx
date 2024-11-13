@@ -7,12 +7,15 @@ import {
   useState,
 } from "react";
 import {
+  handleGeneralTMSAndBruteProfitPerRegional,
+  handleGeneralTMSAndBruteProfitPerStation,
   handleTMsAndBruteProfit,
   handleTMsAndBruteProfitPerRegional,
   handleTMsAndBruteProfitPerStation,
 } from "../../../actions";
 export interface ContextProps {
   data: any;
+  generalData: any;
   currentSection: 0 | 1 | 2;
   currentSecondarySection: 0 | 1;
   handleData: (section: 0 | 1 | 2) => Promise<void>;
@@ -27,6 +30,7 @@ export const SystemParameterizationModalProvider = ({
   children: ReactNode;
 }) => {
   const [data, setData] = useState<any>(null);
+  const [generalData, setGeneralData] = useState<any>(null);
   const [currentSection, setCurrentSection] = useState<0 | 1 | 2>(0);
   const [currentSecondarySection, setCurrentSecondarySection] = useState<0 | 1>(
     0
@@ -40,10 +44,24 @@ export const SystemParameterizationModalProvider = ({
     const { data } = await handleSectionsFunctions[section]();
     setData(data);
   }
+  async function handleGeneralData(section: 0 | 1 | 2) {
+    const handleSectionsFunctions = {
+      0: () => {
+        return { data: [] };
+      },
+      1: handleGeneralTMSAndBruteProfitPerStation,
+      2: handleGeneralTMSAndBruteProfitPerRegional,
+    };
+    const { data } = await handleSectionsFunctions[section]();
+    console.log(data, "opa");
+
+    setGeneralData(data);
+  }
   useEffect(() => {
     setCurrentSecondarySection(0);
     setData(null);
     handleData(currentSection);
+    handleGeneralData(currentSection);
     return () => {
       setData(null);
     };
@@ -52,6 +70,7 @@ export const SystemParameterizationModalProvider = ({
     <SystemParameterizationModalContext.Provider
       value={{
         data,
+        generalData,
         currentSection,
         currentSecondarySection,
         handleData,
