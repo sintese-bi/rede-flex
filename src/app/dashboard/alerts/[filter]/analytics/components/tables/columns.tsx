@@ -1,6 +1,7 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import FormComponentsAlertsTable from "./form";
+import SelectedMargins from "./selectedMargins";
 export type Alerts = {
   name: string;
   gas_station_id: string;
@@ -18,8 +19,15 @@ export const columns: ColumnDef<Alerts>[] = [
     header: "ID",
   },
   {
+    accessorKey: "Margens selecionadas",
+    header: () => <div className="text-center">Margens selecionadas</div>,
+    cell: ({ row }) => {
+      return <SelectedMargins variables={row.original.variables} />;
+    },
+  },
+  {
     accessorKey: "alerts_configuration",
-    header: () => <div className="text-right">Configurar alertas</div>,
+    header: () => <div className="text-center">Configurar alertas</div>,
     cell: ({ row }) => {
       return (
         <FormComponentsAlertsTable

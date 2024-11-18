@@ -15,12 +15,8 @@ export default function VariablesMenuDropdown({
   selectedVariable: string;
   setSelectedVariable: Dispatch<SetStateAction<string>>;
 }) {
-  const [alertsVariables, setAlertsVariables] = useState<VariablesInterfaces[]>(
-    []
-  );
-  const selectedVariables = alertsVariables.filter(
-    ({ value }) => value !== false
-  );
+  const [alertsVariables, setAlertsVariables] = useState<string[]>([]);
+
   useEffect(() => {
     const fetch = async () => {
       const response = await handleAlertsVariables();
@@ -28,16 +24,11 @@ export default function VariablesMenuDropdown({
     };
     fetch();
   }, []);
-  function handleVariablesAlreadySelected(variable: string) {
-    const variableIsSelected = selectedVariables.find(
-      ({ label }) => label == variable
-    );
-    if (!variableIsSelected) return false;
-    return true;
-  }
+
   function handleValueChange(value: string) {
     setSelectedVariable(value);
   }
+
   return (
     <Select
       name="variable"
@@ -48,13 +39,9 @@ export default function VariablesMenuDropdown({
         <SelectValue placeholder="Variáveis" />
       </SelectTrigger>
       <SelectContent>
-        {alertsVariables.map(({ label }, index) => (
-          <SelectItem
-            key={index}
-            value={label}
-            disabled={handleVariablesAlreadySelected(label)}
-          >
-            {label}
+        {alertsVariables.map((variable, index) => (
+          <SelectItem key={index} value={variable}>
+            {variable}
           </SelectItem>
         ))}
       </SelectContent>

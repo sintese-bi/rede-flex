@@ -16,6 +16,7 @@ export default function FormComponentsAlertsTable({
   gas_station_whats_app: string;
   variables: { [key: string]: number };
 }) {
+  console.log(ibm_id, gas_station_whats_app, variables);
   const { filter } = useParams<{ filter: string }>();
   const [selectedVariable, setSelectedVariable] = useState<string>("marginGC");
   const [selectedVariableValue, setSelectedVariableValue] = useState<number>(0);

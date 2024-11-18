@@ -6,10 +6,6 @@ export default async function Filter({ filter }: { filter: string }) {
       href: `/dashboard/alerts/station`,
       label: "Posto",
     },
-    {
-      href: `/dashboard/alerts/region`,
-      label: "Regional",
-    },
   ];
 
   return (

@@ -3,17 +3,15 @@ import { revalidateTag } from "next/cache";
 import { VariablesInterfaces } from "../interfaces/variables";
 import { AlertsInterfaces } from "../interfaces/alerts";
 import { apiRequestConfig, getUserUUID } from "@/utils";
-export async function handleAlertsVariables(): Promise<VariablesInterfaces[]> {
-  const variables = [
-    {
-      label: "marginGC",
-      value: false,
-      whatsapp_contact: "",
-      margin_min_value: "",
-      margin_min_value_type: "",
-    },
+export async function handleAlertsVariables(): Promise<string[]> {
+  return [
+    "marginGC",
+    "marginGasolinaPodium",
+    "marginGasolinaPremium",
+    "marginDieselS10",
+    "marginDieselS500",
+    "marginEtanolComum",
   ];
-  return variables;
 }
 export async function handleAlertsVariablesSelect(form: FormData) {
   revalidateTag("alerts_variables");

@@ -21,14 +21,6 @@ export default function ValueAndType({
         className="w-24"
         step={0.01}
       />
-      <Select name="margin_min_value_type" defaultValue="absolute">
-        <SelectTrigger className="w-32">
-          <SelectValue placeholder="Tipo do valor" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="absolute">Absoluto</SelectItem>
-        </SelectContent>
-      </Select>
     </>
   );
 }

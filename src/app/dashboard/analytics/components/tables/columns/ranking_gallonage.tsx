@@ -23,6 +23,14 @@ export const ranking_gallonage: any[] = [
         </Button>
       );
     },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Venda"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
+      return <div className="font-medium">{formatted} (L)</div>;
+    },
   },
   {
     accessorKey: "Venda",

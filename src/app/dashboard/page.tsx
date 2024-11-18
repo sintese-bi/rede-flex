@@ -87,9 +87,9 @@ export default function Dashboard() {
               <DashboardComponentsMap data={stationsMap} />
             </div>
             <DashboardComponentsCharts />
+            <DashboardComponentsTables data={dataframes} />
           </div>
           <Separator />
-          <DashboardComponentsTables data={dataframes} />
         </div>
       </div>
     </DashboardContext.Provider>

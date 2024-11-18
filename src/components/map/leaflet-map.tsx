@@ -27,7 +27,7 @@ export type IMyMap = {
   LBO_Definido: number;
   LBO_Produto_Definido: number;
   LBO_Galonagem_Definido: number;
-  averageComparison: 0 | 1 | 2;
+  averageComparison: 0 | 1 | 2 | 3;
 };
 const icon_options = {
   iconSize: [38, 35] as PointExpression,
@@ -49,10 +49,15 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
     ...icon_options,
     iconUrl: "/icons/yellow_fuel_icon.png",
   });
+  var blueIcon = L.icon({
+    ...icon_options,
+    iconUrl: "/icons/blue_fuel_icon.png",
+  });
   const icons = {
     0: greenIcon,
     1: yellowIcon,
     2: redIcon,
+    3: blueIcon,
   };
 
   return (
@@ -82,20 +87,24 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
       <div className="absolute bottom-2 left-2 bg-white shadow-xl p-2 rounded-md text-sm z-[1000]">
         <div className="">
           <div className="flex items-center gap-2 px-2">
-            <div className="h-4 w-11 rounded-md bg-green-100 border-2"></div>
+            <div className="h-4 w-11 rounded-sm bg-green-100 border-gray-400 border-[1px]"></div>
             <p className="text-sm">
               Lucro bruto operacional, TMs, M/LT acima do definido
             </p>
           </div>
           <div className="flex items-center gap-2 px-2">
-            <div className="h-4 w-11 rounded-md bg-yellow-100 border-2"></div>
+            <div className="h-4 w-11 rounded-sm bg-yellow-100 border-gray-400 border-[1px]"></div>
             <p className="text-sm">Lucro bruto operacional acima do definido</p>
           </div>
           <div className="flex items-center gap-2 px-2">
-            <div className="h-4 w-11 rounded-md bg-red-100 border-2"></div>
+            <div className="h-4 w-11 rounded-sm bg-red-100 border-gray-400 border-[1px]"></div>
             <p className="text-sm">
               Lucro bruto operacional abaixo do definido
             </p>
+          </div>
+          <div className="flex items-center gap-2 px-2">
+            <div className="h-4 w-11 rounded-sm bg-blue-100 border-gray-400 border-[1px]"></div>
+            <p className="text-sm">Postos que estão offline</p>
           </div>
         </div>
       </div>

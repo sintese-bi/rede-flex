@@ -1,6 +1,6 @@
 import { toast } from "@/components/ui/use-toast";
 import SubmitButton from "./submit_button";
-import { FormEvent, useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "@/app/dashboard/analytics/context";
 import Section from "./section";
 import { IRegionalsSectionsFields } from "../../fields/regional";
@@ -17,9 +17,8 @@ export default function RowForm({
   updateFunction: any;
 }) {
   const { updateDashboardData } = useContext(DashboardContext);
-  const { handleData, currentSection, currentSecondarySection } = useContext(
-    SystemParameterizationModalContext
-  )!;
+  const { data, handleData, currentSection, currentSecondarySection } =
+    useContext(SystemParameterizationModalContext)!;
   const [formValues, setFormValues] = useState(() =>
     Object.fromEntries(
       [
@@ -46,6 +45,18 @@ export default function RowForm({
       description: response.message,
     });
   }
+  useEffect(() => {
+    setFormValues(() =>
+      Object.fromEntries(
+        [
+          ...sectionsFields[currentSection as 1 | 2][0],
+          ...sectionsFields[currentSection as 1 | 2][1],
+        ]
+          .filter((field) => field["isInputField"] == true)
+          .map((field) => [field.accessorKey, rowValues[field.accessorKey]])
+      )
+    );
+  }, [rowValues]);
   const section = sectionsFields[currentSection][currentSecondarySection] as
     | IStationsSectionsFields[]
     | IRegionalsSectionsFields[];

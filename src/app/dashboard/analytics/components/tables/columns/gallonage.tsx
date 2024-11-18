@@ -145,7 +145,7 @@ export const gallonage: any[] = [
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }).format(Math.round(amount));
-      return <div className="font-medium">{formatted}</div>;
+      return <div className="font-medium">{formatted} (L)</div>;
     },
   },
   {
