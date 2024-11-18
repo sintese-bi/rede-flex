@@ -42,12 +42,8 @@ export default function GeneralForm({}: {}) {
     });
   }
   useEffect(() => {
-    console.log(generalData);
     setFormValues(generalData);
   }, [generalData]);
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   const section = sectionsFields[currentSection][currentSecondarySection] as
     | IStationsSectionsFields[]
     | IRegionalsSectionsFields[];

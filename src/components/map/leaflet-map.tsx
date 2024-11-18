@@ -104,7 +104,7 @@ export default function Leaflet({ data }: { data: IMyMap[] }) {
           </div>
           <div className="flex items-center gap-2 px-2">
             <div className="h-4 w-11 rounded-sm bg-blue-100 border-gray-400 border-[1px]"></div>
-            <p className="text-sm">Postos que estão offline</p>
+            <p className="text-sm">Postos com possível falha no sistema</p>
           </div>
         </div>
       </div>
