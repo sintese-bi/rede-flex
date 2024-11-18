@@ -5,12 +5,12 @@ import { AlertsInterfaces } from "../interfaces/alerts";
 import { apiRequestConfig, getUserUUID } from "@/utils";
 export async function handleAlertsVariables(): Promise<string[]> {
   return [
-    "marginGC",
-    "marginGasolinaPodium",
-    "marginGasolinaPremium",
-    "marginDieselS10",
-    "marginDieselS500",
-    "marginEtanolComum",
+    "Margem Gasolina Comum",
+    "Margem Gasolina Podium",
+    "Margem Gasolina Premium",
+    "Margem Diesel S10",
+    "Margem Diesel S500",
+    "Margem Etanol Comum",
   ];
 }
 export async function handleAlertsVariablesSelect(form: FormData) {

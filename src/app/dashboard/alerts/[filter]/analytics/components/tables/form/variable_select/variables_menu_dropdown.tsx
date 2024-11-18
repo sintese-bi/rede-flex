@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { VariablesInterfaces } from "../../../../interfaces/variables";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { handleAlertsVariables } from "../../../../actions";
 export default function VariablesMenuDropdown({
@@ -33,7 +32,7 @@ export default function VariablesMenuDropdown({
     <Select
       name="variable"
       onValueChange={handleValueChange}
-      defaultValue={selectedVariable}
+      defaultValue="Margem Gasolina Comum"
     >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Variáveis" />
