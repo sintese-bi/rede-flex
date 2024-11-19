@@ -6,7 +6,7 @@ export default function SelectedMargins({ variables }: { variables: any }) {
     Object.keys(variables).filter((variable) => variables[variable] !== 0)
   );
   return (
-    <div className="flex justify-center flex-wrap max-w-[400px]">
+    <div className="flex gap-2 justify-center flex-wrap max-w-[400px]">
       {selectedVariables.map((selectedVariable, index) => (
         <Badge key={index}>{selectedVariable}</Badge>
       ))}
