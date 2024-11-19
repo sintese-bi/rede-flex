@@ -102,7 +102,7 @@ export default function DailyProduct() {
       duration: 1500,
     },
     onClick: async (event: any, activeElements: any) => {
-      if (activeElements.length > 0) {
+      if (activeElements.length > 0 && currentLevel !== "station") {
         const clickedElementIndex = activeElements[0].index;
         setClickedLabel(chartData.labels[clickedElementIndex]);
         setCurrentLevel("station");
