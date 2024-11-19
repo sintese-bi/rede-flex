@@ -80,7 +80,13 @@ export default function RegionFuel() {
         setCurrentLevel("station");
       }
     },
+    scales: {
+      x: {
+        display: false, // Desativa a exibição do eixo X
+      },
+    },
   };
+
   async function handlePreviousLevel() {
     setData(null);
     let response = await handleDashboardRegionalFuelChart({

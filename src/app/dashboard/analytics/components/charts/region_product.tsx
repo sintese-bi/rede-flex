@@ -80,7 +80,13 @@ export default function RegionProduct() {
         setCurrentLevel("station");
       }
     },
+    scales: {
+      x: {
+        display: false, // Desativa a exibição do eixo X
+      },
+    },
   };
+
   async function handlePreviousLevel() {
     setCurrentLevel("regional");
   }

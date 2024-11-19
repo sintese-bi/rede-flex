@@ -108,7 +108,13 @@ export default function DailyFuel() {
         setCurrentLevel("station");
       }
     },
+    scales: {
+      x: {
+        display: false, // Desativa a exibição do eixo X
+      },
+    },
   };
+
   async function handlePreviousLevel() {
     setCurrentLevel("daily");
   }
