@@ -199,6 +199,24 @@ export async function handleDashboardRegionalProductChart(params: {
   const data = await response.json();
   return data;
 }
+export async function handleDashboardInvoicingChart(params: {
+  variable_type: string;
+}): Promise<{ date: string; sum: number }[]> {
+  const url = `${process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API}/fatibm`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+    method: "GET",
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
+  const data = await response.json();
+  return data;
+}
 export async function handleDataframes() {
   const url = `${
     process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API
