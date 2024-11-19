@@ -10,6 +10,7 @@ export interface IStationsSectionsFields {
 export const stationsSectionsFields: {
   0: IStationsSectionsFields[];
   1: IStationsSectionsFields[];
+  2: IStationsSectionsFields[];
 } = {
   0: [
     {
@@ -116,6 +117,20 @@ export const stationsSectionsFields: {
     {
       accessorKey: "oleo_diesel_b_s10_comum",
       header: "Diesel S10 comum (L)",
+      isVisible: false,
+      isInputField: true,
+    },
+  ],
+  2: [
+    {
+      accessorKey: "invoice_comb",
+      header: "Faturamento combustível",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "invoice_prod",
+      header: "Faturamento produto",
       isVisible: false,
       isInputField: true,
     },

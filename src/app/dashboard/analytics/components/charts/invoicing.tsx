@@ -100,7 +100,7 @@ export default function Invoicing() {
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          Gráfico faturamento
+          Gráfico faturamento mensal por posto
         </p>
         <Bar data={chartData} className="h-full w-full" options={options} />
       </div>
