@@ -11,12 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import {
-  handleDashboardInvoicingChart,
-  handleDashboardRegionalFuelChart,
-  handleDashboardRegionalStationChart,
-} from "../../actions";
-import { Button } from "@/components/ui/button";
+import { handleDashboardInvoicingChart } from "../../actions";
+import Chart from "chart.js/auto";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -42,8 +38,6 @@ export default function Invoicing() {
       const response = await handleDashboardInvoicingChart({
         variable_type: filterVariable,
       });
-      console.log(response);
-
       setData(response);
     };
     fetch();
@@ -52,15 +46,24 @@ export default function Invoicing() {
   }, [filterVariable, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
   const chartData = {
-    labels: Object.keys(data[filterVariable]),
+    labels: data[filterVariable].map(
+      (item: any) => `${((item.value / item.media) * 100).toFixed()}%`
+    ),
     datasets: [
       {
-        label: filterVariableOptions.filter(
-          (item) => item["variable"] == filterVariable
-        )[0]["label"],
-        data: Object.values(data[filterVariable]),
-        fill: false,
+        label: "Faturamento",
+        data: data[filterVariable].map((item: any) => item.value),
+        fill: true,
         borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        tension: 0.1,
+      },
+      {
+        label: "Faturamento meta",
+        data: data[filterVariable].map((item: any) => Number(item.media)),
+        fill: true,
+        borderColor: "rgb(60, 153, 153)",
+        backgroundColor: "rgba(48, 122, 122, 0.2)",
         tension: 0.1,
       },
     ],
@@ -71,8 +74,42 @@ export default function Invoicing() {
     },
     scales: {
       x: {
-        display: false, // Desativa a exibição do eixo X
+        display: false,
       },
+    },
+  };
+  const customPlugin = {
+    id: "customPlugin",
+    afterDatasetsDraw(chart: Chart) {
+      const {
+        ctx,
+        data,
+        chartArea: { top, left, right, bottom, width, height },
+        scales: { x, y },
+      } = chart;
+
+      const dataset1 = data.datasets[0].data;
+      const dataset2 = data.datasets[1].data;
+
+      // Loop through each data point to calculate and draw the custom value
+      dataset1.forEach((value1: any, index: any) => {
+        const value2: any = dataset2[index];
+        const xPos = x.getPixelForValue(index); // X position of the bar
+        const yPos1 = y.getPixelForValue(value1); // Y position of the first dataset
+        const yPos2 = y.getPixelForValue(value2); // Y position of the second dataset
+
+        const divisionResult = ((value1 / value2) * 100).toFixed(); // Calculate division and multiply by 100
+
+        ctx.save();
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+
+        // Render the calculated value above the higher of the two bars
+        const labelYPos = Math.min(yPos1, yPos2) - 10;
+        ctx.fillText(`${divisionResult}%`, xPos, labelYPos);
+        ctx.restore();
+      });
     },
   };
   return (
@@ -102,7 +139,12 @@ export default function Invoicing() {
         <p className="text-xs font-bold text-slate-800 uppercase">
           Gráfico faturamento mensal por posto
         </p>
-        <Bar data={chartData} className="h-full w-full" options={options} />
+        <Bar
+          data={chartData}
+          className="h-full w-full"
+          plugins={[customPlugin]}
+          options={options}
+        />
       </div>
     </div>
   );
