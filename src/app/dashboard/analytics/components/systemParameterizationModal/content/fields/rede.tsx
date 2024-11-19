@@ -51,4 +51,18 @@ export const redeSectionsFields = {
       label: "Diesel S500 comum (L)",
     },
   ],
+  2: [
+    {
+      accessorKey: "invoice_comb",
+      header: "Faturamento combustível",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "invoice_prod",
+      header: "Faturamento produto",
+      isVisible: false,
+      isInputField: true,
+    },
+  ],
 };

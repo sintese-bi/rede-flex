@@ -1,4 +1,4 @@
-import { ContextProps, SystemParameterizationModalContext } from "../context";
+import { SystemParameterizationModalContext } from "../context";
 import FormRede from "./form_rede";
 import FormsTableConfiguration from "./forms_table";
 import CurrentSecondarySectionSelector from "./currentSecondarySectionSelector";
