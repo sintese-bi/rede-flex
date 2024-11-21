@@ -25,6 +25,7 @@ export default function RowForm({
         ...sectionsFields[currentSection as 1 | 2][0],
         ...sectionsFields[currentSection as 1 | 2][1],
         ...sectionsFields[currentSection as 1 | 2][2],
+        ...sectionsFields[currentSection as 1 | 2][3],
       ]
         .filter((field) => field["isInputField"] == true)
         .map((field) => [field.accessorKey, rowValues[field.accessorKey]])
@@ -53,6 +54,7 @@ export default function RowForm({
           ...sectionsFields[currentSection as 1 | 2][0],
           ...sectionsFields[currentSection as 1 | 2][1],
           ...sectionsFields[currentSection as 1 | 2][2],
+          ...sectionsFields[currentSection as 1 | 2][3],
         ]
           .filter((field) => field["isInputField"] == true)
           .map((field) => [field.accessorKey, rowValues[field.accessorKey]])

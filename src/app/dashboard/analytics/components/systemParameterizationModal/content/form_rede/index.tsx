@@ -13,7 +13,7 @@ export default function FormRede({
   data: any;
   fields: any;
   currentSection: 0 | 1 | 2;
-  currentSecondarySection: 0 | 1 | 2;
+  currentSecondarySection: 0 | 1 | 2 | 3;
 }) {
   const { updateDashboardData } = useContext(DashboardContext);
   const [formValues, setFormValues] = useState(() =>

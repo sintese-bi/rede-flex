@@ -11,6 +11,7 @@ export const regionalsSectionsFields: {
   0: IRegionalsSectionsFields[];
   1: IRegionalsSectionsFields[];
   2: IRegionalsSectionsFields[];
+  3: IRegionalsSectionsFields[];
 } = {
   0: [
     {
@@ -132,6 +133,20 @@ export const regionalsSectionsFields: {
     {
       accessorKey: "invoice_prod",
       header: "Faturamento produto",
+      isVisible: false,
+      isInputField: true,
+    },
+  ],
+  3: [
+    {
+      accessorKey: "invoice_comb_daily",
+      header: "Faturamento combustível diário",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "invoice_prod_daily",
+      header: "Faturamento produto diário",
       isVisible: false,
       isInputField: true,
     },

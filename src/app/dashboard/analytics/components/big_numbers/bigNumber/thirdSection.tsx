@@ -16,6 +16,11 @@ export default function BigNumberThirdSection({
       {fifth_value !== undefined ? (
         <div className="flex flex-col items-end">
           <div className="flex gap-1">
+            <p className="text-xs font-bold text-slate-400">
+              Acumulado até ontem:
+            </p>
+          </div>
+          <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">{fifth_label}</p>
             <p className={`text-xs font-bold text-white`}>{fifth_value}</p>
           </div>
