@@ -11,6 +11,7 @@ import RegionFuel from "./region_fuel";
 import RegionProduct from "./region_product";
 import { AlertCircleIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import LinearInvoicing from "./linearInvoice";
 export default function DashboardComponentsCharts() {
   return (
     <>
@@ -37,6 +38,7 @@ export default function DashboardComponentsCharts() {
         </div>
         <Separator />
       </div>
+      <LinearInvoicing />
       <Invoicing />
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex items-center justify-center lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-full w-full">

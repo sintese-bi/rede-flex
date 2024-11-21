@@ -11,12 +11,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { handleDashboardInvoicingChart } from "../../actions";
+import { handleDashboardLinearInvoicingChart } from "../../actions";
 import Chart from "chart.js/auto";
-const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
+const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Line), {
   ssr: false,
 });
-export default function Invoicing() {
+
+export default function LinearInvoicing() {
   const [data, setData] = useState<any>(null);
   const [currentLevel, setCurrentLevel] = useState<"regional" | "station">(
     "regional"
@@ -35,7 +36,7 @@ export default function Invoicing() {
       setData(null);
     }
     const fetch = async () => {
-      const response = await handleDashboardInvoicingChart({
+      const response = await handleDashboardLinearInvoicingChart({
         variable_type: filterVariable,
       });
       setData(response);
@@ -44,29 +45,34 @@ export default function Invoicing() {
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable, clickedLabel, currentLevel]);
+
   if (!data) return <ChartLoading />;
 
+  // Cores personalizadas para os postos
+  const colors = [
+    "rgb(255, 99, 132)", // Cor para Posto 1
+    "rgb(54, 162, 235)", // Cor para Posto 2
+    "rgb(255, 206, 86)", // Cor para Posto 3
+    "rgb(75, 192, 192)", // Cor para Posto 4
+    "rgb(153, 102, 255)", // Cor para Posto 5
+  ];
+
   const chartData = {
-    labels: data[filterVariable].map((item: any) => item.name),
-    datasets: [
-      {
-        label: "Faturamento",
-        data: data[filterVariable].map((item: any) => item.value),
-        fill: true,
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgb(5, 176, 192)",
+    labels: data.labels,
+    datasets: Object.keys(data.postos).map((posto, index) => {
+      const postoData = data.postos[posto];
+      const meta = data.meta[posto]; // A meta do posto
+      return {
+        label: posto,
+        data: postoData,
+        fill: false,
+        borderColor: colors[index % colors.length], // Atribuindo cor ao posto
         tension: 0.1,
-      },
-      {
-        label: "Faturamento meta",
-        data: data[filterVariable].map((item: any) => Number(item.media)),
-        fill: true,
-        borderColor: "rgb(60, 153, 153)",
-        backgroundColor: "rgb(0, 103, 115)",
-        tension: 0.1,
-      },
-    ],
+        meta: meta, // Adicionando a meta ao dataset para uso no plugin customizado
+      };
+    }),
   };
+
   const options = {
     animation: {
       duration: 1500,
@@ -75,42 +81,46 @@ export default function Invoicing() {
       x: {
         display: true,
       },
+      y: {
+        display: true,
+        beginAtZero: true,
+      },
     },
   };
+
   const customPlugin = {
     id: "customPlugin",
     afterDatasetsDraw(chart: Chart) {
       const {
         ctx,
-        data,
         chartArea: { top, left, right, bottom, width, height },
         scales: { x, y },
       } = chart;
 
-      const dataset1 = data.datasets[0].data;
-      const dataset2 = data.datasets[1].data;
+      chart.data.datasets.forEach((dataset: any) => {
+        const datasetData = dataset.data;
+        const meta = dataset.meta;
 
-      // Loop through each data point to calculate and draw the custom value
-      dataset1.forEach((value1: any, index: any) => {
-        const value2: any = dataset2[index];
-        const xPos = x.getPixelForValue(index); // X position of the bar
-        const yPos1 = y.getPixelForValue(value1); // Y position of the first dataset
-        const yPos2 = y.getPixelForValue(value2); // Y position of the second dataset
+        // Loop para cada ponto de dados do dataset
+        datasetData.forEach((value: number, index: number) => {
+          // Calculando a diferença percentual entre o valor real e a meta
+          const percentage = ((value / meta[index]) * 100).toFixed(2); // Fórmula para calcular o percentual
 
-        const divisionResult = ((value1 / value2) * 100).toFixed(); // Calculate division and multiply by 100
+          // Posição do ponto no gráfico
+          const xPos = x.getPixelForValue(index);
+          const yPos = y.getPixelForValue(value);
 
-        ctx.save();
-        ctx.font = "12px Arial";
-        ctx.fillStyle = "black";
-        ctx.textAlign = "center";
-
-        // Render the calculated value above the higher of the two bars
-        const labelYPos = Math.min(yPos1, yPos2) - 10;
-        ctx.fillText(`${divisionResult}%`, xPos, labelYPos);
-        ctx.restore();
+          ctx.save();
+          ctx.font = "12px Arial";
+          ctx.fillStyle = "black";
+          ctx.textAlign = "center";
+          ctx.fillText(`${percentage}%`, xPos, yPos - 10); // Renderizando o percentual acima do ponto
+          ctx.restore();
+        });
       });
     },
   };
+
   return (
     <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
       <div className="flex gap-2">
@@ -136,9 +146,9 @@ export default function Invoicing() {
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          faturamento mensal por posto
+          Gráfico faturamento diário por posto
         </p>
-        <Bar
+        <Line
           data={chartData}
           className="h-full w-full"
           plugins={[customPlugin]}

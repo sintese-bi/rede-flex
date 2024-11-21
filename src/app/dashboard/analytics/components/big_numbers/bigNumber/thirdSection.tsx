@@ -11,8 +11,6 @@ export default function BigNumberThirdSection({
   seventh_label: string;
   seventh_value: string;
 }) {
-  console.log(fifth_value);
-
   return (
     <div className="flex justify-between gap-4">
       {fifth_value !== "" ? (

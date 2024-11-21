@@ -15,10 +15,7 @@ export const group: any[] = [
     accessorKey: "Produto",
     header: "Produto",
   },
-  {
-    accessorKey: "Abast",
-    header: "Quantidade vendida",
-  },
+
   {
     accessorKey: "TMP",
     header: ({ column }: any) => {

@@ -217,6 +217,44 @@ export async function handleDashboardInvoicingChart(params: {
   const data = await response.json();
   return data;
 }
+export async function handleDashboardLinearInvoicingChart(params: {
+  variable_type: string;
+}): Promise<{
+  labels: string[];
+  postos: {
+    "Posto 1": number[];
+    "Posto 2": number[];
+    "Posto 3": number[];
+    "Posto 4": number[];
+    "Posto 5": number[];
+  };
+}> {
+  const data = {
+    labels: [
+      "01/11/2024",
+      "02/11/2024",
+      "03/11/2024",
+      "04/11/2024",
+      "05/11/2024",
+    ],
+    postos: {
+      "Posto 1": [120, 130, 125, 140, 135],
+      "Posto 2": [150, 145, 160, 155, 150],
+      "Posto 3": [100, 110, 105, 115, 120],
+      "Posto 4": [180, 175, 190, 185, 180],
+      "Posto 5": [200, 195, 210, 205, 200],
+    },
+    meta: {
+      "Posto 1": [130, 130, 130, 130, 130],
+      "Posto 2": [160, 160, 160, 160, 160],
+      "Posto 3": [110, 110, 110, 110, 110],
+      "Posto 4": [190, 190, 190, 190, 190],
+      "Posto 5": [210, 210, 210, 210, 210],
+    },
+  };
+
+  return data;
+}
 export async function handleDataframes() {
   const url = `${
     process.env.NEXT_PUBLIC_DATAFRAME_EXTERN_API
