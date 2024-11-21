@@ -6,11 +6,11 @@ export default function CurrentSecondarySectionSelector({
   setCurrentSecondarySection,
 }: {
   currentSection: 0 | 1 | 2;
-  currentSecondarySection: 0 | 1 | 2;
-  setCurrentSecondarySection: Dispatch<SetStateAction<0 | 1 | 2>>;
+  currentSecondarySection: 0 | 1 | 2 | 3;
+  setCurrentSecondarySection: Dispatch<SetStateAction<0 | 1 | 2 | 3>>;
 }) {
   const selectedStyle = "border-b-[1px] border-main-color rounded-none";
-  function handleOnClick(value: 0 | 1 | 2) {
+  function handleOnClick(value: 0 | 1 | 2 | 3) {
     setCurrentSecondarySection(value);
   }
   return (
@@ -25,7 +25,27 @@ export default function CurrentSecondarySectionSelector({
             }`}
             onClick={() => handleOnClick(0)}
           >
-            TMs
+            Meta diária indices
+          </Button>
+          <Button
+            variant="ghost"
+            type="button"
+            className={`border-0 ${
+              currentSecondarySection == 3 ? selectedStyle : null
+            }`}
+            onClick={() => handleOnClick(3)}
+          >
+            Meta diária nominal
+          </Button>
+          <Button
+            variant="ghost"
+            type="button"
+            className={`border-0 ${
+              currentSecondarySection == 2 ? selectedStyle : null
+            }`}
+            onClick={() => handleOnClick(2)}
+          >
+            Meta mensal nominal
           </Button>
           <Button
             variant="ghost"
@@ -36,16 +56,6 @@ export default function CurrentSecondarySectionSelector({
             onClick={() => handleOnClick(1)}
           >
             Descontos de combustiveis
-          </Button>
-          <Button
-            variant="ghost"
-            type="button"
-            className={`border-0 ${
-              currentSecondarySection == 2 ? selectedStyle : null
-            }`}
-            onClick={() => handleOnClick(2)}
-          >
-            Faturamento
           </Button>
         </>
       )}

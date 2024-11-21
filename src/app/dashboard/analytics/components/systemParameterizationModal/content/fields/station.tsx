@@ -11,6 +11,7 @@ export const stationsSectionsFields: {
   0: IStationsSectionsFields[];
   1: IStationsSectionsFields[];
   2: IStationsSectionsFields[];
+  3: IStationsSectionsFields[];
 } = {
   0: [
     {
@@ -124,13 +125,27 @@ export const stationsSectionsFields: {
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Faturamento combustível",
+      header: "Faturamento combustível mensal",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "invoice_prod",
-      header: "Faturamento produto",
+      header: "Faturamento produto mensal",
+      isVisible: false,
+      isInputField: true,
+    },
+  ],
+  3: [
+    {
+      accessorKey: "invoice_comb_daily",
+      header: "Faturamento combustível diário",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "invoice_prod_daily",
+      header: "Faturamento produto diário",
       isVisible: false,
       isInputField: true,
     },
