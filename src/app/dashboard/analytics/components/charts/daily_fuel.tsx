@@ -93,6 +93,7 @@ export default function DailyFuel() {
             : Object.values(data),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgb(5, 176, 192)",
         tension: 0.1,
       },
     ],
@@ -110,7 +111,7 @@ export default function DailyFuel() {
     },
     scales: {
       x: {
-        display: false, // Desativa a exibição do eixo X
+        display: currentLevel !== "station" ? true : false, // Desativa a exibição do eixo X
       },
     },
   };

@@ -45,17 +45,16 @@ export default function Invoicing() {
     return () => clearInterval(intervalId);
   }, [filterVariable, clickedLabel, currentLevel]);
   if (!data) return <ChartLoading />;
+
   const chartData = {
-    labels: data[filterVariable].map(
-      (item: any) => `${((item.value / item.media) * 100).toFixed()}%`
-    ),
+    labels: data[filterVariable].map((item: any) => item.name),
     datasets: [
       {
         label: "Faturamento",
         data: data[filterVariable].map((item: any) => item.value),
         fill: true,
         borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        backgroundColor: "rgb(5, 176, 192)",
         tension: 0.1,
       },
       {
@@ -63,7 +62,7 @@ export default function Invoicing() {
         data: data[filterVariable].map((item: any) => Number(item.media)),
         fill: true,
         borderColor: "rgb(60, 153, 153)",
-        backgroundColor: "rgba(48, 122, 122, 0.2)",
+        backgroundColor: "rgb(0, 103, 115)",
         tension: 0.1,
       },
     ],
@@ -72,9 +71,10 @@ export default function Invoicing() {
     animation: {
       duration: 1500,
     },
+    indexAxis: "y" as "x" | "y",
     scales: {
       x: {
-        display: false,
+        display: true,
       },
     },
   };
@@ -84,34 +84,36 @@ export default function Invoicing() {
       const {
         ctx,
         data,
-        chartArea: { top, left, right, bottom, width, height },
-        scales: { x, y },
+        scales: { x, y }, // Com os eixos invertidos, "x" será o valor numérico, "y" será categórico
       } = chart;
 
       const dataset1 = data.datasets[0].data;
       const dataset2 = data.datasets[1].data;
 
-      // Loop through each data point to calculate and draw the custom value
       dataset1.forEach((value1: any, index: any) => {
         const value2: any = dataset2[index];
-        const xPos = x.getPixelForValue(index); // X position of the bar
-        const yPos1 = y.getPixelForValue(value1); // Y position of the first dataset
-        const yPos2 = y.getPixelForValue(value2); // Y position of the second dataset
 
-        const divisionResult = ((value1 / value2) * 100).toFixed(); // Calculate division and multiply by 100
+        // Posição nos eixos invertidos
+        const yPos = y.getPixelForValue(index); // Posição da label no eixo Y
+        const xPos1 = x.getPixelForValue(value1); // Posição do valor 1 no eixo X
+        const xPos2 = x.getPixelForValue(value2); // Posição do valor 2 no eixo X
 
+        // Cálculo da porcentagem
+        const divisionResult = ((value1 / value2) * 100).toFixed(); // Ex: 80%
+
+        // Renderização do texto entre os valores no eixo invertido
+        const labelXPos = Math.min(xPos1, xPos2) - 10; // Ajuste horizontal (para alinhar ao menor valor)
         ctx.save();
         ctx.font = "12px Arial";
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.textAlign = "center";
-
-        // Render the calculated value above the higher of the two bars
-        const labelYPos = Math.min(yPos1, yPos2) - 10;
-        ctx.fillText(`${divisionResult}%`, xPos, labelYPos);
+        // Renderiza o texto no ponto apropriado
+        ctx.fillText(`${divisionResult}%`, labelXPos, yPos);
         ctx.restore();
       });
     },
   };
+
   return (
     <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
       <div className="flex gap-2">
