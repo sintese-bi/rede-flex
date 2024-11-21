@@ -2,6 +2,14 @@
 import { ColumnDef } from "@tanstack/react-table";
 import FormComponentsAlertsTable from "./form";
 import SelectedMargins from "./selectedMargins";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { EyeIcon } from "lucide-react";
 export type Alerts = {
   name: string;
   gas_station_id: string;
@@ -20,7 +28,24 @@ export const columns: ColumnDef<Alerts>[] = [
   },
   {
     accessorKey: "Margens selecionadas",
-    header: () => <div className="text-center">Margens selecionadas</div>,
+    header: ({ column }) => (
+      <div className="flex justify-center">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="text-center">
+            Margens selecionadas
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="top">
+            <DropdownMenuItem
+              onClick={() => column.toggleVisibility()}
+              className="space-x-2"
+            >
+              <EyeIcon size={18} />
+              <p>hide</p>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    ),
     cell: ({ row }) => {
       return <SelectedMargins variables={row.original.variables} />;
     },
