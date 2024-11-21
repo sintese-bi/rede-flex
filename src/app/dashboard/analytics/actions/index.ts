@@ -286,6 +286,7 @@ export async function handleDataframes() {
     return {
       name: item["Grupo"],
       Posto: item["Posto"],
+      Abast: item["abast"],
       TMP: item["TMP"],
       "LBO Produto": item["LBO Produto"],
       Produto: item["Produto"],
