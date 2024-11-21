@@ -40,7 +40,7 @@ export const columns: ColumnDef<Alerts>[] = [
               className="space-x-2"
             >
               <EyeIcon size={18} />
-              <p>hide</p>
+              <p>Ocultar</p>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

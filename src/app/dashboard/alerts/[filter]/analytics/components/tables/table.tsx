@@ -19,6 +19,14 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { EyeIcon } from "lucide-react";
+import ColumnVisibilityToggle from "./columnVisibilitySelector";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -47,6 +55,9 @@ export function DataTable<TData, TValue>({
   return (
     <>
       <div className="rounded-md border">
+        <ColumnVisibilityToggle
+          column={table.getColumn("Margens selecionadas")}
+        />
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
