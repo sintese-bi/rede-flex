@@ -23,12 +23,10 @@ export default function LinearInvoicing() {
     "regional"
   );
   const [clickedLabel, setClickedLabel] = useState<string>("");
-  const [filterVariable, setFilterVariable] = useState<
-    "fatCombustivel" | "fatProduto"
-  >("fatCombustivel");
+  const [filterVariable, setFilterVariable] = useState<"comb" | "prod">("comb");
   const filterVariableOptions = [
-    { variable: "fatCombustivel", label: "Combustível" },
-    { variable: "fatProduto", label: "Produto" },
+    { variable: "comb", label: "Combustível" },
+    { variable: "prod", label: "Produto" },
   ];
 
   useEffect(() => {
@@ -48,29 +46,19 @@ export default function LinearInvoicing() {
 
   if (!data) return <ChartLoading />;
 
-  // Cores personalizadas para os postos
-  const colors = [
-    "rgb(255, 99, 132)", // Cor para Posto 1
-    "rgb(54, 162, 235)", // Cor para Posto 2
-    "rgb(255, 206, 86)", // Cor para Posto 3
-    "rgb(75, 192, 192)", // Cor para Posto 4
-    "rgb(153, 102, 255)", // Cor para Posto 5
-  ];
-
   const chartData = {
-    labels: data.labels,
-    datasets: Object.keys(data.postos).map((posto, index) => {
-      const postoData = data.postos[posto];
-      const meta = data.meta[posto]; // A meta do posto
-      return {
-        label: posto,
-        data: postoData,
-        fill: false,
-        borderColor: colors[index % colors.length], // Atribuindo cor ao posto
-        tension: 0.1,
-        meta: meta, // Adicionando a meta ao dataset para uso no plugin customizado
-      };
-    }),
+    labels: data[filterVariable].labels,
+    datasets: Object.keys(data[filterVariable].posto_nominal[0]).map(
+      (posto, index) => {
+        const postoData = data[filterVariable].posto_nominal[0][posto];
+        return {
+          label: posto,
+          data: postoData,
+          fill: false,
+          tension: 0.1,
+        };
+      }
+    ),
   };
 
   const options = {
@@ -93,34 +81,35 @@ export default function LinearInvoicing() {
     afterDatasetsDraw(chart: Chart) {
       const {
         ctx,
-        chartArea: { top, left, right, bottom, width, height },
         scales: { x, y },
       } = chart;
 
-      chart.data.datasets.forEach((dataset: any) => {
+      chart.data.datasets.forEach((dataset: any, datasetIndex: number) => {
+        const postoName = dataset.label; // Nome do posto (chave do objeto)
         const datasetData = dataset.data;
-        const meta = dataset.meta;
+        const postosPctData = data[filterVariable].postos_pct[0][postoName];
 
-        // Loop para cada ponto de dados do dataset
+        // Certifique-se de que `postosPctData` existe
+        if (!postosPctData) return;
+
         datasetData.forEach((value: number, index: number) => {
-          // Calculando a diferença percentual entre o valor real e a meta
-          const percentage = ((value / meta[index]) * 100).toFixed(2); // Fórmula para calcular o percentual
+          const percentage = postosPctData[index]?.toFixed(2); // Pegando a porcentagem pronta
 
-          // Posição do ponto no gráfico
-          const xPos = x.getPixelForValue(index);
-          const yPos = y.getPixelForValue(value);
+          if (percentage) {
+            const xPos = x.getPixelForValue(index);
+            const yPos = y.getPixelForValue(value);
 
-          ctx.save();
-          ctx.font = "12px Arial";
-          ctx.fillStyle = "black";
-          ctx.textAlign = "center";
-          ctx.fillText(`${percentage}%`, xPos, yPos - 10); // Renderizando o percentual acima do ponto
-          ctx.restore();
+            ctx.save();
+            ctx.font = "12px Arial";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.fillText(`${percentage}%`, xPos, yPos - 10); // Renderizando o percentual acima do ponto
+            ctx.restore();
+          }
         });
       });
     },
   };
-
   return (
     <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
       <div className="flex gap-2">

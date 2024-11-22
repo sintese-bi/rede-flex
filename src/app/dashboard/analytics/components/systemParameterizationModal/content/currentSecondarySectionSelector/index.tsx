@@ -27,7 +27,8 @@ export default function CurrentSecondarySectionSelector({
           >
             Meta diária indices
           </Button>
-          <Button
+          {/**
+           * <Button
             variant="ghost"
             type="button"
             className={`border-0 ${
@@ -37,6 +38,7 @@ export default function CurrentSecondarySectionSelector({
           >
             Meta diária nominal
           </Button>
+           */}
           <Button
             variant="ghost"
             type="button"
