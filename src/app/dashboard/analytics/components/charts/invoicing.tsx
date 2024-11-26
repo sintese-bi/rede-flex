@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import "chart.js/auto";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ChartLoading from "../loading/chart";
 import {
   Select,
@@ -13,10 +13,12 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { handleDashboardInvoicingChart } from "../../actions";
 import Chart from "chart.js/auto";
+import { DashboardContext } from "../../context";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
 export default function LinearInvoicing() {
+  const { handleCombScroll, handleProdScroll } = useContext(DashboardContext);
   const [data, setData] = useState<any>(null);
   const [currentLevel, setCurrentLevel] = useState<"regional" | "station">(
     "regional"
@@ -71,6 +73,13 @@ export default function LinearInvoicing() {
   const options = {
     animation: {
       duration: 1500,
+    },
+    onClick: async (event: any, activeElements: any) => {
+      if (activeElements.length > 0) {
+        filterVariableOptions[filterVariable] == "Galonagem"
+          ? handleCombScroll()
+          : handleProdScroll();
+      }
     },
     scales: {
       x: {

@@ -1,6 +1,6 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DashboardComponentsMap from "./analytics/components/map";
 import DashboardComponentsBigNumbers from "./analytics/components/big_numbers";
 import DashboardComponentsCharts from "./analytics/components/charts";
@@ -25,10 +25,14 @@ function splitBigNumberIntoThree(
   return response;
 }
 export default function Dashboard() {
+  const combRef = useRef<any>(null);
+  const prodRef = useRef<any>(null);
+
   const [lowerThanAvarageCount, setLowerThanAvarageCount] = useState<any>(null);
   const [bigNumbers, setBigNumbers] = useState<any>(null);
   const [stationsMap, setStationsMap] = useState<any>(null);
   const [dataframes, setDataframes] = useState<any>(null);
+
   async function handleBigNumbers() {
     let response = await handleDashboardBigNumbers();
     localStorage.setItem("update_time", new Date().toDateString());
@@ -44,7 +48,6 @@ export default function Dashboard() {
     setDataframes(response);
     setLowerThanAvarageCount(response.lowerThanAvarageCount);
   }
-
   async function updateDashboardData() {
     await Promise.all([
       handleBigNumbers(),
@@ -52,18 +55,33 @@ export default function Dashboard() {
       handleDataframesData(),
     ]);
   }
+  function handleCombScroll() {
+    console.log("executed");
+    combRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+  function handleProdScroll() {
+    console.log("executed");
+    prodRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
   useEffect(() => {
     updateDashboardData();
     const intervalId = setInterval(updateDashboardData, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
   useEffect(() => {}, [lowerThanAvarageCount]);
+
   if (!bigNumbers || !stationsMap || !dataframes || !lowerThanAvarageCount)
     return <ChartLoading />;
+
   return (
     <DashboardContext.Provider
       value={{
+        combRef,
+        prodRef,
         updateDashboardData,
+        handleCombScroll,
+        handleProdScroll,
       }}
     >
       <div className="flex flex-col gap-6 h-auto w-full">
