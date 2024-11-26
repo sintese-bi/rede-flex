@@ -1,16 +1,15 @@
 "use server";
 import { revalidateTag } from "next/cache";
 import { VariablesInterfaces } from "../interfaces/variables";
-import { AlertsInterfaces } from "../interfaces/alerts";
 import { apiRequestConfig, getUserUUID } from "@/utils";
 export async function handleAlertsVariables(): Promise<string[]> {
   return [
-    "Margem Gasolina Comum",
-    "Margem Gasolina Podium",
-    "Margem Gasolina Premium",
-    "Margem Diesel S10",
-    "Margem Diesel S500",
-    "Margem Etanol Comum",
+    "TM Vol Gasolina Comum",
+    "TM Vol Gasolina Premium",
+    "TM Vol Gasolina Podium",
+    "TM Vol Diesel S500",
+    "TM Vol Diesel S10",
+    "TM Vol Etanol Comum",
   ];
 }
 export async function handleAlertsVariablesSelect(form: FormData) {

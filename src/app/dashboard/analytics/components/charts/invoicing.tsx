@@ -16,7 +16,7 @@ import Chart from "chart.js/auto";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
-export default function Invoicing() {
+export default function LinearInvoicing() {
   const [data, setData] = useState<any>(null);
   const [currentLevel, setCurrentLevel] = useState<"regional" | "station">(
     "regional"
@@ -25,15 +25,16 @@ export default function Invoicing() {
   const [filterVariable, setFilterVariable] = useState<
     "fatCombustivel" | "fatProduto"
   >("fatCombustivel");
-  const filterVariableOptions = [
-    { variable: "fatCombustivel", label: "Combustível" },
-    { variable: "fatProduto", label: "Produto" },
-  ];
-
+  const filterVariableOptions = {
+    fatCombustivel: "Galonagem",
+    fatProduto: "Faturamento",
+  };
   useEffect(() => {
     if (data) {
       setData(null);
     }
+    console.log(filterVariable);
+
     const fetch = async () => {
       const response = await handleDashboardInvoicingChart({
         variable_type: filterVariable,
@@ -50,7 +51,7 @@ export default function Invoicing() {
     labels: data[filterVariable].map((item: any) => item.name),
     datasets: [
       {
-        label: "Faturamento",
+        label: filterVariableOptions[filterVariable],
         data: data[filterVariable].map((item: any) => item.value),
         fill: true,
         borderColor: "rgb(75, 192, 192)",
@@ -58,7 +59,7 @@ export default function Invoicing() {
         tension: 0.1,
       },
       {
-        label: "Faturamento meta",
+        label: `${filterVariableOptions[filterVariable]} meta`,
         data: data[filterVariable].map((item: any) => Number(item.media)),
         fill: true,
         borderColor: "rgb(60, 153, 153)",
@@ -123,20 +124,22 @@ export default function Invoicing() {
             <SelectValue placeholder="Filtro" />
           </SelectTrigger>
           <SelectContent>
-            {filterVariableOptions.map(
-              (filter: { variable: string; label: string }, index: number) => (
-                <SelectItem key={index} value={filter["variable"]}>
-                  {filter["label"]}
-                </SelectItem>
-              )
-            )}
+            {Object.keys(filterVariableOptions).map((item: string, index) => (
+              <SelectItem key={index} value={item}>
+                {filterVariableOptions[item as "fatCombustivel" | "fatProduto"]}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          faturamento mensal por posto
+          {filterVariableOptions[filterVariable]}{" "}
+          {filterVariableOptions[filterVariable] == "Galonagem"
+            ? "diária"
+            : "diário"}{" "}
+          por posto
         </p>
         <Bar
           data={chartData}

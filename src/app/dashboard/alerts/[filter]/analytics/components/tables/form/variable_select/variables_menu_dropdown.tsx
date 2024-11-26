@@ -27,12 +27,11 @@ export default function VariablesMenuDropdown({
   function handleValueChange(value: string) {
     setSelectedVariable(value);
   }
-
   return (
     <Select
       name="variable"
       onValueChange={handleValueChange}
-      defaultValue="Margem Gasolina Comum"
+      defaultValue="TM Vol Gasolina Comum"
     >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Variáveis" />

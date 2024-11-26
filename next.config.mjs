@@ -3,6 +3,7 @@ import { format } from "date-fns";
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+  reactStrictMode: true,
   env: {
     TZ: "America/Sao_Paulo",
   },

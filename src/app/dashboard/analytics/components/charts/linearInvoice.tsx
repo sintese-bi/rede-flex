@@ -11,12 +11,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { handleDashboardLinearInvoicingChart } from "../../actions";
+import {
+  handleDashboardInvoicingChart,
+  handleDashboardLinearInvoicingChart,
+} from "../../actions";
 import Chart from "chart.js/auto";
-const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Line), {
+const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
-
 export default function LinearInvoicing() {
   const [data, setData] = useState<any>(null);
   const [currentLevel, setCurrentLevel] = useState<"regional" | "station">(
@@ -24,43 +26,50 @@ export default function LinearInvoicing() {
   );
   const [clickedLabel, setClickedLabel] = useState<string>("");
   const [filterVariable, setFilterVariable] = useState<"comb" | "prod">("comb");
-  const filterVariableOptions = [
-    { variable: "comb", label: "Combustível" },
-    { variable: "prod", label: "Produto" },
-  ];
-
+  const filterVariableOptions = {
+    comb: "Galonagem",
+    prod: "Faturamento",
+  };
   useEffect(() => {
     if (data) {
       setData(null);
     }
+    console.log(filterVariable);
+
     const fetch = async () => {
       const response = await handleDashboardLinearInvoicingChart({
         variable_type: filterVariable,
       });
+      console.log(response);
       setData(response);
     };
     fetch();
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable, clickedLabel, currentLevel]);
-
   if (!data) return <ChartLoading />;
 
   const chartData = {
-    labels: data[filterVariable].labels,
-    datasets: Object.keys(data[filterVariable].posto_nominal[0]).map(
-      (posto, index) => {
-        const postoData = data[filterVariable].posto_nominal[0][posto];
-        return {
-          label: posto,
-          data: postoData,
-          fill: false,
-          tension: 0.1,
-        };
-      }
-    ),
+    labels: data[filterVariable].map((item: any) => item.dt),
+    datasets: [
+      {
+        label: filterVariableOptions[filterVariable],
+        data: data[filterVariable].map((item: any) => item.value),
+        fill: true,
+        borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgb(5, 176, 192)",
+        tension: 0.1,
+      },
+      {
+        label: `${filterVariableOptions[filterVariable]} meta`,
+        data: data[filterVariable].map((item: any) => Number(item.media)),
+        fill: true,
+        borderColor: "rgb(60, 153, 153)",
+        backgroundColor: "rgb(0, 103, 115)",
+        tension: 0.1,
+      },
+    ],
   };
-
   const options = {
     animation: {
       duration: 1500,
@@ -69,44 +78,39 @@ export default function LinearInvoicing() {
       x: {
         display: true,
       },
-      y: {
-        display: true,
-        beginAtZero: true,
-      },
     },
   };
-
   const customPlugin = {
     id: "customPlugin",
     afterDatasetsDraw(chart: Chart) {
       const {
         ctx,
+        data,
+        chartArea: { top, left, right, bottom, width, height },
         scales: { x, y },
       } = chart;
 
-      chart.data.datasets.forEach((dataset: any, datasetIndex: number) => {
-        const postoName = dataset.label; // Nome do posto (chave do objeto)
-        const datasetData = dataset.data;
-        const postosPctData = data[filterVariable].postos_pct[0][postoName];
+      const dataset1 = data.datasets[0].data;
+      const dataset2 = data.datasets[1].data;
 
-        // Certifique-se de que `postosPctData` existe
-        if (!postosPctData) return;
+      // Loop through each data point to calculate and draw the custom value
+      dataset1.forEach((value1: any, index: any) => {
+        const value2: any = dataset2[index];
+        const xPos = x.getPixelForValue(index); // X position of the bar
+        const yPos1 = y.getPixelForValue(value1); // Y position of the first dataset
+        const yPos2 = y.getPixelForValue(value2); // Y position of the second dataset
 
-        datasetData.forEach((value: number, index: number) => {
-          const percentage = postosPctData[index]?.toFixed(2); // Pegando a porcentagem pronta
+        const divisionResult = ((value1 / value2) * 100).toFixed(); // Calculate division and multiply by 100
 
-          if (percentage) {
-            const xPos = x.getPixelForValue(index);
-            const yPos = y.getPixelForValue(value);
+        ctx.save();
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
 
-            ctx.save();
-            ctx.font = "12px Arial";
-            ctx.fillStyle = "black";
-            ctx.textAlign = "center";
-            ctx.fillText(`${percentage}%`, xPos, yPos - 10); // Renderizando o percentual acima do ponto
-            ctx.restore();
-          }
-        });
+        // Render the calculated value above the higher of the two bars
+        const labelYPos = Math.min(yPos1, yPos2) - 10;
+        ctx.fillText(`${divisionResult}%`, xPos, labelYPos);
+        ctx.restore();
       });
     },
   };
@@ -122,22 +126,24 @@ export default function LinearInvoicing() {
             <SelectValue placeholder="Filtro" />
           </SelectTrigger>
           <SelectContent>
-            {filterVariableOptions.map(
-              (filter: { variable: string; label: string }, index: number) => (
-                <SelectItem key={index} value={filter["variable"]}>
-                  {filter["label"]}
-                </SelectItem>
-              )
-            )}
+            {Object.keys(filterVariableOptions).map((item: string, index) => (
+              <SelectItem key={index} value={item}>
+                {filterVariableOptions[item as "comb" | "prod"]}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          Gráfico faturamento diário por posto
+          {filterVariableOptions[filterVariable]}{" "}
+          {filterVariableOptions[filterVariable] == "Galonagem"
+            ? "diária"
+            : "diário"}{" "}
+          por posto
         </p>
-        <Line
+        <Bar
           data={chartData}
           className="h-full w-full"
           plugins={[customPlugin]}
