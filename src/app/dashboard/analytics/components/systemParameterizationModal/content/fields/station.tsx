@@ -121,6 +121,12 @@ export const stationsSectionsFields: {
       isVisible: false,
       isInputField: true,
     },
+    {
+      accessorKey: "freight_value",
+      header: "Frete (R$)",
+      isVisible: false,
+      isInputField: true,
+    },
   ],
   2: [
     {
@@ -132,6 +138,18 @@ export const stationsSectionsFields: {
     {
       accessorKey: "invoice_prod",
       header: "Faturamento produto mensal",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "gross_result_literage",
+      header: "Resultado bruto galonagem ",
+      isVisible: false,
+      isInputField: true,
+    },
+    {
+      accessorKey: "gross_result_product",
+      header: "Resultado bruto produto",
       isVisible: false,
       isInputField: true,
     },
