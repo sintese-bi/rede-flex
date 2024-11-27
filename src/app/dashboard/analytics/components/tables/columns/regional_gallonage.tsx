@@ -78,7 +78,7 @@ export const regional_gallonage: any[] = [
     },
   },
   {
-    accessorKey: "Lucro com Desconto",
+    accessorKey: "Resultado Bruto",
     header: ({ column }: any) => {
       return (
         <Button
@@ -86,6 +86,29 @@ export const regional_gallonage: any[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Resultado Bruto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Resultado Bruto"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
+
+      return <div className="font-medium text-center">R$ {formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "Lucro com Desconto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Lucro com Desconto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

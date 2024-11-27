@@ -131,7 +131,7 @@ export const stationsSectionsFields: {
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Faturamento combustível mensal",
+      header: "Galonagem combustível mensal",
       isVisible: false,
       isInputField: true,
     },

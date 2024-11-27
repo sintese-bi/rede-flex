@@ -339,6 +339,7 @@ export async function handleDataframes() {
     }
   );
   const galonagem = dataframes["galonagem"].map((item: any) => {
+    console.log(item);
     return {
       name: item["Posto"],
       regional: item["Regional"],
@@ -346,6 +347,7 @@ export async function handleDataframes() {
       "Galonagem(Litro)": item["Galonagem(Litro)"],
       Faturamento: item["Faturamento"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      "Resultado Bruto": item["Resultado Bruto"],
       Galonagem: item["Galonagem"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
@@ -369,6 +371,7 @@ export async function handleDataframes() {
       QtdProdutosVendidos: item["QtdProdutosVendidos"],
       "Valor Vendido": item["Valor Vendido"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      "Resultado Bruto": item["Resultado Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       "Lucro Operacional Produto": item["Lucro Operacional Produto"],
@@ -386,6 +389,7 @@ export async function handleDataframes() {
       Abastecimentos: item["Abastecimentos"],
       Faturamento: item["Faturamento"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      "Resultado Bruto": item["Resultado Bruto"],
       Galonagem: item["Galonagem"],
       Custo: item["Custo"],
       "Custo com Desconto": item["Custo com Desconto"],
@@ -411,6 +415,7 @@ export async function handleDataframes() {
       QtdProdutosVendidos: item["QtdProdutosVendidos"],
       "Valor Vendido": item["Valor Vendido"],
       "Rendimento Bruto": item["Rendimento Bruto"],
+      "Resultado Bruto": item["Resultado Bruto"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],
       "Lucro Bruto Operacional Produto":
