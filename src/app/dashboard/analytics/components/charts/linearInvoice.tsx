@@ -81,6 +81,15 @@ export default function LinearInvoicing() {
       x: {
         display: true,
       },
+      y: {
+        display: true,
+        ticks: {
+          callback: function (value: any) {
+            const variable = filterVariableOptions[filterVariable];
+            return variable != "Galonagem" ? `R$ ${value}` : `${value} L`; // Add the "(L)" symbol to each tick
+          },
+        },
+      },
     },
   };
   const customPlugin = {
@@ -143,8 +152,7 @@ export default function LinearInvoicing() {
           {filterVariableOptions[filterVariable]}{" "}
           {filterVariableOptions[filterVariable] == "Galonagem"
             ? "diária"
-            : "diário"}{" "}
-          por posto
+            : "diário"}
         </p>
         <Bar
           data={chartData}

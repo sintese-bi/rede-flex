@@ -131,25 +131,25 @@ export const stationsSectionsFields: {
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Galonagem combustível mensal",
+      header: "Galonagem mensal (L)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "invoice_prod",
-      header: "Faturamento produto mensal",
+      header: "Faturamento de produto (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "gross_result_literage",
-      header: "Resultado bruto galonagem ",
+      header: "Resultado Bruto da Galonagem (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "gross_result_product",
-      header: "Resultado bruto produto",
+      header: "Resultado Bruto de Produtos (R$)",
       isVisible: false,
       isInputField: true,
     },
