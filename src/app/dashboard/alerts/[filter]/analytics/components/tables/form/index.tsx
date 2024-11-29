@@ -16,13 +16,13 @@ export default function FormComponentsAlertsTable({
   gas_station_whats_app: string;
   variables: { [key: string]: number };
 }) {
-  console.log(gas_station_whats_app);
-
   const { filter } = useParams<{ filter: string }>();
   const [selectedVariable, setSelectedVariable] = useState<string>(
     "TM Vol Gasolina Comum"
   );
-  const [selectedVariableValue, setSelectedVariableValue] = useState<number>(0);
+  const [selectedVariableValue, setSelectedVariableValue] = useState<number>(
+    variables[selectedVariable]
+  );
   useEffect(() => {
     setSelectedVariableValue(variables[selectedVariable]);
   }, [selectedVariable, variables]);

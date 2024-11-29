@@ -20,6 +20,7 @@ export default function VariablesMenuDropdown({
     const fetch = async () => {
       const response = await handleAlertsVariables();
       setAlertsVariables(response);
+      console.log(alertsVariables, selectedVariable);
     };
     fetch();
   }, []);

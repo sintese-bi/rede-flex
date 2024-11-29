@@ -5,12 +5,15 @@ export default async function LogsComponents() {
   const { sanados, qntdsanados, naosanados } = await handleAlertsLogs();
   return (
     <div className="flex flex-col w-full gap-8">
-      <div className="flex flex-col w-full gap-2">
+      <div className="flex justify-between w-full">
         <p className="text-xs font-bold uppercase">Log de alertas</p>
-        <Separator />
+        <p className="text-xs font-bold uppercase">
+          Quantidade de sanados: {sanados.length}
+        </p>
       </div>
+      <Separator />
       <div className="grid gap-2 lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 grid-rows-6  w-full">
-        {sanados.map(
+        {naosanados.map(
           ({ date, variable_name, condition }: any, index: number) => (
             <div
               key={index}
