@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { handleAlertsLogs } from "../../actions";
 import { Badge } from "@/components/ui/badge";
 export default async function LogsComponents() {
-  const { sanados, qntdsanados, naosanados } = await handleAlertsLogs();
+  const { sanados, naosanados } = await handleAlertsLogs();
   return (
     <div className="flex flex-col w-full gap-8">
       <div className="flex justify-between w-full">

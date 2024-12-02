@@ -138,6 +138,45 @@ export async function handleDashboardRegionalFuelChart(params: {
   const data = await response.json();
   return data;
 }
+export async function handleDashboardGrossDailyPerStation(params: {
+  variable_type: string;
+}) {
+  const url = `${
+    process.env.NEXT_MICROSERVICE_MONGODB
+  }/gross-daily-per-station/${getAccessToken()}/${params.variable_type}`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
+  const { data } = await response.json();
+  return data;
+}
+export async function handleDashboardGrossDaily(params: {
+  variable_type: string;
+}) {
+  const url = `${
+    process.env.NEXT_MICROSERVICE_MONGODB
+  }/gross-daily/${getAccessToken()}/${params.variable_type}`;
+  const response = await fetch(url, {
+    cache: "no-cache",
+    headers: microServiceRequestConfig(),
+  });
+  if (!response.ok)
+    throw new Error(
+      `Erro de ${
+        response.statusText || "unknown"
+      } ao fazer requisição na rota: ${url}`
+    );
+  const { data } = await response.json();
+  console.log(data);
+  return data;
+}
 export async function handleDashboardRegionalStationChart(params: {
   variable_type: string;
   regional_type: string;

@@ -12,6 +12,8 @@ import RegionProduct from "./region_product";
 import { AlertCircleIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import LinearInvoicing from "./linearInvoice";
+import GrossDailyPerStation from "./grossDailyPerStation";
+import GrossDaily from "./grossDaily";
 export default function DashboardComponentsCharts() {
   return (
     <>
@@ -38,6 +40,8 @@ export default function DashboardComponentsCharts() {
         </div>
         <Separator />
       </div>
+      <GrossDaily />
+      <GrossDailyPerStation />
       <LinearInvoicing />
       <Invoicing />
       <div className="grid lg:grid-cols-2 gap-12">
