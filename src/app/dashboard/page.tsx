@@ -56,11 +56,9 @@ export default function Dashboard() {
     ]);
   }
   function handleCombScroll() {
-    console.log("executed");
     combRef.current?.scrollIntoView({ behavior: "smooth" });
   }
   function handleProdScroll() {
-    console.log("executed");
     prodRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 

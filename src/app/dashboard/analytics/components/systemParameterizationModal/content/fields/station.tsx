@@ -41,12 +41,12 @@ export const stationsSectionsFields: {
       isVisible: false,
       isInputField: true,
     },
-    //{
-    //  accessorKey: "tmf",
-    //  header: "TMF (R$)",
-    //  isVisible: false,
-    //  isInputField: true,
-    //},
+    {
+      accessorKey: "tmf",
+      header: "TMF (R$)",
+      isVisible: false,
+      isInputField: true,
+    },
     {
       accessorKey: "tmc",
       header: "TMC (R$)",
@@ -99,25 +99,25 @@ export const stationsSectionsFields: {
   1: [
     {
       accessorKey: "gasolina_comum",
-      header: "Gasolina comum (L)",
+      header: "Gasolina comum (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "etanol_comum",
-      header: "Etanol comum (L)",
+      header: "Etanol comum (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "oleo_diesel_b_s500_comum",
-      header: "Diesel S500 comum (L)",
+      header: "Diesel S500 comum (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "oleo_diesel_b_s10_comum",
-      header: "Diesel S10 comum (L)",
+      header: "Diesel S10 comum (R$)",
       isVisible: false,
       isInputField: true,
     },
@@ -131,7 +131,7 @@ export const stationsSectionsFields: {
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Galonagem mensal (L)",
+      header: "Galonagem mensal (R$)",
       isVisible: false,
       isInputField: true,
     },
@@ -143,13 +143,13 @@ export const stationsSectionsFields: {
     },
     {
       accessorKey: "gross_result_literage",
-      header: "Resultado Bruto da Galonagem (R$)",
+      header: "Resultado Bruto mensal da Galonagem (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "gross_result_product",
-      header: "Resultado Bruto de Produtos (R$)",
+      header: "Resultado Bruto mensal de Produtos (R$)",
       isVisible: false,
       isInputField: true,
     },

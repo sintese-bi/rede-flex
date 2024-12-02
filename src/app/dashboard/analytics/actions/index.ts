@@ -339,7 +339,6 @@ export async function handleDataframes() {
     }
   );
   const galonagem = dataframes["galonagem"].map((item: any) => {
-    console.log(item);
     return {
       name: item["Posto"],
       regional: item["Regional"],

@@ -8,17 +8,17 @@ export const redeSectionsFields = {
       name: "use_tmc",
       label: "Ticket médio de combustível - TMC (R$)",
     },
-    //{
-    //  name: "use_tmf",
-    //  label: "Ticket médio de faturamento - TMF (R$)",
-    //},
+    {
+      name: "use_tmf",
+      label: "Ticket médio de faturamento - TMF (R$)",
+    },
     {
       name: "use_tmp",
       label: "Ticket médio de produto - TMP (R$)",
     },
     {
       name: "use_tmvol",
-      label: "Ticket médio de volume - TMVOL (L)",
+      label: "Ticket médio de volume - TMVOL (R$)",
     },
     {
       name: "use_lucro_bruto_operacional",
@@ -26,29 +26,29 @@ export const redeSectionsFields = {
     },
     {
       name: "use_lucro_bruto_operacional_galonagem",
-      label: "Lucro bruto operacional galonagem (%)",
+      label: "Resultado Bruto galonagem (%)",
     },
     {
       name: "use_lucro_bruto_operacional_produto",
-      label: "Lucro bruto operacional produto (%)",
+      label: "Resultado Bruto produto (%)",
     },
   ],
   1: [
     {
       name: "use_gasolina_comum_comb",
-      label: "Gasolina comum (L)",
+      label: "Gasolina comum (R$)",
     },
     {
       name: "use_etanol_comum_comb",
-      label: "Etanol comum (L)",
+      label: "Etanol comum (R$)",
     },
     {
       name: "use_oleo_diesel_b_s10_comum_comb",
-      label: "Diesel S10 comum (L)",
+      label: "Diesel S10 comum (R$)",
     },
     {
       name: "use_oleo_diesel_b_s500_comum_comb",
-      label: "Diesel S500 comum (L)",
+      label: "Diesel S500 comum (R$)",
     },
   ],
   2: [

@@ -35,8 +35,6 @@ export default function LinearInvoicing() {
     if (data) {
       setData(null);
     }
-    console.log(filterVariable);
-
     const fetch = async () => {
       const response = await handleDashboardInvoicingChart({
         variable_type: filterVariable,
@@ -155,8 +153,8 @@ export default function LinearInvoicing() {
         <p className="text-xs font-bold text-slate-800 uppercase">
           {filterVariableOptions[filterVariable]}{" "}
           {filterVariableOptions[filterVariable] == "Galonagem"
-            ? "diária"
-            : "diário"}{" "}
+            ? "mensal"
+            : "mensal de produto"}{" "}
           por posto
         </p>
         <Bar
