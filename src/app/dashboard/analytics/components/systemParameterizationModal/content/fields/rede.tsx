@@ -26,11 +26,11 @@ export const redeSectionsFields = {
     },
     {
       name: "use_lucro_bruto_operacional_galonagem",
-      label: "Resultado Bruto galonagem (%)",
+      label: "Resultado Bruto galonagem",
     },
     {
       name: "use_lucro_bruto_operacional_produto",
-      label: "Resultado Bruto produto (%)",
+      label: "Resultado Bruto produto",
     },
   ],
   1: [
