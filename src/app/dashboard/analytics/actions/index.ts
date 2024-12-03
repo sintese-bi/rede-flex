@@ -653,8 +653,11 @@ export async function handleTMsAndBruteProfitPerStation() {
       headers: apiRequestConfig(),
     }
   );
-  const data = await response.json();
-  return data;
+  const { data } = await response.json();
+  const formattedData = data.map((item: any) => {
+    return { ...item, name: item.nome_fantasia };
+  });
+  return { data: formattedData };
 }
 export async function handleTMsAndBruteProfitPerStationUpdate(params: any) {
   const response = await fetch(
@@ -713,8 +716,11 @@ export async function handleTMsAndBruteProfitPerRegional() {
       headers: apiRequestConfig(),
     }
   );
-  const data = await response.json();
-  return data;
+  const { data } = await response.json();
+  const formattedData = data.map((item: any) => {
+    return { ...item, name: item.region_name };
+  });
+  return { data: formattedData };
 }
 export async function handleTMsAndBruteProfitPerRegionalUpdate(params: any) {
   const response = await fetch(

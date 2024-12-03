@@ -21,10 +21,10 @@ export const stationsSectionsFields: {
       isInputField: false,
     },
     {
-      accessorKey: "nome_fantasia",
+      accessorKey: "name",
       header: "Posto",
       cell: ({ row }: { row: any }) => {
-        return <p className="min-w-[320px]">{row.original.nome_fantasia}</p>;
+        return <p className="min-w-[320px]">{row.original.name}</p>;
       },
       isVisible: true,
       isInputField: false,

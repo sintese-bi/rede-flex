@@ -21,10 +21,10 @@ export const regionalsSectionsFields: {
       isInputField: false,
     },
     {
-      accessorKey: "region_name",
+      accessorKey: "name",
       header: "Regional",
       cell: ({ row }: { row: any }) => {
-        return <p className="min-w-[320px]">{row.original.region_name}</p>;
+        return <p className="min-w-[320px]">{row.original.name}</p>;
       },
       isVisible: true,
       isInputField: false,
