@@ -174,7 +174,6 @@ export async function handleDashboardGrossDaily(params: {
       } ao fazer requisição na rota: ${url}`
     );
   const { data } = await response.json();
-  console.log(data);
   return data;
 }
 export async function handleDashboardRegionalStationChart(params: {

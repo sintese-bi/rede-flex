@@ -17,8 +17,9 @@ export default function RowForm({
   updateFunction: any;
 }) {
   const { updateDashboardData } = useContext(DashboardContext);
-  const { data, handleData, currentSection, currentSecondarySection } =
-    useContext(SystemParameterizationModalContext)!;
+  const { data, currentSection, currentSecondarySection } = useContext(
+    SystemParameterizationModalContext
+  )!;
   const [formValues, setFormValues] = useState(() =>
     Object.fromEntries(
       [
@@ -60,7 +61,7 @@ export default function RowForm({
           .map((field) => [field.accessorKey, rowValues[field.accessorKey]])
       )
     );
-  }, [rowValues]);
+  }, [data]);
   const section = sectionsFields[currentSection][currentSecondarySection] as
     | IStationsSectionsFields[]
     | IRegionalsSectionsFields[];
