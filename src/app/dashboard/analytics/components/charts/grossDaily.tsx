@@ -103,7 +103,12 @@ export default function GrossDaily() {
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          {filterVariableOptions[filterVariable]} Resultado Bruto diário
+          Resultado Bruto Diário{" "}
+          {`${
+            filterVariableOptions[filterVariable] == "Galonagem"
+              ? "da Galonagem"
+              : "do Produto"
+          }`}
         </p>
         <Bar data={chartData} className="h-full w-full" options={options} />
       </div>

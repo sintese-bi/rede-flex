@@ -131,7 +131,7 @@ export const stationsSectionsFields: {
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Galonagem mensal (R$)",
+      header: "Galonagem mensal (L)",
       isVisible: false,
       isInputField: true,
     },
