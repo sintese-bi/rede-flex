@@ -40,9 +40,13 @@ export default function DashboardComponentsCharts() {
         </div>
         <Separator />
       </div>
-      <GrossDaily />
+      {/**
+       * <GrossDaily />
+       */}
       <GrossDailyPerStation />
-      <LinearInvoicing />
+      {/**
+       * <LinearInvoicing />
+       */}
       <Invoicing />
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex items-center justify-center lg:flex-row md:flex-row sm:flex-col xs:flex-col flex-col gap-2 h-full w-full">
