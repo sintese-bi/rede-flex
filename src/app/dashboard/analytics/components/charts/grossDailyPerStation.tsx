@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { handleDashboardGrossDailyPerStation } from "../../actions";
+import Chart from "chart.js/auto";
 const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
   ssr: false,
 });
@@ -91,7 +92,40 @@ export default function GrossDailyPerStation() {
       },
     },
   };
+  const customPlugin = {
+    id: "customPlugin",
+    afterDatasetsDraw(chart: Chart) {
+      const {
+        ctx,
+        data,
+        chartArea: { top, left, right, bottom, width, height },
+        scales: { x, y },
+      } = chart;
 
+      const dataset1 = data.datasets[0].data;
+      const dataset2 = data.datasets[1].data;
+
+      // Loop through each data point to calculate and draw the custom value
+      dataset1.forEach((value1: any, index: any) => {
+        const value2: any = dataset2[index];
+        const xPos = x.getPixelForValue(index); // X position of the bar
+        const yPos1 = y.getPixelForValue(value1); // Y position of the first dataset
+        const yPos2 = y.getPixelForValue(value2); // Y position of the second dataset
+
+        const divisionResult = ((value1 / value2) * 100).toFixed(); // Calculate division and multiply by 100
+
+        ctx.save();
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+
+        // Render the calculated value above the higher of the two bars
+        const labelYPos = Math.min(yPos1, yPos2) - 10;
+        ctx.fillText(`${divisionResult}%`, xPos, labelYPos);
+        ctx.restore();
+      });
+    },
+  };
   return (
     <div className="flex flex-col gap-2 lg:h-full md:h-full sm:h-96 xs:h-96 h-96 w-full">
       <div className="flex gap-2">
@@ -117,7 +151,12 @@ export default function GrossDailyPerStation() {
         <p className="text-xs font-bold text-slate-800 uppercase">
           {filterVariableOptions[filterVariable]} Resultado Bruto por posto
         </p>
-        <Bar data={chartData} className="h-full w-full" options={options} />
+        <Bar
+          data={chartData}
+          className="h-full w-full"
+          options={options}
+          plugins={[customPlugin]}
+        />
       </div>
     </div>
   );
