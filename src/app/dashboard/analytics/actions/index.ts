@@ -470,6 +470,7 @@ export async function handleDataframes() {
     return {
       User_id: item["User_id"],
       name: item["Nome"],
+      Posto: item["Posto"],
       Regional: item["Regional"],
       Galonagem: item["Galonagem"],
       Resultado: item["Resultado"] ? 0 : 2,
@@ -486,6 +487,7 @@ export async function handleDataframes() {
     return {
       User_id: item["User_id"],
       name: item["Nome"],
+      Posto: item["Posto"],
       Regional: item["Regional"],
       Quantidade: item["Quantidade"],
       Resultado: item["Resultado"] ? 0 : 2,

@@ -5,7 +5,17 @@ import { ArrowUpDownIcon } from "lucide-react";
 export const group: any[] = [
   {
     accessorKey: "Posto",
-    header: "Posto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Posto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "name",

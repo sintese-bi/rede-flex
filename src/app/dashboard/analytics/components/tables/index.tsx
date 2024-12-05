@@ -31,7 +31,8 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
           { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
         ]}
       />
-      <DataTable
+      {/**
+       * <DataTable
         data={data.galonagem}
         columns={gallonage}
         title="Acompanhamento galonagem"
@@ -51,6 +52,7 @@ export default function DashboardComponentsTables({ data }: { data: any }) {
           { label: "TMP médio (R$)", value: data.regionalAvarageTMP },
         ]}
       />
+       */}
       <DataTable
         data={data.combustivel}
         columns={fuel}

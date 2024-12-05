@@ -67,13 +67,13 @@ export const stationsSectionsFields: {
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_galonagem",
-      header: "LBO galonagem (%)",
+      header: "Resultado Bruto da Galonagem",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_produto",
-      header: "LBO produto (%)",
+      header: "Resultado Bruto de Produtos",
       isVisible: false,
       isInputField: true,
     },

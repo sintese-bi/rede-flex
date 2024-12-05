@@ -30,8 +30,14 @@ export default function DashboardComponentsCharts() {
                 </TooltipTrigger>
                 <TooltipContent className="text-sm" side="right">
                   <p>
-                    Gráficos contento informação a nível de dia, posto, metas
-                    diárias e mensais.
+                    Os gráficos abaixo mostram a evolução diária dos resultados
+                    <br />
+                    brutos, galonagem e faturamento de produtos, como também o{" "}
+                    <br />
+                    desdobramento dessas variáveis por posto. Todo gráfico{" "}
+                    <br />
+                    possui metas a serem alcançadas. O valor percentual <br />
+                    representa o quão distante a variável está da meta.
                   </p>
                 </TooltipContent>
               </Tooltip>

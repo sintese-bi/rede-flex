@@ -15,8 +15,32 @@ export const workers_products: any[] = [
     header: "Nome",
   },
   {
+    accessorKey: "Posto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Posto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: "Regional",
-    header: "Regional",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Regional
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "LBO Produto",

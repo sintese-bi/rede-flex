@@ -86,7 +86,7 @@ export default function GrossDailyPerStation() {
         ticks: {
           callback: function (value: any) {
             const variable = filterVariableOptions[filterVariable];
-            return variable != "Galonagem" ? `R$ ${value}` : `${value} L`;
+            return variable != "Galonagem" ? `R$ ${value}` : `R$ ${value}`;
           },
         },
       },
@@ -149,7 +149,11 @@ export default function GrossDailyPerStation() {
       <Separator />
       <div className="flex flex-col justify-center items-start h-full">
         <p className="text-xs font-bold text-slate-800 uppercase">
-          {filterVariableOptions[filterVariable]} Resultado Bruto por posto
+          Resultado Bruto{" "}
+          {filterVariableOptions[filterVariable] == "Galonagem"
+            ? "da Galonagem"
+            : "de Produto"}{" "}
+          por Posto Hoje
         </p>
         <Bar
           data={chartData}
