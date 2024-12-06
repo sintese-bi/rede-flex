@@ -8,8 +8,6 @@ export function BigNumberFirstSection({
   label: string;
   third_value: boolean;
 }) {
-  console.log(value, label, third_value);
-
   return (
     <div className="flex flex-col gap-1">
       <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">

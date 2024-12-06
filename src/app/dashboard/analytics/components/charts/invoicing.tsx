@@ -48,11 +48,15 @@ export default function LinearInvoicing() {
   if (!data) return <ChartLoading />;
 
   const chartData = {
-    labels: data[filterVariable].map((item: any) => item.name),
+    labels: data[filterVariable]
+      .sort((a: any, b: any) => b.media - a.media)
+      .map((item: any) => item.name),
     datasets: [
       {
         label: filterVariableOptions[filterVariable],
-        data: data[filterVariable].map((item: any) => item.value),
+        data: data[filterVariable]
+          .sort((a: any, b: any) => b.media - a.media)
+          .map((item: any) => item.value),
         fill: true,
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgb(5, 176, 192)",
@@ -60,7 +64,9 @@ export default function LinearInvoicing() {
       },
       {
         label: `${filterVariableOptions[filterVariable]} meta`,
-        data: data[filterVariable].map((item: any) => Number(item.media)),
+        data: data[filterVariable]
+          .sort((a: any, b: any) => b.media - a.media)
+          .map((item: any) => Number(item.media)),
         fill: true,
         borderColor: "rgb(60, 153, 153)",
         backgroundColor: "rgb(0, 103, 115)",
