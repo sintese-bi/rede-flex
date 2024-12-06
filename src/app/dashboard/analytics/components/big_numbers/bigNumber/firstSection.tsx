@@ -8,6 +8,8 @@ export function BigNumberFirstSection({
   label: string;
   third_value: boolean;
 }) {
+  console.log(value, label, third_value);
+
   return (
     <div className="flex flex-col gap-1">
       <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
@@ -30,14 +32,25 @@ export function BigNumberFirstSection({
           label.includes("Lucro") ||
           label.includes("Faturamento") ? (
           <>
-            <DollarSignIcon className="flex text-slate-400" size={18} />
+            <p className="flex font-extrabold text-sm text-slate-400">R$</p>
             <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
               {value}
             </p>
           </>
         ) : label.includes("M/LT") ? (
           <>
-            <p className="flex text-slate-400">R$/L</p>
+            <p className="flex font-extrabold text-sm text-slate-400">R$/L</p>
+            <p
+              className={`lg:text-md md:text-md sm:text-sm font-bold ${
+                third_value == true ? "text-green-200" : "text-red-200"
+              }`}
+            >
+              {value}
+            </p>
+          </>
+        ) : label.includes("Resultado Bruto") ? (
+          <>
+            <p className="flex font-extrabold text-sm text-slate-400">R$</p>
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${
                 third_value == true ? "text-green-200" : "text-red-200"

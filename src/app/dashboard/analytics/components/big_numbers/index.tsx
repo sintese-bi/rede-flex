@@ -9,9 +9,6 @@ import { AlertCircleIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
 import BigNumbersLoading from "../loading/bignumbers";
-import OneSectionBigNumber from "./oneSectionBigNumber";
-import TwoSectionBigNumber from "./twoSectionBigNumber";
-import ThreeSectionBigNumber from "./threeSectionBigNumber";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Visão Geral:",
