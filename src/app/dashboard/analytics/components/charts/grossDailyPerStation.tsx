@@ -41,16 +41,46 @@ export default function GrossDailyPerStation() {
   }, [filterVariable]);
   if (!data) return <ChartLoading />;
   const chartData = {
-    labels: data.map((item: any) => item.corporate_name),
+    labels: data
+      .sort(
+        (a: any, b: any) =>
+          b[
+            `${
+              filterVariable == "fuel" ? "gallon" : "product"
+            }_history_gross_defined`
+          ] -
+          a[
+            `${
+              filterVariable == "fuel" ? "gallon" : "product"
+            }_history_gross_defined`
+          ]
+      )
+      .map((item: any) => item.corporate_name),
     datasets: [
       {
         label: filterVariableOptions[filterVariable],
-        data: data.map(
-          (item: any) =>
-            item[
-              `${filterVariable == "fuel" ? "gallon" : "product"}_history_gross`
-            ]
-        ),
+        data: data
+          .sort(
+            (a: any, b: any) =>
+              b[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross_defined`
+              ] -
+              a[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross_defined`
+              ]
+          )
+          .map(
+            (item: any) =>
+              item[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross`
+              ]
+          ),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgb(5, 176, 192)",
@@ -58,14 +88,28 @@ export default function GrossDailyPerStation() {
       },
       {
         label: `${filterVariableOptions[filterVariable]} meta`,
-        data: data.map(
-          (item: any) =>
-            item[
-              `${
-                filterVariable == "fuel" ? "gallon" : "product"
-              }_history_gross_defined`
-            ]
-        ),
+        data: data
+          .sort(
+            (a: any, b: any) =>
+              b[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross_defined`
+              ] -
+              a[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross_defined`
+              ]
+          )
+          .map(
+            (item: any) =>
+              item[
+                `${
+                  filterVariable == "fuel" ? "gallon" : "product"
+                }_history_gross_defined`
+              ]
+          ),
         fill: false,
         borderColor: "rgb(60, 153, 153)",
         backgroundColor: "rgb(0, 103, 115)",
