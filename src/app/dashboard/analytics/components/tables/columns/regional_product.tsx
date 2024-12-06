@@ -5,7 +5,17 @@ import { ArrowUpDownIcon } from "lucide-react";
 export const regional_product: any[] = [
   {
     accessorKey: "name",
-    header: "Regional",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Regional
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
     cell: ({ row }: any) => <StationsTable row={row} type="produto" />,
   },
   {
@@ -39,7 +49,7 @@ export const regional_product: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Resultado Bruto
+          RB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -86,7 +96,7 @@ export const regional_product: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro Bruto Operacional Produto
+          LBO Produto
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -102,7 +112,8 @@ export const regional_product: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Rendimento Bruto",
     header: ({ column }: any) => {
       return (
@@ -124,6 +135,7 @@ export const regional_product: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+   */
   {
     accessorKey: "Valor Vendido",
     header: ({ column }: any) => {

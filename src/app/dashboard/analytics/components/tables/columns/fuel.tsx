@@ -18,7 +18,17 @@ export const fuel: any[] = [
   },
   {
     accessorKey: "Combustivel",
-    header: "Combustível",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Combustível
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "M/LT",
@@ -65,7 +75,8 @@ export const fuel: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Rendimento Bruto",
     header: ({ column }: any) => {
       return (
@@ -88,6 +99,7 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
   {
     accessorKey: "Venda",
     header: ({ column }: any) => {
@@ -157,7 +169,8 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Lucro Com Desconto",
     header: ({ column }: any) => {
       return (
@@ -179,4 +192,5 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
 ];

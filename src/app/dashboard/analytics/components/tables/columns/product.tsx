@@ -63,7 +63,7 @@ export const product: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Resultado Bruto
+          RB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -100,7 +100,8 @@ export const product: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Rendimento Bruto",
     header: ({ column }: any) => {
       return (
@@ -123,6 +124,7 @@ export const product: any[] = [
       return <div className="font-medium text-center">{formatted} %</div>;
     },
   },
+   */
   {
     accessorKey: "Valor Vendido",
     header: ({ column }: any) => {

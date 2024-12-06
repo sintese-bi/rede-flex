@@ -5,7 +5,17 @@ import { ArrowUpDownIcon } from "lucide-react";
 export const regional_gallonage: any[] = [
   {
     accessorKey: "name",
-    header: "Regional",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Regional
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
     cell: ({ row }: any) => <StationsTable row={row} type="galonagem" />,
   },
   {
@@ -85,7 +95,7 @@ export const regional_gallonage: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Resultado Bruto
+          RB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -100,7 +110,8 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Lucro com Desconto",
     header: ({ column }: any) => {
       return (
@@ -122,6 +133,7 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
   {
     accessorKey: "Lucro Bruto Operacional Galonagem",
     header: ({ column }: any) => {
@@ -130,7 +142,7 @@ export const regional_gallonage: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro Bruto Operacional Galonagem
+          LBO Galonagem
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -146,7 +158,8 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Rendimento Bruto",
     header: ({ column }: any) => {
       return (
@@ -169,6 +182,7 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+   */
   {
     accessorKey: "Galonagem",
     header: ({ column }: any) => {

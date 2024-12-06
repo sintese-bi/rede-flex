@@ -12,7 +12,17 @@ export const workers_products: any[] = [
   },
   {
     accessorKey: "name",
-    header: "Nome",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nome
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "Posto",
@@ -118,7 +128,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro bruto
+          LB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

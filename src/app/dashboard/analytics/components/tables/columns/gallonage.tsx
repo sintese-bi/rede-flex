@@ -86,7 +86,7 @@ export const gallonage: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Resultado Bruto
+          RB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -101,7 +101,8 @@ export const gallonage: any[] = [
       return <div className="font-medium text-center">R$ {formatted}</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Lucro com Desconto",
     header: ({ column }: any) => {
       return (
@@ -124,6 +125,7 @@ export const gallonage: any[] = [
     },
   },
 
+   */
   {
     accessorKey: "Lucro Bruto Operacional Galonagem",
     header: ({ column }: any) => {
@@ -132,7 +134,7 @@ export const gallonage: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro Bruto Operacional Galonagem
+          LBO Galonagem
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -149,7 +151,8 @@ export const gallonage: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
-  {
+  /**
+  *  {
     accessorKey: "Rendimento Bruto",
     header: ({ column }: any) => {
       return (
@@ -172,6 +175,7 @@ export const gallonage: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+  */
   {
     accessorKey: "Galonagem",
     header: ({ column }: any) => {

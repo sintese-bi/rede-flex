@@ -19,11 +19,31 @@ export const group: any[] = [
   },
   {
     accessorKey: "name",
-    header: "Grupo",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Grupo
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "Produto",
-    header: "Produto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Produto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
   },
 
   {
@@ -125,7 +145,7 @@ export const group: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro bruto
+          LB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
