@@ -46,7 +46,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Regional
+          Produtos vendidos
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

@@ -35,7 +35,8 @@ export async function handleDashboardBigNumbers(): Promise<
       cache: "no-cache",
     }
   );
-  const { data }: { data: Data[] } = await response.json();
+  const json = await response.json();
+  const { data }: { data: Data[] } = json;
   const formmatedNumbers = data.map((big_number) => {
     return {
       ...big_number,
