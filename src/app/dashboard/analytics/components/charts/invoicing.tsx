@@ -29,7 +29,7 @@ export default function LinearInvoicing() {
   >("fatCombustivel");
   const filterVariableOptions = {
     fatCombustivel: "Galonagem",
-    fatProduto: "Faturamento",
+    fatProduto: "Produto",
   };
   useEffect(() => {
     if (data) {

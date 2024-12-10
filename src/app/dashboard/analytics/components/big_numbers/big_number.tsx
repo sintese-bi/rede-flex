@@ -18,15 +18,19 @@ export default function DashboardComponentsBigNumber({
   sixth_value,
   seventh_label,
   seventh_value,
+  eighth_label,
+  eighth_value,
 }: BigNumbersInterfaces) {
   return (
-    <div className="flex h-[152px] lg:px-8 md:px-8 sm:px-4 xs:px-4 px-4  rounded-lg bg-main-color items-center justify-between shadow-md">
+    <div className="flex flex-1 flex-grow min-w-[300px] h-[152px] px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
       <div className="flex flex-col gap-6 w-full">
         <div className="flex justify-between">
           <BigNumberFirstSection
             value={value}
             label={label}
             third_value={third_value}
+            eighth_label={eighth_label}
+            eighth_value={eighth_value}
           />
           {/**
            * <BigNumberFourthSection sixth_value={sixth_value} />

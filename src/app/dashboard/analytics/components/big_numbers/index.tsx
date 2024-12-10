@@ -41,7 +41,7 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
         (big_numbers_section: BigNumbersInterfaces[], index: 0 | 1 | 2) => (
           <div key={index} className="flex flex-col gap-1 h-full">
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>
-            <div className="grid gap-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 h-full justify-center items-center">
+            <div className="flex flex-wrap gap-2 justify-center items-center">
               {big_numbers_section.map((bignumber, index) => {
                 return (
                   <DashboardComponentsBigNumber
@@ -59,6 +59,8 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
                     seventh_value={bignumber.seventh_value}
                     sixth_label={bignumber.sixth_label}
                     sixth_value={bignumber.sixth_value}
+                    eighth_label={bignumber.eighth_label}
+                    eighth_value={bignumber.eighth_value}
                   />
                 );
               })}

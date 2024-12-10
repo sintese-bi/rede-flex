@@ -22,9 +22,11 @@ interface Data {
   sixth_value: boolean;
   seventh_label: string;
   seventh_value: number;
+  eighth_label: string;
+  eighth_value: number;
 }
 export async function handleDashboardBigNumbers(): Promise<
-  BigNumbersInterfaces[]
+  BigNumbersInterfaces[][]
 > {
   const response = await fetch(
     `${
@@ -36,40 +38,50 @@ export async function handleDashboardBigNumbers(): Promise<
     }
   );
   const json = await response.json();
-  const { data }: { data: Data[] } = json;
-  const formmatedNumbers = data.map((big_number) => {
-    return {
-      ...big_number,
-      value: new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(big_number["value"]),
-      secondary_value: big_number["secondary_value"]
-        ? new Intl.NumberFormat("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(big_number["secondary_value"])
-        : "",
-      fourth_value: big_number["fourth_value"]
-        ? new Intl.NumberFormat("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(big_number["fourth_value"])
-        : "",
-      fifth_value: big_number["fifth_value"]
-        ? new Intl.NumberFormat("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(big_number["fifth_value"])
-        : "",
-      seventh_value: big_number["seventh_value"]
-        ? new Intl.NumberFormat("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(big_number["seventh_value"])
-        : "",
-    };
-  });
+  const { data }: { data: Data[][] } = json;
+  const formmatedNumbers = data.map((dataSection) =>
+    dataSection.map((big_number) => {
+      return {
+        ...big_number,
+        value: new Intl.NumberFormat("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(big_number["value"]),
+        secondary_value: big_number["secondary_value"]
+          ? new Intl.NumberFormat("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(big_number["secondary_value"])
+          : "",
+        fourth_value: big_number["fourth_value"]
+          ? new Intl.NumberFormat("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(big_number["fourth_value"])
+          : "",
+        fifth_value: big_number["fifth_value"]
+          ? new Intl.NumberFormat("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(big_number["fifth_value"])
+          : "",
+        seventh_value: big_number["seventh_value"]
+          ? new Intl.NumberFormat("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(big_number["seventh_value"])
+          : "",
+        eighth_value: big_number["eighth_value"]
+          ? new Intl.NumberFormat("de-DE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(big_number["eighth_value"])
+          : "",
+      };
+    })
+  );
+  console.log(formmatedNumbers.length);
+
   return formmatedNumbers;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {

@@ -14,16 +14,6 @@ import { BigNumbersInterfaces } from "./analytics/interfaces/big_numbers";
 import ChartLoading from "./analytics/components/loading/chart";
 import { DashboardContext } from "./analytics/context";
 import SystemParameterizationModal from "./analytics/components/systemParameterizationModal";
-function splitBigNumberIntoThree(
-  big_numbers: BigNumbersInterfaces[],
-  size: number = 3
-) {
-  const response: any = [];
-  for (let i = 0; i < big_numbers.length; i += size) {
-    response.push(big_numbers.slice(i, i + size));
-  }
-  return response;
-}
 export default function Dashboard() {
   const combRef = useRef<any>(null);
   const prodRef = useRef<any>(null);
@@ -36,8 +26,7 @@ export default function Dashboard() {
   async function handleBigNumbers() {
     let response = await handleDashboardBigNumbers();
     localStorage.setItem("update_time", new Date().toDateString());
-    const splitted_big_numbers = splitBigNumberIntoThree(response);
-    setBigNumbers(splitted_big_numbers);
+    setBigNumbers(response);
   }
   async function handleStationsMap() {
     let response = await handleGeolocations();
