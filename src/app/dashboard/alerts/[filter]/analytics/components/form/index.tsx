@@ -13,15 +13,6 @@ export default async function FormComponentsAlerts({
 }) {
   const alertsVariables = await handleAlertsVariables();
   return (
-    <form
-      action={handleAlertsVariablesSelect}
-      className="flex flex-col  w-full items-start gap-8 "
-    >
-      <VariableSelectFormComponentsAlerts alertsVariables={alertsVariables} />
-      <ValueAndTypeComponentsAlerts />
-      <WhatsAppNumberComponentsAlerts />
-      <SubmitButtonAlerts />
-      <SelectedVariablesAlerts alertsVariables={alertsVariables} />
-    </form>
+    <div className="text-slate-200 text-sm">feature is begin developed</div>
   );
 }
