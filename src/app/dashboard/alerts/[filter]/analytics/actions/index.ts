@@ -20,6 +20,7 @@ export async function handleAlertsVariablesUnselect(variable: string) {
 }
 export async function handleAlertsLogs(): Promise<any> {
   const use_uuid = getUserUUID();
+  console.log(process.env.NEXT_PUBLIC_EXTERN_API);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_EXTERN_API}/alerts-log`,
     {
@@ -29,11 +30,13 @@ export async function handleAlertsLogs(): Promise<any> {
       body: JSON.stringify({ use_uuid }),
     }
   );
-  const { data } = await response.json();
-  const sanados = data["sanados"];
-  const qntdsanados = data["quant_sanados"];
-  const naosanados = data["nãoSanados"];
-  return { sanados, naosanados, qntdsanados };
+  const data = await response.json();
+  console.log(data);
+
+  //const sanados = data["sanados"];
+  //const qntdsanados = data["quant_sanados"];
+  //const naosanados = data["nãoSanados"];
+  return { sanados: [] };
 }
 export async function handleAlertsTable(filter: string): Promise<any> {
   const use_uuid = getUserUUID();

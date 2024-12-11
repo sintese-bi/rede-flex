@@ -13,10 +13,12 @@ export default async function Alerts({
     <div className="flex flex-col w-full h-full justify-start items-start">
       <Filter filter={params.filter} />
       <div className="flex flex-col w-full lg:gap-4 gap-12">
-        <Suspense fallback={<TableLoading />}>
+        {/**
+         * <Suspense fallback={<TableLoading />}>
           <AlertsTables filter={params.filter} />
         </Suspense>
         <LogsComponents />
+         */}
       </div>
     </div>
   );
