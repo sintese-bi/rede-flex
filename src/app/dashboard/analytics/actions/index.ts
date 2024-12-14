@@ -24,6 +24,9 @@ interface Data {
   seventh_value: number;
   eighth_label: string;
   eighth_value: number;
+  ninth_value: number;
+  ninth_label: string;
+  tenth_value: boolean;
 }
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[][]
@@ -80,8 +83,6 @@ export async function handleDashboardBigNumbers(): Promise<
       };
     })
   );
-  console.log(formmatedNumbers.length);
-
   return formmatedNumbers;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
@@ -502,6 +503,7 @@ export async function handleDataframes() {
       name: item["Nome"],
       Posto: item["Posto"],
       Regional: item["Regional"],
+      "Produto Vendido": item["Produto Vendido"],
       Quantidade: item["Quantidade"],
       Resultado: item["Resultado"] ? 0 : 2,
       "LBO Produto": item["LBO Produto"],

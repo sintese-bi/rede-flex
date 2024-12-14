@@ -61,6 +61,9 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
                     sixth_value={bignumber.sixth_value}
                     eighth_label={bignumber.eighth_label}
                     eighth_value={bignumber.eighth_value}
+                    ninth_label={bignumber.ninth_label}
+                    ninth_value={bignumber.ninth_value}
+                    tenth_value={bignumber.tenth_value}
                   />
                 );
               })}

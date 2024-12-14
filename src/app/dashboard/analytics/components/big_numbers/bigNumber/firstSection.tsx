@@ -1,19 +1,23 @@
-import { DollarSignIcon, FuelIcon, PercentIcon } from "lucide-react";
+import { FuelIcon, PercentIcon } from "lucide-react";
 export function BigNumberFirstSection({
   value,
   label,
   third_value,
   eighth_label,
   eighth_value,
+  tenth_value,
+  ninth_value,
 }: {
   value: string;
   label: string;
   third_value: boolean;
   eighth_label: string;
   eighth_value: string;
+  tenth_value: boolean;
+  ninth_value: number;
 }) {
   return (
-    <div className="flex justify-between w-full">
+    <div className="flex justify-between items-center w-full">
       <div className="space-y-1">
         <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
           {label}
@@ -23,7 +27,13 @@ export function BigNumberFirstSection({
             <>
               <p
                 className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  third_value == true ? "text-green-200" : "text-red-200"
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
                 }`}
               >
                 {value}
@@ -33,7 +43,17 @@ export function BigNumberFirstSection({
           ) : label.includes("Venda") || label.includes("Faturamento") ? (
             <>
               <p className="flex font-extrabold text-sm text-slate-400">R$</p>
-              <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
+              <p
+                className={`lg:text-md md:text-md sm:text-sm font-bold ${
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
+                }`}
+              >
                 {value}
               </p>
             </>
@@ -42,7 +62,13 @@ export function BigNumberFirstSection({
               <p className="flex font-extrabold text-sm text-slate-400">R$/L</p>
               <p
                 className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  third_value == true ? "text-green-200" : "text-red-200"
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
                 }`}
               >
                 {value}
@@ -53,7 +79,13 @@ export function BigNumberFirstSection({
               <p className="flex font-extrabold text-sm text-slate-400">R$</p>
               <p
                 className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  third_value == true ? "text-green-200" : "text-red-200"
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
                 }`}
               >
                 {value}
@@ -63,7 +95,13 @@ export function BigNumberFirstSection({
             <>
               <p
                 className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  third_value == true ? "text-green-200" : "text-red-200"
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
                 }`}
               >
                 {value}
@@ -73,7 +111,17 @@ export function BigNumberFirstSection({
           ) : (
             <>
               <FuelIcon className="flex text-slate-400" size={18} />
-              <p className="lg:text-md md:text-md sm:text-sm font-bold text-slate-200">
+              <p
+                className={`lg:text-md md:text-md sm:text-sm font-bold ${
+                  tenth_value === undefined
+                    ? third_value == true
+                      ? "text-green-200"
+                      : "text-red-200"
+                    : tenth_value
+                    ? "text-green-200"
+                    : "text-red-200"
+                }`}
+              >
                 {value}
               </p>
             </>
@@ -87,6 +135,9 @@ export function BigNumberFirstSection({
         <p className="lg:text-md md:text-md text-sm font-extrabold text-white">
           {eighth_value}
         </p>
+      </div>
+      <div className="text-sm font-bold text-slate-200">
+        <p>{ninth_value ? `${ninth_value}%` : ""}</p>
       </div>
     </div>
   );

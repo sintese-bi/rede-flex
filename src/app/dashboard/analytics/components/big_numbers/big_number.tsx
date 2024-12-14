@@ -1,7 +1,6 @@
 "use client";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import { BigNumberFirstSection } from "./bigNumber/firstSection";
-import BigNumberFourthSection from "./bigNumber/fourthSection";
 import BigNumberSecondSection from "./bigNumber/secondSection";
 import BigNumberThirdSection from "./bigNumber/thirdSection";
 export default function DashboardComponentsBigNumber({
@@ -14,15 +13,17 @@ export default function DashboardComponentsBigNumber({
   fourth_value,
   fifth_label,
   fifth_value,
-  sixth_label,
   sixth_value,
   seventh_label,
   seventh_value,
   eighth_label,
   eighth_value,
+  ninth_label,
+  ninth_value,
+  tenth_value,
 }: BigNumbersInterfaces) {
   return (
-    <div className="flex flex-1 flex-grow min-w-[300px] h-[152px] px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
+    <div className="flex flex-1 flex-grow h-full min-h-[162px] py-4 px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
       <div className="flex flex-col gap-6 w-full">
         <div className="flex justify-between">
           <BigNumberFirstSection
@@ -31,10 +32,9 @@ export default function DashboardComponentsBigNumber({
             third_value={third_value}
             eighth_label={eighth_label}
             eighth_value={eighth_value}
+            tenth_value={tenth_value}
+            ninth_value={ninth_value}
           />
-          {/**
-           * <BigNumberFourthSection sixth_value={sixth_value} />
-           */}
         </div>
         <div className="flex justify-between w-full">
           <BigNumberSecondSection

@@ -1,9 +1,9 @@
 export const redeSectionsFields = {
   0: [
-    {
-      name: "use_mlt",
-      label: "Margem por litro - MLT (R$/L)",
-    },
+    //{
+    //  name: "use_mlt",
+    //  label: "Margem por litro - MLT (R$/L)",
+    //},
     {
       name: "use_tmc",
       label: "Ticket médio de combustível - TMC (R$)",

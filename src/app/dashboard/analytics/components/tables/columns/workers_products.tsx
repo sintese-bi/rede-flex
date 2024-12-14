@@ -39,6 +39,20 @@ export const workers_products: any[] = [
     },
   },
   {
+    accessorKey: "Produto Vendido",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Produto vendido
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: "Regional",
     header: ({ column }: any) => {
       return (
@@ -46,7 +60,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Produtos vendidos
+          Regional
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

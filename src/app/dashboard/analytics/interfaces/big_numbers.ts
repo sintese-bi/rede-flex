@@ -14,4 +14,7 @@ export interface BigNumbersInterfaces {
   seventh_value: string;
   eighth_label: string;
   eighth_value: string;
+  ninth_label: string;
+  ninth_value: number;
+  tenth_value: boolean;
 }

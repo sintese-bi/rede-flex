@@ -29,12 +29,12 @@ export const stationsSectionsFields: {
       isVisible: true,
       isInputField: false,
     },
-    {
-      accessorKey: "mlt",
-      header: "MLT (R$/L)",
-      isVisible: false,
-      isInputField: true,
-    },
+    //{
+    //  accessorKey: "mlt",
+    //  header: "MLT (R$/L)",
+    //  isVisible: false,
+    //  isInputField: true,
+    //},
     {
       accessorKey: "tmp",
       header: "TMP (R$)",
