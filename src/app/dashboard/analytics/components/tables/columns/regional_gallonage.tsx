@@ -19,6 +19,53 @@ export const regional_gallonage: any[] = [
     cell: ({ row }: any) => <StationsTable row={row} type="galonagem" />,
   },
   {
+    accessorKey: "Lucro Bruto Operacional Galonagem",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          LB
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(
+        row.getValue("Lucro Bruto Operacional Galonagem")
+      );
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(amount));
+      return <div className="font-medium">{formatted} %</div>;
+    },
+  },
+  {
+    accessorKey: "Resultado Bruto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          RB
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Resultado Bruto"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
+
+      return <div className="font-medium text-center">R$ {formatted}</div>;
+    },
+  },
+  {
     accessorKey: "TMC",
     header: ({ column }: any) => {
       return (
@@ -87,29 +134,7 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
-  {
-    accessorKey: "Resultado Bruto",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          RB
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("Resultado Bruto"));
-      const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
 
-      return <div className="font-medium text-center">R$ {formatted}</div>;
-    },
-  },
   /**
    * {
     accessorKey: "Lucro com Desconto",
@@ -134,30 +159,7 @@ export const regional_gallonage: any[] = [
     },
   },
    */
-  {
-    accessorKey: "Lucro Bruto Operacional Galonagem",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          LBO Galonagem
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(
-        row.getValue("Lucro Bruto Operacional Galonagem")
-      );
-      const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(Math.round(amount));
-      return <div className="font-medium">{formatted} %</div>;
-    },
-  },
+
   /**
    * {
     accessorKey: "Rendimento Bruto",
@@ -183,7 +185,8 @@ export const regional_gallonage: any[] = [
     },
   },
    */
-  {
+  /**
+   * {
     accessorKey: "Galonagem",
     header: ({ column }: any) => {
       return (
@@ -205,7 +208,9 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">{formatted} (L)</div>;
     },
   },
-  {
+   */
+  /**
+   * {
     accessorKey: "Faturamento",
     header: ({ column }: any) => {
       return (
@@ -275,7 +280,9 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
-  {
+   */
+  /**
+   * {
     accessorKey: "Custo com Desconto",
     header: ({ column }: any) => {
       return (
@@ -311,6 +318,7 @@ export const regional_gallonage: any[] = [
       );
     },
   },
+   */
   {
     accessorKey: "stations",
     header: "Postos",

@@ -22,9 +22,9 @@ export default function CurrentSectionSelector({
         <SelectValue placeholder="Configurar por rede, regional, ou posto" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="0">Rede</SelectItem>
-        <SelectItem value="2">Regional</SelectItem>
-        <SelectItem value="1">Postos</SelectItem>
+        <SelectItem value="0">Big Numbers - Rede</SelectItem>
+        {/** <SelectItem value="2">Regional</SelectItem>*/}
+        <SelectItem value="1">Parametrização geral - Postos</SelectItem>
       </SelectContent>
     </Select>
   );

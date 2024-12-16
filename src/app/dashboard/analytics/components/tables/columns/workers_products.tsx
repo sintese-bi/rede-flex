@@ -25,34 +25,6 @@ export const workers_products: any[] = [
     },
   },
   {
-    accessorKey: "Posto",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Posto
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "Produto Vendido",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Produto vendido
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-  },
-  {
     accessorKey: "Regional",
     header: ({ column }: any) => {
       return (
@@ -66,6 +38,36 @@ export const workers_products: any[] = [
       );
     },
   },
+  {
+    accessorKey: "Posto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Posto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+  /**
+   * {
+    accessorKey: "Produto Vendido",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Produto vendido
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+
   {
     accessorKey: "LBO Produto",
     header: ({ column }: any) => {
@@ -88,6 +90,7 @@ export const workers_products: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+   */
   {
     accessorKey: "Venda",
     header: ({ column }: any) => {
@@ -111,7 +114,8 @@ export const workers_products: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "Custo",
     header: ({ column }: any) => {
       return (
@@ -134,6 +138,7 @@ export const workers_products: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
   {
     accessorKey: "Lucro",
     header: ({ column }: any) => {
@@ -142,7 +147,7 @@ export const workers_products: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          LB
+          Margem bruta
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

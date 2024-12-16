@@ -20,12 +20,13 @@ export default function CurrentSecondarySectionSelector({
           <Button
             variant="ghost"
             type="button"
-            className={`border-0 ${
+            className={`flex flex-col border-0 ${
               currentSecondarySection == 0 ? selectedStyle : null
             }`}
             onClick={() => handleOnClick(0)}
           >
-            Meta diária indices
+            <p>Meta TMs, RBs e LB</p>
+            <p>(Valores descritos no mapa)</p>
           </Button>
           {/**
            * <Button
@@ -42,22 +43,24 @@ export default function CurrentSecondarySectionSelector({
           <Button
             variant="ghost"
             type="button"
-            className={`border-0 ${
+            className={`flex flex-col border-0 ${
               currentSecondarySection == 2 ? selectedStyle : null
             }`}
             onClick={() => handleOnClick(2)}
           >
-            Meta mensal nominal
+            <p>Meta Mensal Galonagem & Produto</p>
+            <p>(Valores descritos nos gráficos)</p>
           </Button>
           <Button
             variant="ghost"
             type="button"
-            className={`border-0 ${
+            className={`flex flex-col border-0 ${
               currentSecondarySection == 1 ? selectedStyle : null
             }`}
             onClick={() => handleOnClick(1)}
           >
-            Descontos de combustiveis
+            <p> Descontos de combustiveis</p>
+            <p>(Valores utilizados no cálculo de combustível)</p>
           </Button>
         </>
       )}

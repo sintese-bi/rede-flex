@@ -61,19 +61,19 @@ export const regionalsSectionsFields: {
     },
     {
       accessorKey: "tm_lucro_bruto_operacional",
-      header: "LBO (%)",
+      header: "LB (%)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_galonagem",
-      header: "LBO galonagem (%)",
+      header: "LB galonagem (%)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_produto",
-      header: "LBO produto (%)",
+      header: "LB produto (%)",
       isVisible: false,
       isInputField: true,
     },

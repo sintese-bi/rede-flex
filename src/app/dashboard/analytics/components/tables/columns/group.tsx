@@ -77,7 +77,7 @@ export const group: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          LBO Produto
+          LB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -145,7 +145,7 @@ export const group: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          LB
+          Margem bruta
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

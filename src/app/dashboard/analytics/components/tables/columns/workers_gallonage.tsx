@@ -25,20 +25,6 @@ export const workers_gallonage: any[] = [
     },
   },
   {
-    accessorKey: "Posto",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Posto
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-  },
-  {
     accessorKey: "Regional",
     header: ({ column }: any) => {
       return (
@@ -52,6 +38,21 @@ export const workers_gallonage: any[] = [
       );
     },
   },
+  {
+    accessorKey: "Posto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Posto
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
+
   {
     accessorKey: "Galonagem",
     header: ({ column }: any) => {
@@ -75,7 +76,8 @@ export const workers_gallonage: any[] = [
       return <div className="font-medium">{formatted} (L)</div>;
     },
   },
-  {
+  /**
+   * {
     accessorKey: "M/LT",
     header: ({ column }: any) => {
       return (
@@ -121,6 +123,7 @@ export const workers_gallonage: any[] = [
       return <div className="font-medium">{formatted} %</div>;
     },
   },
+   */
   /**
    * {
     accessorKey: "Rendimento Bruto",
@@ -146,7 +149,8 @@ export const workers_gallonage: any[] = [
     },
   },
    */
-  {
+  /**
+   * {
     accessorKey: "Venda",
     header: ({ column }: any) => {
       return (
@@ -192,6 +196,7 @@ export const workers_gallonage: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
   {
     accessorKey: "Lucro",
     header: ({ column }: any) => {
@@ -200,7 +205,7 @@ export const workers_gallonage: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          LB
+          Margem bruta
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

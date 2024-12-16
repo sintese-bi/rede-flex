@@ -60,7 +60,7 @@ export const fuel: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          LBO Combsutivel
+          LB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
@@ -73,6 +73,29 @@ export const fuel: any[] = [
       }).format(Math.round(amount));
 
       return <div className="font-medium">{formatted} %</div>;
+    },
+  },
+  {
+    accessorKey: "Rendimento Bruto",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          RB
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+    cell: ({ row }: any) => {
+      const amount = parseFloat(row.getValue("Rendimento Bruto"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Math.round(amount));
+
+      return <div className="font-medium">R$ {formatted}</div>;
     },
   },
   /**
@@ -100,7 +123,8 @@ export const fuel: any[] = [
     },
   },
    */
-  {
+  /**
+   * {
     accessorKey: "Venda",
     header: ({ column }: any) => {
       return (
@@ -146,6 +170,7 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+   */
   {
     accessorKey: "Lucro",
     header: ({ column }: any) => {

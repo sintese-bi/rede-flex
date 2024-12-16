@@ -61,19 +61,19 @@ export const stationsSectionsFields: {
     },
     {
       accessorKey: "tm_lucro_bruto_operacional",
-      header: "LBO (%)",
+      header: "LB (%)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_galonagem",
-      header: "Resultado Bruto da Galonagem",
+      header: "RB Gal. (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_produto",
-      header: "Resultado Bruto de Produtos",
+      header: "RB Produto (R$)",
       isVisible: false,
       isInputField: true,
     },
@@ -127,11 +127,17 @@ export const stationsSectionsFields: {
       isVisible: false,
       isInputField: true,
     },
+    {
+      accessorKey: "bonus_value",
+      header: "Bônus (R$)",
+      isVisible: false,
+      isInputField: true,
+    },
   ],
   2: [
     {
       accessorKey: "invoice_comb",
-      header: "Galonagem mensal (L)",
+      header: "Galonagem (L)",
       isVisible: false,
       isInputField: true,
     },
@@ -143,13 +149,13 @@ export const stationsSectionsFields: {
     },
     {
       accessorKey: "gross_result_literage",
-      header: "Resultado Bruto mensal da Galonagem (R$)",
+      header: "RB Galonagem (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "gross_result_product",
-      header: "Resultado Bruto mensal de Produtos (R$)",
+      header: "RB  Produto (R$)",
       isVisible: false,
       isInputField: true,
     },

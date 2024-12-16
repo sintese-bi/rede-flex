@@ -107,7 +107,8 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           R$ {TMP} - R$ {TMP_Definido}
         </p>
       </div>
-      <div>
+      {/**
+       * <div>
         <p className="text-main-color text- font-extrabold">
           TMF x TMF Definido
         </p>
@@ -139,6 +140,7 @@ export default function MapPopup({ item }: { item: IMyMap }) {
           % {LBOGalonagem} - % {LBO_Galonagem_Definido}
         </p>
       </div>
+       */}
     </div>
   );
 }

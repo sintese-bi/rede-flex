@@ -22,15 +22,15 @@ export const redeSectionsFields = {
     },
     {
       name: "use_lucro_bruto_operacional",
-      label: "Lucro bruto operacional (%)",
+      label: "Lucro Bruto - LB (%)",
     },
     {
       name: "use_lucro_bruto_operacional_galonagem",
-      label: "Resultado Bruto galonagem",
+      label: "Resultado Bruto - RB Galonagem (R$)",
     },
     {
       name: "use_lucro_bruto_operacional_produto",
-      label: "Resultado Bruto produto",
+      label: "Resultado Bruto - RB Produto (R$)",
     },
   ],
   1: [

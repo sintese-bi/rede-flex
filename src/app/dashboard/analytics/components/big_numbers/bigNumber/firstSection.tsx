@@ -22,7 +22,7 @@ export function BigNumberFirstSection({
         <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
           {label}
         </p>
-        <div className="flex items-center gap-1">
+        <div className="flex  items-center gap-1">
           {label.includes("Operacional") ? (
             <>
               <p
@@ -136,8 +136,9 @@ export function BigNumberFirstSection({
           {eighth_value}
         </p>
       </div>
-      <div className="text-sm font-bold text-slate-200">
-        <p>{ninth_value ? `${ninth_value}%` : ""}</p>
+      <div className="flex flex-col justify-center items-center text-sm font-bold">
+        <p className="text-sm text-slate-400">% ult. semana</p>
+        <p className="text-white">{ninth_value ? `${ninth_value}%` : ""}</p>
       </div>
     </div>
   );
