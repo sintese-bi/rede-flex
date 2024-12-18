@@ -39,40 +39,17 @@ export default function GrossDailyPerStation() {
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable]);
+  console.log(data);
   if (!data) return <ChartLoading />;
   const chartData = {
     labels: data
-      .sort(
-        (a: any, b: any) =>
-          b[
-            `${
-              filterVariable == "fuel" ? "gallon" : "product"
-            }_history_gross_defined`
-          ] -
-          a[
-            `${
-              filterVariable == "fuel" ? "gallon" : "product"
-            }_history_gross_defined`
-          ]
-      )
+      .sort((a: any, b: any) => b.percentage - a.percentage)
       .map((item: any) => item.corporate_name),
     datasets: [
       {
         label: filterVariableOptions[filterVariable],
         data: data
-          .sort(
-            (a: any, b: any) =>
-              b[
-                `${
-                  filterVariable == "fuel" ? "gallon" : "product"
-                }_history_gross_defined`
-              ] -
-              a[
-                `${
-                  filterVariable == "fuel" ? "gallon" : "product"
-                }_history_gross_defined`
-              ]
-          )
+          .sort((a: any, b: any) => b.percentage - a.percentage)
           .map(
             (item: any) =>
               item[
@@ -89,19 +66,7 @@ export default function GrossDailyPerStation() {
       {
         label: `${filterVariableOptions[filterVariable]} meta`,
         data: data
-          .sort(
-            (a: any, b: any) =>
-              b[
-                `${
-                  filterVariable == "fuel" ? "gallon" : "product"
-                }_history_gross_defined`
-              ] -
-              a[
-                `${
-                  filterVariable == "fuel" ? "gallon" : "product"
-                }_history_gross_defined`
-              ]
-          )
+          .sort((a: any, b: any) => b.percentage - a.percentage)
           .map(
             (item: any) =>
               item[
@@ -197,7 +162,7 @@ export default function GrossDailyPerStation() {
           {filterVariableOptions[filterVariable] == "Galonagem"
             ? "da Galonagem"
             : "de Produto"}{" "}
-          por Posto Hoje
+          por Posto
         </p>
         <Bar
           data={chartData}

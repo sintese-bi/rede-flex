@@ -55,7 +55,7 @@ export const regionalsSectionsFields: {
     },
     {
       accessorKey: "tmvol",
-      header: "TMVOL (R$)",
+      header: "TMVOL (L)",
       isVisible: false,
       isInputField: true,
     },
@@ -67,13 +67,13 @@ export const regionalsSectionsFields: {
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_galonagem",
-      header: "LB galonagem (%)",
+      header: "RB Gal. (R$)",
       isVisible: false,
       isInputField: true,
     },
     {
       accessorKey: "tm_lucro_bruto_operacional_produto",
-      header: "LB produto (%)",
+      header: "RB Produto (R$)",
       isVisible: false,
       isInputField: true,
     },

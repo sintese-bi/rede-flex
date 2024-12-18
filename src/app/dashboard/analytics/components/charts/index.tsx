@@ -21,7 +21,11 @@ export default function DashboardComponentsCharts() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <p className="text-sm font-bold text-slate-600">
-              Metas diárias e mensais
+              Os gráficos abaixo mostram a evolução diária dos resultados
+              brutos, galonagem e faturamento de produtos, como também o
+              desdobramento dessas variáveis por posto. Todo gráfico possui
+              metas a serem alcançadas. O valor percentual representa o quão
+              distante a variável está da meta.
             </p>
             <TooltipProvider>
               <Tooltip>

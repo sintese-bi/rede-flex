@@ -6,20 +6,22 @@ import DashboardComponentsBigNumbers from "./analytics/components/big_numbers";
 import DashboardComponentsCharts from "./analytics/components/charts";
 import DashboardComponentsTables from "./analytics/components/tables";
 import {
+  fetchMLTs,
   handleDashboardBigNumbers,
   handleDataframes,
   handleGeolocations,
 } from "./analytics/actions";
-import { BigNumbersInterfaces } from "./analytics/interfaces/big_numbers";
 import ChartLoading from "./analytics/components/loading/chart";
 import { DashboardContext } from "./analytics/context";
 import SystemParameterizationModal from "./analytics/components/systemParameterizationModal";
+import Carroussel from "./analytics/components/carroussel";
 export default function Dashboard() {
   const combRef = useRef<any>(null);
   const prodRef = useRef<any>(null);
 
   const [lowerThanAvarageCount, setLowerThanAvarageCount] = useState<any>(null);
   const [bigNumbers, setBigNumbers] = useState<any>(null);
+  const [MLTs, setMLTs] = useState<any>(null);
   const [stationsMap, setStationsMap] = useState<any>(null);
   const [dataframes, setDataframes] = useState<any>(null);
 
@@ -27,6 +29,10 @@ export default function Dashboard() {
     let response = await handleDashboardBigNumbers();
     localStorage.setItem("update_time", new Date().toDateString());
     setBigNumbers(response);
+  }
+  async function handleMLTs() {
+    let response = await fetchMLTs();
+    setMLTs(response);
   }
   async function handleStationsMap() {
     let response = await handleGeolocations();
@@ -40,6 +46,7 @@ export default function Dashboard() {
   async function updateDashboardData() {
     await Promise.all([
       handleBigNumbers(),
+      handleMLTs(),
       handleStationsMap(),
       handleDataframesData(),
     ]);
@@ -75,8 +82,7 @@ export default function Dashboard() {
         <div className="flex flex-col justify-end items-end">
           <SystemParameterizationModal />
         </div>
-        {/**
-        *  <div className="flex justify-center w-full">
+        <div className="flex justify-center w-full">
           <div className="lg:w-4/6 md:w-5/6 p-4 bg-main-color rounded-md text-center text-white text-sm">
             <p>
               Prezado usuário até o momento {lowerThanAvarageCount["M/LT"]}{" "}
@@ -86,11 +92,11 @@ export default function Dashboard() {
             </p>
           </div>
         </div>
-        */}
         <div className="flex flex-col gap-12 h-full w-full">
           <div className="flex w-full flex-col gap-12">
             <div className="flex flex-col items-center gap-2 w-full">
               <DashboardComponentsBigNumbers data={bigNumbers} />
+              <Carroussel data={MLTs} />
               <DashboardComponentsMap data={stationsMap} />
             </div>
             <DashboardComponentsCharts />

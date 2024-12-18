@@ -27,6 +27,7 @@ interface Data {
   ninth_value: number;
   ninth_label: string;
   tenth_value: boolean;
+  unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[][]
@@ -84,6 +85,20 @@ export async function handleDashboardBigNumbers(): Promise<
     })
   );
   return formmatedNumbers;
+}
+export async function fetchMLTs(): Promise<any> {
+  const response = await fetch(
+    `${
+      process.env.NEXT_MICROSERVICE_MONGODB
+    }/bignumbers-mlt/${getAccessToken()}`,
+    {
+      headers: microServiceRequestConfig(),
+      cache: "no-cache",
+    }
+  );
+  const json = await response.json();
+  const { data }: { data: Data[][] } = json;
+  return data;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
   const redeflex = mongodb_client.db("redeflex");
@@ -491,6 +506,7 @@ export async function handleDataframes() {
       "M/LT": item["M/LT"],
       "LBO Combustivel": item["LBO Combustivel"],
       "Rendimento Bruto": item["LBO Combustivel"],
+      "Combustivel Vendido": item["Combustivel Vendido"],
       Venda: item["Venda"],
       Custo: item["Custo"],
       Lucro: item["Lucro"],

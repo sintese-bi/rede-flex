@@ -45,17 +45,24 @@ export default function LinearInvoicing() {
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable, clickedLabel, currentLevel]);
+  console.log(data);
   if (!data) return <ChartLoading />;
 
   const chartData = {
     labels: data[filterVariable]
-      .sort((a: any, b: any) => b.media - a.media)
+      .sort(
+        (a: any, b: any) =>
+          a.media / Number(a.value) - b.media / Number(b.value)
+      )
       .map((item: any) => item.name),
     datasets: [
       {
         label: filterVariableOptions[filterVariable],
         data: data[filterVariable]
-          .sort((a: any, b: any) => b.media - a.media)
+          .sort(
+            (a: any, b: any) =>
+              a.media / Number(a.value) - b.media / Number(b.value)
+          )
           .map((item: any) => item.value),
         fill: true,
         borderColor: "rgb(75, 192, 192)",
@@ -65,8 +72,11 @@ export default function LinearInvoicing() {
       {
         label: `${filterVariableOptions[filterVariable]} meta`,
         data: data[filterVariable]
-          .sort((a: any, b: any) => b.media - a.media)
-          .map((item: any) => Number(item.media)),
+          .sort(
+            (a: any, b: any) =>
+              a.media / Number(a.value) - b.media / Number(b.value)
+          )
+          .map((item: any) => item.media),
         fill: true,
         borderColor: "rgb(60, 153, 153)",
         backgroundColor: "rgb(0, 103, 115)",

@@ -52,7 +52,20 @@ export const workers_gallonage: any[] = [
       );
     },
   },
-
+  {
+    accessorKey: "Combustivel Vendido",
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Combustivel Vendido
+          <ArrowUpDownIcon className="ml-2 h-4 " />
+        </Button>
+      );
+    },
+  },
   {
     accessorKey: "Galonagem",
     header: ({ column }: any) => {

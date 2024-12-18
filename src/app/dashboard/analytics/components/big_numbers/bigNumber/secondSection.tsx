@@ -7,6 +7,7 @@ export default function BigNumberSecondSection({
   fifth_value,
   fourth_label,
   fourth_value,
+  unit_type,
 }: {
   secondary_label: string;
   secondary_value: string;
@@ -15,7 +16,14 @@ export default function BigNumberSecondSection({
   fourth_value: string;
   fifth_value: string;
   fifth_label: string;
+  unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }) {
+  const sectionContent = {
+    real: () => <p></p>,
+    gallon: () => <p></p>,
+    real_per_gallon: () => <p></p>,
+    percentage: () => <p></p>,
+  };
   return (
     <div>
       <div className="flex gap-1">

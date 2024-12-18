@@ -1,4 +1,9 @@
-import { FuelIcon, PercentIcon } from "lucide-react";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  FuelIcon,
+  PercentIcon,
+} from "lucide-react";
 export function BigNumberFirstSection({
   value,
   label,
@@ -6,7 +11,9 @@ export function BigNumberFirstSection({
   eighth_label,
   eighth_value,
   tenth_value,
+  ninth_label,
   ninth_value,
+  unit_type,
 }: {
   value: string;
   label: string;
@@ -14,132 +21,202 @@ export function BigNumberFirstSection({
   eighth_label: string;
   eighth_value: string;
   tenth_value: boolean;
+  ninth_label: string;
   ninth_value: number;
+  unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }) {
-  return (
-    <div className="flex justify-between items-center w-full">
-      <div className="space-y-1">
-        <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
-          {label}
-        </p>
-        <div className="flex  items-center gap-1">
-          {label.includes("Operacional") ? (
-            <>
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
+  const valueStatusStyle = tenth_value ? "text-green-200" : "text-red-200";
+  const percentageStatusStyle =
+    ninth_value > 100 ? "text-green-200" : "text-red-200";
+  const sectionContent = {
+    real: () => (
+      <div className="flex justify-between items-center w-full">
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {label}
+          </p>
+          <div className="flex  items-center gap-1 text-white">
+            <p className="flex font-bold text-slate-400">R$</p>
+            <p
+              className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
+            >
+              {value}
+            </p>
+          </div>
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {eighth_label}
+          </p>
+          {eighth_value ? (
+            <div className="flex  items-center gap-1 text-white">
+              <p className="flex font-bold text-slate-400">R$</p>
+              <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
+                {eighth_value}
               </p>
-              <PercentIcon className="flex text-slate-400" size={18} />
-            </>
-          ) : label.includes("Venda") || label.includes("Faturamento") ? (
-            <>
-              <p className="flex font-extrabold text-sm text-slate-400">R$</p>
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
-              </p>
-            </>
-          ) : label.includes("M/LT") ? (
-            <>
-              <p className="flex font-extrabold text-sm text-slate-400">R$/L</p>
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
-              </p>
-            </>
-          ) : label.includes("Resultado Bruto") ? (
-            <>
-              <p className="flex font-extrabold text-sm text-slate-400">R$</p>
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
-              </p>
-            </>
-          ) : label.includes("Lucro Bruto") ? (
-            <>
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
-              </p>
-              <PercentIcon className="flex text-slate-400" size={18} />
-            </>
-          ) : (
-            <>
-              <FuelIcon className="flex text-slate-400" size={18} />
-              <p
-                className={`lg:text-md md:text-md sm:text-sm font-bold ${
-                  tenth_value === undefined
-                    ? third_value == true
-                      ? "text-green-200"
-                      : "text-red-200"
-                    : tenth_value
-                    ? "text-green-200"
-                    : "text-red-200"
-                }`}
-              >
-                {value}
-              </p>
-            </>
-          )}
+            </div>
+          ) : null}
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {ninth_label}
+          </p>
+          <p
+            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
+          >
+            {ninth_value ? `${ninth_value}%` : ""}
+            {ninth_value !== undefined ? (
+              ninth_value > 100 ? (
+                <ArrowUpIcon size={12} />
+              ) : (
+                <ArrowDownIcon size={12} />
+              )
+            ) : null}
+          </p>
         </div>
       </div>
-      <div className="space-y-1">
-        <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
-          {eighth_label}
-        </p>
-        <p className="lg:text-md md:text-md text-sm font-extrabold text-white">
-          {eighth_value}
-        </p>
+    ),
+    gallon: () => (
+      <div className="flex justify-between items-center w-full">
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {label}
+          </p>
+          <div className="flex  items-center gap-1 text-white">
+            <FuelIcon className="flex text-slate-400" size={18} />
+            <p
+              className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
+            >
+              {value}
+            </p>
+          </div>
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {eighth_label}
+          </p>
+          {eighth_value ? (
+            <div className="flex  items-center gap-1 text-white">
+              <FuelIcon className="flex text-slate-400" size={18} />
+              <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
+                {eighth_value}
+              </p>
+            </div>
+          ) : null}
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {ninth_label}
+          </p>
+          <p
+            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
+          >
+            {ninth_value ? `${ninth_value}%` : ""}
+            {ninth_value !== undefined ? (
+              ninth_value > 100 ? (
+                <ArrowUpIcon size={12} />
+              ) : (
+                <ArrowDownIcon size={12} />
+              )
+            ) : null}
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col justify-center items-center text-sm font-bold">
-        <p className="text-sm text-slate-400">% ult. semana</p>
-        <p className="text-white">{ninth_value ? `${ninth_value}%` : ""}</p>
+    ),
+    real_per_gallon: () => (
+      <div className="flex justify-between items-center w-full">
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {label}
+          </p>
+          <div className="flex  items-center gap-1 text-white">
+            <p className="flex font-bold text-slate-400">R$/L</p>
+            <p
+              className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
+            >
+              {value}
+            </p>
+          </div>
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {eighth_label}
+          </p>
+          {eighth_value ? (
+            <div className="flex  items-center gap-1 text-white">
+              <p className="flex font-bold text-slate-400">R$/L</p>
+              <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
+                {eighth_value}
+              </p>
+            </div>
+          ) : null}
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {ninth_label}
+          </p>
+          <p
+            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
+          >
+            {ninth_value ? `${ninth_value}%` : ""}
+            {ninth_value !== undefined ? (
+              ninth_value > 100 ? (
+                <ArrowUpIcon size={12} />
+              ) : (
+                <ArrowDownIcon size={12} />
+              )
+            ) : null}
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    ),
+    percentage: () => (
+      <div className="flex justify-between items-center w-full">
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {label}
+          </p>
+          <div className="flex  items-center gap-1 text-white">
+            <p
+              className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
+            >
+              {value}
+            </p>
+            <PercentIcon className="flex text-slate-400" size={18} />
+          </div>
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {eighth_label}
+          </p>
+          {eighth_value ? (
+            <div className="flex  items-center gap-1 text-white">
+              <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
+                {eighth_value}
+              </p>
+              <PercentIcon className="flex text-slate-400" size={18} />
+            </div>
+          ) : null}
+        </div>
+        <div className="space-y-1">
+          <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
+            {ninth_label}
+          </p>
+          <p
+            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
+          >
+            {ninth_value ? `${ninth_value}%` : ""}
+            {ninth_value !== undefined ? (
+              ninth_value > 100 ? (
+                <ArrowUpIcon size={12} />
+              ) : (
+                <ArrowDownIcon size={12} />
+              )
+            ) : null}
+          </p>
+        </div>
+      </div>
+    ),
+  };
+  return <>{sectionContent[unit_type]()}</>;
 }

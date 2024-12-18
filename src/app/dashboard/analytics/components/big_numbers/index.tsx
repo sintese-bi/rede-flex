@@ -11,9 +11,9 @@ import DashboardComponentsBigNumber from "./big_number";
 import BigNumbersLoading from "../loading/bignumbers";
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
-    0: "Visão Geral:",
-    1: "Venda da Galonagem:",
-    2: "Venda de Produtos:",
+    0: "Galonagem, Faturamento e Abastecimento",
+    1: "Galonagem: Venda, Resultado Bruto e M/LT",
+    2: "Venda & Resultado Bruto de Produto + Lucro Bruto Geral",
   };
   return sections[index];
 }
@@ -23,7 +23,7 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
     <div className="flex flex-col gap-2 lg:w-full w-full">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
+          <p className="text-sm font-bold text-slate-600">Margens</p>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -44,27 +44,7 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
             <div className="flex flex-wrap gap-2 justify-center items-center">
               {big_numbers_section.map((bignumber, index) => {
                 return (
-                  <DashboardComponentsBigNumber
-                    key={index}
-                    label={bignumber.label}
-                    value={bignumber.value}
-                    secondary_label={bignumber.secondary_label}
-                    secondary_value={bignumber.secondary_value}
-                    third_value={bignumber.third_value}
-                    fourth_label={bignumber.fourth_label}
-                    fourth_value={bignumber.fourth_value}
-                    fifth_label={bignumber.fifth_label}
-                    fifth_value={bignumber.fifth_value}
-                    seventh_label={bignumber.seventh_label}
-                    seventh_value={bignumber.seventh_value}
-                    sixth_label={bignumber.sixth_label}
-                    sixth_value={bignumber.sixth_value}
-                    eighth_label={bignumber.eighth_label}
-                    eighth_value={bignumber.eighth_value}
-                    ninth_label={bignumber.ninth_label}
-                    ninth_value={bignumber.ninth_value}
-                    tenth_value={bignumber.tenth_value}
-                  />
+                  <DashboardComponentsBigNumber key={index} data={bignumber} />
                 );
               })}
             </div>
