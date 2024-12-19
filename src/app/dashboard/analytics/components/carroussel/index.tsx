@@ -38,7 +38,7 @@ export default function Carroussel({ data }: { data: any }) {
       <Carousel
         plugins={[
           Autoplay({
-            delay: 1000,
+            delay: 2000,
           }),
         ]}
         className="relative"
