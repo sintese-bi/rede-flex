@@ -52,8 +52,7 @@ export const workers_products: any[] = [
       );
     },
   },
-  /**
-   * {
+  {
     accessorKey: "Produto Vendido",
     header: ({ column }: any) => {
       return (
@@ -67,7 +66,8 @@ export const workers_products: any[] = [
       );
     },
   },
-
+  /**
+   *
   {
     accessorKey: "LBO Produto",
     header: ({ column }: any) => {
