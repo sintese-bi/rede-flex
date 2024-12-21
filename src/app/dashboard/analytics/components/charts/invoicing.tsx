@@ -45,7 +45,6 @@ export default function LinearInvoicing() {
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable, clickedLabel, currentLevel]);
-  console.log(data);
   if (!data) return <ChartLoading />;
 
   const chartData = {

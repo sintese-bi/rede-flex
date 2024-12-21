@@ -62,7 +62,7 @@ export function BigNumberFirstSection({
             {ninth_label}
           </p>
           <p
-            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
+            className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${valueStatusStyle}`}
           >
             {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (

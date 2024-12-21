@@ -39,7 +39,6 @@ export default function GrossDailyPerStation() {
     const intervalId = setInterval(fetch, 4 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [filterVariable]);
-  console.log(data);
   if (!data) return <ChartLoading />;
   const chartData = {
     labels: data
