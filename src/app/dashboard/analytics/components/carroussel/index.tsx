@@ -21,7 +21,9 @@ export default function Carroussel({ data }: { data: any }) {
     <div className="flex flex-col gap-2 lg:w-full w-full">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-bold text-slate-600">Flex Monitor</p>
+          <p className="text-sm font-bold text-slate-600">
+            Margens de combustíveis
+          </p>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>

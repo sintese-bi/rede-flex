@@ -179,7 +179,7 @@ export const fuel: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Lucro
+          Margem
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );

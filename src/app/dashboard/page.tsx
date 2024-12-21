@@ -82,7 +82,8 @@ export default function Dashboard() {
         <div className="flex flex-col justify-end items-end">
           <SystemParameterizationModal />
         </div>
-        <div className="flex justify-center w-full">
+        {/**
+         * <div className="flex justify-center w-full">
           <div className="lg:w-4/6 md:w-5/6 p-4 bg-main-color rounded-md text-center text-white text-sm">
             <p>
               Prezado usuário até o momento {lowerThanAvarageCount["M/LT"]}{" "}
@@ -92,6 +93,7 @@ export default function Dashboard() {
             </p>
           </div>
         </div>
+         */}
         <div className="flex flex-col gap-12 h-full w-full">
           <div className="flex w-full flex-col gap-12">
             <div className="flex flex-col items-center gap-2 w-full">
