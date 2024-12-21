@@ -368,7 +368,6 @@ export async function handleDataframes() {
     };
   });
   const grupo = dataframes["grupo"].map((item: any) => {
-    console.log(item);
     return {
       name: item["Grupo"],
       Posto: item["Posto"],
