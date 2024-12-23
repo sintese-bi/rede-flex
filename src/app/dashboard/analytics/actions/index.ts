@@ -47,39 +47,71 @@ export async function handleDashboardBigNumbers(): Promise<
     dataSection.map((big_number) => {
       return {
         ...big_number,
-        value: new Intl.NumberFormat("de-DE", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(big_number["value"]),
+        value: big_number["value"]
+          ? String(big_number["value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["value"])
+          : "",
         secondary_value: big_number["secondary_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["secondary_value"])
+          ? String(big_number["secondary_value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["secondary_value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["secondary_value"])
           : "",
         fourth_value: big_number["fourth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["fourth_value"])
+          ? String(big_number["fourth_value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["fourth_value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["fourth_value"])
           : "",
         fifth_value: big_number["fifth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["fifth_value"])
+          ? String(big_number["fifth_value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["fifth_value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["fifth_value"])
           : "",
         seventh_value: big_number["seventh_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["seventh_value"])
+          ? String(big_number["seventh_value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["seventh_value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["seventh_value"])
           : "",
         eighth_value: big_number["eighth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["eighth_value"])
+          ? String(big_number["eighth_value"]).length > 4
+            ? new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(big_number["eighth_value"])
+            : new Intl.NumberFormat("de-DE", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(big_number["eighth_value"])
           : "",
       };
     })
