@@ -26,8 +26,7 @@ export function BigNumberFirstSection({
   unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }) {
   const valueStatusStyle = tenth_value ? "text-green-200" : "text-red-200";
-  const percentageStatusStyle =
-    ninth_value > 100 ? "text-green-200" : "text-red-200";
+  const percentageStatusStyle = tenth_value ? "text-green-200" : "text-red-200";
   const sectionContent = {
     real: () => (
       <div className="flex justify-between items-center w-full">
@@ -66,7 +65,7 @@ export function BigNumberFirstSection({
           >
             {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
-              ninth_value > 100 ? (
+              tenth_value ? (
                 <ArrowUpIcon size={12} />
               ) : (
                 <ArrowDownIcon size={12} />
@@ -113,7 +112,7 @@ export function BigNumberFirstSection({
           >
             {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
-              ninth_value > 100 ? (
+              tenth_value ? (
                 <ArrowUpIcon size={12} />
               ) : (
                 <ArrowDownIcon size={12} />
@@ -160,7 +159,7 @@ export function BigNumberFirstSection({
           >
             {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
-              ninth_value > 100 ? (
+              tenth_value ? (
                 <ArrowUpIcon size={12} />
               ) : (
                 <ArrowDownIcon size={12} />
@@ -207,7 +206,7 @@ export function BigNumberFirstSection({
           >
             {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
-              ninth_value > 100 ? (
+              tenth_value ? (
                 <ArrowUpIcon size={12} />
               ) : (
                 <ArrowDownIcon size={12} />

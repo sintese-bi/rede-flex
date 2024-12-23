@@ -145,7 +145,7 @@ export const group: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Margem
+          RB
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
