@@ -21,7 +21,7 @@ export default function SystemParameterizationModal() {
         style={{
           width: "max-content",
           maxWidth: "1400px",
-          maxHeight: "90vh", // Ajusta a altura máxima para 90% da altura da viewport
+          maxHeight: "90vh",
         }}
       >
         <DialogHeader>

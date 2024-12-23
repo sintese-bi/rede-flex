@@ -9,6 +9,7 @@ import { AlertCircleIcon } from "lucide-react";
 import { BigNumbersInterfaces } from "../../interfaces/big_numbers";
 import DashboardComponentsBigNumber from "./big_number";
 import BigNumbersLoading from "../loading/bignumbers";
+
 function gettingSectionTitle(index: 0 | 1 | 2) {
   const sections = {
     0: "Galonagem, Faturamento e Abastecimento",
@@ -17,8 +18,10 @@ function gettingSectionTitle(index: 0 | 1 | 2) {
   };
   return sections[index];
 }
+
 export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
   if (!data) return <BigNumbersLoading />;
+
   return (
     <div className="flex flex-col gap-2 lg:w-full w-full">
       <div className="flex items-center gap-4">
@@ -41,7 +44,7 @@ export default function DashboardComponentsBigNumbers({ data }: { data: any }) {
         (big_numbers_section: BigNumbersInterfaces[], index: 0 | 1 | 2) => (
           <div key={index} className="flex flex-col gap-1 h-full">
             <p className="text-xs font-bold">{gettingSectionTitle(index)}</p>
-            <div className="flex flex-wrap gap-2 justify-center items-center">
+            <div className="grid lg:grid-cols-3 md:grid-cols-1 md:grid-cols-2 gap-2">
               {big_numbers_section.map((bignumber, index) => {
                 return (
                   <DashboardComponentsBigNumber key={index} data={bignumber} />

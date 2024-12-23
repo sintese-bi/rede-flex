@@ -29,7 +29,7 @@ export function BigNumberFirstSection({
   const percentageStatusStyle = tenth_value ? "text-green-200" : "text-red-200";
   const sectionContent = {
     real: () => (
-      <div className="flex justify-between items-center w-full">
+      <div className="flex lg:flex-row md:flex-row flex-col justify-between lg:items-center md:items-center items-start lg:space-y-0 md:space-y-0 space-y-4 w-full">
         <div className="space-y-1">
           <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
             {label}
@@ -76,7 +76,7 @@ export function BigNumberFirstSection({
       </div>
     ),
     gallon: () => (
-      <div className="flex justify-between items-center w-full">
+      <div className="flex lg:flex-row md:flex-row flex-col justify-between lg:items-center md:items-center items-start lg:space-y-0 md:space-y-0 space-y-4 w-full">
         <div className="space-y-1">
           <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
             {label}
@@ -127,7 +127,7 @@ export function BigNumberFirstSection({
       </div>
     ),
     real_per_gallon: () => (
-      <div className="flex justify-between items-center w-full">
+      <div className="flex lg:flex-row md:flex-row flex-col justify-between lg:items-center md:items-center items-start lg:space-y-0 md:space-y-0 space-y-4 w-full">
         <div className="space-y-1">
           <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
             {label}
@@ -174,7 +174,7 @@ export function BigNumberFirstSection({
       </div>
     ),
     percentage: () => (
-      <div className="flex justify-between items-center w-full">
+      <div className="flex lg:flex-row md:flex-row flex-col justify-between lg:items-center md:items-center items-start lg:space-y-0 md:space-y-0 space-y-4 w-full">
         <div className="space-y-1">
           <p className="lg:text-md md:text-md text-sm font-extrabold text-slate-400">
             {label}
