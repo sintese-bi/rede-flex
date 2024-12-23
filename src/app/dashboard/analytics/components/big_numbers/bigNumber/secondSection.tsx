@@ -35,9 +35,7 @@ export default function BigNumberSecondSection({
                 third_value ? "text-green-200" : "text-red-200"
               }`}
             >
-              <p className="text-xs font-bold">
-                {secondary_value.replace(",00", "")}
-              </p>
+              <p className="text-xs font-bold">{secondary_value}</p>
               <PercentIcon className="flex" size={14} />
             </div>
           </>
@@ -48,7 +46,7 @@ export default function BigNumberSecondSection({
                 third_value ? "text-green-200" : "text-red-200"
               }`}
             >
-              {secondary_value.replace(",00", "")}
+              {secondary_value}
             </p>
           </div>
         )}
@@ -57,9 +55,7 @@ export default function BigNumberSecondSection({
         {third_value !== undefined ? (
           <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">{fourth_label}</p>
-            <p className={`text-xs font-bold text-white`}>
-              {fourth_value.replace(",00", "")}
-            </p>
+            <p className={`text-xs font-bold text-white`}>{fourth_value}</p>
           </div>
         ) : null}
       </div>

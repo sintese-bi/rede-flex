@@ -51,7 +51,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <p className="flex font-bold text-slate-400">R$</p>
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value.replace(",00", "")}
+                {eighth_value}
               </p>
             </div>
           ) : null}
@@ -86,9 +86,7 @@ export function BigNumberFirstSection({
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
             >
-              {label.includes("Abastecimentos")
-                ? value.replace(",00", "")
-                : value}
+              {label.includes("Abastecimentos") ? value : value}
             </p>
           </div>
         </div>
@@ -100,9 +98,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <FuelIcon className="flex text-slate-400" size={18} />
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {label.includes("Abastecimentos")
-                  ? eighth_value.replace(",00", "")
-                  : eighth_value}
+                {label.includes("Abastecimentos") ? eighth_value : eighth_value}
               </p>
             </div>
           ) : null}
@@ -149,7 +145,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <p className="flex font-bold text-slate-400">R$/L</p>
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value.replace(",00", "")}
+                {eighth_value}
               </p>
             </div>
           ) : null}
@@ -195,7 +191,7 @@ export function BigNumberFirstSection({
           {eighth_value ? (
             <div className="flex  items-center gap-1 text-white">
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value.replace(",00", "")}
+                {eighth_value}
               </p>
               <PercentIcon className="flex text-slate-400" size={18} />
             </div>
