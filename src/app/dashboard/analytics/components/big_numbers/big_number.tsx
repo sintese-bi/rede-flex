@@ -9,7 +9,7 @@ export default function DashboardComponentsBigNumber({
   data: BigNumbersInterfaces;
 }) {
   return (
-    <div className="flex flex-1 flex-grow h-full min-h-[162px] py-4 px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
+    <div className="flex flex-1 flex-grow lg:h-full md:h-full sm:h-[100px] min-h-[162px] min-h-[100px] py-4 px-4 rounded-lg bg-main-color items-center justify-between shadow-md">
       <div className="flex flex-col gap-6 w-full">
         <div className="flex justify-between">
           <BigNumberFirstSection
