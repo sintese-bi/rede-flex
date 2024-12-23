@@ -39,7 +39,7 @@ export function BigNumberFirstSection({
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
             >
-              {value}
+              {value.replace(",00", "")}
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <p className="flex font-bold text-slate-400">R$</p>
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value}
+                {eighth_value.replace(",00", "")}
               </p>
             </div>
           ) : null}
@@ -86,7 +86,7 @@ export function BigNumberFirstSection({
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
             >
-              {value}
+              {value.replace(",00", "")}
             </p>
           </div>
         </div>
@@ -98,7 +98,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <FuelIcon className="flex text-slate-400" size={18} />
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value}
+                {eighth_value.replace(",00", "")}
               </p>
             </div>
           ) : null}
@@ -133,7 +133,7 @@ export function BigNumberFirstSection({
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
             >
-              {value}
+              {value.replace(",00", "")}
             </p>
           </div>
         </div>
@@ -145,7 +145,7 @@ export function BigNumberFirstSection({
             <div className="flex  items-center gap-1 text-white">
               <p className="flex font-bold text-slate-400">R$/L</p>
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value}
+                {eighth_value.replace(",00", "")}
               </p>
             </div>
           ) : null}
@@ -179,7 +179,7 @@ export function BigNumberFirstSection({
             <p
               className={`lg:text-md md:text-md sm:text-sm font-bold ${valueStatusStyle}`}
             >
-              {value}
+              {value.replace(",00", "")}
             </p>
             <PercentIcon className="flex text-slate-400" size={18} />
           </div>
@@ -191,7 +191,7 @@ export function BigNumberFirstSection({
           {eighth_value ? (
             <div className="flex  items-center gap-1 text-white">
               <p className={`lg:text-md md:text-md sm:text-sm font-bold`}>
-                {eighth_value}
+                {eighth_value.replace(",00", "")}
               </p>
               <PercentIcon className="flex text-slate-400" size={18} />
             </div>

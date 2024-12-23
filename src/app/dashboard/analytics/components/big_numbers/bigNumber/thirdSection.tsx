@@ -22,11 +22,15 @@ export default function BigNumberThirdSection({
           </div>
           <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">{fifth_label}</p>
-            <p className={`text-xs font-bold text-white`}>{fifth_value}</p>
+            <p className={`text-xs font-bold text-white`}>
+              {fifth_value.replace(",00", "")}
+            </p>
           </div>
           <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">{seventh_label}</p>
-            <p className={`text-xs font-bold text-white`}>{seventh_value}</p>
+            <p className={`text-xs font-bold text-white`}>
+              {seventh_value.replace(",00", "")}
+            </p>
           </div>
         </div>
       ) : null}
