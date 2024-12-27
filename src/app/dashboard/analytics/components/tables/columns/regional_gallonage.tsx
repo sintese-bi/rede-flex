@@ -48,6 +48,7 @@ export const regional_gallonage: any[] = [
       return (
         <Button
           variant="ghost"
+          className="text-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           RB
@@ -62,7 +63,7 @@ export const regional_gallonage: any[] = [
         maximumFractionDigits: 2,
       }).format(amount);
 
-      return <div className="font-medium text-center">R$ {formatted}</div>;
+      return <div className="font-medium text-start">R$ {formatted}</div>;
     },
   },
   {
