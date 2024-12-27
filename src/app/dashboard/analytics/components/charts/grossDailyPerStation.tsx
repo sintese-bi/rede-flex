@@ -19,7 +19,7 @@ const Bar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Bar), {
 export default function GrossDailyPerStation() {
   const [data, setData] = useState<any>(null);
   const [filterVariable, setFilterVariable] = useState<"fuel" | "product">(
-    "fuel"
+    "product"
   );
   const filterVariableOptions = {
     fuel: "Galonagem",

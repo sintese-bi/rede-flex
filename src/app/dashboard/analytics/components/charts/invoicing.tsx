@@ -26,7 +26,7 @@ export default function LinearInvoicing() {
   const [clickedLabel, setClickedLabel] = useState<string>("");
   const [filterVariable, setFilterVariable] = useState<
     "fatCombustivel" | "fatProduto"
-  >("fatCombustivel");
+  >("fatProduto");
   const filterVariableOptions = {
     fatCombustivel: "Galonagem",
     fatProduto: "Produto",
