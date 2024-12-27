@@ -24,7 +24,7 @@ export default function DashboardComponentsMap({ data }: { data: any }) {
     <div className="flex flex-col gap-2 w-full rounded-lg h-full min-h-[560px]">
       <div className="flex items-center gap-2">
         <p className="flex items-center text-sm font-bold text-slate-600">
-          Geocalização de postos
+          Geolocalização de postos
         </p>
         <TooltipProvider>
           <Tooltip>
