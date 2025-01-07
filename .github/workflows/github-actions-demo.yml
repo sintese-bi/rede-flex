@@ -25,11 +25,15 @@ jobs:
         run: npm run build
 
   deploy:
+  
     name: Deploy Application with Docker Compose
     runs-on: self-hosted
     needs: build-and-test
 
     steps:
+      - name: Fix Permissions
+        run: sudo chown -R $USER:$USER /var/www/myapp/_work/rede-flex/rede-flex
+
       - name: Stop Docker containers
         run: |
           cd /var/www/myapp/_work/rede-flex/rede-flex
