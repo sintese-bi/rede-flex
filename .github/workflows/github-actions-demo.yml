@@ -26,3 +26,51 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  deploy:
+    name: Deploy 
+    runs-on: self-hosted
+    needs: build-and-test 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy Docker Compose
+        run: |
+          cd /var/www/myapp/_work/rede-flex/rede-flex
+          git fetch --all
+          git reset --hard origin/development
+          docker compose up -d --build
+
+
+
+
+# name: CI/CD for Next.js
+
+# on:
+#   push:
+#     branches:
+#       - development
+#   pull_request:
+#     branches:
+#       - development
+
+# jobs:
+#   build-and-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#           cache: "npm"
+
+#       - name: Install Dependencies
+#         run: npm install
+
+#       - name: Build
+#         run: npm run build
