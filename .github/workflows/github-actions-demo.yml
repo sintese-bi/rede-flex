@@ -41,7 +41,7 @@ jobs:
           cd /var/www/myapp/_work/rede-flex/rede-flex
           git fetch --all
           git reset --hard origin/development
-          docker compose up -d --build
+          docker compose up -d --build prod
 
 
 
