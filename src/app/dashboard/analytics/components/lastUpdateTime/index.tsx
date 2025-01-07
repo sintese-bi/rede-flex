@@ -27,7 +27,7 @@ export default function Time() {
           {/**
            * //Data e hora da Hora da última venda:
            */}
-          Data da atualização
+          Data da 2 atualização
         </p>
         <Separator />
       </div>
