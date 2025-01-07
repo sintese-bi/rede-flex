@@ -24,10 +24,7 @@ export default function Time() {
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-1">
         <p className="text-xs font-bold">
-          {/**
-           * //Data e hora da Hora da última venda:
-           */}
-          Data da 2 atualização
+          Data e hora da Hora da última venda:
         </p>
         <Separator />
       </div>
