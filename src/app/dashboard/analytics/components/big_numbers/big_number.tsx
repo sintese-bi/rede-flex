@@ -20,7 +20,7 @@ export default function DashboardComponentsBigNumber({
           eighth_value={data.eighth_value}
           tenth_value={data.tenth_value}
           ninth_label={data.ninth_label}
-          ninth_value={data.ninth_value}
+          ninth_value={0}
           unit_type={data.unit_type}
         />
       </div>
