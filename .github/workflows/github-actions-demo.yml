@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
   deploy:
-    name: Deploy 
+    name: Deploy CD 
     runs-on: self-hosted
     needs: build-and-test 
 
