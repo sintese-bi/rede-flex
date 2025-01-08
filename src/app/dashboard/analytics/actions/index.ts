@@ -8,27 +8,6 @@ import {
   getAccessToken,
   microServiceRequestConfig,
 } from "@/utils";
-interface Data {
-  label: string;
-  value: number;
-  secondary_label: string;
-  secondary_value: number;
-  third_value: boolean;
-  fourth_label: string;
-  fourth_value: number;
-  fifth_label: string;
-  fifth_value: number;
-  sixth_label: string;
-  sixth_value: boolean;
-  seventh_label: string;
-  seventh_value: number;
-  eighth_label: string;
-  eighth_value: number;
-  ninth_value: number;
-  ninth_label: string;
-  tenth_value: boolean;
-  unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
-}
 export async function handleDashboardBigNumbers(): Promise<
   BigNumbersInterfaces[][]
 > {
@@ -42,49 +21,8 @@ export async function handleDashboardBigNumbers(): Promise<
     }
   );
   const json = await response.json();
-  const { data }: { data: Data[][] } = json;
-  const formmatedNumbers = data.map((dataSection) =>
-    dataSection.map((big_number) => {
-      return {
-        ...big_number,
-        value: new Intl.NumberFormat("de-DE", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(big_number["value"]),
-        secondary_value: big_number["secondary_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["secondary_value"])
-          : "",
-        fourth_value: big_number["fourth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["fourth_value"])
-          : "",
-        fifth_value: big_number["fifth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["fifth_value"])
-          : "",
-        seventh_value: big_number["seventh_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["seventh_value"])
-          : "",
-        eighth_value: big_number["eighth_value"]
-          ? new Intl.NumberFormat("de-DE", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(big_number["eighth_value"])
-          : "",
-      };
-    })
-  );
-  return formmatedNumbers;
+  const { data }: { data: BigNumbersInterfaces[][] } = json;
+  return data;
 }
 export async function fetchMLTs(): Promise<any> {
   const response = await fetch(
@@ -97,7 +35,7 @@ export async function fetchMLTs(): Promise<any> {
     }
   );
   const json = await response.json();
-  const { data }: { data: Data[][] } = json;
+  const { data }: { data: BigNumbersInterfaces[][] } = json;
   return data;
 }
 export async function handleDashboardCharts(): Promise<ChartsInterfaces[]> {
