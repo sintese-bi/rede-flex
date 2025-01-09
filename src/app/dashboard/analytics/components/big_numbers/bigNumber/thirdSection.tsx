@@ -13,7 +13,7 @@ export default function BigNumberThirdSection({
 }) {
   return (
     <div className="flex justify-between gap-4">
-      {fifth_value !== "" ? (
+      {fifth_value !== "" && fifth_value !== "0" ? (
         <div className="flex flex-col lg:items-end md:items-end items-start">
           <div className="flex gap-1">
             <p className="text-xs font-bold text-slate-400">

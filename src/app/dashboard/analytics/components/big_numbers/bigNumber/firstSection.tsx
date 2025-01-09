@@ -22,7 +22,7 @@ export function BigNumberFirstSection({
   eighth_value: string;
   tenth_value: boolean;
   ninth_label: string;
-  ninth_value: number;
+  ninth_value: string;
   unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }) {
   const valueStatusStyle = tenth_value ? "text-green-200" : "text-red-200";
@@ -63,7 +63,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${valueStatusStyle}`}
           >
-            {ninth_value >= 0 ? `${ninth_value}%` : ""}
+            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -110,7 +110,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {ninth_value >= 0 ? `${ninth_value}%` : ""}
+            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -157,7 +157,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {ninth_value >= 0 ? `${ninth_value}%` : ""}
+            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -204,7 +204,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {ninth_value >= 0 ? `${ninth_value}%` : ""}
+            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />

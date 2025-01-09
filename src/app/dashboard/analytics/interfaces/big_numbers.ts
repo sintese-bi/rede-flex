@@ -15,7 +15,7 @@ export interface BigNumbersInterfaces {
   eighth_label: string;
   eighth_value: string;
   ninth_label: string;
-  ninth_value: number;
+  ninth_value: string;
   tenth_value: boolean;
   unit_type: "real" | "gallon" | "real_per_gallon" | "percentage";
 }
