@@ -22,6 +22,7 @@ export async function handleDashboardBigNumbers(): Promise<
   );
   const json = await response.json();
   const { data }: { data: BigNumbersInterfaces[][] } = json;
+  console.log(data);
   return data;
 }
 export async function fetchMLTs(): Promise<any> {

@@ -63,7 +63,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${valueStatusStyle}`}
           >
-            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
+            {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -110,7 +110,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
+            {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -157,7 +157,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
+            {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
@@ -204,7 +204,7 @@ export function BigNumberFirstSection({
           <p
             className={`flex items-center gap-2 lg:text-md md:text-md text-sm font-extrabold ${percentageStatusStyle}`}
           >
-            {Number(ninth_value) >= 0 ? `${ninth_value}%` : ""}
+            {ninth_value ? `${ninth_value}%` : ""}
             {ninth_value !== undefined ? (
               tenth_value ? (
                 <ArrowUpIcon size={12} />
