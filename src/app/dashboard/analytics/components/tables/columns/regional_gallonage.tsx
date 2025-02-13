@@ -128,8 +128,8 @@ export const regional_gallonage: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("M/LT"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 4,
       }).format(amount);
 
       return <div className="font-medium">R$ {formatted}</div>;

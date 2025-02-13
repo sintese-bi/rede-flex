@@ -52,6 +52,13 @@ export default function GeneralForm({}: {}) {
       <div className="w-full font-bold text-sm">
         <p>Formulário geral</p>
       </div>
+      <p className="font-bold text-sm text-slate-400 w-full word-break">
+        (Atenção! Não utilizar essa funcionalidade pois ela pode alterar todos
+        <br />
+        os valores preenchidos nas metas de galonagem & produto e nos descontos
+        <br />
+        de combustíveis)
+      </p>
       <form action={handleAction} className="flex gap-2 items-end w-full">
         <Section
           section={section}

@@ -46,8 +46,8 @@ export const fuel: any[] = [
     cell: ({ row }: any) => {
       const amount = parseFloat(row.getValue("M/LT"));
       const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 4,
       }).format(amount);
       return <div className="font-medium">R$ {formatted}</div>;
     },
@@ -179,7 +179,7 @@ export const fuel: any[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Margem
+          Faturamento
           <ArrowUpDownIcon className="ml-2 h-4 " />
         </Button>
       );
