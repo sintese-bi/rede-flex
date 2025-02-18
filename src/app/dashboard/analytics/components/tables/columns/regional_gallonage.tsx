@@ -112,29 +112,29 @@ export const regional_gallonage: any[] = [
       return <div className="font-medium">{formatted} L</div>;
     },
   },
-  {
-    accessorKey: "M/LT",
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          M/LT
-          <ArrowUpDownIcon className="ml-2 h-4 " />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => {
-      const amount = parseFloat(row.getValue("M/LT"));
-      const formatted = new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 4,
-        maximumFractionDigits: 4,
-      }).format(amount);
+  // {
+  //   accessorKey: "M/LT",
+  //   header: ({ column }: any) => {
+  //     return (
+  //       <Button
+  //         variant="ghost"
+  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //       >
+  //         M/LT
+  //         <ArrowUpDownIcon className="ml-2 h-4 " />
+  //       </Button>
+  //     );
+  //   },
+  //   cell: ({ row }: any) => {
+  //     const amount = parseFloat(row.getValue("M/LT"));
+  //     const formatted = new Intl.NumberFormat("de-DE", {
+  //       minimumFractionDigits: 4,
+  //       maximumFractionDigits: 4,
+  //     }).format(amount);
 
-      return <div className="font-medium">R$ {formatted}</div>;
-    },
-  },
+  //     return <div className="font-medium">R$ {formatted}</div>;
+  //   },
+  // },
 
   /**
    * {
