@@ -469,10 +469,10 @@ export async function handleDataframes() {
     };
   });
   const lowerThanAvarageCount = {
-    // "M/LT": galonagem.filter(
-    //   (item: any) =>
-    //     Number(item["M/LT"]) < parseFormattedNumber(stationAvarageMLT)
-    // ).length,
+    "M/LT": galonagem.filter(
+      (item: any) =>
+        Number(item["M/LT"]) < parseFormattedNumber(stationAvarageMLT)
+    ).length,
     TMP: produto.filter(
       (item: any) =>
         Number(item["TMP"]) < parseFormattedNumber(stationAvarageTMP)
