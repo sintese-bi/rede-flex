@@ -361,7 +361,7 @@ export async function handleDataframes() {
       TMC: item["TMC"],
       TMF: item["TMF"],
       TMV: item["TMV"],
-      // "M/LT": item["M/LT"],
+      "M/LT": item["M/LT"],
       Posto_ibm: item["Posto_ibm"],
       Indicador: item["Indicador"],
       Resultado: item["Resultado"],
