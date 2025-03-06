@@ -304,6 +304,7 @@ export async function handleDataframes() {
       "LBO Combsutivel": item["LBO Combsutivel"],
       "Rendimento Bruto": item["Rendimento Bruto"],
       "M/LT": item["M/LT"],
+      "Hora da Venda": item["Hora da Venda"]
     };
   });
   const grupo = dataframes["grupo"].map((item: any) => {
