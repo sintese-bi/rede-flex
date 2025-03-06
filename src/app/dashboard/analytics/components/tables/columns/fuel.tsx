@@ -194,6 +194,32 @@ export const fuel: any[] = [
       return <div className="font-medium">R$ {formatted}</div>;
     },
   },
+  {
+  accessorKey: "Hora da Venda",
+  header: ({ column }: any) => {
+    return (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Hora da Venda
+        <ArrowUpDownIcon className="ml-2 h-4 " />
+      </Button>
+    );
+  },
+  cell: ({ row }: any) => {
+    const horaDaVenda = row.getValue("Hora da Venda");
+    
+    const formattedHora = new Intl.DateTimeFormat("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(new Date(horaDaVenda));
+
+    return <div className="font-medium">{formattedHora}</div>;
+  },
+}
+
   /**
    * {
     accessorKey: "Lucro Com Desconto",
